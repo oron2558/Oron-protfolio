@@ -83,13 +83,59 @@
     .stack-card--crm .stack-image-wrap {
       background: none;
       border-radius: 0 24px 24px 0;
-      padding: 48px 40px;
+      padding: 0;
+      overflow: visible;
     }
 
-    .stack-card--crm .stack-image {
-      border-radius: 16px;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.12);
-      max-height: 320px;
+    .crm-iso {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      transform: perspective(1800px) rotateX(35deg) rotateZ(25deg);
+      transform-origin: 50% 50%;
+      transform-style: preserve-3d;
+      pointer-events: none;
+      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .crm-iso-card {
+      position: absolute;
+      width: 55%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+      background: #fff;
+      pointer-events: auto;
+      transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.45s ease;
+    }
+
+    .crm-iso-card:nth-child(1) { top: 8%; left: 0; z-index: 1; }
+    .crm-iso-card:nth-child(2) { top: -5%; left: 42%; z-index: 2; }
+    .crm-iso-card:nth-child(3) { top: 48%; left: 5%; z-index: 3; }
+    .crm-iso-card:nth-child(4) { top: 38%; left: 48%; z-index: 4; }
+
+    .crm-iso-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .stack-card--crm:hover .crm-iso {
+      transform: perspective(1800px) rotateX(32deg) rotateZ(23deg) scale(1.04);
+    }
+
+    [data-theme="dark"] .crm-iso-card {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 810px) {
+      .crm-iso { min-height: 300px; }
+    }
+
+    @media (max-width: 390px) {
+      .crm-iso { min-height: 220px; }
+      .crm-iso-card { border-radius: 7px; }
     }
 
     .stack-card--finapp {
@@ -573,7 +619,12 @@
             </span>
           </div>
           <div class="stack-image-wrap">
-            <img src="WhatsApp%20Image%202026-03-18%20at%2016.58.06.jpeg" alt="MessAge dashboard — unified inbox for solo professionals" class="stack-image" loading="lazy">
+            <div class="crm-iso">
+              <div class="crm-iso-card"><img src="screen-dashboard.jpeg" alt="Dashboard" loading="lazy"></div>
+              <div class="crm-iso-card"><img src="screen-smartbox.jpeg" alt="Smart Inbox" loading="lazy"></div>
+              <div class="crm-iso-card"><img src="screen-leads.jpeg" alt="Lead Pipeline" loading="lazy"></div>
+              <div class="crm-iso-card"><img src="screen-agent.jpeg" alt="AI Agent Builder" loading="lazy"></div>
+            </div>
           </div>
         </a>
 
