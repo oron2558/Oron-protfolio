@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a14;
+    width: 1400px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .canvas {
+    width: 1400px;
+    height: 720px;
+    position: relative;
+    perspective: 2200px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .screen {
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.3);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    display: block;
+  }
+
+  /* SCREEN 1: Tasks (far-left, tilted) */
+  .screen-tasks {
+    width: 620px;
+    height: 420px;
+    left: -60px;
+    top: -30px;
+    transform: rotateY(4deg) rotateZ(-1deg) scale(0.82);
+    z-index: 1;
+  }
+
+  /* SCREEN 2: Agent Builder (top-right, behind) */
+  .screen-agent {
+    width: 600px;
+    height: 380px;
+    right: -20px;
+    top: -40px;
+    transform: rotateY(-3deg) rotateZ(1deg) scale(0.82);
+    z-index: 1;
+  }
+
+  /* SCREEN 3: Smart Box (center-top, mid layer) */
+  .screen-smartbox {
+    width: 640px;
+    height: 450px;
+    left: 360px;
+    top: -20px;
+    transform: rotateY(0deg) rotateZ(0.5deg) scale(0.88);
+    z-index: 2;
+  }
+
+  /* SCREEN 4: Leads (left-front, overlapping) */
+  .screen-leads {
+    width: 640px;
+    height: 440px;
+    left: 60px;
+    top: 30px;
+    transform: rotateY(2deg) rotateZ(-0.5deg) scale(0.92);
+    z-index: 3;
+  }
+
+  /* SCREEN 5: Dashboard (front-right, hero, biggest) */
+  .screen-dashboard {
+    width: 720px;
+    height: 500px;
+    right: -10px;
+    top: 20px;
+    transform: rotateY(-1.5deg) rotateZ(0.3deg) scale(1);
+    z-index: 4;
+  }
+
+  /* Dark gradient overlay at bottom */
+  .gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(
+      to top,
+      #0a0a14 0%,
+      #0a0a14 15%,
+      rgba(10,10,20,0.97) 30%,
+      rgba(10,10,20,0.8) 55%,
+      rgba(10,10,20,0.3) 75%,
+      rgba(10,10,20,0) 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* Subtle ambient glows */
+  .glow-1 {
+    position: absolute;
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(59,130,246,0.07) 0%, transparent 70%);
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .glow-2 {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(6,182,212,0.05) 0%, transparent 70%);
+    top: 80px;
+    right: 80px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .glow-3 {
+    position: absolute;
+    width: 350px;
+    height: 250px;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.05) 0%, transparent 70%);
+    top: 60px;
+    left: 120px;
+    z-index: 0;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+  <div class="glow-3"></div>
+
+  <!-- Back layer -->
+  <div class="screen screen-tasks">
+    <img src="screen-tasks.jpeg" alt="Tasks">
+  </div>
+
+  <div class="screen screen-agent">
+    <img src="screen-agent.jpeg" alt="Agent Builder">
+  </div>
+
+  <!-- Middle layer -->
+  <div class="screen screen-smartbox">
+    <img src="screen-smartbox.jpeg" alt="Smart Box">
+  </div>
+
+  <!-- Front layer -->
+  <div class="screen screen-leads">
+    <img src="screen-leads.jpeg" alt="Leads">
+  </div>
+
+  <div class="screen screen-dashboard">
+    <img src="screen-dashboard.jpeg" alt="Dashboard">
+  </div>
+
+  <!-- Dark gradient overlay -->
+  <div class="gradient-overlay"></div>
+</div>
+</body>
+</html>

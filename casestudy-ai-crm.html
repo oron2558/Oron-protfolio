@@ -1,0 +1,2998 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MessAge — AI Messaging for Solo Professionals | Oron Turgeman</title>
+  <meta name="description" content="MessAge case study: Designing an AI messaging platform that helps independent business owners respond to leads and manage conversations — even while working. UX/UI design by Oron Turgeman.">
+  <link rel="stylesheet" href="portfolio-styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+
+  <style>
+    /* ============================================
+       CASE STUDY — AI CRM SPECIFIC STYLES
+       ============================================ */
+
+    /* Back link */
+    .cs-back {
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      z-index: 1001;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 100px;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--duration-fast) var(--ease-smooth);
+    }
+
+    .cs-back:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      background: rgba(240, 241, 245, 0.95);
+    }
+
+    .cs-back svg {
+      transition: transform var(--duration-fast) var(--ease-spring);
+    }
+
+    .cs-back:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* Hero — Case Study */
+    .cs-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+
+    .cs-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+      max-width: var(--max-width);
+      padding: 0 var(--container-padding);
+    }
+
+    .cs-hero-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cs-hero-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .cs-tag {
+      padding: 6px 16px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      border-radius: 100px;
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-light);
+    }
+
+    .cs-hero-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-hero);
+      font-weight: 700;
+      line-height: var(--lh-tight);
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .cs-hero-title .accent {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cs-hero-desc {
+      font-size: clamp(17px, 1.8vw, 20px);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .cs-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .cs-meta-item {
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+    }
+
+    .cs-meta-label {
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .cs-meta-value {
+      font-size: var(--fs-body);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .cs-hero-mockup {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+    }
+
+    .cs-hero-mockup img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* Section layout */
+    .cs-section {
+      padding: var(--section-gap) 0;
+      position: relative;
+    }
+
+    .cs-section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    .cs-section-header {
+      position: relative;
+      margin-bottom: 48px;
+    }
+
+    .cs-section-label {
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-light);
+      margin-bottom: 16px;
+    }
+
+    .cs-section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 700;
+      line-height: var(--lh-tight);
+      letter-spacing: -0.02em;
+    }
+
+    .cs-section-subtitle {
+      font-size: var(--fs-h3);
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .cs-text {
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      max-width: 720px;
+    }
+
+    .cs-text + .cs-text {
+      margin-top: 16px;
+    }
+
+    /* ============================================
+       BOLD SECTION NUMBERS (Eden Bazan style)
+       ============================================ */
+    .cs-section-number {
+      position: absolute;
+      top: -20px;
+      left: -10px;
+      font-family: var(--font-display);
+      font-size: clamp(100px, 12vw, 160px);
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(124, 58, 237, 0.06);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .cs-section-header > *:not(.cs-section-number) {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Divider */
+    .cs-divider {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    .cs-divider-line {
+      height: 1px;
+      background: var(--border-subtle);
+    }
+
+    /* Two-column layout */
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .cs-three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    /* Cards */
+    .cs-card {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      transition: border-color var(--duration-fast) var(--ease-smooth),
+                  transform var(--duration-fast) var(--ease-spring);
+    }
+
+    .cs-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .cs-card-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-glow);
+      border-radius: 14px;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .cs-card-title {
+      font-size: var(--fs-body);
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .cs-card-text {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      line-height: var(--lh-normal);
+    }
+
+    /* Stats row */
+    .cs-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .cs-stat {
+      text-align: center;
+      padding: 32px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+    }
+
+    .cs-stat-number {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 700;
+      color: var(--accent-light);
+      margin-bottom: 8px;
+    }
+
+    .cs-stat-label {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Image showcase */
+    .cs-showcase {
+      margin-top: 48px;
+    }
+
+    .cs-showcase-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .cs-showcase-hero {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-showcase-pair {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cs-showcase-trio {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .cs-screen {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: transform var(--duration-normal) var(--ease-spring),
+                  box-shadow var(--duration-normal) var(--ease-spring);
+    }
+
+    .cs-screen:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .cs-screen img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cs-screen-caption {
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .cs-screen-caption h4 {
+      font-size: var(--fs-small);
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+
+    .cs-screen-caption p {
+      font-size: var(--fs-tiny);
+      color: var(--text-muted);
+      line-height: var(--lh-normal);
+    }
+
+    /* Persona card */
+    .cs-persona {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      align-items: start;
+    }
+
+    .cs-persona-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #e8e8f8, #dbeafe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+    }
+
+    .cs-persona-name {
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .cs-persona-role {
+      font-size: var(--fs-small);
+      color: var(--accent-light);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .cs-persona-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--fs-body);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      padding-left: 20px;
+      border-left: 3px solid var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .cs-persona-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cs-persona-detail {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cs-persona-detail strong {
+      color: var(--text-primary);
+    }
+
+    .cs-persona-detail-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-glow);
+      border-radius: 8px;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* Journey map */
+    .cs-journey {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      margin-top: 32px;
+      background: var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cs-journey-step {
+      padding: 24px 16px;
+      background: var(--bg-card);
+      text-align: center;
+    }
+
+    .cs-journey-step:first-child {
+      border-radius: 16px 0 0 16px;
+    }
+
+    .cs-journey-step:last-child {
+      border-radius: 0 16px 16px 0;
+    }
+
+    .cs-journey-emoji {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .cs-journey-phase {
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-light);
+      margin-bottom: 8px;
+    }
+
+    .cs-journey-desc {
+      font-size: var(--fs-tiny);
+      color: var(--text-secondary);
+      line-height: var(--lh-normal);
+    }
+
+    .cs-journey-pain {
+      font-size: 11px;
+      color: #ef4444;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .cs-journey-solution {
+      font-size: 11px;
+      color: #22c55e;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    /* Journey Flow Diagram — Arrow-based */
+    .cs-journey-flow {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      overflow-x: auto;
+      padding: 8px 0 16px;
+    }
+
+    .cs-flow-node {
+      flex: 1;
+      min-width: 150px;
+      max-width: 200px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cs-flow-node:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .cs-flow-pain {
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+
+    .cs-flow-ideal {
+      border-color: rgba(134, 239, 172, 0.3);
+    }
+
+    .cs-flow-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .cs-flow-label {
+      font-size: var(--fs-small);
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .cs-flow-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .cs-flow-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .cs-badge-pain {
+      background: rgba(248, 113, 113, 0.15);
+      color: #fca5a5;
+    }
+
+    .cs-badge-ideal {
+      background: rgba(134, 239, 172, 0.15);
+      color: #86efac;
+    }
+
+    .cs-flow-arrow {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      color: rgba(248, 113, 113, 0.5);
+      padding: 0 6px;
+      margin-top: 40px;
+      font-weight: 300;
+      user-select: none;
+    }
+
+    .cs-flow-arrow.cs-arrow-ideal {
+      color: rgba(134, 239, 172, 0.5);
+    }
+
+    /* ============================================
+       RESEARCH SECTION — ENHANCED STYLES
+       ============================================ */
+
+    /* Research Questions */
+    .cs-research-questions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .cs-rq-item {
+      padding: 24px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      border-left: 3px solid var(--accent);
+      font-size: var(--fs-body);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      font-style: italic;
+      transition: border-color var(--duration-fast), transform var(--duration-fast) var(--ease-spring);
+    }
+
+    .cs-rq-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .cs-rq-number {
+      display: inline-block;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--accent-light);
+      margin-right: 8px;
+      font-size: var(--fs-small);
+    }
+
+    /* Competitive Analysis Matrix */
+    .cs-matrix {
+      width: 100%;
+      margin-top: 32px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cs-matrix th,
+    .cs-matrix td {
+      padding: 16px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .cs-matrix th:last-child,
+    .cs-matrix td:last-child {
+      border-right: none;
+    }
+
+    .cs-matrix tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cs-matrix thead th {
+      background: rgba(124, 58, 237, 0.1);
+      font-size: var(--fs-small);
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .cs-matrix thead th:first-child {
+      text-align: left;
+    }
+
+    .cs-matrix tbody td {
+      background: var(--bg-card);
+      font-size: 20px;
+    }
+
+    .cs-matrix tbody td:first-child {
+      text-align: left;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .cs-matrix-product {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .cs-matrix .good { color: #22c55e; }
+    .cs-matrix .mid { color: #f59e0b; }
+    .cs-matrix .bad { color: #ef4444; }
+
+    /* Affinity Mapping Board */
+    .cs-affinity-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-affinity-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cs-affinity-header {
+      padding: 16px 20px;
+      font-size: var(--fs-small);
+      font-weight: 700;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cs-affinity-header.group-1 { background: rgba(239, 68, 68, 0.1); border-bottom-color: rgba(239, 68, 68, 0.2); }
+    .cs-affinity-header.group-2 { background: rgba(245, 158, 11, 0.1); border-bottom-color: rgba(245, 158, 11, 0.2); }
+    .cs-affinity-header.group-3 { background: rgba(124, 58, 237, 0.1); border-bottom-color: rgba(124, 58, 237, 0.2); }
+    .cs-affinity-header.group-4 { background: rgba(59, 130, 246, 0.1); border-bottom-color: rgba(59, 130, 246, 0.2); }
+
+    .cs-affinity-notes {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cs-sticky-note {
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: var(--fs-small);
+      color: var(--bg-primary);
+      font-weight: 500;
+      line-height: 1.4;
+      transform: rotate(var(--rotate, 0deg));
+      transition: transform var(--duration-fast) var(--ease-spring);
+      cursor: default;
+    }
+
+    .cs-sticky-note:hover {
+      transform: rotate(0deg) scale(1.03);
+    }
+
+    .cs-sticky-note.yellow { background: #fde68a; }
+    .cs-sticky-note.pink { background: #fca5a5; }
+    .cs-sticky-note.blue { background: #93c5fd; }
+    .cs-sticky-note.green { background: #86efac; }
+    .cs-sticky-note.purple { background: #c4b5fd; }
+    .cs-sticky-note.orange { background: #fed7aa; }
+
+    /* User Journey — horizontal scrollable cards */
+    .cs-journey-intro {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .cs-journey-intro-card {
+      flex: 1;
+      padding: 28px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cs-journey-intro-card--current {
+      background: linear-gradient(135deg, #fef2f2, #fee2e2);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .cs-journey-intro-card--desired {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    [data-theme="dark"] .cs-journey-intro-card--current {
+      background: linear-gradient(135deg, #1c1917, #292524);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    [data-theme="dark"] .cs-journey-intro-card--desired {
+      background: linear-gradient(135deg, #022c22, #064e3b);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .cs-journey-intro-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cs-journey-intro-card--current h4 { color: #dc2626; }
+    .cs-journey-intro-card--desired h4 { color: #059669; }
+    [data-theme="dark"] .cs-journey-intro-card--current h4 { color: #f87171; }
+    [data-theme="dark"] .cs-journey-intro-card--desired h4 { color: #34d399; }
+
+    .cs-journey-intro-card p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    @media (max-width: 810px) {
+      .cs-journey-intro { flex-direction: column; gap: 16px; }
+    }
+
+    .cs-journey-scroll {
+      overflow-x: auto;
+      padding-bottom: 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .cs-journey-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .cs-journey-scroll::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+      border-radius: 3px;
+    }
+
+    .cs-journey-scroll::-webkit-scrollbar-thumb {
+      background: var(--border-hover);
+      border-radius: 3px;
+    }
+
+    .cs-journey-table {
+      display: grid;
+      grid-template-columns: 140px repeat(6, minmax(200px, 1fr));
+      min-width: 1400px;
+      gap: 0;
+    }
+
+    .cs-jt-header {
+      padding: 16px 14px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      border-bottom: 2px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+    }
+
+    .cs-jt-row-label {
+      padding: 18px 14px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      background: #fef9c3;
+      border-right: 2px solid rgba(234, 179, 8, 0.3);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    [data-theme="dark"] .cs-jt-row-label {
+      background: #422006;
+      border-right-color: rgba(234, 179, 8, 0.2);
+    }
+
+    .cs-jt-cell {
+      padding: 16px 14px;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .cs-jt-cell:last-child {
+      border-right: none;
+    }
+
+    /* Feeling row emotion colors */
+    .cs-jt-cell--positive { background: rgba(16, 185, 129, 0.06); }
+    .cs-jt-cell--negative { background: rgba(239, 68, 68, 0.06); }
+    .cs-jt-cell--neutral { background: rgba(245, 158, 11, 0.06); }
+
+    [data-theme="dark"] .cs-jt-cell--positive { background: rgba(16, 185, 129, 0.08); }
+    [data-theme="dark"] .cs-jt-cell--negative { background: rgba(239, 68, 68, 0.08); }
+    [data-theme="dark"] .cs-jt-cell--neutral { background: rgba(245, 158, 11, 0.08); }
+
+    .cs-jt-cell--improvement {
+      background: rgba(124, 58, 237, 0.04);
+      font-style: italic;
+    }
+
+    [data-theme="dark"] .cs-jt-cell--improvement {
+      background: rgba(124, 58, 237, 0.08);
+    }
+
+    /* Problem & Hypothesis Statement */
+    .cs-problem-hypothesis {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cs-ph-label {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+
+    .cs-ph-subtitle {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .cs-ph-divider {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 32px;
+    }
+
+    .cs-ph-intro {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .cs-ph-problem-text {
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin-bottom: 40px;
+      padding: 0 8px;
+    }
+
+    .cs-ph-hypothesis-intro {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .cs-ph-if-then {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 16px;
+    }
+
+    .cs-ph-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      max-width: 600px;
+    }
+
+    .cs-ph-keyword {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .cs-ph-block p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin: 0;
+      padding-top: 6px;
+    }
+
+    /* Curved arrow between if/then */
+    .cs-ph-arrow {
+      width: 80px;
+      height: 80px;
+      margin: 8px 0 8px 60px;
+    }
+
+    .cs-ph-arrow svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .cs-ph-arrow path {
+      stroke: #ef4444;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+
+    @media (max-width: 810px) {
+      .cs-ph-keyword { font-size: 2rem; }
+      .cs-ph-arrow { margin-left: 40px; }
+    }
+
+    /* User Flow & Journey */
+    .cs-flow-wrap {
+      background: #0d1117;
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-bottom: 48px;
+      overflow-x: auto;
+    }
+
+    .cs-flow-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin-bottom: 8px;
+    }
+
+    .cs-flow-sub {
+      font-size: 0.88rem;
+      color: #8b949e;
+      margin-bottom: 32px;
+    }
+
+    .cs-flow-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      min-width: max-content;
+      margin-bottom: 20px;
+    }
+
+    .cs-flow-row:last-child { margin-bottom: 0; }
+
+    .cs-flow-node {
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      white-space: nowrap;
+      text-align: center;
+      border: 2px solid;
+    }
+
+    .cs-flow-node--start {
+      background: #1a8a7a;
+      border-color: #2dd4bf;
+      color: #fff;
+      border-radius: 50px;
+      padding: 14px 28px;
+    }
+
+    .cs-flow-node--step {
+      background: rgba(124, 58, 237, 0.12);
+      border-color: #7c3aed;
+      color: #c4b5fd;
+    }
+
+    .cs-flow-node--end {
+      background: #7c3aed;
+      border-color: #a78bfa;
+      color: #fff;
+      border-radius: 50px;
+      padding: 14px 28px;
+    }
+
+    .cs-flow-arrow {
+      color: #484f58;
+      font-size: 1.2rem;
+      padding: 0 8px;
+      flex-shrink: 0;
+    }
+
+    /* Journey close-up table */
+    .cs-uj-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      min-width: 700px;
+    }
+
+    .cs-uj-table th {
+      padding: 14px 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8b949e;
+      text-align: left;
+      border-bottom: 2px solid #21262d;
+    }
+
+    .cs-uj-table th:first-child {
+      color: #c9d1d9;
+      width: 130px;
+    }
+
+    .cs-uj-table td {
+      padding: 14px 16px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #c9d1d9;
+      border-bottom: 1px solid #21262d;
+      vertical-align: top;
+    }
+
+    .cs-uj-table td:first-child {
+      font-weight: 700;
+      color: #f0f6fc;
+    }
+
+    .cs-uj-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cs-uj-feeling--positive { color: #3fb950; }
+    .cs-uj-feeling--neutral { color: #d29922; }
+    .cs-uj-feeling--negative { color: #f85149; }
+    .cs-uj-improvement { color: #a5d6ff; font-style: italic; }
+
+    @media (max-width: 810px) {
+      .cs-flow-wrap { padding: 32px 20px; }
+    }
+
+    /* How Might We — floating sticky notes */
+    .cs-hmw-category {
+      margin-bottom: 36px;
+    }
+
+    .cs-hmw-category-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+
+    .cs-hmw-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 680px;
+    }
+
+    .cs-hmw-note {
+      padding: 20px 18px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #fff;
+      font-weight: 500;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: flex-start;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .cs-hmw-note--green { background: #8bc98b; }
+    .cs-hmw-note--purple { background: #c4a8e6; }
+    .cs-hmw-note--pink { background: #f87171; }
+
+    [data-theme="dark"] .cs-hmw-note {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    @media (max-width: 810px) {
+      .cs-hmw-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 390px) {
+      .cs-hmw-grid { grid-template-columns: 1fr; }
+      .cs-hmw-note { min-height: auto; }
+    }
+
+    /* Design Directions */
+    .cs-directions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-direction {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      text-align: center;
+      transition: all var(--duration-fast) var(--ease-spring);
+    }
+
+    .cs-direction.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 24px var(--accent-glow);
+    }
+
+    .cs-direction-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .cs-direction-title {
+      font-size: var(--fs-body);
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .cs-direction-desc {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      line-height: var(--lh-normal);
+    }
+
+    .cs-direction-badge {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 6px 16px;
+      background: var(--accent-gradient);
+      border-radius: 100px;
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* IA Diagram */
+    .cs-ia-diagram {
+      margin-top: 40px;
+      padding: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+    }
+
+    .cs-ia-level {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cs-ia-level + .cs-ia-level {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px dashed var(--border-hover);
+    }
+
+    .cs-ia-node {
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .cs-ia-node.root {
+      background: var(--accent-gradient);
+      color: white;
+      font-size: var(--fs-body);
+    }
+
+    .cs-ia-node.branch {
+      background: rgba(124, 58, 237, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+    }
+
+    .cs-ia-node.leaf {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      font-size: var(--fs-tiny);
+    }
+
+    /* Research-to-Design Flow */
+    .cs-flow-item {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .cs-flow-finding {
+      padding: 20px 24px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      border-radius: 14px;
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .cs-flow-finding strong {
+      display: block;
+      color: #fca5a5;
+      font-size: var(--fs-tiny);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .cs-flow-arrow {
+      color: var(--accent-light);
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .cs-flow-decision {
+      padding: 20px 24px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      border-radius: 14px;
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+    }
+
+    .cs-flow-decision strong {
+      display: block;
+      color: #86efac;
+      font-size: var(--fs-tiny);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    /* Donut Charts */
+    .cs-donut-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .cs-donut-item {
+      text-align: center;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+    }
+
+    .cs-donut {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-donut-value {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      color: var(--text-primary);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cs-donut-label {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .cs-donut-sublabel {
+      font-size: var(--fs-tiny);
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Iteration Before/After */
+    .cs-iteration {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-iteration-card {
+      padding: 32px;
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cs-iteration-card.before {
+      background: rgba(239, 68, 68, 0.05);
+      border-color: rgba(239, 68, 68, 0.15);
+    }
+
+    .cs-iteration-card.after {
+      background: rgba(34, 197, 94, 0.05);
+      border-color: rgba(34, 197, 94, 0.15);
+    }
+
+    .cs-iteration-label {
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .cs-iteration-card.before .cs-iteration-label { color: #fca5a5; }
+    .cs-iteration-card.after .cs-iteration-label { color: #86efac; }
+
+    .cs-iteration-text {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+
+    .cs-iteration-text li {
+      margin-bottom: 8px;
+    }
+
+    /* Usability results */
+    .cs-test-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .cs-test-item {
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+    }
+
+    .cs-test-metric {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .cs-test-value {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+
+    .cs-test-label {
+      font-size: var(--fs-small);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .cs-test-desc {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      line-height: var(--lh-normal);
+    }
+
+    /* Progress bar */
+    .cs-progress {
+      margin-top: 12px;
+      height: 6px;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .cs-progress-fill {
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 100px;
+      transition: width 1s var(--ease-spring);
+    }
+
+    /* Highlight box */
+    .cs-highlight {
+      padding: 32px 40px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 20px;
+      margin-top: 32px;
+    }
+
+    .cs-highlight-title {
+      font-size: var(--fs-body);
+      font-weight: 700;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+
+    .cs-highlight-text {
+      font-size: var(--fs-body);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+
+    /* Wireframe section */
+    .cs-wireframes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .cs-wireframe {
+      padding: 24px;
+      background: var(--bg-secondary);
+      border: 1px dashed var(--border-hover);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .cs-wireframe img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      opacity: 0.7;
+    }
+
+    .cs-wireframe-label {
+      font-size: var(--fs-tiny);
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* Reflection list */
+    .cs-reflection-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-reflection-card {
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+    }
+
+    .cs-reflection-card h4 {
+      font-size: var(--fs-body);
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .cs-reflection-card p {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+
+    /* Next / Prev navigation */
+    .cs-nav-projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 80px var(--container-padding) 120px;
+    }
+
+    .cs-nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      transition: all var(--duration-fast) var(--ease-spring);
+    }
+
+    .cs-nav-link:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .cs-nav-link--next {
+      text-align: right;
+    }
+
+    .cs-nav-direction {
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .cs-nav-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Alternating backgrounds */
+    .cs-section--alt {
+      background: var(--bg-secondary);
+    }
+
+    /* List styles */
+    .cs-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cs-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      font-size: var(--fs-body);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+
+    .cs-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* ============================================
+       RESPONSIVE — TABLET
+       ============================================ */
+    @media (max-width: 810px) {
+      .cs-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 48px;
+      }
+
+      .cs-hero-tags {
+        justify-content: center;
+      }
+
+      .cs-hero-desc {
+        max-width: 100%;
+      }
+
+      .cs-meta {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .cs-two-col {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .cs-three-col {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .cs-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cs-showcase-pair,
+      .cs-showcase-trio {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-persona {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .cs-persona-avatar {
+        margin: 0 auto;
+      }
+
+      .cs-persona-quote {
+        border-left: none;
+        padding-left: 0;
+        border-top: 3px solid var(--accent);
+        padding-top: 16px;
+      }
+
+      .cs-journey {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .cs-journey-step:first-child {
+        border-radius: 16px 16px 0 0;
+      }
+
+      .cs-journey-step:last-child {
+        border-radius: 0 0 16px 16px;
+      }
+
+      .cs-journey-flow {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 0;
+        padding-bottom: 16px;
+      }
+
+      .cs-flow-node {
+        min-width: 140px;
+        scroll-snap-align: start;
+      }
+
+      .cs-flow-arrow {
+        font-size: 18px;
+        padding: 0 4px;
+      }
+
+      .cs-wireframes {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cs-test-results {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-research-questions {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-affinity-board {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cs-directions {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-flow-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .cs-flow-finding {
+        text-align: center;
+      }
+
+      .cs-donut-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-iteration {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-reflection-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-section-number {
+        font-size: clamp(80px, 10vw, 120px);
+      }
+
+      .cs-matrix {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    /* ============================================
+       RESPONSIVE — MOBILE
+       ============================================ */
+    @media (max-width: 390px) {
+      .cs-back {
+        top: 12px;
+        left: 12px;
+        padding: 8px 14px;
+        font-size: var(--fs-tiny);
+      }
+
+      .cs-hero {
+        padding: 100px 0 48px;
+      }
+
+      .cs-meta {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .cs-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-wireframes {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-affinity-board {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-nav-projects {
+        grid-template-columns: 1fr;
+        padding: 48px var(--container-padding) 80px;
+      }
+
+      .cs-nav-link--next {
+        text-align: left;
+      }
+
+      .cs-section-number {
+        font-size: 80px;
+      }
+    }
+
+    /* Journey roadmap */
+    .cs-journey-roadmap {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      margin-top: 40px;
+      padding: 20px 0;
+      overflow-x: auto;
+    }
+
+    .cs-journey-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .cs-journey-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg-primary);
+      box-shadow: 0 0 0 2px var(--accent);
+      margin-bottom: 12px;
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .cs-journey-step:hover .cs-journey-dot {
+      transform: scale(1.4);
+    }
+
+    .cs-journey-step--active .cs-journey-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--accent-gradient);
+      box-shadow: 0 0 0 3px var(--accent), 0 0 20px rgba(124, 58, 237, 0.3);
+    }
+
+    .cs-journey-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .cs-journey-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .cs-journey-connector {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), rgba(124, 58, 237, 0.3));
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 810px) {
+      .cs-journey-roadmap {
+        justify-content: flex-start;
+        padding-bottom: 12px;
+      }
+      .cs-journey-step { min-width: 90px; }
+      .cs-journey-connector { width: 24px; }
+    }
+
+    /* Pain points bar chart */
+    .cs-pain-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .cs-pain-bar-item {
+      display: grid;
+      grid-template-columns: 200px 1fr 48px;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cs-pain-bar-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: right;
+    }
+
+    .cs-pain-bar-track {
+      height: 28px;
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    [data-theme="dark"] .cs-pain-bar-track {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .cs-pain-bar-fill {
+      height: 100%;
+      width: 0;
+      background: var(--bar-color, var(--accent));
+      border-radius: 8px;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cs-pain-bar-fill.animated {
+      width: var(--bar-width);
+    }
+
+    .cs-pain-bar-pct {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 810px) {
+      .cs-pain-bar-item {
+        grid-template-columns: 1fr 48px;
+      }
+      .cs-pain-bar-label {
+        grid-column: 1 / -1;
+        text-align: left;
+        margin-bottom: -8px;
+      }
+    }
+
+    /* Side-by-side text + screen layout */
+    .cs-screen-row {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .cs-screen-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cs-screen-mockup {
+      flex-shrink: 0;
+      width: 400px;
+    }
+
+    .cs-screen-mockup img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--border-subtle);
+    }
+
+    @media (max-width: 810px) {
+      .cs-screen-row { flex-direction: column; gap: 24px; }
+      .cs-screen-mockup { width: 100%; max-width: 400px; }
+    }
+
+    @media (max-width: 390px) {
+      .cs-screen-mockup { width: 100%; max-width: 320px; }
+    }
+
+    /* Research artifact cards with hover overlay */
+    .cs-artifact {
+      margin-bottom: 28px;
+    }
+
+    .cs-artifact-img-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cs-artifact-img-wrap img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s var(--ease-spring);
+    }
+
+    .cs-artifact-img-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    .cs-artifact-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 32px 28px 24px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 60%, transparent 100%);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease, transform 0.35s var(--ease-spring);
+    }
+
+    .cs-artifact-img-wrap:hover .cs-artifact-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cs-artifact-overlay h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .cs-artifact-overlay p {
+      font-size: 14px;
+      line-height: 1.55;
+      opacity: 0.9;
+    }
+
+    /* Compact screen grid */
+    .cs-screens-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-screen-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .cs-screen-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(124, 58, 237, 0.18);
+    }
+
+    .cs-screen-card img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cs-screen-card-caption {
+      padding: 16px 20px;
+    }
+
+    .cs-screen-card-caption h4 {
+      font-size: var(--fs-body);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .cs-screen-card-caption p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .cs-screens-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Screen showcase animations */
+    @keyframes screenSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes screenGlow {
+      0%, 100% { box-shadow: 0 8px 32px rgba(124, 58, 237, 0.08); }
+      50% { box-shadow: 0 12px 48px rgba(124, 58, 237, 0.18); }
+    }
+
+    .cs-screen-animate {
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+      transition: none;
+    }
+
+    .cs-screen-animate.visible {
+      animation: screenSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .cs-screen-animate img {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      border-radius: var(--card-radius);
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+    }
+
+    .cs-screen-animate:hover img {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 16px 48px rgba(124, 58, 237, 0.2);
+    }
+    /* Dark mode case study overrides */
+    [data-theme="dark"] .cs-back {
+      background: rgba(2, 2, 10, 0.8);
+    }
+    [data-theme="dark"] .cs-back:hover {
+      background: rgba(17, 17, 25, 0.95);
+    }
+    [data-theme="dark"] .cs-artifact-overlay {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+    }
+    [data-theme="dark"] .cs-persona-avatar {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+    [data-theme="dark"] .cs-progress {
+      background: rgba(255, 255, 255, 0.06);
+    }
+  </style>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ==================== BACK TO PORTFOLIO ==================== -->
+  <a href="portfolio-home.html" class="cs-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 12L6 8l4-4"/>
+    </svg>
+    Back to Portfolio
+  </a>
+
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="position:fixed;top:20px;right:24px;z-index:1001;">
+    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+
+  <!-- ==================== ATMOSPHERIC BACKGROUND ==================== -->
+  <div class="blur-orb blur-orb-1" style="top: 5%; left: -8%;"></div>
+  <div class="blur-orb blur-orb-2" style="top: 15%; right: -5%;"></div>
+
+  <!-- ==================== 1. HERO ==================== -->
+  <section class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-hero-text animate-on-scroll">
+        <div class="cs-hero-tags">
+          <span class="cs-tag">AI</span>
+          <span class="cs-tag">Messaging</span>
+          <span class="cs-tag">Solo Business</span>
+          <span class="cs-tag">Lead Management</span>
+        </div>
+        <h1 class="cs-hero-title">
+          AI Messaging for <span class="accent">Solo Professionals</span>
+        </h1>
+        <p class="cs-hero-desc">
+          Designing an AI messaging platform that responds to leads, manages conversations across WhatsApp, Instagram and email, and helps independent business owners convert customers — even while they're physically working.
+        </p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">
+            <div class="cs-meta-label">Role</div>
+            <div class="cs-meta-value">UX/UI Designer</div>
+          </div>
+          <div class="cs-meta-item">
+            <div class="cs-meta-label">Duration</div>
+            <div class="cs-meta-value">8 Weeks</div>
+          </div>
+          <div class="cs-meta-item">
+            <div class="cs-meta-label">Tools</div>
+            <div class="cs-meta-value">Figma, Miro</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-hero-mockup animate-on-scroll">
+        <img src="WhatsApp%20Image%202026-03-18%20at%2016.58.06.jpeg" alt="MessAge Dashboard — Unified Inbox, AI Responses, Lead Management" />
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== THE MESSAGING CHAOS ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">The Messaging Chaos</h2>
+      <div class="cs-two-col" style="margin-top: 32px;">
+        <div class="animate-on-scroll">
+          <p class="cs-text">
+            Independent business owners — plumbers, beauticians, trainers, electricians — lose up to <strong>40% of potential leads</strong> because they can't respond in real-time while physically working.
+          </p>
+          <p class="cs-text">
+            Conversations are scattered across WhatsApp, Instagram, email, and website forms. There's no central place to manage them, and no way to respond when your hands are literally in someone's hair or under a sink.
+          </p>
+          <p class="cs-text">
+            Existing tools are designed for large sales teams (Salesforce, HubSpot) or too basic for multi-channel conversations. None understand a solo professional's reality.
+          </p>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="cs-artifact-img-wrap" style="border-radius: 16px; overflow: hidden;">
+            <img src="WhatsApp%20Image%202026-03-18%20at%2000.06.18.jpeg" alt="Research notes from user interviews" loading="lazy">
+            <div class="cs-artifact-overlay">
+              <h4>Research Notes</h4>
+              <p>Raw interview data from 12 solo professionals across 6 industries</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== TURNING CHAOS INTO CLARITY ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Turning Chaos into Clarity</h2>
+      <p class="cs-text animate-on-scroll" style="margin-bottom: 32px;">The solution: an AI-powered messaging platform that handles leads automatically, sounds like the owner, and unifies all channels into one view.</p>
+
+      <ul class="cs-list animate-on-scroll">
+        <li><strong>Unified Smart Inbox</strong> — All conversations from WhatsApp, Instagram, email, and website in one place</li>
+        <li><strong>AI Responder</strong> — Instantly replies to leads using the owner's voice and tone, even while they're working</li>
+        <li><strong>Lead Pipeline</strong> — Visual tracking of every lead's status, source, and next action</li>
+        <li><strong>Automated Follow-ups</strong> — Sequences that nurture leads until they book or buy — no manual effort</li>
+        <li><strong>Task Management</strong> — Follow-ups and to-dos linked to each lead, so nothing falls through the cracks</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== DESIGN JOURNEY ROADMAP ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">From Research to High-Fidelity: My Design Journey</h2>
+      <div class="cs-journey-roadmap animate-on-scroll">
+        <div class="cs-journey-step">
+          <div class="cs-journey-dot"></div>
+          <div class="cs-journey-label">Interviews</div>
+          <div class="cs-journey-sub">12 users, 6 industries</div>
+        </div>
+        <div class="cs-journey-connector"></div>
+        <div class="cs-journey-step">
+          <div class="cs-journey-dot"></div>
+          <div class="cs-journey-label">Affinity Map</div>
+          <div class="cs-journey-sub">Thematic clustering</div>
+        </div>
+        <div class="cs-journey-connector"></div>
+        <div class="cs-journey-step">
+          <div class="cs-journey-dot"></div>
+          <div class="cs-journey-label">Empathy Map</div>
+          <div class="cs-journey-sub">Says, Does, Thinks, Feels</div>
+        </div>
+        <div class="cs-journey-connector"></div>
+        <div class="cs-journey-step">
+          <div class="cs-journey-dot"></div>
+          <div class="cs-journey-label">Pain Points</div>
+          <div class="cs-journey-sub">Prioritization matrix</div>
+        </div>
+        <div class="cs-journey-connector"></div>
+        <div class="cs-journey-step">
+          <div class="cs-journey-dot"></div>
+          <div class="cs-journey-label">HMW</div>
+          <div class="cs-journey-sub">Framing opportunities</div>
+        </div>
+        <div class="cs-journey-connector"></div>
+        <div class="cs-journey-step cs-journey-step--active">
+          <div class="cs-journey-dot"></div>
+          <div class="cs-journey-label">Hi-Fi Design</div>
+          <div class="cs-journey-sub">Final screens</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== RESEARCH GOALS ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Research Goals</h2>
+      <div class="cs-research-questions animate-on-scroll stagger" style="margin-top: 32px;">
+        <div class="cs-rq-item">
+          <span class="cs-rq-number">01</span>
+          Understand how solo professionals currently manage incoming leads and customer conversations across channels
+        </div>
+        <div class="cs-rq-item">
+          <span class="cs-rq-number">02</span>
+          Identify what causes leads to go cold and how many are lost to delayed responses
+        </div>
+        <div class="cs-rq-item">
+          <span class="cs-rq-number">03</span>
+          Gauge how solo professionals feel about AI responding to leads on their behalf
+        </div>
+        <div class="cs-rq-item">
+          <span class="cs-rq-number">04</span>
+          Determine what level of automation feels helpful vs. impersonal to their customers
+        </div>
+      </div>
+
+      <!-- Research Artifacts -->
+      <div class="cs-artifact animate-on-scroll" style="margin-top: 48px;">
+        <div class="cs-artifact-img-wrap">
+          <img src="WhatsApp%20Image%202026-03-18%20at%2000.06.18%20(2).jpeg" alt="Empathy Map — Says, Does, Thinks, Feels" loading="lazy">
+          <div class="cs-artifact-overlay">
+            <h4>Empathy Map — "The Solo Pro"</h4>
+            <p>What they say, do, think, and feel. Overwhelmed by context-switching, anxious about missing leads, skeptical of generic tools.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== CORE PAIN POINTS ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Core Pain Points Identified</h2>
+      <p class="cs-text animate-on-scroll" style="margin-bottom: 32px;">After synthesizing 12 interviews and 3 shadowing sessions, four critical pain points emerged:</p>
+
+      <!-- Pain Points Bar Chart -->
+      <div class="cs-pain-bars animate-on-scroll">
+        <div class="cs-pain-bar-item">
+          <div class="cs-pain-bar-label">Response / Lack of Response</div>
+          <div class="cs-pain-bar-track"><div class="cs-pain-bar-fill" style="--bar-width: 92%; --bar-color: #7c3aed;"></div></div>
+          <span class="cs-pain-bar-pct">92%</span>
+        </div>
+        <div class="cs-pain-bar-item">
+          <div class="cs-pain-bar-label">Channel Fragmentation</div>
+          <div class="cs-pain-bar-track"><div class="cs-pain-bar-fill" style="--bar-width: 75%; --bar-color: #3b82f6;"></div></div>
+          <span class="cs-pain-bar-pct">75%</span>
+        </div>
+        <div class="cs-pain-bar-item">
+          <div class="cs-pain-bar-label">Lead Prioritization</div>
+          <div class="cs-pain-bar-track"><div class="cs-pain-bar-fill" style="--bar-width: 67%; --bar-color: #f59e0b;"></div></div>
+          <span class="cs-pain-bar-pct">67%</span>
+        </div>
+        <div class="cs-pain-bar-item">
+          <div class="cs-pain-bar-label">AI Trust & Voice</div>
+          <div class="cs-pain-bar-track"><div class="cs-pain-bar-fill" style="--bar-width: 58%; --bar-color: #10b981;"></div></div>
+          <span class="cs-pain-bar-pct">58%</span>
+        </div>
+      </div>
+
+      <!-- Pain Points artifact -->
+      <div class="cs-artifact animate-on-scroll" style="margin-top: 32px;">
+        <div class="cs-artifact-img-wrap">
+          <img src="WhatsApp%20Image%202026-03-18%20at%2000.06.18%20(1).jpeg" alt="Pain points prioritization matrix" loading="lazy">
+          <div class="cs-artifact-overlay">
+            <h4>Pain Points Prioritization</h4>
+            <p>#1 pain: Response / Lack of Response — leads go cold when the owner is busy. This became the north star for the design.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PROBLEM & HYPOTHESIS ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <div class="cs-problem-hypothesis animate-on-scroll">
+        <h2 class="cs-ph-subtitle">Narrowing Down the Problem</h2>
+        <div class="cs-ph-label">Problem & Hypothesis Statement</div>
+        <div class="cs-ph-divider"></div>
+
+        <p class="cs-ph-intro">After mapping frustrations and clustering insights, a clear pattern started to emerge. Despite the variety of stories, they all pointed to the same underlying struggle. At this stage, I needed to sharpen everything into a single design challenge — the <strong>Problem Statement.</strong></p>
+
+        <p class="cs-ph-problem-text">Solo professionals can't do their job and sell at the same time — and every missed response is a lost customer. They need a way to manage all client communication from one place, respond instantly even while working, and never lose a lead — without hiring extra staff.</p>
+
+        <p class="cs-ph-hypothesis-intro">Building on the problem statement, I translated the core challenge into a testable assumption, the <strong>Hypothesis Statement</strong>, that could guide design decisions and later be validated with users.</p>
+
+        <div class="cs-ph-if-then">
+          <div class="cs-ph-block">
+            <span class="cs-ph-keyword">If</span>
+            <p>we build a system that allows business owners to centralize all communication channels with customers and allow them to respond automatically and efficiently and retain existing leads and customers</p>
+          </div>
+
+          <div class="cs-ph-arrow">
+            <svg viewBox="0 0 80 80">
+              <path d="M15 5 C 5 40, 50 60, 60 70" />
+              <path d="M52 63 L60 70 L52 77" />
+            </svg>
+          </div>
+
+          <div class="cs-ph-block">
+            <span class="cs-ph-keyword">then</span>
+            <p>we can maximize their profits and save on personnel expenses, even when they are not physically available for matters such as service and sales in the immediate term</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== USER JOURNEY ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">A Day in the Life</h2>
+      <p class="cs-text animate-on-scroll" style="margin-bottom: 32px;">To truly understand where the pain lives, I mapped out a typical workday for a solo professional — from the moment they open their inbox to the end of an exhausting day of missed opportunities.</p>
+
+      <div class="cs-journey-intro animate-on-scroll">
+        <div class="cs-journey-intro-card cs-journey-intro-card--current">
+          <h4>The Reality Today</h4>
+          <p>The owner starts each morning enthusiastic but quickly drowns in fragmented channels — WhatsApp, email, Instagram, Facebook. Every lead requires manual sorting, categorization, and prioritization. When they leave for an installation or meeting, inquiries pile up unanswered. By evening, they're exhausted, racing to revive cold leads while their service quality suffers.</p>
+        </div>
+        <div class="cs-journey-intro-card cs-journey-intro-card--desired">
+          <h4>The Vision</h4>
+          <p>A unified system that collects all leads automatically, categorizes them by urgency, and responds instantly with the owner's personal voice — even while they're on-site. Smart follow-ups keep leads warm, and by the time they return to the office, everything is organized, prioritized, and waiting for their review.</p>
+        </div>
+      </div>
+
+      <div class="cs-journey-scroll animate-on-scroll">
+        <div class="cs-journey-table">
+          <!-- Header row -->
+          <div class="cs-jt-header"></div>
+          <div class="cs-jt-header">Collect Leads</div>
+          <div class="cs-jt-header">Categorize</div>
+          <div class="cs-jt-header">Prioritize</div>
+          <div class="cs-jt-header">Leave for Work</div>
+          <div class="cs-jt-header">Unavailable</div>
+          <div class="cs-jt-header">Return to Office</div>
+
+          <!-- Action row -->
+          <div class="cs-jt-row-label">Action</div>
+          <div class="cs-jt-cell">Go through all leads from all communication channels</div>
+          <div class="cs-jt-cell">Start categorizing service sales and technical support inquiries</div>
+          <div class="cs-jt-cell">Prioritize response urgency according to business goals — sales to new leads, support and service to existing customers</div>
+          <div class="cs-jt-cell">He leaves for a pre-scheduled installation, at which time he is unavailable to answer inquiries</div>
+          <div class="cs-jt-cell">He continues to receive leads and service inquiries across all channels but will only be available to respond in a few hours</div>
+          <div class="cs-jt-cell">Returns to the office and starts sorting out the mess again and trying to revive as many sales/service inquiries as possible without compromising his service</div>
+
+          <!-- Task List row -->
+          <div class="cs-jt-row-label">Task List</div>
+          <div class="cs-jt-cell">A. Checks email, business WhatsApp, and Facebook messages for new inquiries<br><br>B. Collect all leads into the CRM system / Excel file</div>
+          <div class="cs-jt-cell">A. Go through and read each contact to see if it is for sales, service, or support<br><br>B. Mark inquiries by categories using colors, tags<br><br>C. Enter the referral details by region, reason, and other parameters</div>
+          <div class="cs-jt-cell">A. Goes through sales inquiries and checks what is most urgent to handle<br><br>B. While also responding to service and sales inquiries<br><br>C. Everything needs to be recorded to ensure proper follow-up</div>
+          <div class="cs-jt-cell">A. Starts driving — cannot answer questions<br><br>B. Arrives at the location, unloads equipment and doesn't have time to answer the phone</div>
+          <div class="cs-jt-cell">A. The installation takes a long time and during this time inquiries are not answered<br><br>B. He finishes the installation and returns to the office. After work and travel, he is already tired</div>
+          <div class="cs-jt-cell">A. Arrives at the office and begins the filtering and prioritization process again without energy, which hurts his sales and service ability</div>
+
+          <!-- Feeling row -->
+          <div class="cs-jt-row-label">Feeling</div>
+          <div class="cs-jt-cell cs-jt-cell--positive">Feeling enthusiastic</div>
+          <div class="cs-jt-cell cs-jt-cell--neutral">Feels like a waste of time</div>
+          <div class="cs-jt-cell cs-jt-cell--neutral">Confused — for him everything is important</div>
+          <div class="cs-jt-cell cs-jt-cell--negative">Upset — knows he could lose customers during this time</div>
+          <div class="cs-jt-cell cs-jt-cell--negative">Worried — maybe there are requests that require immediate attention and he doesn't know about it</div>
+          <div class="cs-jt-cell cs-jt-cell--negative">Exhausted and powerless</div>
+
+          <!-- Improvement row -->
+          <div class="cs-jt-row-label">Opportunities</div>
+          <div class="cs-jt-cell cs-jt-cell--improvement">Collecting references from all systems into one system</div>
+          <div class="cs-jt-cell cs-jt-cell--improvement">Prioritizing and labeling leads by lead type</div>
+          <div class="cs-jt-cell cs-jt-cell--improvement">System notifications by urgency — missed messages, new messages</div>
+          <div class="cs-jt-cell cs-jt-cell--improvement">Setting a status in the system that will activate the smart autoresponder</div>
+          <div class="cs-jt-cell cs-jt-cell--improvement">Automatic response by type of inquiry — "I'll get back to you as soon as possible" or answering regular questions via the bot</div>
+          <div class="cs-jt-cell cs-jt-cell--improvement">Smart follow-ups to reduce load</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== HMW — CRAFTING THE SOLUTION ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Crafting a Tool That Cuts Through the Chaos</h2>
+      <p class="cs-text animate-on-scroll" style="margin-bottom: 32px;">From research insights, I framed the core design challenges as "How Might We" questions:</p>
+
+      <!-- Customer Service -->
+      <div class="cs-hmw-category animate-on-scroll">
+        <h3 class="cs-hmw-category-title">Customer Service</h3>
+        <div class="cs-hmw-grid">
+          <div class="cs-hmw-note cs-hmw-note--green">How might we automate repetitive customer questions while keeping the interaction personal?</div>
+          <div class="cs-hmw-note cs-hmw-note--green">How might we standardize service quality so every client feels well-supported?</div>
+          <div class="cs-hmw-note cs-hmw-note--green">How might we ensure customers get fast, professional replies even when the owner is busy?</div>
+        </div>
+      </div>
+
+      <!-- Sales Problems -->
+      <div class="cs-hmw-category animate-on-scroll">
+        <h3 class="cs-hmw-category-title">Sales Problems</h3>
+        <div class="cs-hmw-grid">
+          <div class="cs-hmw-note cs-hmw-note--purple">How might we create scalable, personalized sales journeys without extra human effort?</div>
+          <div class="cs-hmw-note cs-hmw-note--purple">How might we centralize all leads in one place so nothing slips through the cracks?</div>
+          <div class="cs-hmw-note cs-hmw-note--purple">How might we guarantee immediate engagement with every new lead?</div>
+        </div>
+      </div>
+
+      <!-- Time Management -->
+      <div class="cs-hmw-category animate-on-scroll">
+        <h3 class="cs-hmw-category-title">Time Management</h3>
+        <div class="cs-hmw-grid">
+          <div class="cs-hmw-note cs-hmw-note--pink">How might we bring all client data and communication into one simple system?</div>
+          <div class="cs-hmw-note cs-hmw-note--pink">How might we ensure no client detail or promise is forgotten?</div>
+          <div class="cs-hmw-note cs-hmw-note--pink">How might we give owners clear insights into sales and service performance without extra work?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== FIGJAM BOARD ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Feature Mapping & Architecture</h2>
+      <p class="cs-text animate-on-scroll" style="margin-bottom: 32px;">Before jumping into design, I mapped out the full product scope — core features, AI automation, user experience needs, and business impact — to ensure every screen serves a real user need.</p>
+      <div class="cs-artifact animate-on-scroll">
+        <div class="cs-artifact-img-wrap" style="max-width: 100vw; margin-left: calc(-1 * var(--container-padding)); margin-right: calc(-1 * var(--container-padding)); border-radius: 0; border: none;">
+          <img src="figjam-board.jpeg" alt="FigJam feature mapping board — AI & Automation, UX, Core Features, Business Impact" loading="lazy" style="width: 100%; cursor: zoom-in;" onclick="this.style.transform = this.style.transform === 'scale(1.8)' ? 'scale(1)' : 'scale(1.8)'; this.style.cursor = this.style.transform === 'scale(1.8)' ? 'zoom-out' : 'zoom-in';">
+          <div class="cs-artifact-overlay">
+            <h4>Product Feature Map</h4>
+            <p>FigJam board mapping AI automation, UX requirements, core features, and business KPIs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== USER FLOW & JOURNEY ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">From Flow to Experience</h2>
+      <p class="cs-text animate-on-scroll" style="margin-bottom: 40px;">Before designing screens, I mapped the ideal user flow and journey — ensuring every step feels intuitive and every emotion is accounted for.</p>
+
+      <!-- Simple User Flow -->
+      <div class="cs-flow-wrap animate-on-scroll">
+        <div class="cs-flow-title">Simple User Flow</div>
+        <div class="cs-flow-sub">The core navigation path through MessAge — from login to action</div>
+
+        <div class="cs-flow-row">
+          <div class="cs-flow-node cs-flow-node--start">Login</div>
+          <span class="cs-flow-arrow">→</span>
+          <div class="cs-flow-node cs-flow-node--step">Home Screen</div>
+          <span class="cs-flow-arrow">→</span>
+          <div class="cs-flow-node cs-flow-node--step">Dashboard</div>
+          <span class="cs-flow-arrow">→</span>
+          <div class="cs-flow-node cs-flow-node--step">Smart Inbox</div>
+        </div>
+
+        <div class="cs-flow-row">
+          <div class="cs-flow-node cs-flow-node--step">Chat Screen</div>
+          <span class="cs-flow-arrow">→</span>
+          <div class="cs-flow-node cs-flow-node--step">Client Profile</div>
+          <span class="cs-flow-arrow">→</span>
+          <div class="cs-flow-node cs-flow-node--step">Mini CRM</div>
+          <span class="cs-flow-arrow">→</span>
+          <div class="cs-flow-node cs-flow-node--end">Actions</div>
+        </div>
+      </div>
+
+      <!-- User Journey Close-up -->
+      <div class="cs-flow-wrap animate-on-scroll">
+        <div class="cs-flow-title">User Journey Map — Close Up</div>
+        <div class="cs-flow-sub">Focused on the product — from first open to full control</div>
+
+        <div style="overflow-x: auto;">
+          <table class="cs-uj-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Opens the app for the first time</th>
+                <th>Enters the app dashboard</th>
+                <th>Sees a section to create chat-bots</th>
+                <th>Enters the inbox screen</th>
+                <th>Can handle clients & leads</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Action</td>
+                <td>Idan is opening the app for the first time</td>
+                <td>Enters to the app dashboard</td>
+                <td>Idan sees a section to create chat-bots</td>
+                <td>Enters to the inbox screen</td>
+                <td>Idan can handle his clients & leads</td>
+              </tr>
+              <tr>
+                <td>Feeling</td>
+                <td class="cs-uj-feeling--negative">Confused, uncomfortable</td>
+                <td class="cs-uj-feeling--negative">Not understand anything, a lot of information</td>
+                <td class="cs-uj-feeling--neutral">Hesitated, not tech-savvy enough</td>
+                <td class="cs-uj-feeling--neutral">Scanning, prioritize messages, take actions</td>
+                <td class="cs-uj-feeling--positive">Happy, relaxing, take control</td>
+              </tr>
+              <tr>
+                <td>Opportunities</td>
+                <td class="cs-uj-improvement">Relax colors, clear on-boarding, hints in every step</td>
+                <td class="cs-uj-improvement">Clear sections, clear topics, text for explanation</td>
+                <td class="cs-uj-improvement">Tutorials for any actions, demo mode, drag & drop mode</td>
+                <td class="cs-uj-improvement">Easy flow, auto pilot mode, alerts & notifications, tags & labels</td>
+                <td class="cs-uj-improvement">Gamification, target goals, mobile first</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== TURNING INSIGHTS INTO ACTION ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Turning Insights Into Action</h2>
+      <p class="cs-text animate-on-scroll" style="margin-bottom: 16px;">
+        Every design decision maps directly to a research finding. Below, each screen addresses a specific pain point uncovered during research.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN: Dashboard ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">CRM Dashboard</h3>
+      <div class="cs-screen-row animate-on-scroll">
+        <div class="cs-screen-text">
+          <p class="cs-text" style="margin-bottom: 16px;">The command center — a single glance shows everything a solo professional needs to know about their business communication.</p>
+          <ul class="cs-list">
+            <li><strong>AI Insights panel</strong> — proactive tips based on conversation data and lead behavior</li>
+            <li><strong>Channel breakdown</strong> — see which platforms bring the most leads (WhatsApp, Instagram, Facebook, Gmail)</li>
+            <li><strong>Task summary</strong> — urgent, in progress, and completed tasks at a glance</li>
+            <li><strong>Total inquirers chart</strong> — trend lines for all channels over the last 30 days</li>
+          </ul>
+        </div>
+        <div class="cs-screen-mockup">
+          <img src="WhatsApp%20Image%202026-03-18%20at%2016.58.06.jpeg" alt="MessAge CRM Dashboard" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== SCREEN: Smart Box ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">Unified Smart Box</h3>
+      <div class="cs-screen-row animate-on-scroll">
+        <div class="cs-screen-text">
+          <p class="cs-text" style="margin-bottom: 16px;">One inbox for every channel — WhatsApp, Instagram, email, and website. No more switching between apps.</p>
+          <ul class="cs-list">
+            <li><strong>All conversations unified</strong> — messages from every platform appear in a single thread</li>
+            <li><strong>AI draft suggestions</strong> — the AI prepares replies in the owner's voice, ready to review and send</li>
+            <li><strong>Lead context sidebar</strong> — see the lead's history, source, and score without leaving the conversation</li>
+            <li><strong>Quick actions</strong> — assign, snooze, tag, or escalate with one click</li>
+          </ul>
+        </div>
+        <div class="cs-screen-mockup">
+          <img src="screen-smartbox.jpeg" alt="MessAge Smart Box — unified inbox" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== SCREEN: Leads ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">Lead Pipeline</h3>
+      <div class="cs-screen-row animate-on-scroll">
+        <div class="cs-screen-text">
+          <p class="cs-text" style="margin-bottom: 16px;">Visual tracking of every lead — from first contact to conversion. No lead gets forgotten.</p>
+          <ul class="cs-list">
+            <li><strong>Kanban-style pipeline</strong> — drag leads between stages (New, Contacted, Qualified, Won, Lost)</li>
+            <li><strong>Lead scoring</strong> — AI ranks leads by engagement level and response urgency</li>
+            <li><strong>Source attribution</strong> — see which channel each lead came from</li>
+            <li><strong>Follow-up reminders</strong> — automatic alerts when a lead hasn't been contacted in 24h</li>
+          </ul>
+        </div>
+        <div class="cs-screen-mockup">
+          <img src="screen-leads.jpeg" alt="MessAge Lead Pipeline" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== SCREEN: AI Agent ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">AI Agent Builder</h3>
+      <div class="cs-screen-row animate-on-scroll">
+        <div class="cs-screen-text">
+          <p class="cs-text" style="margin-bottom: 16px;">The heart of MessAge — train an AI to respond like you, not like a robot.</p>
+          <ul class="cs-list">
+            <li><strong>Voice & tone training</strong> — feed the AI your past messages so it learns your style</li>
+            <li><strong>Response templates</strong> — set up auto-replies for common questions (pricing, availability, location)</li>
+            <li><strong>Preview before send</strong> — review every AI-generated reply before it goes out</li>
+            <li><strong>Confidence meter</strong> — the AI flags responses it's unsure about for manual review</li>
+          </ul>
+        </div>
+        <div class="cs-screen-mockup">
+          <img src="screen-agent.jpeg" alt="MessAge AI Agent Builder" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== SCREEN: Tasks ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">Task Management</h3>
+      <div class="cs-screen-row animate-on-scroll">
+        <div class="cs-screen-text">
+          <p class="cs-text" style="margin-bottom: 16px;">Follow-ups and to-dos linked to each lead — so nothing falls through the cracks.</p>
+          <ul class="cs-list">
+            <li><strong>Auto-generated tasks</strong> — the AI creates follow-up tasks based on conversation context</li>
+            <li><strong>Priority sorting</strong> — urgent tasks surface to the top automatically</li>
+            <li><strong>Lead linking</strong> — every task is connected to its lead and conversation history</li>
+            <li><strong>Completion tracking</strong> — progress bar shows daily task completion rate</li>
+          </ul>
+        </div>
+        <div class="cs-screen-mockup">
+          <img src="screen-tasks.jpeg" alt="MessAge Tasks" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== REFLECTION ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Final Thoughts</h2>
+
+      <div class="cs-two-col animate-on-scroll" style="margin-top: 32px;">
+        <div>
+          <h3 class="cs-section-subtitle">What I Learned</h3>
+          <ul class="cs-list">
+            <li><strong>AI trust is designed, not assumed.</strong> Users need transparency — showing the "why" behind every AI action is non-negotiable.</li>
+            <li><strong>Shadowing beats interviews.</strong> The richest insights came from watching professionals work, not just asking about it.</li>
+            <li><strong>Less dashboards, more automation.</strong> Solo professionals don't want another screen to check — they want leads handled.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="cs-section-subtitle">What I'd Do Differently</h3>
+          <ul class="cs-list">
+            <li><strong>Test with real conversations sooner.</strong> Placeholder data masked hierarchy issues that only surfaced with realistic volumes.</li>
+            <li><strong>AI voice training deserved its own sprint.</strong> The "sound like me" feature was most valued but hardest to get right.</li>
+            <li><strong>Conversational UX needs more iteration.</strong> Chat interfaces require different thinking than traditional UI.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== NEXT / PREV NAVIGATION ==================== -->
+  <div class="cs-nav-projects">
+    <a href="casestudy-finapp.html" class="cs-nav-link">
+      <div class="cs-nav-direction">← Previous Project</div>
+      <div class="cs-nav-title">Humoney AI</div>
+    </a>
+    <a href="casestudy-woofio.html" class="cs-nav-link cs-nav-link--next">
+      <div class="cs-nav-direction">Next Project →</div>
+      <div class="cs-nav-title">Woofio</div>
+    </a>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer style="text-align: center; padding: 40px var(--container-padding) 60px;">
+    <div style="width: 60px; height: 1px; background: var(--border-subtle); margin: 0 auto 24px;"></div>
+    <p style="font-size: var(--fs-tiny); color: var(--text-muted);">
+      &copy; 2025 Oron Turgeman. Designed with intention.
+    </p>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    function toggleTheme() {
+      var html = document.documentElement;
+      var isDark = html.getAttribute('data-theme') === 'dark';
+      if (isDark) { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    }
+
+    /* ---- Scroll-triggered animations ---- */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          /* Stagger children */
+          if (entry.target.classList.contains('stagger')) {
+            const children = entry.target.children;
+            Array.from(children).forEach((child, i) => {
+              child.style.transitionDelay = `${i * 0.1}s`;
+              child.style.opacity = '0';
+              child.style.transform = 'translateY(20px)';
+              requestAnimationFrame(() => {
+                child.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+                child.style.transitionDelay = `${i * 0.1}s`;
+                child.style.opacity = '1';
+                child.style.transform = 'translateY(0)';
+              });
+            });
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+
+    /* Screen showcase staggered animation */
+    const screenObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.style.animationDelay || '0s';
+          entry.target.style.animationDelay = delay;
+          entry.target.classList.add('visible');
+          screenObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.cs-screen-animate').forEach((el) => {
+      screenObserver.observe(el);
+    });
+
+    /* Pain bar animation */
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.cs-pain-bar-fill').forEach((bar, i) => {
+            setTimeout(() => bar.classList.add('animated'), i * 200);
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.cs-pain-bars').forEach((el) => barObserver.observe(el));
+
+    /* ---- Counter animation ---- */
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-count'), 10);
+          if (isNaN(target)) return;
+
+          const suffix = el.textContent.includes('%') ? '%' : '';
+          const duration = 1500;
+          const start = performance.now();
+
+          function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+
+          requestAnimationFrame(tick);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach((el) => {
+      counterObserver.observe(el);
+    });
+
+    /* ---- Progress bar animation ---- */
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const fill = entry.target;
+          const width = fill.style.width;
+          fill.style.width = '0%';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              fill.style.width = width;
+            });
+          });
+          progressObserver.unobserve(fill);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.cs-progress-fill').forEach((el) => {
+      progressObserver.observe(el);
+    });
+
+    /* ---- Parallax section numbers ---- */
+    window.addEventListener('scroll', () => {
+      const numbers = document.querySelectorAll('.cs-section-number');
+      numbers.forEach((num) => {
+        const rect = num.getBoundingClientRect();
+        const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const offset = (scrollProgress - 0.5) * 30;
+        num.style.transform = `translateY(${offset}px)`;
+      });
+    }, { passive: true });
+
+    /* ---- Smooth entrance for sticky notes ---- */
+    const stickyObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const notes = entry.target.querySelectorAll('.cs-sticky-note');
+          notes.forEach((note, i) => {
+            note.style.opacity = '0';
+            note.style.transform = `translateY(12px) rotate(${note.style.getPropertyValue('--rotate') || '0deg'})`;
+            setTimeout(() => {
+              note.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+              note.style.opacity = '1';
+              note.style.transform = `translateY(0) rotate(${note.style.getPropertyValue('--rotate') || '0deg'})`;
+            }, 80 * i);
+          });
+          stickyObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.cs-affinity-board').forEach((el) => {
+      stickyObserver.observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "designer": "Oron Turgeman",
+    "title": "Product Designer",
+    "email": "oron2558@gmail.com",
+    "linkedin": "https://linkedin.com/in/oron-turgeman",
+    "language": "both",
+    "theme": "dark-premium"
+  },
+  "hero": {
+    "greeting_en": "Hi there 👋",
+    "greeting_he": "היי 👋",
+    "name": "Oron",
+    "title_en": "Product Designer",
+    "title_he": "מעצב מוצר",
+    "subtitle_en": "I craft intuitive digital experiences that solve real problems. Specializing in AI-powered products, fintech, and mobile apps.",
+    "subtitle_he": "אני מעצב חוויות דיגיטליות אינטואיטיביות שפותרות בעיות אמיתיות. מתמחה במוצרים מבוססי AI, פינטק ואפליקציות מובייל.",
+    "cta_primary_en": "View My Work",
+    "cta_primary_he": "צפה בעבודות שלי",
+    "cta_secondary_en": "Let's Talk",
+    "cta_secondary_he": "בואו נדבר"
+  },
+  "projects": [
+    {
+      "id": "ai-crm",
+      "name": "AI CRM",
+      "tags": ["SaaS", "AI", "CRM"],
+      "headline_en": "Supercharging Sales Teams with AI",
+      "headline_he": "מגבירים את צוותי המכירות עם AI",
+      "description_en": "Designing an intelligent CRM that learns from user behavior to automate workflows and boost team efficiency.",
+      "description_he": "עיצוב מערכת CRM חכמה שלומדת מהתנהגות המשתמש לאוטומציה של תהליכי עבודה והגברת יעילות הצוות.",
+      "cta_en": "View Case Study",
+      "cta_he": "צפה בתהליך",
+      "figma_key": "zybvdZdyBpuyrGQ6mPUz8G",
+      "figma_url": "https://www.figma.com/design/zybvdZdyBpuyrGQ6mPUz8G/AI-CRM-tools?node-id=0-1",
+      "page": "casestudy-ai-crm.html"
+    },
+    {
+      "id": "finapp",
+      "name": "FinApp — Humoney AI",
+      "tags": ["Fintech", "AI", "Mobile"],
+      "headline_en": "Turning Financial Stress into Confidence",
+      "headline_he": "הופכים לחץ כלכלי לביטחון",
+      "description_en": "An AI-powered personal finance companion that helps users understand money, reduce stress, and make confident decisions.",
+      "description_he": "מלווה פיננסי אישי מבוסס AI שעוזר למשתמשים להבין את הכסף שלהם, להפחית לחץ ולקבל החלטות בביטחון.",
+      "cta_en": "View Case Study",
+      "cta_he": "צפה בתהליך",
+      "figma_key": "SXScc5RjeoCEeS82WtNwqN",
+      "figma_url": "https://www.figma.com/design/SXScc5RjeoCEeS82WtNwqN/finApp?node-id=0-1",
+      "page": "casestudy-finapp.html"
+    },
+    {
+      "id": "woofio",
+      "name": "Woofio",
+      "tags": ["Pet Care", "Mobile"],
+      "headline_en": "Simplifying Pet Care for Busy Owners",
+      "headline_he": "מפשטים את הטיפול בחיות מחמד",
+      "description_en": "A comprehensive dog care app that tracks health, schedules vet visits, and connects pet owners with local services.",
+      "description_he": "אפליקציה מקיפה לטיפול בכלבים שעוקבת אחר בריאות, מתזמנת ביקורי וטרינר ומחברת בעלי חיות מחמד לשירותים מקומיים.",
+      "cta_en": "View Case Study",
+      "cta_he": "צפה בתהליך",
+      "figma_key": "t3qoH0Yc4Kn6YEu8cxajsQ",
+      "figma_url": "https://www.figma.com/design/t3qoH0Yc4Kn6YEu8cxajsQ/Woofio?node-id=0-1",
+      "page": "casestudy-woofio.html"
+    },
+    {
+      "id": "myplanner",
+      "name": "MyPlanner",
+      "tags": ["Event Planning", "AI", "Mobile"],
+      "headline_en": "Every Event, Perfectly Planned",
+      "headline_he": "כל אירוע, מתוכנן בשלמות",
+      "description_en": "An AI-powered event planning system that manages budgets, suppliers, payments, and smart reminders from start to celebration.",
+      "description_he": "מערכת תכנון אירועים מבוססת AI שמנהלת תקציבים, ספקים, תשלומים ותזכורות חכמות מההתחלה ועד החגיגה.",
+      "cta_en": "View Case Study",
+      "cta_he": "צפה בתהליך",
+      "figma_key": "npLbHscPIce38hl9VyTZqH",
+      "figma_url": "https://www.figma.com/design/npLbHscPIce38hl9VyTZqH/Myplanner---UI?node-id=659-550",
+      "page": "casestudy-myplanner.html"
+    }
+  ],
+  "about": {
+    "title_en": "Designing products people actually love",
+    "title_he": "מעצב מוצרים שאנשים באמת אוהבים",
+    "bio_en": "I'm a Product Designer with a passion for turning complex problems into simple, elegant solutions. My approach combines deep user empathy with data-driven decision making to create experiences that feel natural and delightful.",
+    "bio_he": "אני מעצב מוצר עם תשוקה להפוך בעיות מורכבות לפתרונות פשוטים ואלגנטיים. הגישה שלי משלבת אמפתיה עמוקה למשתמש עם קבלת החלטות מבוססת נתונים.",
+    "tools": ["Figma", "Framer", "Prototyping", "User Research", "Design Systems", "Usability Testing", "Wireframing", "UI Design"]
+  },
+  "contact": {
+    "cta_title_en": "Let's create something amazing together",
+    "cta_title_he": "בואו ניצור משהו מדהים ביחד",
+    "cta_subtitle_en": "I'm currently open to new opportunities. Whether you have a project in mind or just want to chat — I'd love to hear from you.",
+    "cta_subtitle_he": "אני פתוח להזדמנויות חדשות. בין אם יש לכם פרויקט בראש או סתם רוצים לשוחח — אשמח לשמוע מכם.",
+    "cta_button_en": "Say Hello",
+    "cta_button_he": "שלחו הודעה"
+  }
+}
