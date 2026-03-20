@@ -389,6 +389,38 @@ body {
   }
 }
 
+/* ---------- Light Mode — Component Overrides ---------- */
+[data-theme="light"] .onf-nav__btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .onf-btn--primary {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+[data-theme="light"] .onf-btn--primary:hover {
+  background: #2a2a40;
+}
+
+[data-theme="light"] .onf-btn--secondary {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-primary);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .onf-btn--secondary:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .onf-progress {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .onf-nav__hamburger span {
+  background: var(--text-primary);
+}
+
 /* ---------- Reduced Motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
