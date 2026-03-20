@@ -1,0 +1,563 @@
+/* ============================================
+   ORONFLIX — Browse Page (Netflix Home)
+   ============================================ */
+
+/* ---------- Billboard / Hero ---------- */
+.onf-billboard {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  min-height: 500px;
+  max-height: 800px;
+  overflow: hidden;
+  margin-bottom: var(--section-gap);
+}
+
+.onf-billboard__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.onf-billboard__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.onf-billboard__slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Background — slow panning screenshots */
+.onf-billboard__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.onf-billboard__bg-image {
+  position: absolute;
+  width: 200%;
+  height: 120%;
+  top: -10%;
+  object-fit: cover;
+  opacity: 0.35;
+  animation: billboardPan 25s linear infinite alternate;
+}
+
+@keyframes billboardPan {
+  0% { transform: translateX(0) scale(1.05); }
+  100% { transform: translateX(-30%) scale(1.1); }
+}
+
+/* Gradient overlays */
+.onf-billboard__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--bg-primary) 25%, transparent 60%),
+    linear-gradient(to top, var(--bg-primary) 10%, transparent 40%),
+    linear-gradient(to bottom, rgba(10, 10, 18, 0.3) 0%, transparent 30%);
+}
+
+[data-theme="light"] .onf-billboard__gradient {
+  background:
+    linear-gradient(to right, var(--bg-primary) 25%, transparent 60%),
+    linear-gradient(to top, var(--bg-primary) 10%, transparent 40%),
+    linear-gradient(to bottom, rgba(245, 245, 247, 0.3) 0%, transparent 30%);
+}
+
+/* Content */
+.onf-billboard__content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4%;
+  max-width: 600px;
+}
+
+.onf-billboard__tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.onf-billboard__tag {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: var(--fs-tiny);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.onf-billboard__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-billboard);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text-white);
+  margin-bottom: 16px;
+}
+
+.onf-billboard__desc {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.onf-billboard__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Billboard dots */
+.onf-billboard__dots {
+  position: absolute;
+  bottom: 80px;
+  left: 4%;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+
+.onf-billboard__dot {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all var(--duration-normal) var(--ease-smooth);
+  cursor: pointer;
+}
+
+.onf-billboard__dot--active {
+  background: var(--text-white);
+  width: 48px;
+}
+
+/* Billboard progress timer */
+.onf-billboard__timer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 3;
+}
+
+.onf-billboard__timer-fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  animation: billboardTimer 8s linear;
+}
+
+@keyframes billboardTimer {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* ---------- Content Rows ---------- */
+.onf-rows {
+  padding: 0 4%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--row-gap);
+  padding-bottom: 80px;
+}
+
+.onf-row {
+  position: relative;
+}
+
+.onf-row__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.onf-row__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.onf-row__see-all {
+  font-size: var(--fs-small);
+  color: var(--accent-light);
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+}
+
+.onf-row:hover .onf-row__see-all {
+  opacity: 1;
+}
+
+/* Carousel container */
+.onf-row__carousel {
+  display: flex;
+  gap: var(--card-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 20px 0;
+  margin: -20px 0;
+}
+
+.onf-row__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Arrow buttons */
+.onf-row__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 100%;
+  max-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+  color: white;
+  font-size: 1.5rem;
+}
+
+.onf-row:hover .onf-row__arrow {
+  opacity: 1;
+}
+
+.onf-row__arrow--left {
+  left: -20px;
+  background: linear-gradient(to right, rgba(10,10,18,0.8), transparent);
+  padding-right: 12px;
+}
+
+.onf-row__arrow--right {
+  right: -20px;
+  background: linear-gradient(to left, rgba(10,10,18,0.8), transparent);
+  padding-left: 12px;
+}
+
+.onf-row__arrow:hover {
+  background: rgba(10, 10, 18, 0.9);
+}
+
+/* ---------- Project Cards ---------- */
+.onf-card {
+  flex: 0 0 var(--card-width-desktop);
+  scroll-snap-align: start;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--duration-normal) var(--ease-spring),
+              box-shadow var(--duration-normal) var(--ease-spring),
+              z-index 0s 0.3s;
+}
+
+.onf-card:hover {
+  transform: scale(1.08);
+  z-index: 10;
+  box-shadow: var(--shadow-card-hover);
+  transition: transform var(--duration-normal) var(--ease-spring),
+              box-shadow var(--duration-normal) var(--ease-spring),
+              z-index 0s 0s;
+}
+
+/* Card thumbnail */
+.onf-card__thumb {
+  position: relative;
+  padding-bottom: var(--card-ratio);
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.onf-card__thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-smooth);
+}
+
+.onf-card:hover .onf-card__thumb-img {
+  transform: scale(1.06);
+}
+
+/* Card gradient overlay */
+.onf-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity var(--duration-normal);
+}
+
+.onf-card:hover .onf-card__overlay {
+  opacity: 1;
+}
+
+/* Card info (shown on hover) */
+.onf-card__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform var(--duration-normal) var(--ease-spring),
+              opacity var(--duration-normal);
+}
+
+.onf-card:hover .onf-card__info {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.onf-card__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.onf-card__meta {
+  font-size: var(--fs-tiny);
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.onf-card__meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Card progress bar */
+.onf-card__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.onf-card__progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Card bottom label (always visible) */
+.onf-card__label {
+  padding: 10px 12px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.onf-card__label-title {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.onf-card__label-sub {
+  font-size: var(--fs-tiny);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---------- Continue Watching Row ---------- */
+.onf-row--continue .onf-card__thumb::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+}
+
+.onf-row--continue .onf-card:hover .onf-card__thumb::after {
+  opacity: 1;
+}
+
+/* ---------- Category Chips ---------- */
+.onf-chips {
+  display: flex;
+  gap: 8px;
+  padding: 0 4%;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.onf-chips::-webkit-scrollbar { display: none; }
+
+.onf-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all var(--duration-fast);
+}
+
+.onf-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-white);
+}
+
+.onf-chip--active {
+  background: var(--text-white);
+  color: var(--bg-primary);
+  border-color: transparent;
+}
+
+/* ---------- Footer ---------- */
+.onf-footer {
+  padding: 48px 4%;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.onf-footer__left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.onf-footer__name {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.onf-footer__links {
+  display: flex;
+  gap: 20px;
+}
+
+.onf-footer__link {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  transition: color var(--duration-fast);
+}
+
+.onf-footer__link:hover {
+  color: var(--accent-light);
+}
+
+.onf-footer__copy {
+  font-size: var(--fs-tiny);
+  color: var(--text-muted);
+}
+
+/* ---------- Responsive — Browse ---------- */
+@media (max-width: 1200px) {
+  .onf-card {
+    flex: 0 0 var(--card-width-tablet);
+  }
+}
+
+@media (max-width: 810px) {
+  .onf-billboard {
+    height: 75vh;
+    min-height: 420px;
+  }
+
+  .onf-billboard__content {
+    padding-top: 80px;
+    justify-content: flex-end;
+    padding-bottom: 60px;
+  }
+
+  .onf-billboard__title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .onf-billboard__desc {
+    font-size: var(--fs-body);
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .onf-row__arrow {
+    display: none;
+  }
+
+  .onf-card {
+    flex: 0 0 var(--card-width-mobile);
+  }
+
+  .onf-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 390px) {
+  .onf-billboard {
+    height: 70vh;
+  }
+
+  .onf-billboard__actions {
+    flex-direction: column;
+  }
+
+  .onf-billboard__actions .onf-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

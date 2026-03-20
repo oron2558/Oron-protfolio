@@ -3,834 +3,444 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oron Turgeman — Product Designer</title>
-  <meta name="description" content="Product Designer specializing in AI-powered digital experiences. View my case studies in fintech, CRM, pet care, and productivity.">
-  <link rel="stylesheet" href="portfolio-styles.css">
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
-
-  <style>
-    /* ============================================
-       STACKED OVERLAPPING PROJECT CARDS
-       ============================================ */
-
-    .stack-container {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      padding: 0;
-    }
-
-    /* Each card is a full-width panel */
-    .stack-card {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      min-height: 400px;
-      border-radius: 28px 28px 0 0;
-      overflow: hidden;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1),
-                  box-shadow 0.4s ease;
-    }
-
-    /* Overlap: each card pulls up over the previous */
-    .stack-card:not(:first-child) {
-      margin-top: -40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stack-card:nth-child(2) { z-index: 2; }
-    .stack-card:nth-child(3) { z-index: 3; }
-    .stack-card:nth-child(4) { z-index: 4; }
-
-    /* Shadow to create depth/layering effect */
-    .stack-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.06), transparent);
-      z-index: 1;
-      border-radius: 28px 28px 0 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .stack-card:not(:first-child)::before {
-      opacity: 1;
-    }
-
-    /* Hover lift */
-    .stack-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
-    }
-
-    /* --- Card backgrounds per project --- */
-    .stack-card--crm {
-      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-      color: #1e3a5f;
-    }
-
-    .stack-card--crm .stack-image-wrap {
-      background: none;
-      border-radius: 0 24px 24px 0;
-      padding: 0;
-      overflow: visible;
-    }
-
-    .crm-iso {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 400px;
-      transform: perspective(1800px) rotateX(35deg) rotateZ(25deg);
-      transform-origin: 50% 50%;
-      transform-style: preserve-3d;
-      pointer-events: none;
-      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-    }
-
-    .crm-iso-card {
-      position: absolute;
-      width: 55%;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
-      background: #fff;
-      pointer-events: auto;
-      transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.45s ease;
-    }
-
-    .crm-iso-card:nth-child(1) { top: 8%; left: 0; z-index: 1; }
-    .crm-iso-card:nth-child(2) { top: -5%; left: 42%; z-index: 2; }
-    .crm-iso-card:nth-child(3) { top: 48%; left: 5%; z-index: 3; }
-    .crm-iso-card:nth-child(4) { top: 38%; left: 48%; z-index: 4; }
-
-    .crm-iso-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .stack-card--crm:hover .crm-iso {
-      transform: perspective(1800px) rotateX(32deg) rotateZ(23deg) scale(1.04);
-    }
-
-    [data-theme="dark"] .crm-iso-card {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    @media (max-width: 810px) {
-      .crm-iso { min-height: 300px; }
-      .stack-card--crm .stack-image-wrap { padding: 0; overflow: visible; }
-    }
-
-    @media (max-width: 390px) {
-      .crm-iso { min-height: 220px; }
-      .crm-iso-card { border-radius: 7px; }
-      .stack-card--crm .stack-image-wrap { padding: 0; overflow: visible; }
-    }
-
-    .stack-card--finapp {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      color: #1a1a2e;
-    }
-
-    .stack-card--woofio {
-      background: linear-gradient(135deg, #fff8f0 0%, #fef3e2 100%);
-      color: #1c1917;
-    }
-
-    .stack-card--myplanner {
-      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-      color: #0f1a0a;
-    }
-
-    /* --- Text side (1/3) --- */
-    .stack-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 60px 48px;
-      gap: 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .stack-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .stack-tag {
-      padding: 5px 14px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* CRM & Woofio card tags */
-    .stack-card--crm .stack-tag {
-      background: rgba(30, 64, 175, 0.1);
-      color: #1e40af;
-    }
-
-    .stack-card--woofio .stack-tag {
-      background: rgba(245, 158, 11, 0.1);
-      color: #b45309;
-    }
-
-    /* Light card tags */
-    .stack-card--finapp .stack-tag {
-      background: rgba(59, 130, 246, 0.1);
-      color: #3b82f6;
-    }
-
-    .stack-card--myplanner .stack-tag {
-      background: rgba(34, 197, 94, 0.1);
-      color: #16a34a;
-    }
-
-    .stack-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-      font-weight: 700;
-      line-height: 1.15;
-    }
-
-    .stack-card--crm .stack-title { color: #1e3a8a; }
-    .stack-card--finapp .stack-title { color: #1e293b; }
-    .stack-card--woofio .stack-title { color: #451a03; }
-    .stack-card--myplanner .stack-title { color: #14532d; }
-
-    .stack-desc {
-      font-size: 15px;
-      line-height: 1.65;
-      max-width: 420px;
-    }
-
-    .stack-card--crm .stack-desc { color: #334155; }
-    .stack-card--finapp .stack-desc { color: #475569; }
-    .stack-card--woofio .stack-desc { color: #57534e; }
-    .stack-card--myplanner .stack-desc { color: #365314; }
-
-    .stack-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      margin-top: 8px;
-      transition: gap 0.3s cubic-bezier(0.33, 1, 0.68, 1);
-    }
-
-    .stack-card--crm .stack-cta { color: #1e40af; }
-    .stack-card--finapp .stack-cta { color: #3b82f6; }
-    .stack-card--woofio .stack-cta { color: #b45309; }
-    .stack-card--myplanner .stack-cta { color: #16a34a; }
-
-    .stack-card:hover .stack-cta {
-      gap: 14px;
-    }
-
-    .stack-cta-arrow {
-      transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
-    }
-
-    .stack-card:hover .stack-cta-arrow {
-      transform: translateX(4px);
-    }
-
-    /* --- Image side (2/3) --- */
-    .stack-image-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 48px 40px 0;
-      overflow: hidden;
-    }
-
-    .stack-image {
-      width: 100%;
-      height: 100%;
-      max-height: 340px;
-      object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-    }
-
-    .stack-card:hover .stack-image {
-      transform: scale(1.03);
-    }
-
-    /* Light card image shadow adjustment */
-    .stack-card--finapp .stack-image,
-    .stack-card--myplanner .stack-image {
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
-    }
-
-    /* --- Responsive — Tablet --- */
-    @media (max-width: 810px) {
-      .stack-card {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        border-radius: 20px 20px 0 0;
-      }
-
-      .stack-card:not(:first-child) {
-        margin-top: -24px;
-      }
-
-      .stack-text {
-        padding: 40px 32px 16px;
-        gap: 14px;
-      }
-
-      .stack-title {
-        font-size: clamp(1.3rem, 4vw, 1.8rem);
-      }
-
-      .stack-image-wrap {
-        padding: 16px 32px 32px;
-      }
-
-      .stack-card--crm .stack-image-wrap {
-        border-radius: 0 0 20px 20px;
-        padding: 0;
-        overflow: visible;
-      }
-
-      .stack-image {
-        max-height: 280px;
-      }
-    }
-
-    /* --- Responsive — Mobile --- */
-    @media (max-width: 390px) {
-      .stack-card:not(:first-child) {
-        margin-top: -16px;
-      }
-
-      .stack-text {
-        padding: 28px 20px 12px;
-        gap: 10px;
-      }
-
-      .stack-title {
-        font-size: 1.2rem;
-      }
-
-      .stack-desc {
-        font-size: 13px;
-      }
-
-      .stack-image-wrap {
-        padding: 8px 20px 24px;
-      }
-
-      .stack-image {
-        max-height: 200px;
-        border-radius: 12px;
-      }
-    }
-
-    /* --- Reduced motion --- */
-    @media (prefers-reduced-motion: reduce) {
-      .stack-card {
-        transition: none;
-      }
-      .stack-image {
-        transition: none;
-      }
-    }
-
-    /* Woofio fan phones in card */
-    .woofio-fan {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    .woofio-fan-phone {
-      width: 160px;
-      height: 330px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 4.5px solid #1a1a2e;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
-      background: #fff;
-      position: absolute;
-      pointer-events: auto;
-      transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.45s ease;
-    }
-
-    .woofio-fan-phone img {
-      width: 540%;
-      height: 106%;
-      object-fit: cover;
-      display: block;
-      margin-top: -3%;
-    }
-
-    .woofio-fan-phone:nth-child(1) { transform: rotate(-9deg) translateX(-155px) translateY(-18px); z-index: 1; }
-    .woofio-fan-phone:nth-child(2) { transform: rotate(-4deg) translateX(-72px) translateY(-5px); z-index: 2; }
-    .woofio-fan-phone:nth-child(3) { transform: rotate(4deg) translateX(72px) translateY(-5px); z-index: 2; }
-    .woofio-fan-phone:nth-child(4) { transform: rotate(9deg) translateX(155px) translateY(-18px); z-index: 1; }
-
-    .woofio-fan-phone:hover {
-      transform: rotate(0deg) translateX(0) translateY(-24px) scale(1.08) !important;
-      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.25);
-      z-index: 10 !important;
-    }
-
-    [data-theme="dark"] .woofio-fan-phone {
-      border-color: #444;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    [data-theme="dark"] .woofio-fan-phone:hover {
-      box-shadow: 0 24px 52px rgba(0, 0, 0, 0.55);
-    }
-
-    @media (max-width: 810px) {
-      .woofio-fan { min-height: 300px; }
-      .woofio-fan-phone { width: 110px; height: 228px; border-width: 3.5px; border-radius: 18px; }
-      .woofio-fan-phone:nth-child(1) { transform: rotate(-9deg) translateX(-108px) translateY(-14px); }
-      .woofio-fan-phone:nth-child(2) { transform: rotate(-4deg) translateX(-50px) translateY(-4px); }
-      .woofio-fan-phone:nth-child(3) { transform: rotate(4deg) translateX(50px) translateY(-4px); }
-      .woofio-fan-phone:nth-child(4) { transform: rotate(9deg) translateX(108px) translateY(-14px); }
-    }
-
-    @media (max-width: 390px) {
-      .woofio-fan { min-height: 220px; }
-      .woofio-fan-phone { width: 80px; height: 166px; border-width: 2.5px; border-radius: 14px; }
-      .woofio-fan-phone:nth-child(1) { transform: rotate(-9deg) translateX(-78px) translateY(-10px); }
-      .woofio-fan-phone:nth-child(2) { transform: rotate(-4deg) translateX(-36px) translateY(-3px); }
-      .woofio-fan-phone:nth-child(3) { transform: rotate(4deg) translateX(36px) translateY(-3px); }
-      .woofio-fan-phone:nth-child(4) { transform: rotate(9deg) translateX(78px) translateY(-10px); }
-    }
-
-    /* MyPlanner isometric card composition */
-    .stack-card--myplanner .stack-image-wrap {
-      padding: 0;
-      overflow: visible;
-    }
-
-    .myplanner-iso {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 400px;
-      transform: perspective(1800px) rotateX(35deg) rotateZ(25deg);
-      transform-origin: 50% 50%;
-      transform-style: preserve-3d;
-      pointer-events: none;
-      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-    }
-
-    .myplanner-iso-card {
-      position: absolute;
-      width: 55%;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
-      background: #fff;
-      pointer-events: auto;
-      transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.45s ease;
-    }
-
-    .myplanner-iso-card:nth-child(1) { top: 8%; left: 0; z-index: 1; }
-    .myplanner-iso-card:nth-child(2) { top: -5%; left: 42%; z-index: 2; }
-    .myplanner-iso-card:nth-child(3) { top: 48%; left: 5%; z-index: 3; }
-    .myplanner-iso-card:nth-child(4) { top: 38%; left: 48%; z-index: 4; }
-
-    .myplanner-iso-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .stack-card--myplanner:hover .myplanner-iso {
-      transform: perspective(1800px) rotateX(32deg) rotateZ(23deg) scale(1.04);
-    }
-
-    [data-theme="dark"] .myplanner-iso-card {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    @media (max-width: 810px) {
-      .myplanner-iso { min-height: 300px; }
-    }
-
-    @media (max-width: 390px) {
-      .myplanner-iso { min-height: 220px; }
-      .myplanner-iso-card { border-radius: 7px; }
-    }
-
-    /* Dark mode card overrides */
-    [data-theme="dark"] .stack-card--crm {
-      background: linear-gradient(135deg, #0d0b1a 0%, #1a1a2e 100%);
-      color: inherit;
-    }
-    [data-theme="dark"] .stack-card--woofio {
-      background: linear-gradient(135deg, #0d0b1a 0%, #1c1917 100%);
-      color: inherit;
-    }
-    [data-theme="dark"] .stack-card--finapp {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: #f0f0f5;
-    }
-    [data-theme="dark"] .stack-card--myplanner {
-      background: linear-gradient(135deg, #052e16 0%, #14532d 100%);
-      color: #f0f0f5;
-    }
-    [data-theme="dark"] .stack-card--crm .stack-title,
-    [data-theme="dark"] .stack-card--woofio .stack-title { color: #f0f0f5; }
-    [data-theme="dark"] .stack-card--finapp .stack-title { color: #f0f0f5; }
-    [data-theme="dark"] .stack-card--myplanner .stack-title { color: #dcfce7; }
-    [data-theme="dark"] .stack-card--crm .stack-desc,
-    [data-theme="dark"] .stack-card--woofio .stack-desc { color: #94949e; }
-    [data-theme="dark"] .stack-card--finapp .stack-desc { color: #94a3b8; }
-    [data-theme="dark"] .stack-card--myplanner .stack-desc { color: #86efac; }
-    [data-theme="dark"] .stack-card--crm .stack-tag,
-    [data-theme="dark"] .stack-card--woofio .stack-tag {
-      background: rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 0.7);
-    }
-    [data-theme="dark"] .stack-card--finapp .stack-tag {
-      background: rgba(59, 130, 246, 0.15);
-      color: #93c5fd;
-    }
-    [data-theme="dark"] .stack-card--myplanner .stack-tag {
-      background: rgba(34, 197, 94, 0.15);
-      color: #86efac;
-    }
-    [data-theme="dark"] .stack-card--crm .stack-cta { color: #a78bfa; }
-    [data-theme="dark"] .stack-card--woofio .stack-cta { color: #fbbf24; }
-    [data-theme="dark"] .stack-card--finapp .stack-cta { color: #93c5fd; }
-    [data-theme="dark"] .stack-card--myplanner .stack-cta { color: #86efac; }
-    [data-theme="dark"] .stack-card::before {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
-    }
-    [data-theme="dark"] .stack-card:hover {
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-    }
-    [data-theme="dark"] .stack-image {
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-  </style>
+  <title>ORON. | UX/UI Designer</title>
+  <meta name="description" content="Oron Turgeman — UX/UI Designer portfolio. AI-powered products, mobile apps, and SaaS platforms designed for real users.">
+
+  <!-- OG Meta -->
+  <meta property="og:title" content="ORON. | UX/UI Designer Portfolio">
+  <meta property="og:description" content="Streaming-style portfolio showcasing AI CRM, pet care, wedding planning, and fintech projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://oronturgemanux.com">
+
+  <!-- Prevent FOUC — dark by default -->
   <script>
-    // Apply saved theme before paint to prevent flash
     (function() {
-      var t = localStorage.getItem('theme');
-      if (t) document.documentElement.setAttribute('data-theme', t);
+      var t = localStorage.getItem('oronflix-theme');
+      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
     })();
   </script>
+
+  <link rel="stylesheet" href="styles/oronflix-base.css">
+  <link rel="stylesheet" href="styles/oronflix-browse.css">
 </head>
-<body>
+<body style="background:#0a0a12;">
 
-  <!-- ==================== NAVIGATION ==================== -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Oron Turgeman</a>
-      <ul class="nav-links">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><button class="lang-toggle" onclick="toggleLang()">עב</button></li>
-        <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        </button></li>
-        <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="onf-nav">
+  <a href="index.html" class="onf-nav__logo">ORON.</a>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <section class="hero section">
-    <!-- Atmospheric blur orbs -->
-    <div class="blur-orb blur-orb-1"></div>
-    <div class="blur-orb blur-orb-2"></div>
+  <div class="onf-nav__links">
+    <a href="#projects" class="onf-nav__link onf-nav__link--active">Browse</a>
+    <a href="casestudy-ai-crm.html" class="onf-nav__link">My Story</a>
+    <a href="#contact" class="onf-nav__link">Resume</a>
+    <a href="#contact" class="onf-nav__link">Contact</a>
+  </div>
 
-    <div class="hero-content">
-      <p class="hero-greeting">Hi there 👋</p>
-      <h1 class="hero-name">
-        I'm <span class="accent">Oron</span>,<br>
-        Product Designer
-      </h1>
-      <p class="hero-subtitle">
-        I craft intuitive digital experiences that solve real problems.
-        Specializing in AI-powered products, fintech, and mobile apps.
-      </p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn btn-primary">
-          View My Work
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8l5 5 5-5"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+  <div class="onf-nav__actions">
+    <button class="onf-nav__btn" id="theme-toggle" onclick="oronflix.toggleTheme()" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+    <button class="onf-nav__hamburger" onclick="document.querySelector('.onf-nav__links').classList.toggle('onf-nav__links--open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ==================== BILLBOARD ==================== -->
+<section class="onf-billboard">
+  <div class="onf-billboard__slides">
+
+    <!-- Slide 1: AI CRM -->
+    <div class="onf-billboard__slide onf-billboard__slide--active">
+      <div class="onf-billboard__bg">
+        <img src="screen-dashboard.jpeg" alt="" class="onf-billboard__bg-image" loading="eager">
       </div>
-    </div>
-  </section>
-
-  <!-- ==================== PROJECTS SECTION ==================== -->
-  <section id="projects" class="projects section">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <p class="section-label">Selected Work</p>
-        <h2 class="section-title">Case Studies</h2>
-      </div>
-
-      <div class="stack-container">
-
-        <!-- CARD 1: AI CRM (dark) -->
-        <a href="casestudy-ai-crm.html" class="stack-card stack-card--crm animate-on-scroll">
-          <div class="stack-text">
-            <div class="stack-tags">
-              <span class="stack-tag">AI</span>
-              <span class="stack-tag">Messaging</span>
-              <span class="stack-tag">Solo Business</span>
-            </div>
-            <h3 class="stack-title">AI Messaging for Solo Professionals — MessAge</h3>
-            <p class="stack-desc">Designing an AI messaging platform that responds to leads, manages conversations across WhatsApp, Instagram and email, and helps independent business owners convert customers — even while they're physically working.</p>
-            <span class="stack-cta">
-              View Case Study <span class="stack-cta-arrow">→</span>
-            </span>
-          </div>
-          <div class="stack-image-wrap">
-            <div class="crm-iso">
-              <div class="crm-iso-card"><img src="screen-dashboard.jpeg" alt="Dashboard" loading="lazy"></div>
-              <div class="crm-iso-card"><img src="screen-smartbox.jpeg" alt="Smart Inbox" loading="lazy"></div>
-              <div class="crm-iso-card"><img src="screen-leads.jpeg" alt="Lead Pipeline" loading="lazy"></div>
-              <div class="crm-iso-card"><img src="screen-agent.jpeg" alt="AI Agent Builder" loading="lazy"></div>
-            </div>
-          </div>
-        </a>
-
-        <!-- CARD 2: Woofio (dark) -->
-        <a href="casestudy-woofio.html" class="stack-card stack-card--woofio animate-on-scroll">
-          <div class="stack-text">
-            <div class="stack-tags">
-              <span class="stack-tag">Pet Care</span>
-              <span class="stack-tag">Mobile</span>
-            </div>
-            <h3 class="stack-title">Making Pet Care a Family Effort</h3>
-            <p class="stack-desc">An all-in-one dog care platform that helps busy families share pet responsibilities — health tracking, vet visits, dog walking, food orders, and daily routines in one place.</p>
-            <span class="stack-cta">
-              View Case Study <span class="stack-cta-arrow">→</span>
-            </span>
-          </div>
-          <div class="stack-image-wrap">
-            <div class="woofio-fan">
-              <div class="woofio-fan-phone"><img src="woofio-live-screens.jpeg" alt="Family Profile" style="object-position: 3% top;"></div>
-              <div class="woofio-fan-phone"><img src="woofio-live-screens.jpeg" alt="Health" style="object-position: 34% top;"></div>
-              <div class="woofio-fan-phone"><img src="woofio-live-screens.jpeg" alt="Dog Walkers" style="object-position: 66% top;"></div>
-              <div class="woofio-fan-phone"><img src="woofio-live-screens.jpeg" alt="Schedule" style="object-position: 97% top;"></div>
-            </div>
-          </div>
-        </a>
-
-        <!-- CARD 3: MyPlanner (light) -->
-        <a href="casestudy-myplanner.html" class="stack-card stack-card--myplanner animate-on-scroll">
-          <div class="stack-text">
-            <div class="stack-tags">
-              <span class="stack-tag">Event Planning</span>
-              <span class="stack-tag">AI</span>
-              <span class="stack-tag">SaaS</span>
-            </div>
-            <h3 class="stack-title">Plan Any Event Without a Planner</h3>
-            <p class="stack-desc">An AI-powered event management system that replaces the ₪8,000–₪25,000 professional planner with smart budget tracking, supplier coordination, and timeline automation — so anyone can plan like a pro.</p>
-            <span class="stack-cta">
-              View Case Study <span class="stack-cta-arrow">→</span>
-            </span>
-          </div>
-          <div class="stack-image-wrap">
-            <div class="myplanner-iso">
-              <div class="myplanner-iso-card"><img src="myplanner-dashboard.jpeg" alt="Dashboard"></div>
-              <div class="myplanner-iso-card"><img src="myplanner-budget.jpeg" alt="Budget"></div>
-              <div class="myplanner-iso-card"><img src="myplanner-suppliers.jpeg" alt="Suppliers"></div>
-              <div class="myplanner-iso-card"><img src="myplanner-cashback.jpeg" alt="Cashback"></div>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ABOUT SECTION ==================== -->
-  <section id="about" class="about section">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text animate-on-scroll">
-          <p class="section-label">About Me</p>
-          <h2>Designing products<br>people <em>actually</em> love</h2>
-          <p>
-            I'm a Product Designer with a passion for turning complex problems into simple,
-            elegant solutions. My approach combines deep user empathy with data-driven
-            decision making to create experiences that feel natural and delightful.
-          </p>
-          <p>
-            From AI-powered CRM tools to personal finance apps, I bring a holistic
-            perspective that bridges business goals with user needs. Every pixel has a purpose.
-          </p>
-          <div class="about-tools">
-            <span class="tool-badge">Figma</span>
-            <span class="tool-badge">Framer</span>
-            <span class="tool-badge">Prototyping</span>
-            <span class="tool-badge">User Research</span>
-            <span class="tool-badge">Design Systems</span>
-            <span class="tool-badge">Usability Testing</span>
-            <span class="tool-badge">Wireframing</span>
-            <span class="tool-badge">UI Design</span>
-            <span class="tool-badge">Claude AI</span>
-          </div>
+      <div class="onf-billboard__gradient"></div>
+      <div class="onf-billboard__content">
+        <div class="onf-billboard__tags">
+          <span class="onf-billboard__tag">AI</span>
+          <span class="onf-billboard__tag">Messaging</span>
+          <span class="onf-billboard__tag">SaaS</span>
         </div>
-        <div class="about-image animate-on-scroll" style="
-          width: 100%;
-          max-width: 380px;
-          background: var(--bg-card);
-          border-radius: var(--card-radius);
-          border: 1px solid var(--border-subtle);
-          overflow: hidden;
-        ">
-          <img src="R-226.jpg" alt="Oron Turgeman" style="width: 100%; height: auto; display: block; border-radius: inherit;">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CONTACT / FOOTER ==================== -->
-  <section id="contact" class="footer section">
-    <div class="container">
-      <div class="animate-on-scroll">
-        <p class="section-label">Get In Touch</p>
-        <h2 class="footer-cta-text">
-          Let's create something<br>
-          <em>amazing</em> together
-        </h2>
-        <p class="footer-subtitle">
-          I'm currently open to new opportunities. Whether you have a project in mind
-          or just want to chat — I'd love to hear from you.
-        </p>
-        <div class="hero-ctas" style="margin-bottom: 0;">
-          <a href="mailto:oron2558@gmail.com" class="btn btn-primary">
-            Say Hello
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2h12v10H2z"/><path d="M2 2l6 5 6-5"/></svg>
+        <h1 class="onf-billboard__title">AI Messaging for<br>Solo Professionals</h1>
+        <p class="onf-billboard__desc">An AI-powered platform that responds to leads, manages conversations across WhatsApp, Instagram and email — so business owners never miss a customer.</p>
+        <div class="onf-billboard__actions">
+          <a href="casestudy-ai-crm.html" class="onf-btn onf-btn--primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            View Case Study
           </a>
-          <a href="https://linkedin.com/in/oron-turgeman" target="_blank" class="btn btn-secondary">
-            LinkedIn
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10L10 4M10 4H5M10 4v5"/></svg>
-          </a>
+          <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            More Projects
+          </button>
         </div>
       </div>
-
-      <div class="footer-divider"></div>
-
-      <div class="footer-links">
-        <a href="mailto:oron2558@gmail.com">Email</a>
-        <a href="https://linkedin.com/in/oron-turgeman" target="_blank">LinkedIn</a>
-        <a href="#projects">Projects</a>
-      </div>
-
-      <p class="footer-copyright" style="margin-top: 24px;">
-        &copy; 2026 Oron Turgeman. Designed with intention.
-      </p>
     </div>
-  </section>
 
-  <!-- ==================== SCRIPTS ==================== -->
-  <script>
-    // Scroll animation observer
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+    <!-- Slide 2: Woofio -->
+    <div class="onf-billboard__slide">
+      <div class="onf-billboard__bg">
+        <img src="woofio-screens.jpeg" alt="" class="onf-billboard__bg-image" loading="lazy">
+      </div>
+      <div class="onf-billboard__gradient"></div>
+      <div class="onf-billboard__content">
+        <div class="onf-billboard__tags">
+          <span class="onf-billboard__tag">Mobile</span>
+          <span class="onf-billboard__tag">Pet Care</span>
+          <span class="onf-billboard__tag">Marketplace</span>
+        </div>
+        <h1 class="onf-billboard__title">All-in-One<br>Dog Care Platform</h1>
+        <p class="onf-billboard__desc">From vet tracking to dog walker booking — one app that handles everything for dog owners and their families.</p>
+        <div class="onf-billboard__actions">
+          <a href="casestudy-woofio.html" class="onf-btn onf-btn--primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            View Case Study
+          </a>
+          <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            More Projects
+          </button>
+        </div>
+      </div>
+    </div>
 
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    <!-- Slide 3: MyPlanner -->
+    <div class="onf-billboard__slide">
+      <div class="onf-billboard__bg">
+        <img src="myplanner-dashboard.jpeg" alt="" class="onf-billboard__bg-image" loading="lazy">
+      </div>
+      <div class="onf-billboard__gradient"></div>
+      <div class="onf-billboard__content">
+        <div class="onf-billboard__tags">
+          <span class="onf-billboard__tag">AI</span>
+          <span class="onf-billboard__tag">Event Planning</span>
+          <span class="onf-billboard__tag">Fintech</span>
+        </div>
+        <h1 class="onf-billboard__title">Smart Wedding<br>Planning Platform</h1>
+        <p class="onf-billboard__desc">AI-powered event management that replaces expensive wedding planners — budget tracking, supplier management, and cashback rewards.</p>
+        <div class="onf-billboard__actions">
+          <a href="casestudy-myplanner.html" class="onf-btn onf-btn--primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            View Case Study
+          </a>
+          <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            More Projects
+          </button>
+        </div>
+      </div>
+    </div>
 
-    // Language toggle
-    function toggleLang() {
-      const html = document.documentElement;
-      const btn = document.querySelector('.lang-toggle');
-      if (html.getAttribute('dir') === 'rtl') {
-        html.setAttribute('dir', 'ltr');
-        html.setAttribute('lang', 'en');
-        btn.textContent = 'עב';
-      } else {
-        html.setAttribute('dir', 'rtl');
-        html.setAttribute('lang', 'he');
-        btn.textContent = 'EN';
-      }
-    }
+    <!-- Slide 4: Humoney -->
+    <div class="onf-billboard__slide">
+      <div class="onf-billboard__bg">
+        <img src="screen-dashboard.jpeg" alt="" class="onf-billboard__bg-image" loading="lazy">
+      </div>
+      <div class="onf-billboard__gradient"></div>
+      <div class="onf-billboard__content">
+        <div class="onf-billboard__tags">
+          <span class="onf-billboard__tag">Fintech</span>
+          <span class="onf-billboard__tag">AI</span>
+          <span class="onf-billboard__tag">Mobile</span>
+        </div>
+        <h1 class="onf-billboard__title">AI Financial<br>Companion</h1>
+        <p class="onf-billboard__desc">A personal finance app that translates money into human language — helping users feel confident about long-term financial decisions.</p>
+        <div class="onf-billboard__actions">
+          <a href="casestudy-finapp.html" class="onf-btn onf-btn--primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            View Case Study
+          </a>
+          <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            More Projects
+          </button>
+        </div>
+      </div>
+    </div>
 
-    // Mobile nav toggle
-    function toggleNav() {
-      const links = document.querySelector('.nav-links');
-      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-      links.style.position = 'absolute';
-      links.style.top = 'var(--nav-height)';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.flexDirection = 'column';
-      links.style.padding = '24px';
-      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      links.style.background = isDark ? 'rgba(2, 2, 10, 0.95)' : 'rgba(248, 249, 252, 0.95)';
-      links.style.backdropFilter = 'blur(20px)';
-      links.style.borderBottom = '1px solid var(--border-subtle)';
-    }
+  </div>
 
-    // Theme toggle
-    function toggleTheme() {
-      var html = document.documentElement;
-      var isDark = html.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
+  <!-- Billboard dots -->
+  <div class="onf-billboard__dots">
+    <div class="onf-billboard__dot onf-billboard__dot--active"></div>
+    <div class="onf-billboard__dot"></div>
+    <div class="onf-billboard__dot"></div>
+    <div class="onf-billboard__dot"></div>
+  </div>
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-  </script>
+  <!-- Progress timer -->
+  <div class="onf-billboard__timer">
+    <div class="onf-billboard__timer-fill"></div>
+  </div>
+</section>
 
+<!-- ==================== CATEGORY CHIPS ==================== -->
+<div class="onf-chips" id="projects">
+  <button class="onf-chip onf-chip--active" data-category="all">All Projects</button>
+  <button class="onf-chip" data-category="ai">AI-Powered</button>
+  <button class="onf-chip" data-category="mobile">Mobile Apps</button>
+  <button class="onf-chip" data-category="saas">SaaS</button>
+  <button class="onf-chip" data-category="fintech">Fintech</button>
+</div>
+
+<!-- ==================== CONTENT ROWS ==================== -->
+<div class="onf-rows">
+
+  <!-- Row: Continue Watching (hidden by default) -->
+  <div class="onf-row onf-row--continue onf-animate" style="display:none;">
+    <div class="onf-row__header">
+      <h2 class="onf-row__title">Continue Watching</h2>
+    </div>
+    <div class="onf-row__carousel">
+      <a href="casestudy-ai-crm.html" class="onf-card" data-project="ai-crm" data-categories="ai saas">
+        <div class="onf-card__thumb">
+          <img src="screen-dashboard.jpeg" alt="MessAge CRM Dashboard" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__progress"><div class="onf-card__progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">MessAge — AI CRM</div>
+          <div class="onf-card__label-sub">Resume watching</div>
+        </div>
+      </a>
+      <a href="casestudy-woofio.html" class="onf-card" data-project="woofio" data-categories="mobile">
+        <div class="onf-card__thumb">
+          <img src="woofio-screens.jpeg" alt="Woofio" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__progress"><div class="onf-card__progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">Woofio</div>
+          <div class="onf-card__label-sub">Resume watching</div>
+        </div>
+      </a>
+      <a href="casestudy-myplanner.html" class="onf-card" data-project="myplanner" data-categories="ai fintech">
+        <div class="onf-card__thumb">
+          <img src="myplanner-dashboard.jpeg" alt="MyPlanner" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__progress"><div class="onf-card__progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">MyPlanner</div>
+          <div class="onf-card__label-sub">Resume watching</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Row: Featured Projects -->
+  <div class="onf-row onf-animate">
+    <div class="onf-row__header">
+      <h2 class="onf-row__title">Featured Projects</h2>
+    </div>
+    <button class="onf-row__arrow onf-row__arrow--left" aria-label="Scroll left">&#8249;</button>
+    <button class="onf-row__arrow onf-row__arrow--right" aria-label="Scroll right">&#8250;</button>
+    <div class="onf-row__carousel onf-stagger">
+
+      <!-- Card: AI CRM -->
+      <a href="casestudy-ai-crm.html" class="onf-card onf-animate" data-project="ai-crm" data-categories="ai saas">
+        <div class="onf-card__thumb">
+          <img src="screen-dashboard.jpeg" alt="MessAge CRM Dashboard" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">MessAge — AI CRM</div>
+            <div class="onf-card__meta">
+              <span>2026</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>15 min read</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>5 screens</span>
+            </div>
+          </div>
+          <div class="onf-card__progress"><div class="onf-card__progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">MessAge — AI CRM</div>
+          <div class="onf-card__label-sub">AI &middot; Messaging &middot; SaaS</div>
+        </div>
+      </a>
+
+      <!-- Card: Woofio -->
+      <a href="casestudy-woofio.html" class="onf-card onf-animate" data-project="woofio" data-categories="mobile">
+        <div class="onf-card__thumb">
+          <img src="woofio-screens.jpeg" alt="Woofio App Screens" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">Woofio</div>
+            <div class="onf-card__meta">
+              <span>2026</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>12 min read</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>4 screens</span>
+            </div>
+          </div>
+          <div class="onf-card__progress"><div class="onf-card__progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">Woofio</div>
+          <div class="onf-card__label-sub">Mobile &middot; Pet Care &middot; Marketplace</div>
+        </div>
+      </a>
+
+      <!-- Card: MyPlanner -->
+      <a href="casestudy-myplanner.html" class="onf-card onf-animate" data-project="myplanner" data-categories="ai fintech mobile">
+        <div class="onf-card__thumb">
+          <img src="myplanner-dashboard.jpeg" alt="MyPlanner Dashboard" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">MyPlanner</div>
+            <div class="onf-card__meta">
+              <span>2026</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>10 min read</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>4 screens</span>
+            </div>
+          </div>
+          <div class="onf-card__progress"><div class="onf-card__progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">MyPlanner</div>
+          <div class="onf-card__label-sub">AI &middot; Event Planning &middot; Fintech</div>
+        </div>
+      </a>
+
+      <!-- Card: Humoney -->
+      <a href="casestudy-finapp.html" class="onf-card onf-animate" data-project="humoney" data-categories="ai fintech mobile">
+        <div class="onf-card__thumb">
+          <img src="screen-dashboard.jpeg" alt="Humoney Dashboard" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">Humoney AI</div>
+            <div class="onf-card__meta">
+              <span>2026</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>8 min read</span>
+              <span class="onf-card__meta-dot"></span>
+              <span>3 screens</span>
+            </div>
+          </div>
+          <div class="onf-card__progress"><div class="onf-card__progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">Humoney AI</div>
+          <div class="onf-card__label-sub">Fintech &middot; AI &middot; Mobile</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Row: AI-Powered -->
+  <div class="onf-row onf-animate">
+    <div class="onf-row__header">
+      <h2 class="onf-row__title">AI-Powered Products</h2>
+    </div>
+    <div class="onf-row__carousel onf-stagger">
+      <a href="casestudy-ai-crm.html" class="onf-card onf-animate" data-project="ai-crm" data-categories="ai saas">
+        <div class="onf-card__thumb">
+          <img src="screen-smartbox.jpeg" alt="Smart Inbox" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">Smart Inbox</div>
+            <div class="onf-card__meta"><span>MessAge</span><span class="onf-card__meta-dot"></span><span>AI Responder</span></div>
+          </div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">Unified Smart Inbox</div>
+          <div class="onf-card__label-sub">MessAge &middot; AI CRM</div>
+        </div>
+      </a>
+      <a href="casestudy-ai-crm.html" class="onf-card onf-animate" data-project="ai-crm" data-categories="ai saas">
+        <div class="onf-card__thumb">
+          <img src="screen-agent.jpeg" alt="AI Agent Builder" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">AI Agent Builder</div>
+            <div class="onf-card__meta"><span>MessAge</span><span class="onf-card__meta-dot"></span><span>Drag & Drop</span></div>
+          </div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">AI Agent Builder</div>
+          <div class="onf-card__label-sub">MessAge &middot; Automation</div>
+        </div>
+      </a>
+      <a href="casestudy-myplanner.html" class="onf-card onf-animate" data-project="myplanner" data-categories="ai fintech">
+        <div class="onf-card__thumb">
+          <img src="myplanner-budget.jpeg" alt="AI Budget Engine" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">AI Budget Engine</div>
+            <div class="onf-card__meta"><span>MyPlanner</span><span class="onf-card__meta-dot"></span><span>Smart Allocation</span></div>
+          </div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">AI Budget Engine</div>
+          <div class="onf-card__label-sub">MyPlanner &middot; Fintech</div>
+        </div>
+      </a>
+      <a href="casestudy-finapp.html" class="onf-card onf-animate" data-project="humoney" data-categories="ai fintech">
+        <div class="onf-card__thumb">
+          <img src="screen-leads.jpeg" alt="Financial Advisor" class="onf-card__thumb-img">
+          <div class="onf-card__overlay"></div>
+          <div class="onf-card__info">
+            <div class="onf-card__title">AI Financial Advisor</div>
+            <div class="onf-card__meta"><span>Humoney</span><span class="onf-card__meta-dot"></span><span>Guidance</span></div>
+          </div>
+        </div>
+        <div class="onf-card__label">
+          <div class="onf-card__label-title">AI Financial Advisor</div>
+          <div class="onf-card__label-sub">Humoney &middot; Personal Finance</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Row: About the Designer -->
+  <div class="onf-row onf-animate">
+    <div class="onf-row__header">
+      <h2 class="onf-row__title">About the Designer</h2>
+    </div>
+    <div style="display: flex; gap: 32px; flex-wrap: wrap; align-items: center; padding: 24px 0;">
+      <div style="flex: 0 0 120px;">
+        <img src="R-226.jpg" alt="Oron Turgeman" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid var(--accent);">
+      </div>
+      <div style="flex: 1; min-width: 260px;">
+        <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-white); margin-bottom: 8px;">Oron Turgeman</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">UX/UI Designer passionate about creating products people actually love. Combining user research, design thinking, and AI tools to build intuitive digital experiences for real users.</p>
+        <div class="onf-available">
+          <span class="onf-available__dot"></span>
+          <span>Available for opportunities</span>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;">
+          <span class="onf-badge onf-badge--new">Figma</span>
+          <span class="onf-badge" style="background:rgba(255,255,255,0.08);color:var(--text-secondary);">Framer</span>
+          <span class="onf-badge" style="background:rgba(255,255,255,0.08);color:var(--text-secondary);">Prototyping</span>
+          <span class="onf-badge" style="background:rgba(255,255,255,0.08);color:var(--text-secondary);">User Research</span>
+          <span class="onf-badge" style="background:rgba(255,255,255,0.08);color:var(--text-secondary);">Design Systems</span>
+          <span class="onf-badge" style="background:rgba(255,255,255,0.08);color:var(--text-secondary);">Claude AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="onf-footer" id="contact">
+  <div class="onf-footer__left">
+    <span class="onf-footer__name">ORON.</span>
+    <div class="onf-footer__links">
+      <a href="mailto:oron2558@gmail.com" class="onf-footer__link">oron2558@gmail.com</a>
+      <a href="https://linkedin.com/in/oron-turgeman" target="_blank" class="onf-footer__link">LinkedIn</a>
+    </div>
+  </div>
+  <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
+</footer>
+
+<script src="scripts/oronflix.js"></script>
 </body>
 </html>

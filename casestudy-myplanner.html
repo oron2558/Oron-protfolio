@@ -7,6 +7,7 @@
   <meta name="description" content="MyPlanner case study: An AI-powered event planning system that replaces expensive event planners with smart budget tracking, supplier management, and timeline automation. UX/UI design by Oron Turgeman.">
   <link rel="stylesheet" href="portfolio-styles.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="stylesheet" href="styles/oronflix-player.css">
 
   <style>
     /* ============================================
@@ -1041,7 +1042,16 @@
     })();
   </script>
 </head>
-<body>
+<body data-project="myplanner">
+<div class="onf-player-chrome">
+  <a href="index.html" class="onf-player-chrome__back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back
+  </a>
+  <div class="onf-player-chrome__breadcrumb"><strong>MyPlanner</strong></div>
+  <div class="onf-player-chrome__progress"><div class="onf-player-chrome__progress-fill"></div></div>
+</div>
+<div class="onf-player-spacer"></div>
 
   <!-- ==================== BACK TO PORTFOLIO ==================== -->
   <a href="portfolio-home.html" class="cs-back">
@@ -1801,5 +1811,19 @@
     });
   </script>
 
+<div class="onf-next-episode">
+  <div class="onf-next-episode__info">
+    <img src="screen-dashboard.jpeg" alt="Humoney" class="onf-next-episode__thumb">
+    <div class="onf-next-episode__text">
+      <span class="onf-next-episode__label">Next project</span>
+      <span class="onf-next-episode__title">Humoney — AI Financial Companion</span>
+    </div>
+  </div>
+  <a href="casestudy-finapp.html" class="onf-next-episode__btn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Watch Next
+  </a>
+</div>
+<script src="scripts/oronflix-player.js"></script>
 </body>
 </html>
