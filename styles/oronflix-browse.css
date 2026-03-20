@@ -567,12 +567,13 @@
 
 @media (max-width: 810px) {
   .onf-billboard {
-    height: 75vh;
-    min-height: 420px;
+    height: auto;
+    min-height: 480px;
+    max-height: none;
   }
 
   .onf-billboard__content {
-    padding-top: 80px;
+    padding-top: 100px;
     justify-content: flex-end;
     padding-bottom: 60px;
   }
@@ -595,6 +596,10 @@
 
   .onf-card {
     flex: 0 0 var(--card-width-mobile);
+  }
+
+  .onf-rows {
+    padding-bottom: 40px;
   }
 
   .onf-footer {

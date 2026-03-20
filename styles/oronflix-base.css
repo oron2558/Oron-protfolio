@@ -68,9 +68,9 @@ ul, ol { list-style: none; }
 
   /* Card dimensions */
   --card-ratio: 56.25%; /* 16:9 */
-  --card-width-desktop: calc((100% - var(--card-gap) * 4) / 5);
-  --card-width-tablet: calc((100% - var(--card-gap) * 2) / 3);
-  --card-width-mobile: calc((100% - var(--card-gap)) / 2);
+  --card-width-desktop: 240px;
+  --card-width-tablet: 200px;
+  --card-width-mobile: 160px;
 }
 
 /* ---------- Light Mode Override ---------- */
