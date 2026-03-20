@@ -928,9 +928,9 @@
     }
     .cs-venn-goal {
       font-family: 'Caveat', cursive;
-      font-size: 1.15rem;
-      line-height: 1.45;
-      max-width: 260px;
+      font-size: 1rem;
+      line-height: 1.4;
+      max-width: 200px;
     }
     .cs-venn-goal--user { color: #3b82f6; }
     .cs-venn-goal--biz { color: #7c3aed; }
@@ -2304,9 +2304,9 @@
       <p style="text-align:center; font-size:0.95rem; color:#64748b; margin-bottom:12px; font-style:italic;" class="animate-on-scroll">The sweet spot — designing for what users need <em>and</em> what the business wants at the same time</p>
       <div class="cs-venn-layout animate-on-scroll">
         <!-- User Goal text - left -->
-        <div class="cs-venn-goal cs-venn-goal--user" style="text-align:right; padding-right:20px;">
-          <strong style="font-size:1.35rem;">User Goal</strong><br>
-          Gain clarity and confidence in managing leads and client communication — without being glued to the phone. The user wants every inquiry answered fast, every lead tracked, and their reputation protected — even while they're physically working.
+        <div class="cs-venn-goal cs-venn-goal--user" style="text-align:right; padding-right:16px;">
+          <strong style="font-size:1.2rem;">User Goal</strong><br>
+          Manage all client communication from one place, respond instantly — even while working — and never lose a lead.
         </div>
 
         <!-- SVG Venn -->
@@ -2321,14 +2321,16 @@
           <clipPath id="clip-left"><circle cx="190" cy="180" r="130"/></clipPath>
           <circle cx="330" cy="180" r="130" clip-path="url(#clip-left)" fill="#818cf8" opacity="0.22"/>
           <!-- Arrow to intersection -->
-          <path d="M260 38 Q258 58 260 68" stroke="#1e293b" stroke-width="2" fill="none" stroke-dasharray="4,3" marker-end="url(#venn-arrow)"/>
-          <defs><marker id="venn-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b"/></marker></defs>
-          <!-- Hand-drawn style curvy arrow LEFT (from circle to text) -->
-          <path d="M62 180 Q30 175 10 178" stroke="#3b82f6" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-start="url(#arrow-blue)"/>
-          <defs><marker id="arrow-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#3b82f6"/></marker></defs>
-          <!-- Hand-drawn style curvy arrow RIGHT (from circle to text) -->
-          <path d="M458 180 Q490 175 510 178" stroke="#7c3aed" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-purple)"/>
-          <defs><marker id="arrow-purple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker></defs>
+          <defs>
+            <marker id="venn-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b"/></marker>
+            <marker id="arrow-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#3b82f6"/></marker>
+            <marker id="arrow-purple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+          </defs>
+          <path d="M260 38 C255 50 262 58 260 68" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#venn-arrow)"/>
+          <!-- Hand-drawn curvy arrow LEFT (from circle outward to text) -->
+          <path d="M62 175 C40 170 22 172 8 178" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
+          <!-- Hand-drawn curvy arrow RIGHT (from circle outward to text) -->
+          <path d="M458 175 C480 170 498 172 512 178" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-purple)"/>
           <!-- Labels -->
           <text x="145" y="355" font-family="Caveat, cursive" font-size="18" font-weight="700" fill="#3b82f6" text-anchor="middle">User goal</text>
           <line x1="110" y1="362" x2="180" y2="362" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
@@ -2337,9 +2339,9 @@
         </svg>
 
         <!-- Business Goal text - right -->
-        <div class="cs-venn-goal cs-venn-goal--biz" style="text-align:left; padding-left:20px;">
-          <strong style="font-size:1.35rem;">Business Goal</strong><br>
-          Position the platform as the go-to AI assistant for solo professionals, increasing user trust, engagement, and conversion — by proving that smart automation can feel personal, not robotic.
+        <div class="cs-venn-goal cs-venn-goal--biz" style="text-align:left; padding-left:16px;">
+          <strong style="font-size:1.2rem;">Business Goal</strong><br>
+          Become the go-to AI assistant for solo pros — increasing trust, engagement, and conversion through personal automation.
         </div>
       </div>
     </div>
