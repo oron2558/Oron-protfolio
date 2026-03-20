@@ -1883,6 +1883,31 @@
     [data-theme="dark"] .cs-artifact-overlay {
       background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.45) 60%, transparent 100%);
     }
+    /* Venn Goals */
+    .cs-venn-wrap {
+      text-align: center;
+    }
+    .cs-venn-goal {
+      max-width: 260px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+    .cs-venn-goal--user { color: #f59e0b; }
+    .cs-venn-goal--biz { color: #7c3aed; }
+    [data-theme="dark"] .cs-venn-goal--user { color: #fbbf24; }
+    [data-theme="dark"] .cs-venn-goal--biz { color: #a78bfa; }
+    .cs-venn-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 810px) {
+      .cs-venn-layout { flex-direction: column; }
+      .cs-venn-goal { max-width: 100%; text-align: center; margin: 16px 0; }
+    }
   </style>
   <script>
     (function() {
@@ -2216,6 +2241,53 @@
             <span class="cs-ph-keyword">then</span>
             <p>we can reduce the anxiety of leaving their dog with strangers, eliminate forgotten vet visits and medications, and make pet care feel effortless even on the busiest days</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== BUSINESS & USER GOALS ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <p style="text-align:center; font-size:0.95rem; color:#64748b; margin-bottom:12px; font-style:italic;" class="animate-on-scroll">The sweet spot — designing for what users need <em>and</em> what the business wants at the same time</p>
+      <div class="cs-venn-layout animate-on-scroll">
+        <!-- User Goal text - left -->
+        <div class="cs-venn-goal cs-venn-goal--user" style="text-align:right; padding-right:16px;">
+          <strong style="font-size:1.2rem;">User Goal</strong><br>
+          Find trustworthy pet care in seconds, track my dog's health in one place, and stop worrying when I can't be there.
+        </div>
+
+        <!-- SVG Venn -->
+        <svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:420px; flex-shrink:0;">
+          <!-- Left circle - User Goal -->
+          <circle cx="190" cy="180" r="130" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.85"/>
+          <ellipse cx="190" cy="180" rx="130" ry="130" fill="#f59e0b" opacity="0.06"/>
+          <!-- Right circle - Business Goal -->
+          <circle cx="330" cy="180" r="130" fill="none" stroke="#7c3aed" stroke-width="3" opacity="0.85"/>
+          <ellipse cx="330" cy="180" rx="130" ry="130" fill="#7c3aed" opacity="0.06"/>
+          <!-- Intersection highlight -->
+          <clipPath id="clip-left"><circle cx="190" cy="180" r="130"/></clipPath>
+          <circle cx="330" cy="180" r="130" clip-path="url(#clip-left)" fill="#d97706" opacity="0.18"/>
+          <!-- Arrows -->
+          <defs>
+            <marker id="arrow-amber" viewBox="0 0 12 12" refX="1" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M 12 0 L 0 6 L 12 12 z" fill="#f59e0b"/></marker>
+            <marker id="arrow-purple" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 12 6 L 0 12 z" fill="#7c3aed"/></marker>
+          </defs>
+          <path d="M58 178 C38 168 20 168 6 175" stroke="#f59e0b" stroke-width="2.5" fill="none" marker-end="url(#arrow-amber)"/>
+          <path d="M462 178 C482 168 500 168 514 175" stroke="#7c3aed" stroke-width="2.5" fill="none" marker-end="url(#arrow-purple)"/>
+          <!-- Labels -->
+          <text x="145" y="355" font-family="Caveat, cursive" font-size="18" font-weight="700" fill="#f59e0b" text-anchor="middle">User goal</text>
+          <line x1="110" y1="362" x2="180" y2="362" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+          <text x="375" y="355" font-family="Caveat, cursive" font-size="18" font-weight="700" fill="#7c3aed" text-anchor="middle">Business goal</text>
+          <line x1="330" y1="362" x2="420" y2="362" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Business Goal text - right -->
+        <div class="cs-venn-goal cs-venn-goal--biz" style="text-align:left; padding-left:16px;">
+          <strong style="font-size:1.2rem;">Business Goal</strong><br>
+          Become the #1 pet care platform by building trust through verified providers, seamless booking, and family-wide coordination.
         </div>
       </div>
     </div>
