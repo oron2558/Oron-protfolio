@@ -535,6 +535,7 @@
       align-items: flex-start;
       gap: 0;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       padding: 8px 0 16px;
     }
 
@@ -1067,6 +1068,7 @@
       padding: 48px 40px;
       margin-bottom: 48px;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .cs-flow-title {
@@ -1712,7 +1714,7 @@
       }
 
       .cs-meta {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .cs-two-col {
@@ -1840,17 +1842,21 @@
       .cs-back {
         top: 12px;
         left: 12px;
-        padding: 8px 14px;
+        padding: 12px 16px;
         font-size: var(--fs-tiny);
       }
 
       .cs-hero {
-        padding: 100px 0 48px;
+        padding: 80px 0 40px;
       }
 
       .cs-meta {
         grid-template-columns: 1fr;
         gap: 12px;
+      }
+
+      .cs-two-col {
+        gap: 20px;
       }
 
       .cs-stats {
@@ -1877,6 +1883,27 @@
       .cs-section-number {
         font-size: 80px;
       }
+
+      .cs-ph-keyword {
+        font-size: 1.5rem;
+      }
+
+      .cs-ph-arrow {
+        width: 50px;
+        height: 50px;
+      }
+
+      .cs-venn-wrap svg {
+        max-width: 280px;
+      }
+
+      .cs-venn-goal {
+        padding: 8px 4px;
+      }
+
+      .cs-persona {
+        gap: 16px;
+      }
     }
 
     /* Journey roadmap */
@@ -1888,6 +1915,7 @@
       margin-top: 40px;
       padding: 20px 0;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .cs-journey-step {
@@ -2769,7 +2797,7 @@
         <div class="cs-flow-title">User Journey Map — Close Up</div>
         <div class="cs-flow-sub">Focused on the product — from first open to full control</div>
 
-        <div style="overflow-x: auto;">
+        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
           <table class="cs-uj-table">
             <thead>
               <tr>

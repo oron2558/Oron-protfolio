@@ -172,3 +172,27 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 390px) {
+  .onf-player-chrome {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .onf-next-episode {
+    padding: 24px 12px 16px;
+  }
+
+  .onf-next-episode__thumb {
+    width: 80px;
+    height: 45px;
+  }
+
+  .onf-next-episode__btn {
+    padding: 14px 24px;
+  }
+
+  .onf-next-episode__title {
+    font-size: 0.85rem;
+  }
+}

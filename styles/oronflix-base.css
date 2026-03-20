@@ -366,12 +366,17 @@ body {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 260px;
+    width: 80vw;
+    max-width: 280px;
     background: var(--bg-secondary);
     flex-direction: column;
     padding: 80px 32px 32px;
     gap: 24px;
     border-left: 1px solid var(--border-subtle);
+  }
+
+  .onf-nav__link {
+    padding: 12px 0;
   }
 
   .onf-nav__links--open {
@@ -386,6 +391,18 @@ body {
 @media (max-width: 390px) {
   :root {
     --card-gap: 8px;
+  }
+
+  .onf-btn {
+    padding: 14px 24px;
+  }
+}
+
+/* Touch device — prevent sticky hover on nav buttons */
+@media (hover: none) {
+  .onf-nav__btn:hover {
+    color: var(--text-secondary);
+    background: none;
   }
 }
 

@@ -460,6 +460,62 @@
   border-color: transparent;
 }
 
+/* ---------- About Section ---------- */
+.onf-about {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.onf-about__avatar {
+  flex: 0 0 120px;
+}
+
+.onf-about__img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--accent);
+}
+
+.onf-about__text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.onf-about__name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.onf-about__bio {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.onf-about__badges {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.onf-badge--skill {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .onf-badge--skill {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-secondary);
+}
+
 /* ---------- Footer ---------- */
 .onf-footer {
   padding: 48px 4%;
@@ -552,6 +608,24 @@
     height: 70vh;
   }
 
+  .onf-billboard__content {
+    padding-bottom: 40px;
+  }
+
+  .onf-billboard__bg-image {
+    width: 300%;
+  }
+
+  .onf-billboard__dots {
+    bottom: 40px;
+  }
+
+  .onf-billboard__dot {
+    height: 8px;
+    padding: 6px 0;
+    background-clip: content-box;
+  }
+
   .onf-billboard__actions {
     flex-direction: column;
   }
@@ -559,6 +633,59 @@
   .onf-billboard__actions .onf-btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .onf-chip {
+    padding: 10px 18px;
+  }
+
+  .onf-footer__links {
+    gap: 12px;
+  }
+
+  .onf-about {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .onf-about__avatar {
+    flex: 0 0 auto;
+  }
+
+  .onf-about__img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .onf-about__name {
+    font-size: 1.1rem;
+  }
+
+  .onf-about__text {
+    min-width: 0;
+  }
+}
+
+/* Touch device — prevent sticky hover */
+@media (hover: none) {
+  .onf-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-card);
+    z-index: auto;
+  }
+
+  .onf-card:hover .onf-card__thumb-img {
+    transform: none;
+  }
+
+  .onf-card:hover .onf-card__overlay {
+    opacity: 0;
+  }
+
+  .onf-card:hover .onf-card__info {
+    transform: translateY(8px);
+    opacity: 0;
   }
 }
 

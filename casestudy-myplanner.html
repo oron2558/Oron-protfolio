@@ -539,7 +539,7 @@
       }
       .cs-hero-tags { justify-content: center; }
       .cs-hero-desc { max-width: 100%; }
-      .cs-meta { grid-template-columns: repeat(3, 1fr); }
+      .cs-meta { grid-template-columns: repeat(2, 1fr); }
       .cs-iso-grid {
         max-width: 360px;
         height: 340px;
@@ -563,13 +563,24 @@
 
     /* Responsive — Mobile */
     @media (max-width: 390px) {
-      .cs-back { top: 12px; left: 12px; padding: 8px 14px; font-size: var(--fs-tiny); }
-      .cs-hero { padding: 100px 0 48px; }
+      .cs-back { top: 12px; left: 12px; padding: 12px 16px; font-size: var(--fs-tiny); }
+      .cs-hero { padding: 80px 0 40px; }
       .cs-meta { grid-template-columns: 1fr; gap: 12px; }
+      .cs-two-col { gap: 20px; }
+      .cs-iso-grid {
+        max-width: 260px;
+        height: 240px;
+      }
+      .cs-iso-card { width: 180px; }
+      .cs-iso-card:nth-child(1) { top: 0; left: 0; }
+      .cs-iso-card:nth-child(2) { top: -15px; left: 80px; }
+      .cs-iso-card:nth-child(3) { top: 100px; left: 10px; }
+      .cs-iso-card:nth-child(4) { top: 85px; left: 90px; }
       .cs-affinity-board { grid-template-columns: 1fr; }
       .cs-pain-bar-item { grid-template-columns: 100px 1fr 36px; gap: 8px; }
-      .cs-pain-bar-label { font-size: 11px; }
+      .cs-pain-bar-label { font-size: 0.7rem; }
       .cs-screen-mockup { width: 220px; }
+      .cs-venn-wrap svg { max-width: 280px; }
     }
 
     /* ============================================
@@ -681,6 +692,11 @@
     @media (max-width: 810px) {
       .cs-ph-keyword { font-size: 2rem; }
       .cs-ph-arrow { margin-left: 40px; }
+    }
+
+    @media (max-width: 390px) {
+      .cs-ph-keyword { font-size: 1.5rem; }
+      .cs-ph-arrow { width: 50px; height: 50px; margin-left: 20px; }
     }
 
     /* ============================================

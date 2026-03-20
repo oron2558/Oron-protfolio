@@ -841,7 +841,7 @@
       }
 
       .cs-meta {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .cs-two-col {
@@ -929,17 +929,21 @@
       .cs-back {
         top: 12px;
         left: 12px;
-        padding: 8px 14px;
+        padding: 12px 16px;
         font-size: var(--fs-tiny);
       }
 
       .cs-hero {
-        padding: 100px 0 48px;
+        padding: 80px 0 40px;
       }
 
       .cs-meta {
         grid-template-columns: 1fr;
         gap: 12px;
+      }
+
+      .cs-two-col {
+        gap: 20px;
       }
 
       .cs-stats {
@@ -948,6 +952,15 @@
 
       .cs-wireframes {
         grid-template-columns: 1fr;
+      }
+
+      .cs-persona-avatar {
+        width: 140px;
+        height: 140px;
+      }
+
+      .cs-venn-wrap svg {
+        max-width: 280px;
       }
 
       .cs-nav-projects {
@@ -1421,6 +1434,9 @@
     }
 
     @media (max-width: 390px) {
+      .cs-screen-row {
+        gap: 16px;
+      }
       .cs-screen-row .cs-phone-frame,
       .cs-screen-row .cs-phone-frame--live {
         width: 140px;
@@ -1430,6 +1446,7 @@
       }
       .cs-dual-phones {
         gap: 8px;
+        perspective: 400px;
       }
       .cs-dual-phone--wireframe { transform: rotateY(3deg); }
       .cs-dual-phone--live { transform: rotateY(-3deg); }
@@ -1544,6 +1561,11 @@
     @media (max-width: 810px) {
       .cs-ph-keyword { font-size: 2rem; }
       .cs-ph-arrow { margin-left: 40px; }
+    }
+
+    @media (max-width: 390px) {
+      .cs-ph-keyword { font-size: 1.5rem; }
+      .cs-ph-arrow { width: 50px; height: 50px; margin-left: 20px; }
     }
 
     /* ============================================
