@@ -1741,7 +1741,8 @@
        USER FLOW & JOURNEY CLOSE-UP
        ============================================ */
     .cs-flow-wrap {
-      background: #0d1117;
+      background: #fff8f0;
+      border: 1px solid rgba(245, 158, 11, 0.15);
       border-radius: 20px;
       padding: 48px 40px;
       margin-bottom: 48px;
@@ -1752,13 +1753,13 @@
       font-family: var(--font-display);
       font-size: 1.3rem;
       font-weight: 700;
-      color: #f0f6fc;
+      color: #1c1917;
       margin-bottom: 8px;
     }
 
     .cs-flow-sub {
       font-size: 0.88rem;
-      color: #8b949e;
+      color: #78716c;
       margin-bottom: 32px;
     }
 
@@ -1784,17 +1785,17 @@
     }
 
     .cs-flow-node--start {
-      background: #1a8a7a;
-      border-color: #2dd4bf;
+      background: #059669;
+      border-color: #10b981;
       color: #fff;
       border-radius: 50px;
       padding: 14px 28px;
     }
 
     .cs-flow-node--step {
-      background: rgba(245, 158, 11, 0.12);
+      background: rgba(245, 158, 11, 0.08);
       border-color: #f59e0b;
-      color: #fcd34d;
+      color: #92400e;
     }
 
     .cs-flow-node--end {
@@ -1806,7 +1807,7 @@
     }
 
     .cs-flow-arrow {
-      color: #484f58;
+      color: #d6d3d1;
       font-size: 1.2rem;
       padding: 0 8px;
       flex-shrink: 0;
@@ -1825,13 +1826,13 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #8b949e;
+      color: #78716c;
       text-align: left;
-      border-bottom: 2px solid #21262d;
+      border-bottom: 2px solid #e7e5e4;
     }
 
     .cs-uj-table th:first-child {
-      color: #c9d1d9;
+      color: #1c1917;
       width: 130px;
     }
 
@@ -1839,30 +1840,43 @@
       padding: 14px 16px;
       font-size: 0.82rem;
       line-height: 1.55;
-      color: #c9d1d9;
-      border-bottom: 1px solid #21262d;
+      color: #44403c;
+      border-bottom: 1px solid #e7e5e4;
       vertical-align: top;
     }
 
     .cs-uj-table td:first-child {
       font-weight: 700;
-      color: #f0f6fc;
+      color: #1c1917;
     }
 
     .cs-uj-table tr:last-child td {
       border-bottom: none;
     }
 
-    .cs-uj-feeling--positive { color: #3fb950; }
-    .cs-uj-feeling--neutral { color: #d29922; }
-    .cs-uj-feeling--negative { color: #f85149; }
-    .cs-uj-improvement { color: #a5d6ff; font-style: italic; }
+    .cs-uj-feeling--positive { color: #16a34a; }
+    .cs-uj-feeling--neutral { color: #b45309; }
+    .cs-uj-feeling--negative { color: #dc2626; }
+    .cs-uj-improvement { color: #2563eb; font-style: italic; }
 
     @media (max-width: 810px) {
       .cs-flow-wrap { padding: 32px 20px; }
     }
 
     /* Dark mode overrides */
+    [data-theme="dark"] .cs-flow-wrap { background: #0d1117; border-color: rgba(255,255,255,0.06); }
+    [data-theme="dark"] .cs-flow-title { color: #f0f6fc; }
+    [data-theme="dark"] .cs-flow-sub { color: #8b949e; }
+    [data-theme="dark"] .cs-flow-node--step { background: rgba(245,158,11,0.12); color: #fcd34d; }
+    [data-theme="dark"] .cs-flow-arrow { color: #484f58; }
+    [data-theme="dark"] .cs-uj-table th { color: #8b949e; border-bottom-color: #21262d; }
+    [data-theme="dark"] .cs-uj-table th:first-child { color: #c9d1d9; }
+    [data-theme="dark"] .cs-uj-table td { color: #c9d1d9; border-bottom-color: #21262d; }
+    [data-theme="dark"] .cs-uj-table td:first-child { color: #f0f6fc; }
+    [data-theme="dark"] .cs-uj-feeling--positive { color: #3fb950; }
+    [data-theme="dark"] .cs-uj-feeling--neutral { color: #d29922; }
+    [data-theme="dark"] .cs-uj-feeling--negative { color: #f85149; }
+    [data-theme="dark"] .cs-uj-improvement { color: #a5d6ff; }
     [data-theme="dark"] .cs-back { background: rgba(2, 2, 10, 0.8); }
     [data-theme="dark"] .cs-back:hover { background: rgba(17, 17, 25, 0.95); }
     [data-theme="dark"] .cs-progress { background: rgba(255, 255, 255, 0.06); }
