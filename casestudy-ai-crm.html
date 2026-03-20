@@ -921,25 +921,32 @@
     }
 
     /* Venn Diagram */
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
     .cs-venn-wrap {
-      background: #f0fdf4;
-      border-radius: 20px;
-      padding: 40px 32px;
-      border: 1px solid rgba(59, 130, 246, 0.1);
+      background: transparent;
+      padding: 48px 0;
     }
-    [data-theme="dark"] .cs-venn-wrap {
-      background: rgba(30, 41, 59, 0.4);
-      border-color: rgba(255,255,255,0.06);
+    .cs-venn-goal {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      line-height: 1.45;
+      max-width: 260px;
     }
-    [data-theme="dark"] .cs-venn-wrap p { color: #94a3b8 !important; }
-    [data-theme="dark"] .cs-venn-wrap circle[stroke="#3b82f6"] { stroke: #60a5fa; }
-    [data-theme="dark"] .cs-venn-wrap circle[stroke="#7c3aed"] { stroke: #a78bfa; }
-    [data-theme="dark"] .cs-venn-wrap text[fill="#3b82f6"] { fill: #60a5fa; }
-    [data-theme="dark"] .cs-venn-wrap text[fill="#7c3aed"] { fill: #a78bfa; }
-    [data-theme="dark"] .cs-venn-wrap line[stroke="#3b82f6"] { stroke: #60a5fa; }
-    [data-theme="dark"] .cs-venn-wrap line[stroke="#7c3aed"] { stroke: #a78bfa; }
-    [data-theme="dark"] .cs-venn-wrap path[stroke="#1e293b"] { stroke: #e2e8f0; }
-    [data-theme="dark"] .cs-venn-wrap path[fill="#1e293b"] { fill: #e2e8f0; }
+    .cs-venn-goal--user { color: #3b82f6; }
+    .cs-venn-goal--biz { color: #7c3aed; }
+    [data-theme="dark"] .cs-venn-goal--user { color: #60a5fa; }
+    [data-theme="dark"] .cs-venn-goal--biz { color: #a78bfa; }
+    .cs-venn-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 810px) {
+      .cs-venn-layout { flex-direction: column; }
+      .cs-venn-goal { max-width: 100%; text-align: center; margin: 16px 0; }
+    }
 
     /* Problem & Hypothesis Statement */
     .cs-problem-hypothesis {
@@ -2291,6 +2298,55 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
+  <!-- ==================== VENN DIAGRAM ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <p style="text-align:center; font-size:0.95rem; color:#64748b; margin-bottom:12px; font-style:italic;" class="animate-on-scroll">The sweet spot — designing for what users need <em>and</em> what the business wants at the same time</p>
+      <div class="cs-venn-layout animate-on-scroll">
+        <!-- User Goal text - left -->
+        <div class="cs-venn-goal cs-venn-goal--user" style="text-align:right; padding-right:20px;">
+          <strong style="font-size:1.35rem;">User Goal</strong><br>
+          Gain clarity and confidence in managing leads and client communication — without being glued to the phone. The user wants every inquiry answered fast, every lead tracked, and their reputation protected — even while they're physically working.
+        </div>
+
+        <!-- SVG Venn -->
+        <svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:420px; flex-shrink:0;">
+          <!-- Left circle - User Goal -->
+          <circle cx="190" cy="180" r="130" fill="none" stroke="#3b82f6" stroke-width="3" opacity="0.85"/>
+          <ellipse cx="190" cy="180" rx="130" ry="130" fill="#3b82f6" opacity="0.06"/>
+          <!-- Right circle - Business Goal -->
+          <circle cx="330" cy="180" r="130" fill="none" stroke="#7c3aed" stroke-width="3" opacity="0.85"/>
+          <ellipse cx="330" cy="180" rx="130" ry="130" fill="#7c3aed" opacity="0.06"/>
+          <!-- Intersection highlight -->
+          <clipPath id="clip-left"><circle cx="190" cy="180" r="130"/></clipPath>
+          <circle cx="330" cy="180" r="130" clip-path="url(#clip-left)" fill="#818cf8" opacity="0.22"/>
+          <!-- Arrow to intersection -->
+          <path d="M260 38 Q258 58 260 68" stroke="#1e293b" stroke-width="2" fill="none" stroke-dasharray="4,3" marker-end="url(#venn-arrow)"/>
+          <defs><marker id="venn-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b"/></marker></defs>
+          <!-- Hand-drawn style curvy arrow LEFT (from circle to text) -->
+          <path d="M62 180 Q30 175 10 178" stroke="#3b82f6" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-start="url(#arrow-blue)"/>
+          <defs><marker id="arrow-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#3b82f6"/></marker></defs>
+          <!-- Hand-drawn style curvy arrow RIGHT (from circle to text) -->
+          <path d="M458 180 Q490 175 510 178" stroke="#7c3aed" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-purple)"/>
+          <defs><marker id="arrow-purple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker></defs>
+          <!-- Labels -->
+          <text x="145" y="355" font-family="Caveat, cursive" font-size="18" font-weight="700" fill="#3b82f6" text-anchor="middle">User goal</text>
+          <line x1="110" y1="362" x2="180" y2="362" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+          <text x="375" y="355" font-family="Caveat, cursive" font-size="18" font-weight="700" fill="#7c3aed" text-anchor="middle">Business goal</text>
+          <line x1="330" y1="362" x2="420" y2="362" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Business Goal text - right -->
+        <div class="cs-venn-goal cs-venn-goal--biz" style="text-align:left; padding-left:20px;">
+          <strong style="font-size:1.35rem;">Business Goal</strong><br>
+          Position the platform as the go-to AI assistant for solo professionals, increasing user trust, engagement, and conversion — by proving that smart automation can feel personal, not robotic.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
   <!-- ==================== TURNING CHAOS INTO CLARITY ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
@@ -2434,29 +2490,6 @@
         </div>
       </div>
 
-      <!-- Venn Diagram: User Goal / Business Goal -->
-      <div class="cs-venn-wrap animate-on-scroll" style="margin-top: 56px;">
-        <p style="text-align:center; font-size:0.95rem; color:#64748b; margin-bottom:8px; font-style:italic;">The sweet spot — designing for what users need <em>and</em> what the business wants at the same time</p>
-        <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:480px; margin:0 auto; display:block;">
-          <!-- Left circle - User Goal -->
-          <circle cx="190" cy="160" r="130" fill="none" stroke="#3b82f6" stroke-width="3" opacity="0.85"/>
-          <ellipse cx="190" cy="160" rx="130" ry="130" fill="#3b82f6" opacity="0.06"/>
-          <!-- Right circle - Business Goal -->
-          <circle cx="330" cy="160" r="130" fill="none" stroke="#7c3aed" stroke-width="3" opacity="0.85"/>
-          <ellipse cx="330" cy="160" rx="130" ry="130" fill="#7c3aed" opacity="0.06"/>
-          <!-- Intersection highlight -->
-          <clipPath id="clip-left"><circle cx="190" cy="160" r="130"/></clipPath>
-          <circle cx="330" cy="160" r="130" clip-path="url(#clip-left)" fill="#818cf8" opacity="0.22"/>
-          <!-- Arrow pointing to intersection -->
-          <path d="M260 28 Q260 48 260 55" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#venn-arrow)"/>
-          <defs><marker id="venn-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b"/></marker></defs>
-          <!-- Labels -->
-          <text x="145" y="320" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#3b82f6" text-anchor="middle">User goal</text>
-          <line x1="120" y1="328" x2="170" y2="328" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
-          <text x="375" y="320" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#7c3aed" text-anchor="middle">Business goal</text>
-          <line x1="345" y1="328" x2="405" y2="328" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
-      </div>
     </div>
   </section>
 
