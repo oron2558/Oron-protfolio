@@ -1432,192 +1432,6 @@
     }
 
     /* ============================================
-       SCREEN CAROUSEL
-       ============================================ */
-    .cs-carousel-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .cs-carousel-track {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      min-height: 420px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .cs-carousel-slide {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 24px;
-      opacity: 0;
-      transform: translateX(80px) scale(0.95);
-      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
-    }
-
-    .cs-carousel-slide--active {
-      position: relative;
-      opacity: 1;
-      transform: translateX(0) scale(1);
-      pointer-events: auto;
-    }
-
-    .cs-carousel-slide--exit-left {
-      opacity: 0;
-      transform: translateX(-80px) scale(0.95);
-    }
-
-    .cs-carousel-phone {
-      text-align: center;
-    }
-
-    .cs-carousel-phone .cs-phone-frame,
-    .cs-carousel-phone .cs-phone-frame--live {
-      width: 200px;
-      height: 420px;
-      border-radius: 32px;
-      border-width: 5px;
-    }
-
-    .cs-carousel-phone .cs-phone-frame--live {
-      width: 200px;
-      height: 420px;
-      border-radius: 32px;
-    }
-
-    /* Arrows */
-    .cs-carousel-arrow {
-      flex-shrink: 0;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      z-index: 2;
-    }
-
-    .cs-carousel-arrow:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: scale(1.1);
-    }
-
-    .cs-carousel-arrow svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Dots */
-    .cs-carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 32px;
-    }
-
-    .cs-carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .cs-carousel-dot--active {
-      background: #f59e0b;
-      transform: scale(1.3);
-    }
-
-    [data-theme="light"] .cs-carousel-arrow {
-      background: rgba(0, 0, 0, 0.05);
-      border-color: rgba(0, 0, 0, 0.1);
-    }
-
-    [data-theme="light"] .cs-carousel-arrow:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    [data-theme="light"] .cs-carousel-dot {
-      background: rgba(0, 0, 0, 0.12);
-    }
-
-    [data-theme="light"] .cs-carousel-dot--active {
-      background: #f59e0b;
-    }
-
-    /* Info panels */
-    .cs-carousel-info {
-      position: relative;
-      min-height: 200px;
-    }
-
-    .cs-carousel-info-slide {
-      display: none;
-      animation: carouselFadeIn 0.4s ease;
-    }
-
-    .cs-carousel-info-slide--active {
-      display: block;
-    }
-
-    @keyframes carouselFadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 810px) {
-      .cs-carousel-phone .cs-phone-frame,
-      .cs-carousel-phone .cs-phone-frame--live {
-        width: 160px;
-        height: 340px;
-        border-radius: 28px;
-      }
-      .cs-carousel-track {
-        min-height: 360px;
-      }
-      .cs-carousel-arrow {
-        width: 36px;
-        height: 36px;
-      }
-      .cs-carousel-arrow svg {
-        width: 16px;
-        height: 16px;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .cs-carousel-phone .cs-phone-frame,
-      .cs-carousel-phone .cs-phone-frame--live {
-        width: 130px;
-        height: 280px;
-        border-radius: 22px;
-      }
-      .cs-carousel-track {
-        min-height: 300px;
-      }
-      .cs-carousel-slide {
-        gap: 12px;
-      }
-    }
-
-    /* ============================================
        PROBLEM & HYPOTHESIS
        ============================================ */
     .cs-problem-hypothesis {
@@ -2680,140 +2494,137 @@
     </div>
   </section>
 
-
-  <!-- ==================== SCREENS CAROUSEL ==================== -->
+  <!-- ==================== SCREEN 1: Health ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
-
-      <!-- Carousel -->
-      <div class="cs-carousel-wrap">
-        <button class="cs-carousel-arrow cs-carousel-arrow--left" aria-label="Previous">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-
-        <div class="cs-carousel-track">
-          <!-- Screen 1: Health -->
-          <div class="cs-carousel-slide cs-carousel-slide--active" data-slide="0">
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame">
-                <img src="woofio-screens.jpeg" alt="Health — Wireframe" style="object-position: 2% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label">Wireframe</p>
-            </div>
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame--live">
-                <img src="woofio-live-screens.jpeg" alt="Health — Final" style="object-position: 34% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label cs-dual-label--live">Final Design</p>
-            </div>
-          </div>
-
-          <!-- Screen 2: Family Profile -->
-          <div class="cs-carousel-slide" data-slide="1">
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame">
-                <img src="woofio-screens.jpeg" alt="Family Profile — Wireframe" style="object-position: 25% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label">Wireframe</p>
-            </div>
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame--live">
-                <img src="woofio-live-screens.jpeg" alt="Family Profile — Final" style="object-position: 3% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label cs-dual-label--live">Final Design</p>
-            </div>
-          </div>
-
-          <!-- Screen 3: Dog Walkers -->
-          <div class="cs-carousel-slide" data-slide="2">
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame">
-                <img src="woofio-screens.jpeg" alt="Dog Walkers — Wireframe" style="object-position: 50% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label">Wireframe</p>
-            </div>
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame--live">
-                <img src="woofio-live-screens.jpeg" alt="Dog Walkers — Final" style="object-position: 66% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label cs-dual-label--live">Final Design</p>
-            </div>
-          </div>
-
-          <!-- Screen 4: Schedule -->
-          <div class="cs-carousel-slide" data-slide="3">
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame">
-                <img src="woofio-screens.jpeg" alt="Schedule — Wireframe" style="object-position: 75% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label">Wireframe</p>
-            </div>
-            <div class="cs-carousel-phone">
-              <div class="cs-phone-frame--live">
-                <img src="woofio-live-screens.jpeg" alt="Schedule — Final" style="object-position: 97% top;" loading="lazy">
-              </div>
-              <p class="cs-dual-label cs-dual-label--live">Final Design</p>
-            </div>
-          </div>
-        </div>
-
-        <button class="cs-carousel-arrow cs-carousel-arrow--right" aria-label="Next">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-
-      <!-- Dots -->
-      <div class="cs-carousel-dots">
-        <button class="cs-carousel-dot cs-carousel-dot--active" data-dot="0"></button>
-        <button class="cs-carousel-dot" data-dot="1"></button>
-        <button class="cs-carousel-dot" data-dot="2"></button>
-        <button class="cs-carousel-dot" data-dot="3"></button>
-      </div>
-
-      <!-- Screen info (updates with carousel) -->
-      <div class="cs-carousel-info">
-        <div class="cs-carousel-info-slide cs-carousel-info-slide--active" data-info="0">
-          <h3 class="cs-section-subtitle">Health Dashboard</h3>
-          <p class="cs-text" style="margin-bottom: 12px;">A complete medical hub replacing the scattered notes and vet-only records that 60% of owners rely on.</p>
-          <ul class="cs-list">
-            <li><strong>My Vet card</strong> — quick access to Dr. Emily Carter's details and 24/7 consultations</li>
-            <li><strong>Live Metrics</strong> — movement, heart rate, temperature, and respiration</li>
-            <li><strong>Medical Services</strong> — vaccination records, history, lab results, prescriptions</li>
-            <li><strong>Nearby Clinics</strong> — searchable list for emergency or routine visits</li>
+      <h3 class="cs-section-subtitle animate-on-scroll">Health Dashboard</h3>
+      <div class="cs-screen-row">
+        <div class="cs-screen-text">
+          <p class="cs-text animate-on-scroll" style="margin-bottom: 16px;">A complete medical hub replacing the scattered notes and vet-only records that 60% of owners rely on. Vet info, live metrics, medical services, and nearby clinics&mdash;all in one screen.</p>
+          <ul class="cs-list animate-on-scroll">
+            <li><strong>My Vet card</strong> — quick access to Dr. Emily Carter's details, directions, online booking, and 24/7 vet consultations</li>
+            <li><strong>Live Metrics</strong> — daily movement goal (6.1 km of 9.2 km), activity intensity, heart rate, temperature, and respiration</li>
+            <li><strong>Medical Services</strong> — vaccination records, medical history, lab test results, and prescription management</li>
+            <li><strong>Nearby Clinics</strong> — searchable list of vets in your area for emergency or routine visits</li>
           </ul>
         </div>
-        <div class="cs-carousel-info-slide" data-info="1">
-          <h3 class="cs-section-subtitle">Levi Family Profile</h3>
-          <p class="cs-text" style="margin-bottom: 12px;">A shared family dashboard where every member sees the dog's details, updates, and reminders.</p>
-          <ul class="cs-list">
-            <li><strong>Family members</strong> — each person has a profile and assigned care tasks</li>
-            <li><strong>Pet profile</strong> — breed, age, weight, and "At Home" GPS status</li>
-            <li><strong>Quick services</strong> — Vet, Delivery, Dog Walking, Grooming in one tap</li>
-            <li><strong>Updates &amp; reminders</strong> — vaccination alerts and appointment scheduling</li>
-          </ul>
-        </div>
-        <div class="cs-carousel-info-slide" data-info="2">
-          <h3 class="cs-section-subtitle">Dog Walkers &amp; Services</h3>
-          <p class="cs-text" style="margin-bottom: 12px;">Find, compare, and book certified dog walkers filtered by price, rating, distance, and availability.</p>
-          <ul class="cs-list">
-            <li><strong>Smart filters</strong> — sort by Price, Rating, Distance, or Availability</li>
-            <li><strong>Detailed profiles</strong> — certifications, services, and reviews</li>
-            <li><strong>Available time slots</strong> — see open hours and book directly</li>
-            <li><strong>Instant contact</strong> — "Call me now" and "Message" buttons</li>
-          </ul>
-        </div>
-        <div class="cs-carousel-info-slide" data-info="3">
-          <h3 class="cs-section-subtitle">Smart Schedule</h3>
-          <p class="cs-text" style="margin-bottom: 12px;">An AI-powered daily planner for walks, meals, and activities for every pet in the family.</p>
-          <ul class="cs-list">
-            <li><strong>Multi-pet profiles</strong> — switch between pets with avatar tabs</li>
-            <li><strong>Weekly calendar</strong> — day-by-day view with completion percentage</li>
-            <li><strong>Task timeline</strong> — walks, meals with Completed / In Progress / Upcoming</li>
-            <li><strong>Editable tasks</strong> — reassign to another family member or adjust timing</li>
-          </ul>
+        <div class="cs-dual-phones animate-on-scroll">
+          <div class="cs-dual-phone cs-dual-phone--wireframe">
+            <div class="cs-phone-frame">
+              <img src="woofio-screens.jpeg" alt="Health — Wireframe" style="object-position: 2% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label">Hi-Fi Wireframe</p>
+          </div>
+          <div class="cs-dual-phone cs-dual-phone--live">
+            <div class="cs-phone-frame--live">
+              <img src="woofio-live-screens.jpeg" alt="Health — Live Design" style="object-position: 34% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label cs-dual-label--live">Final Design</p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== SCREEN 2: Family Profile ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">Levi Family Profile</h3>
+      <div class="cs-screen-row">
+        <div class="cs-screen-text">
+          <p class="cs-text animate-on-scroll" style="margin-bottom: 16px;">The heart of Woofio: a shared family dashboard where every member&mdash;Bono, Tali, Ido, Keren, Ella&mdash;sees the dog's details, updates, and reminders, so no one person carries the full load.</p>
+          <ul class="cs-list animate-on-scroll">
+            <li><strong>Family members</strong> — each person has a profile avatar and can be assigned daily care tasks</li>
+            <li><strong>Pet profile</strong> — Bono the Golden Retriever: breed, age, weight, height, and "At Home" status with smart collar GPS</li>
+            <li><strong>Quick services</strong> — Vet Online, Delivery, Documents, Dog Walking, and Grooming accessible in one tap</li>
+            <li><strong>Updates & reminders</strong> — vaccination alerts, food re-order confirmations, and appointment scheduling in a live feed</li>
+          </ul>
+        </div>
+        <div class="cs-dual-phones animate-on-scroll">
+          <div class="cs-dual-phone cs-dual-phone--wireframe">
+            <div class="cs-phone-frame">
+              <img src="woofio-screens.jpeg" alt="Family Profile — Wireframe" style="object-position: 25% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label">Hi-Fi Wireframe</p>
+          </div>
+          <div class="cs-dual-phone cs-dual-phone--live">
+            <div class="cs-phone-frame--live">
+              <img src="woofio-live-screens.jpeg" alt="Family Profile — Live Design" style="object-position: 3% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label cs-dual-label--live">Final Design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== SCREEN 3: Dog Walkers ==================== -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">Dog Walkers & Services</h3>
+      <div class="cs-screen-row">
+        <div class="cs-screen-text">
+          <p class="cs-text animate-on-scroll" style="margin-bottom: 16px;">For the 20% who rely on external help and everyone who travels&mdash;find, compare, and book certified dog walkers filtered by price, rating, distance, and availability.</p>
+          <ul class="cs-list animate-on-scroll">
+            <li><strong>Smart filters</strong> — sort by Price, Rating, Distance, or Availability to find the perfect match</li>
+            <li><strong>Detailed profiles</strong> — certifications, services (individual walks, group walks, behavior training, puppy care), and reviews</li>
+            <li><strong>Available time slots</strong> — see open hours (9:00 AM to 5:30 PM) and book directly from the app</li>
+            <li><strong>Instant contact</strong> — "Call me now" and "Message" buttons for quick communication with walkers</li>
+          </ul>
+        </div>
+        <div class="cs-dual-phones animate-on-scroll">
+          <div class="cs-dual-phone cs-dual-phone--wireframe">
+            <div class="cs-phone-frame">
+              <img src="woofio-screens.jpeg" alt="Dog Walkers — Wireframe" style="object-position: 50% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label">Hi-Fi Wireframe</p>
+          </div>
+          <div class="cs-dual-phone cs-dual-phone--live">
+            <div class="cs-phone-frame--live">
+              <img src="woofio-live-screens.jpeg" alt="Dog Walkers — Live Design" style="object-position: 66% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label cs-dual-label--live">Final Design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== SCREEN 4: Schedule ==================== -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-section-inner">
+      <h3 class="cs-section-subtitle animate-on-scroll">Smart Schedule</h3>
+      <div class="cs-screen-row">
+        <div class="cs-screen-text">
+          <p class="cs-text animate-on-scroll" style="margin-bottom: 16px;">An AI-powered daily planner that organizes walks, meals, and activities for every pet in the family&mdash;addressing the rigid schedule frustration reported by owners.</p>
+          <ul class="cs-list animate-on-scroll">
+            <li><strong>Multi-pet profiles</strong> — switch between Bono, Tali, Ido, Keren, and Ella with avatar tabs at the top</li>
+            <li><strong>Weekly calendar</strong> — visual day-by-day view with completion percentage (60% for today)</li>
+            <li><strong>Task timeline</strong> — morning walk, breakfast, lunch time, afternoon walk with status: Completed, In Progress, Upcoming</li>
+            <li><strong>Editable tasks</strong> — tap "Edit" on any task to reassign it to another family member or adjust timing</li>
+          </ul>
+        </div>
+        <div class="cs-dual-phones animate-on-scroll">
+          <div class="cs-dual-phone cs-dual-phone--wireframe">
+            <div class="cs-phone-frame">
+              <img src="woofio-screens.jpeg" alt="Schedule — Wireframe" style="object-position: 75% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label">Hi-Fi Wireframe</p>
+          </div>
+          <div class="cs-dual-phone cs-dual-phone--live">
+            <div class="cs-phone-frame--live">
+              <img src="woofio-live-screens.jpeg" alt="Schedule — Live Design" style="object-position: 97% top;" loading="lazy">
+            </div>
+            <p class="cs-dual-label cs-dual-label--live">Final Design</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2918,74 +2729,6 @@
       }, { threshold: 0.2 });
 
       document.querySelectorAll('.cs-affinity-board').forEach(function (el) { stickyObserver.observe(el); });
-
-      /* Screen Carousel */
-      (function() {
-        var slides = document.querySelectorAll('.cs-carousel-slide');
-        var dots = document.querySelectorAll('.cs-carousel-dot');
-        var infos = document.querySelectorAll('.cs-carousel-info-slide');
-        var leftArr = document.querySelector('.cs-carousel-arrow--left');
-        var rightArr = document.querySelector('.cs-carousel-arrow--right');
-        if (!slides.length) return;
-
-        var current = 0;
-        var total = slides.length;
-        var isAnimating = false;
-
-        function goTo(index, direction) {
-          if (isAnimating || index === current) return;
-          isAnimating = true;
-
-          // Exit current
-          slides[current].classList.remove('cs-carousel-slide--active');
-          slides[current].classList.add(direction === 'left' ? 'cs-carousel-slide--exit-left' : '');
-          dots[current].classList.remove('cs-carousel-dot--active');
-          infos[current].classList.remove('cs-carousel-info-slide--active');
-
-          // Prep incoming
-          slides[index].style.transform = direction === 'left' ? 'translateX(80px) scale(0.95)' : 'translateX(-80px) scale(0.95)';
-          slides[index].offsetHeight; // reflow
-
-          // Enter new
-          setTimeout(function() {
-            slides[index].style.transform = '';
-            slides[index].classList.add('cs-carousel-slide--active');
-            dots[index].classList.add('cs-carousel-dot--active');
-            infos[index].classList.add('cs-carousel-info-slide--active');
-
-            // Clean up old
-            slides[current].classList.remove('cs-carousel-slide--exit-left');
-            current = index;
-            setTimeout(function() { isAnimating = false; }, 100);
-          }, 50);
-        }
-
-        if (rightArr) rightArr.addEventListener('click', function() {
-          goTo((current + 1) % total, 'left');
-        });
-        if (leftArr) leftArr.addEventListener('click', function() {
-          goTo((current - 1 + total) % total, 'right');
-        });
-        dots.forEach(function(dot) {
-          dot.addEventListener('click', function() {
-            var idx = parseInt(dot.getAttribute('data-dot'));
-            goTo(idx, idx > current ? 'left' : 'right');
-          });
-        });
-
-        // Touch swipe
-        var track = document.querySelector('.cs-carousel-track');
-        var startX = 0;
-        if (track) {
-          track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-          track.addEventListener('touchend', function(e) {
-            var diff = startX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 50) {
-              goTo(diff > 0 ? (current + 1) % total : (current - 1 + total) % total, diff > 0 ? 'left' : 'right');
-            }
-          }, { passive: true });
-        }
-      })();
     });
   </script>
 
