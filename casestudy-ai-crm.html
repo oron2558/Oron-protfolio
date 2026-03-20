@@ -920,6 +920,27 @@
       background: rgba(59, 130, 246, 0.08);
     }
 
+    /* Venn Diagram */
+    .cs-venn-wrap {
+      background: #f0fdf4;
+      border-radius: 20px;
+      padding: 40px 32px;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+    }
+    [data-theme="dark"] .cs-venn-wrap {
+      background: rgba(30, 41, 59, 0.4);
+      border-color: rgba(255,255,255,0.06);
+    }
+    [data-theme="dark"] .cs-venn-wrap p { color: #94a3b8 !important; }
+    [data-theme="dark"] .cs-venn-wrap circle[stroke="#3b82f6"] { stroke: #60a5fa; }
+    [data-theme="dark"] .cs-venn-wrap circle[stroke="#7c3aed"] { stroke: #a78bfa; }
+    [data-theme="dark"] .cs-venn-wrap text[fill="#3b82f6"] { fill: #60a5fa; }
+    [data-theme="dark"] .cs-venn-wrap text[fill="#7c3aed"] { fill: #a78bfa; }
+    [data-theme="dark"] .cs-venn-wrap line[stroke="#3b82f6"] { stroke: #60a5fa; }
+    [data-theme="dark"] .cs-venn-wrap line[stroke="#7c3aed"] { stroke: #a78bfa; }
+    [data-theme="dark"] .cs-venn-wrap path[stroke="#1e293b"] { stroke: #e2e8f0; }
+    [data-theme="dark"] .cs-venn-wrap path[fill="#1e293b"] { fill: #e2e8f0; }
+
     /* Problem & Hypothesis Statement */
     .cs-problem-hypothesis {
       max-width: 800px;
@@ -2411,6 +2432,30 @@
             <p>#1 pain: Response / Lack of Response — leads go cold when the owner is busy. This became the north star for the design.</p>
           </div>
         </div>
+      </div>
+
+      <!-- Venn Diagram: User Goal / Business Goal -->
+      <div class="cs-venn-wrap animate-on-scroll" style="margin-top: 56px;">
+        <p style="text-align:center; font-size:0.95rem; color:#64748b; margin-bottom:8px; font-style:italic;">The sweet spot — designing for what users need <em>and</em> what the business wants at the same time</p>
+        <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:480px; margin:0 auto; display:block;">
+          <!-- Left circle - User Goal -->
+          <circle cx="190" cy="160" r="130" fill="none" stroke="#3b82f6" stroke-width="3" opacity="0.85"/>
+          <ellipse cx="190" cy="160" rx="130" ry="130" fill="#3b82f6" opacity="0.06"/>
+          <!-- Right circle - Business Goal -->
+          <circle cx="330" cy="160" r="130" fill="none" stroke="#7c3aed" stroke-width="3" opacity="0.85"/>
+          <ellipse cx="330" cy="160" rx="130" ry="130" fill="#7c3aed" opacity="0.06"/>
+          <!-- Intersection highlight -->
+          <clipPath id="clip-left"><circle cx="190" cy="160" r="130"/></clipPath>
+          <circle cx="330" cy="160" r="130" clip-path="url(#clip-left)" fill="#818cf8" opacity="0.22"/>
+          <!-- Arrow pointing to intersection -->
+          <path d="M260 28 Q260 48 260 55" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#venn-arrow)"/>
+          <defs><marker id="venn-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b"/></marker></defs>
+          <!-- Labels -->
+          <text x="145" y="320" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#3b82f6" text-anchor="middle">User goal</text>
+          <line x1="120" y1="328" x2="170" y2="328" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="375" y="320" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#7c3aed" text-anchor="middle">Business goal</text>
+          <line x1="345" y1="328" x2="405" y2="328" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
       </div>
     </div>
   </section>
