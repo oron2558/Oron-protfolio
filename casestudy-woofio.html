@@ -160,14 +160,32 @@
 
     .cs-hero-phones {
       display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 0;
+      overflow: hidden;
+      width: 100%;
       position: relative;
-      height: 480px;
+      padding: 20px 0;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .cs-hero-phones-track {
+      display: flex;
+      gap: 20px;
+      animation: heroScroll 20s linear infinite;
+      will-change: transform;
+    }
+
+    .cs-hero-phones-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes heroScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .cs-hero-phone {
+      flex: 0 0 150px;
       width: 150px;
       height: 310px;
       border-radius: 24px;
@@ -175,13 +193,13 @@
       border: 4px solid #1a1a2e;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
       background: #fff;
-      position: absolute;
-      transition: transform 0.4s var(--ease-spring);
+      transition: transform 0.4s var(--ease-spring), box-shadow 0.4s;
     }
 
     .cs-hero-phone:hover {
-      transform: translateY(-12px) !important;
-      z-index: 10 !important;
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+      z-index: 10;
     }
 
     .cs-hero-phone img {
@@ -192,49 +210,35 @@
       margin-top: -3%;
     }
 
-    .cs-hero-phone:nth-child(1) { transform: rotate(-8deg) translateX(-140px) translateY(-20px); z-index: 1; }
-    .cs-hero-phone:nth-child(2) { transform: rotate(-4deg) translateX(-70px) translateY(-5px); z-index: 2; }
-    .cs-hero-phone:nth-child(3) { transform: rotate(0deg) translateX(0) translateY(0); z-index: 3; }
-    .cs-hero-phone:nth-child(4) { transform: rotate(4deg) translateX(70px) translateY(-5px); z-index: 2; }
-    .cs-hero-phone:nth-child(5) { transform: rotate(8deg) translateX(140px) translateY(-20px); z-index: 1; }
-
     [data-theme="dark"] .cs-hero-phone {
       border-color: #333;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     }
 
     @media (max-width: 810px) {
-      .cs-hero-phones {
-        height: 360px;
-      }
       .cs-hero-phone {
-        width: 110px;
-        height: 230px;
+        flex: 0 0 120px;
+        width: 120px;
+        height: 250px;
         border-width: 3px;
         border-radius: 18px;
       }
-      .cs-hero-phone:nth-child(1) { transform: rotate(-8deg) translateX(-100px) translateY(-15px); }
-      .cs-hero-phone:nth-child(2) { transform: rotate(-4deg) translateX(-50px) translateY(-4px); }
-      .cs-hero-phone:nth-child(3) { transform: rotate(0deg) translateX(0) translateY(0); }
-      .cs-hero-phone:nth-child(4) { transform: rotate(4deg) translateX(50px) translateY(-4px); }
-      .cs-hero-phone:nth-child(5) { transform: rotate(8deg) translateX(100px) translateY(-15px); }
+      .cs-hero-phones-track {
+        gap: 16px;
+      }
     }
 
     @media (max-width: 390px) {
-      .cs-hero-phones {
-        height: 300px;
-      }
       .cs-hero-phone {
-        width: 85px;
-        height: 176px;
+        flex: 0 0 95px;
+        width: 95px;
+        height: 200px;
         border-width: 2.5px;
         border-radius: 14px;
       }
-      .cs-hero-phone:nth-child(1) { transform: rotate(-8deg) translateX(-70px) translateY(-12px); }
-      .cs-hero-phone:nth-child(2) { transform: rotate(-4deg) translateX(-36px) translateY(-3px); }
-      .cs-hero-phone:nth-child(3) { transform: rotate(0deg) translateX(0) translateY(0); }
-      .cs-hero-phone:nth-child(4) { transform: rotate(4deg) translateX(36px) translateY(-3px); }
-      .cs-hero-phone:nth-child(5) { transform: rotate(8deg) translateX(70px) translateY(-12px); }
+      .cs-hero-phones-track {
+        gap: 12px;
+      }
     }
 
     /* Section layout */
@@ -1978,11 +1982,20 @@
       </div>
       <div class="cs-hero-mockup animate-on-scroll">
         <div class="cs-hero-phones">
-          <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Health" style="object-position: 2% top;"></div>
-          <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Family Profile" style="object-position: 25% top;"></div>
-          <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Dog Walkers" style="object-position: 50% top;"></div>
-          <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Schedule" style="object-position: 75% top;"></div>
-          <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Store" style="object-position: 98% top;"></div>
+          <div class="cs-hero-phones-track">
+            <!-- Original set -->
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Health" style="object-position: 2% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Family Profile" style="object-position: 25% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Dog Walkers" style="object-position: 50% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Schedule" style="object-position: 75% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Store" style="object-position: 98% top;"></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Health" style="object-position: 2% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Family Profile" style="object-position: 25% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Dog Walkers" style="object-position: 50% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Schedule" style="object-position: 75% top;"></div>
+            <div class="cs-hero-phone"><img src="woofio-screens.jpeg" alt="Store" style="object-position: 98% top;"></div>
+          </div>
         </div>
       </div>
     </div>
