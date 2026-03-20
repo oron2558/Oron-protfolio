@@ -2320,17 +2320,14 @@
           <!-- Intersection highlight -->
           <clipPath id="clip-left"><circle cx="190" cy="180" r="130"/></clipPath>
           <circle cx="330" cy="180" r="130" clip-path="url(#clip-left)" fill="#818cf8" opacity="0.22"/>
-          <!-- Arrow to intersection -->
           <defs>
-            <marker id="venn-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b"/></marker>
-            <marker id="arrow-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 10 0 L 0 5 L 10 10 z" fill="#3b82f6"/></marker>
-            <marker id="arrow-purple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+            <marker id="arrow-blue" viewBox="0 0 12 12" refX="1" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M 12 0 L 0 6 L 12 12 z" fill="#3b82f6"/></marker>
+            <marker id="arrow-purple" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 12 6 L 0 12 z" fill="#7c3aed"/></marker>
           </defs>
-          <path d="M260 38 C255 50 262 58 260 68" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#venn-arrow)"/>
-          <!-- Hand-drawn curvy arrow LEFT (from circle outward to text) -->
-          <path d="M62 175 C40 170 22 172 8 178" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
-          <!-- Hand-drawn curvy arrow RIGHT (from circle outward to text) -->
-          <path d="M458 175 C480 170 498 172 512 178" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-purple)"/>
+          <!-- Curvy arrow LEFT (from circle outward to text) -->
+          <path d="M58 178 C38 168 20 168 6 175" stroke="#3b82f6" stroke-width="2.5" fill="none" marker-end="url(#arrow-blue)"/>
+          <!-- Curvy arrow RIGHT (from circle outward to text) -->
+          <path d="M462 178 C482 168 500 168 514 175" stroke="#7c3aed" stroke-width="2.5" fill="none" marker-end="url(#arrow-purple)"/>
           <!-- Labels -->
           <text x="145" y="355" font-family="Caveat, cursive" font-size="18" font-weight="700" fill="#3b82f6" text-anchor="middle">User goal</text>
           <line x1="110" y1="362" x2="180" y2="362" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
