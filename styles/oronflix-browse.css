@@ -179,6 +179,8 @@
   flex-direction: column;
   gap: var(--row-gap);
   padding-bottom: 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
 .onf-row {
@@ -433,6 +435,9 @@
   margin-bottom: 32px;
   overflow-x: auto;
   scrollbar-width: none;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .onf-chips::-webkit-scrollbar { display: none; }
@@ -525,6 +530,8 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
 .onf-footer__left {

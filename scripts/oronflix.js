@@ -82,7 +82,7 @@
     if (slides.length === 0) return;
 
     var currentIndex = 0;
-    var intervalTime = 8000;
+    var intervalTime = 4000;
     var interval;
 
     function showSlide(index) {

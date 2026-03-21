@@ -467,7 +467,7 @@
       background: var(--accent-glow);
       border-radius: 8px;
       font-size: 14px;
-      flex-shrink: 0;
+      flex: 0 0 55%;
     }
 
     /* Journey map */
@@ -1026,7 +1026,7 @@
       font-weight: 900;
       color: var(--text-primary);
       line-height: 1;
-      flex-shrink: 0;
+      flex: 0 0 55%;
     }
 
     .cs-ph-block p {
@@ -1132,7 +1132,7 @@
       color: #484f58;
       font-size: 1.2rem;
       padding: 0 8px;
-      flex-shrink: 0;
+      flex: 0 0 55%;
     }
 
     /* Journey close-up table */
@@ -1368,7 +1368,7 @@
     .cs-flow-arrow {
       color: var(--accent-light);
       font-size: 24px;
-      flex-shrink: 0;
+      flex: 0 0 55%;
     }
 
     .cs-flow-decision {
@@ -1965,7 +1965,7 @@
       height: 2px;
       background: linear-gradient(90deg, var(--accent), rgba(59, 130, 246, 0.3));
       margin-top: 7px;
-      flex-shrink: 0;
+      flex: 0 0 55%;
     }
 
     @media (max-width: 810px) {
@@ -2051,8 +2051,8 @@
     }
 
     .cs-screen-mockup {
-      flex-shrink: 0;
-      width: 400px;
+      flex: 0 0 55%;
+      max-width: 600px;
     }
 
     .cs-screen-mockup img {
@@ -2064,11 +2064,11 @@
 
     @media (max-width: 810px) {
       .cs-screen-row { flex-direction: column; gap: 24px; }
-      .cs-screen-mockup { width: 100%; max-width: 400px; }
+      .cs-screen-mockup { width: 100%; max-width: 100%; flex: none; }
     }
 
     @media (max-width: 390px) {
-      .cs-screen-mockup { width: 100%; max-width: 320px; }
+      .cs-screen-mockup { max-width: 100%; }
     }
 
     /* Research artifact cards with hover overlay */
@@ -2760,88 +2760,7 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
-  <!-- ==================== USER FLOW & JOURNEY ==================== -->
-  <section class="cs-section cs-section--alt">
-    <div class="cs-section-inner">
-      <h2 class="cs-section-title animate-on-scroll">From Flow to Experience</h2>
-      <p class="cs-text animate-on-scroll" style="margin-bottom: 40px;">Before designing screens, I mapped the ideal user flow and journey — ensuring every step feels intuitive and every emotion is accounted for.</p>
-
-      <!-- Simple User Flow -->
-      <div class="cs-flow-wrap animate-on-scroll">
-        <div class="cs-flow-title">Simple User Flow</div>
-        <div class="cs-flow-sub">The core navigation path through MessAge — from login to action</div>
-
-        <div class="cs-flow-row">
-          <div class="cs-flow-node cs-flow-node--start">Login</div>
-          <span class="cs-flow-arrow">→</span>
-          <div class="cs-flow-node cs-flow-node--step">Home Screen</div>
-          <span class="cs-flow-arrow">→</span>
-          <div class="cs-flow-node cs-flow-node--step">Dashboard</div>
-          <span class="cs-flow-arrow">→</span>
-          <div class="cs-flow-node cs-flow-node--step">Smart Inbox</div>
-        </div>
-
-        <div class="cs-flow-row">
-          <div class="cs-flow-node cs-flow-node--step">Chat Screen</div>
-          <span class="cs-flow-arrow">→</span>
-          <div class="cs-flow-node cs-flow-node--step">Client Profile</div>
-          <span class="cs-flow-arrow">→</span>
-          <div class="cs-flow-node cs-flow-node--step">Mini CRM</div>
-          <span class="cs-flow-arrow">→</span>
-          <div class="cs-flow-node cs-flow-node--end">Actions</div>
-        </div>
-      </div>
-
-      <!-- User Journey Close-up -->
-      <div class="cs-flow-wrap animate-on-scroll">
-        <div class="cs-flow-title">User Journey Map — Close Up</div>
-        <div class="cs-flow-sub">Focused on the product — from first open to full control</div>
-
-        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-          <table class="cs-uj-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Opens the app for the first time</th>
-                <th>Enters the app dashboard</th>
-                <th>Sees a section to create chat-bots</th>
-                <th>Enters the inbox screen</th>
-                <th>Can handle clients & leads</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Action</td>
-                <td>Idan is opening the app for the first time</td>
-                <td>Enters to the app dashboard</td>
-                <td>Idan sees a section to create chat-bots</td>
-                <td>Enters to the inbox screen</td>
-                <td>Idan can handle his clients & leads</td>
-              </tr>
-              <tr>
-                <td>Feeling</td>
-                <td class="cs-uj-feeling--negative">Confused, uncomfortable</td>
-                <td class="cs-uj-feeling--negative">Not understand anything, a lot of information</td>
-                <td class="cs-uj-feeling--neutral">Hesitated, not tech-savvy enough</td>
-                <td class="cs-uj-feeling--neutral">Scanning, prioritize messages, take actions</td>
-                <td class="cs-uj-feeling--positive">Happy, relaxing, take control</td>
-              </tr>
-              <tr>
-                <td>Opportunities</td>
-                <td class="cs-uj-improvement">Relax colors, clear on-boarding, hints in every step</td>
-                <td class="cs-uj-improvement">Clear sections, clear topics, text for explanation</td>
-                <td class="cs-uj-improvement">Tutorials for any actions, demo mode, drag & drop mode</td>
-                <td class="cs-uj-improvement">Easy flow, auto pilot mode, alerts & notifications, tags & labels</td>
-                <td class="cs-uj-improvement">Gamification, target goals, mobile first</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+<div class="cs-divider"><div class="cs-divider-line"></div></div>
 
   <!-- ==================== TURNING INSIGHTS INTO ACTION ==================== -->
   <section class="cs-section cs-section--alt">

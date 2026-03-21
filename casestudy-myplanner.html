@@ -469,8 +469,8 @@
     }
 
     .cs-screen-mockup {
-      flex-shrink: 0;
-      width: 320px;
+      flex: 0 0 55%;
+      max-width: 600px;
     }
 
     .cs-screen-mockup img {
@@ -556,7 +556,7 @@
       .cs-pain-bar-item { grid-template-columns: 120px 1fr 40px; gap: 10px; }
       .cs-pain-bar-label { font-size: 12px; }
       .cs-screen-row { flex-direction: column; gap: 24px; }
-      .cs-screen-mockup { width: 260px; }
+      .cs-screen-mockup { width: 100%; max-width: 100%; flex: none; }
       .cs-nav-projects { grid-template-columns: 1fr; }
       .cs-nav-link--next { text-align: left; }
     }
@@ -579,7 +579,7 @@
       .cs-affinity-board { grid-template-columns: 1fr; }
       .cs-pain-bar-item { grid-template-columns: 100px 1fr 36px; gap: 8px; }
       .cs-pain-bar-label { font-size: 0.7rem; }
-      .cs-screen-mockup { width: 220px; }
+      .cs-screen-mockup { max-width: 100%; }
       .cs-venn-wrap svg { max-width: 280px; }
     }
 
@@ -1606,87 +1606,7 @@
   </section>
 
   <!-- ==================== FROM FLOW TO EXPERIENCE ==================== -->
-  <section class="cs-section cs-section--alt">
-    <div class="cs-section-inner">
-      <h2 class="cs-section-title animate-on-scroll">From Flow to Experience</h2>
-      <p class="cs-text animate-on-scroll" style="margin-bottom: 40px;">Before designing screens, I mapped the ideal user flow and journey &mdash; ensuring every step feels intuitive and every emotion is accounted for.</p>
-
-      <!-- Simple User Flow -->
-      <div class="cs-flow-wrap animate-on-scroll">
-        <div class="cs-flow-title">Simple User Flow</div>
-        <div class="cs-flow-sub">The core navigation path through MyPlanner &mdash; from login to cashback</div>
-
-        <div class="cs-flow-row">
-          <div class="cs-flow-node cs-flow-node--start">Login</div>
-          <span class="cs-flow-arrow-dark">&rarr;</span>
-          <div class="cs-flow-node cs-flow-node--step">Dashboard</div>
-          <span class="cs-flow-arrow-dark">&rarr;</span>
-          <div class="cs-flow-node cs-flow-node--step">Budget Calculator</div>
-          <span class="cs-flow-arrow-dark">&rarr;</span>
-          <div class="cs-flow-node cs-flow-node--step">Supplier Search</div>
-        </div>
-
-        <div class="cs-flow-row">
-          <div class="cs-flow-node cs-flow-node--step">Supplier Profile</div>
-          <span class="cs-flow-arrow-dark">&rarr;</span>
-          <div class="cs-flow-node cs-flow-node--step">Book &amp; Pay</div>
-          <span class="cs-flow-arrow-dark">&rarr;</span>
-          <div class="cs-flow-node cs-flow-node--step">Cashback Track</div>
-          <span class="cs-flow-arrow-dark">&rarr;</span>
-          <div class="cs-flow-node cs-flow-node--end">Review</div>
-        </div>
-      </div>
-
-      <!-- User Journey Close-up -->
-      <div class="cs-flow-wrap animate-on-scroll">
-        <div class="cs-flow-title">User Journey Map &mdash; Close Up</div>
-        <div class="cs-flow-sub">Focused on the product &mdash; from first open to full budget control</div>
-
-        <div style="overflow-x: auto;">
-          <table class="cs-uj-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Opens the app for the first time</th>
-                <th>Sets up their event &amp; budget</th>
-                <th>Browses supplier marketplace</th>
-                <th>Books vendors &amp; tracks payments</th>
-                <th>Monitors progress &amp; cashback</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Action</td>
-                <td>Noa and Amit open MyPlanner after getting engaged</td>
-                <td>Enter event details, set total budget, and let AI allocate across categories</td>
-                <td>Search for photographers, caterers, DJs &mdash; filter by price, rating, location</td>
-                <td>Book suppliers, sign contracts digitally, and schedule installment payments</td>
-                <td>Track spending vs. budget, see cashback balance grow, review AI suggestions</td>
-              </tr>
-              <tr>
-                <td>Feeling</td>
-                <td class="cs-uj-feeling--negative">Overwhelmed &mdash; where do we even start?</td>
-                <td class="cs-uj-feeling--neutral">Cautiously hopeful &mdash; the numbers feel real now</td>
-                <td class="cs-uj-feeling--neutral">Curious but indecisive &mdash; so many options</td>
-                <td class="cs-uj-feeling--positive">Relieved &mdash; everything is tracked automatically</td>
-                <td class="cs-uj-feeling--positive">Confident and in control &mdash; enjoying the process</td>
-              </tr>
-              <tr>
-                <td>Opportunities</td>
-                <td class="cs-uj-improvement">Warm onboarding, guided event setup, calming UI</td>
-                <td class="cs-uj-improvement">Market benchmarks, AI allocation, visual budget breakdown</td>
-                <td class="cs-uj-improvement">Side-by-side comparison, verified reviews, "couples like you booked" nudges</td>
-                <td class="cs-uj-improvement">Digital contracts, auto payment reminders, receipt photo capture</td>
-                <td class="cs-uj-improvement">Progress celebration, cashback milestones, proactive AI alerts</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="cs-divider"><div class="cs-divider-line"></div></div>
+<div class="cs-divider"><div class="cs-divider-line"></div></div>
 
   <!-- ==================== SCREEN 1: Event Dashboard ==================== -->
   <section class="cs-section">
