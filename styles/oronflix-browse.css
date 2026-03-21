@@ -164,7 +164,7 @@
   height: 100%;
   background: var(--accent);
   width: 0%;
-  animation: billboardTimer 8s linear;
+  animation: billboardTimer 6s linear;
 }
 
 @keyframes billboardTimer {
