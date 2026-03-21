@@ -63,8 +63,8 @@
 
     .cs-hero-inner {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
       align-items: center;
       width: 100%;
       max-width: var(--max-width);
@@ -151,14 +151,17 @@
       position: relative;
       z-index: 2;
       display: flex;
+      align-items: center;
       justify-content: center;
     }
 
     .cs-hero-mockup img {
       width: 100%;
-      max-width: 520px;
+      max-width: 700px;
       border-radius: var(--card-radius);
       box-shadow: var(--shadow-card-hover);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
 
     /* Section layout */
