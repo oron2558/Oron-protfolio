@@ -798,7 +798,11 @@
   }
 
   .onf-billboard__title {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+  }
+
+  .onf-billboard__title br {
+    display: none;
   }
 
   .onf-billboard__desc {
