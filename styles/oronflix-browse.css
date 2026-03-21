@@ -45,7 +45,10 @@
   height: 120%;
   top: -10%;
   object-fit: cover;
-  opacity: 0.35;
+  opacity: 0.5;
+  filter: contrast(1.15) saturate(1.2) brightness(1.05) url(#sharpen);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
   animation: billboardPan 25s linear infinite alternate;
 }
 
@@ -59,9 +62,9 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to right, var(--bg-primary) 25%, transparent 60%),
-    linear-gradient(to top, var(--bg-primary) 10%, transparent 40%),
-    linear-gradient(to bottom, rgba(10, 10, 18, 0.3) 0%, transparent 30%);
+    linear-gradient(to right, var(--bg-primary) 20%, transparent 55%),
+    linear-gradient(to top, var(--bg-primary) 15%, transparent 50%),
+    linear-gradient(to bottom, rgba(10, 10, 18, 0.4) 0%, transparent 35%);
 }
 
 [data-theme="light"] .onf-billboard__gradient {
@@ -583,7 +586,7 @@
     width: 140%;
     height: 100%;
     top: 0;
-    opacity: 0.45;
+    opacity: 0.55;
     animation: none;
   }
 

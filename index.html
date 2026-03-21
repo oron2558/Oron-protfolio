@@ -26,6 +26,13 @@
 </head>
 <body>
 
+<!-- SVG sharpen filter for billboard backgrounds -->
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <filter id="sharpen">
+    <feConvolveMatrix order="3" kernelMatrix="0 -0.5 0 -0.5 3 -0.5 0 -0.5 0" preserveAlpha="true"/>
+  </filter>
+</svg>
+
 <!-- ==================== NAVIGATION ==================== -->
 <nav class="onf-nav">
   <a href="index.html" class="onf-nav__logo">ORON.</a>
