@@ -250,6 +250,215 @@
     });
   }
 
+  // ---------- Cinematic Trailer ----------
+  var TRAILER_DATA = {
+    'ai-crm': {
+      title: 'MessAge',
+      subtitle: 'AI-Powered CRM Platform',
+      caseStudyUrl: 'casestudy-ai-crm.html',
+      slides: [
+        { img: 'screen-dashboard.jpeg', label: 'Unified Dashboard', fx: 'zoom-in' },
+        { img: 'screen-smartbox.jpeg', label: 'Smart Inbox — AI Responses', fx: 'slide-right' },
+        { img: 'screen-leads.jpeg', label: 'Lead Pipeline Management', fx: 'tilt' },
+        { img: 'screen-agent.jpeg', label: 'AI Agent Builder', fx: 'slide-left' },
+        { img: 'screen-tasks.jpeg', label: 'Task & Workflow Engine', fx: 'zoom-out' }
+      ]
+    },
+    'woofio': {
+      title: 'Woofio',
+      subtitle: 'All-in-One Dog Care Platform',
+      caseStudyUrl: 'casestudy-woofio.html',
+      slides: [
+        { img: 'woofio-screens.jpeg', label: 'Health Tracking', fx: 'zoom-in', phone: true, pos: '2% top' },
+        { img: 'woofio-screens.jpeg', label: 'Family Profiles', fx: 'slide-right', phone: true, pos: '25% top' },
+        { img: 'woofio-screens.jpeg', label: 'Dog Walker Marketplace', fx: 'tilt', phone: true, pos: '50% top' },
+        { img: 'woofio-screens.jpeg', label: 'Smart Scheduling', fx: 'slide-left', phone: true, pos: '75% top' },
+        { img: 'woofio-screens.jpeg', label: 'Pet Store & Products', fx: 'zoom-out', phone: true, pos: '98% top' }
+      ]
+    },
+    'myplanner': {
+      title: 'MyPlanner',
+      subtitle: 'Smart Wedding Planning Platform',
+      caseStudyUrl: 'casestudy-myplanner.html',
+      slides: [
+        { img: 'myplanner-dashboard.jpeg', label: 'Event Dashboard', fx: 'zoom-in' },
+        { img: 'myplanner-budget.jpeg', label: 'AI Budget Calculator', fx: 'slide-right' },
+        { img: 'myplanner-suppliers.jpeg', label: 'Supplier Management', fx: 'tilt' },
+        { img: 'myplanner-cashback.jpeg', label: 'Cashback & Payments', fx: 'zoom-out' }
+      ]
+    }
+  };
+
+  var trailerTimer = null;
+  var trailerProgressTimer = null;
+  var trailerCurrentSlide = 0;
+  var trailerTotalDuration = 0;
+  var trailerElapsedTime = 0;
+  var TRAILER_TITLE_DURATION = 2500;
+  var TRAILER_SLIDE_DURATION = 3500;
+  var TRAILER_END_DURATION = 4000;
+
+  function openTrailer(projectId) {
+    var data = TRAILER_DATA[projectId];
+    if (!data) return;
+
+    var modal = document.getElementById('trailer-modal');
+    if (!modal) return;
+
+    // Calculate total duration
+    trailerTotalDuration = TRAILER_TITLE_DURATION + (data.slides.length * TRAILER_SLIDE_DURATION) + TRAILER_END_DURATION;
+    trailerElapsedTime = 0;
+    trailerCurrentSlide = 0;
+
+    // Build stage HTML
+    var stage = modal.querySelector('.trailer-stage');
+    stage.innerHTML = '';
+
+    // Title card
+    var titleCard = document.createElement('div');
+    titleCard.className = 'trailer-title-card';
+    titleCard.innerHTML = '<div class="trailer-title-card__name">' + data.title + '</div>' +
+      '<div class="trailer-title-card__sub">' + data.subtitle + '</div>';
+    stage.appendChild(titleCard);
+
+    // Screen slides
+    data.slides.forEach(function(slide, i) {
+      var slideEl = document.createElement('div');
+      slideEl.className = 'trailer-slide';
+      slideEl.setAttribute('data-fx', slide.fx);
+      slideEl.setAttribute('data-index', i);
+
+      var screenClass = slide.phone ? 'trailer-screen trailer-screen--phone' : 'trailer-screen';
+      var imgStyle = slide.pos ? ' style="object-position: ' + slide.pos + ';"' : '';
+
+      slideEl.innerHTML = '<div class="' + screenClass + '"><img src="' + slide.img + '"' + imgStyle + ' alt="' + slide.label + '"></div>';
+      stage.appendChild(slideEl);
+    });
+
+    // Feature label
+    var feature = document.createElement('div');
+    feature.className = 'trailer-feature';
+    feature.innerHTML = '<span class="trailer-feature__text"></span>';
+    stage.appendChild(feature);
+
+    // End card
+    var endCard = document.createElement('div');
+    endCard.className = 'trailer-end-card';
+    endCard.innerHTML = '<div class="trailer-end-card__title">' + data.title + '</div>' +
+      '<a href="' + data.caseStudyUrl + '" class="trailer-end-card__cta">' +
+      '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
+      'View Full Case Study</a>';
+    stage.appendChild(endCard);
+
+    // Overlays
+    stage.innerHTML += '<div class="trailer-vignette"></div><div class="trailer-grain"></div>' +
+      '<div class="trailer-letterbox trailer-letterbox--top"></div>' +
+      '<div class="trailer-letterbox trailer-letterbox--bottom"></div>' +
+      '<div class="trailer-progress"><div class="trailer-progress__fill"></div></div>';
+
+    // Show modal
+    modal.style.display = 'flex';
+    requestAnimationFrame(function() {
+      modal.classList.add('trailer-modal--open');
+    });
+    document.body.style.overflow = 'hidden';
+
+    // Start sequence
+    startTrailerSequence(data, stage);
+  }
+
+  function startTrailerSequence(data, stage) {
+    var titleCard = stage.querySelector('.trailer-title-card');
+    var slides = stage.querySelectorAll('.trailer-slide');
+    var feature = stage.querySelector('.trailer-feature');
+    var featureText = feature.querySelector('.trailer-feature__text');
+    var endCard = stage.querySelector('.trailer-end-card');
+    var progressFill = stage.querySelector('.trailer-progress__fill');
+
+    // Start progress bar
+    trailerProgressTimer = setInterval(function() {
+      trailerElapsedTime += 50;
+      var pct = (trailerElapsedTime / trailerTotalDuration) * 100;
+      if (progressFill) progressFill.style.width = Math.min(pct, 100) + '%';
+    }, 50);
+
+    // Phase 1: Title card
+    titleCard.classList.add('trailer-title-card--active');
+
+    trailerTimer = setTimeout(function() {
+      titleCard.classList.remove('trailer-title-card--active');
+
+      // Phase 2: Cycle through slides
+      showTrailerSlide(0, data, slides, feature, featureText, endCard);
+    }, TRAILER_TITLE_DURATION);
+  }
+
+  function showTrailerSlide(index, data, slides, feature, featureText, endCard) {
+    if (index >= data.slides.length) {
+      // Phase 3: End card
+      feature.classList.remove('trailer-feature--visible');
+      endCard.classList.add('trailer-end-card--active');
+      trailerTimer = setTimeout(function() {
+        closeTrailer();
+      }, TRAILER_END_DURATION);
+      return;
+    }
+
+    var slideData = data.slides[index];
+    var slideEl = slides[index];
+
+    // Hide previous slide with exit
+    if (index > 0) {
+      var prevSlide = slides[index - 1];
+      var prevScreen = prevSlide.querySelector('.trailer-screen');
+      if (prevScreen) prevScreen.className = prevScreen.className.replace(/trailer-fx-\S+/g, '') + ' trailer-fx-exit';
+      setTimeout(function() {
+        prevSlide.classList.remove('trailer-slide--active');
+      }, 500);
+    }
+
+    // Show current slide
+    slideEl.classList.add('trailer-slide--active');
+    var screen = slideEl.querySelector('.trailer-screen');
+    if (screen) {
+      screen.className = screen.className.replace(/trailer-fx-\S+/g, '');
+      screen.classList.add('trailer-fx-' + slideData.fx);
+    }
+
+    // Show feature label
+    featureText.textContent = slideData.label;
+    feature.classList.remove('trailer-feature--visible');
+    setTimeout(function() {
+      feature.classList.add('trailer-feature--visible');
+    }, 800);
+
+    trailerCurrentSlide = index;
+    trailerTimer = setTimeout(function() {
+      showTrailerSlide(index + 1, data, slides, feature, featureText, endCard);
+    }, TRAILER_SLIDE_DURATION);
+  }
+
+  function closeTrailer() {
+    var modal = document.getElementById('trailer-modal');
+    if (!modal) return;
+
+    clearTimeout(trailerTimer);
+    clearInterval(trailerProgressTimer);
+
+    modal.classList.remove('trailer-modal--open');
+    setTimeout(function() {
+      modal.style.display = 'none';
+      var stage = modal.querySelector('.trailer-stage');
+      if (stage) stage.innerHTML = '';
+    }, 500);
+    document.body.style.overflow = '';
+  }
+
+  // ESC key to close trailer
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeTrailer();
+  });
+
   // ---------- Init ----------
   document.addEventListener('DOMContentLoaded', function() {
     updateThemeIcon();
@@ -267,7 +476,9 @@
   window.oronflix = {
     toggleTheme: toggleTheme,
     saveProgress: saveProgress,
-    getProgress: getProgress
+    getProgress: getProgress,
+    openTrailer: openTrailer,
+    closeTrailer: closeTrailer
   };
 
 })();

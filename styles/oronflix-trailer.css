@@ -1,0 +1,453 @@
+/* ==================== CINEMATIC TRAILER MODAL ==================== */
+
+.trailer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.trailer-modal--open {
+  display: flex;
+  opacity: 1;
+}
+
+/* Close button */
+.trailer-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10010;
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.3s;
+}
+.trailer-close:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.1);
+}
+
+/* Vignette overlay for cinematic feel */
+.trailer-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.6) 100%);
+}
+
+/* Film grain overlay */
+.trailer-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  animation: grainShift 0.5s steps(4) infinite;
+}
+
+@keyframes grainShift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Letterbox bars */
+.trailer-letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8%;
+  background: #000;
+  z-index: 4;
+}
+.trailer-letterbox--top { top: 0; }
+.trailer-letterbox--bottom { bottom: 0; }
+
+/* ==================== SCREEN STAGE ==================== */
+
+.trailer-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Individual screen slides */
+.trailer-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 0;
+  transition: none;
+}
+
+.trailer-slide--active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Screen image container */
+.trailer-screen {
+  position: relative;
+  width: 85%;
+  max-width: 900px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 120px rgba(59,130,246,0.15);
+  transform-origin: center center;
+}
+
+.trailer-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Woofio phone-style screens (cropped from composite) */
+.trailer-screen--phone {
+  width: 280px;
+  max-width: 280px;
+  height: 560px;
+  border-radius: 32px;
+  border: 3px solid rgba(255,255,255,0.15);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 60px rgba(76,175,80,0.15);
+}
+
+.trailer-screen--phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==================== ANIMATION EFFECTS ==================== */
+
+/* Ken Burns — slow zoom in */
+.trailer-fx-zoom-in {
+  animation: trailerZoomIn 4s ease-out forwards;
+}
+@keyframes trailerZoomIn {
+  0% { transform: scale(1); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+/* Ken Burns — zoom out */
+.trailer-fx-zoom-out {
+  animation: trailerZoomOut 4s ease-out forwards;
+}
+@keyframes trailerZoomOut {
+  0% { transform: scale(1.1); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Slide in from right */
+.trailer-fx-slide-right {
+  animation: trailerSlideRight 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes trailerSlideRight {
+  0% { transform: translateX(120px) scale(0.95); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* Slide in from left */
+.trailer-fx-slide-left {
+  animation: trailerSlideLeft 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes trailerSlideLeft {
+  0% { transform: translateX(-120px) scale(0.95); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* Tilt perspective entrance */
+.trailer-fx-tilt {
+  animation: trailerTilt 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes trailerTilt {
+  0% { transform: perspective(1000px) rotateY(15deg) scale(0.9); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: perspective(1000px) rotateY(0deg) scale(1); opacity: 1; }
+}
+
+/* Rise up */
+.trailer-fx-rise {
+  animation: trailerRise 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes trailerRise {
+  0% { transform: translateY(80px) scale(0.95); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Exit — fade out zoom */
+.trailer-fx-exit {
+  animation: trailerExit 0.6s ease-in forwards;
+}
+@keyframes trailerExit {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.05); opacity: 0; }
+}
+
+/* ==================== TITLE CARD ==================== */
+
+.trailer-title-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trailer-title-card--active {
+  opacity: 1;
+  animation: titleCardIn 2.5s ease-out forwards;
+}
+
+@keyframes titleCardIn {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.trailer-title-card__name {
+  font-family: var(--font-display, 'Inter', sans-serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  animation: titleTextIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes titleTextIn {
+  0% { transform: translateY(40px) scale(0.9); opacity: 0; filter: blur(10px); }
+  100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+}
+
+.trailer-title-card__sub {
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
+  color: rgba(255,255,255,0.6);
+  margin-top: 16px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: titleSubIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+@keyframes titleSubIn {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ==================== FEATURE LABEL ==================== */
+
+.trailer-feature {
+  position: absolute;
+  bottom: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.trailer-feature--visible {
+  opacity: 1;
+  animation: featureFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes featureFadeIn {
+  0% { transform: translateX(-50%) translateY(10px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.trailer-feature__text {
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  padding: 10px 28px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ==================== PROGRESS BAR ==================== */
+
+.trailer-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.1);
+  z-index: 10;
+}
+
+.trailer-progress__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e50914, #ff6b6b);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ==================== END CARD ==================== */
+
+.trailer-end-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  gap: 24px;
+}
+
+.trailer-end-card--active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: endCardIn 1s ease-out forwards;
+}
+
+@keyframes endCardIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.trailer-end-card__title {
+  font-family: var(--font-display, 'Inter', sans-serif);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.trailer-end-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.trailer-end-card__cta:hover {
+  background: #ff1a25;
+  transform: scale(1.05);
+}
+
+.trailer-end-card__cta svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 810px) {
+  .trailer-screen {
+    width: 92%;
+    border-radius: 12px;
+  }
+  .trailer-screen--phone {
+    width: 220px;
+    max-width: 220px;
+    height: 440px;
+    border-radius: 24px;
+  }
+  .trailer-letterbox {
+    height: 5%;
+  }
+  .trailer-close {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trailer-screen--phone {
+    width: 180px;
+    max-width: 180px;
+    height: 360px;
+  }
+}
+
+/* ==================== VIEW TRAILER BUTTON ==================== */
+
+.onf-btn--trailer {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.onf-btn--trailer:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.7);
+}
+
+.onf-btn--trailer svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Light mode trailer button */
+[data-theme="light"] .onf-btn--trailer {
+  border-color: rgba(0,0,0,0.3);
+  color: #1a1a2e;
+}
+[data-theme="light"] .onf-btn--trailer:hover {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.5);
+}

@@ -23,6 +23,7 @@
 
   <link rel="stylesheet" href="styles/oronflix-base.css">
   <link rel="stylesheet" href="styles/oronflix-browse.css">
+  <link rel="stylesheet" href="styles/oronflix-trailer.css">
 </head>
 <body>
 
@@ -83,6 +84,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
             More Projects
           </button>
+          <button class="onf-btn onf-btn--trailer" onclick="oronflix.openTrailer('ai-crm')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            Watch Trailer
+          </button>
         </div>
       </div>
     </div>
@@ -110,6 +115,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
             More Projects
           </button>
+          <button class="onf-btn onf-btn--trailer" onclick="oronflix.openTrailer('woofio')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            Watch Trailer
+          </button>
         </div>
       </div>
     </div>
@@ -136,6 +145,10 @@
           <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
             More Projects
+          </button>
+          <button class="onf-btn onf-btn--trailer" onclick="oronflix.openTrailer('myplanner')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            Watch Trailer
           </button>
         </div>
       </div>
@@ -423,6 +436,12 @@
   </div>
   <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
 </footer>
+
+<!-- ==================== TRAILER MODAL ==================== -->
+<div class="trailer-modal" id="trailer-modal">
+  <button class="trailer-close" onclick="oronflix.closeTrailer()" aria-label="Close trailer">&times;</button>
+  <div class="trailer-stage"></div>
+</div>
 
 <script src="scripts/oronflix.js"></script>
 </body>
