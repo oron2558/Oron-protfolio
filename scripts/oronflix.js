@@ -250,53 +250,136 @@
     });
   }
 
-  // ---------- Cinematic Trailer ----------
+  // ---------- Cinematic Trailer (Scene-based Montage) ----------
+
   var TRAILER_DATA = {
     'ai-crm': {
       title: 'MessAge',
       subtitle: 'AI-Powered CRM Platform',
       caseStudyUrl: 'casestudy-ai-crm.html',
-      slides: [
-        { img: 'screen-dashboard.jpeg', label: 'Unified Dashboard', fx: 'zoom-in' },
-        { img: 'screen-smartbox.jpeg', label: 'Smart Inbox — AI Responses', fx: 'slide-right' },
-        { img: 'screen-leads.jpeg', label: 'Lead Pipeline Management', fx: 'tilt' },
-        { img: 'screen-agent.jpeg', label: 'AI Agent Builder', fx: 'slide-left' },
-        { img: 'screen-tasks.jpeg', label: 'Task & Workflow Engine', fx: 'zoom-out' }
+      scenes: [
+        {
+          type: 'spread', label: 'Complete Platform Overview',
+          screens: [
+            { img: 'screen-dashboard.jpeg', w: 340, h: 220 },
+            { img: 'screen-smartbox.jpeg', w: 280, h: 180 },
+            { img: 'screen-leads.jpeg', w: 280, h: 180 },
+            { img: 'screen-agent.jpeg', w: 240, h: 155 },
+            { img: 'screen-tasks.jpeg', w: 240, h: 155 }
+          ]
+        },
+        {
+          type: 'zoom', label: 'Unified Dashboard — Real-Time Analytics',
+          screens: [{ img: 'screen-dashboard.jpeg', w: 750, h: 480 }]
+        },
+        {
+          type: 'orbit', label: 'AI-Powered Inbox, Leads & Automation',
+          screens: [
+            { img: 'screen-smartbox.jpeg', w: 320, h: 210 },
+            { img: 'screen-leads.jpeg', w: 360, h: 230 },
+            { img: 'screen-agent.jpeg', w: 320, h: 210 }
+          ]
+        },
+        {
+          type: 'cascade', label: 'Every Screen — Designed for Efficiency',
+          screens: [
+            { img: 'screen-dashboard.jpeg', w: 300, h: 195, top: '15%', left: '5%' },
+            { img: 'screen-smartbox.jpeg', w: 300, h: 195, top: '25%', left: '25%' },
+            { img: 'screen-agent.jpeg', w: 300, h: 195, top: '35%', left: '45%' },
+            { img: 'screen-tasks.jpeg', w: 300, h: 195, top: '20%', left: '65%' }
+          ]
+        }
       ]
     },
     'woofio': {
       title: 'Woofio',
       subtitle: 'All-in-One Dog Care Platform',
       caseStudyUrl: 'casestudy-woofio.html',
-      slides: [
-        { img: 'woofio-screens.jpeg', label: 'Health Tracking', fx: 'zoom-in', phone: true, pos: '2% top' },
-        { img: 'woofio-screens.jpeg', label: 'Family Profiles', fx: 'slide-right', phone: true, pos: '25% top' },
-        { img: 'woofio-screens.jpeg', label: 'Dog Walker Marketplace', fx: 'tilt', phone: true, pos: '50% top' },
-        { img: 'woofio-screens.jpeg', label: 'Smart Scheduling', fx: 'slide-left', phone: true, pos: '75% top' },
-        { img: 'woofio-screens.jpeg', label: 'Pet Store & Products', fx: 'zoom-out', phone: true, pos: '98% top' }
+      scenes: [
+        {
+          type: 'spread', label: 'Five Screens — One Complete Experience',
+          screens: [
+            { img: 'woofio-screens.jpeg', w: 160, h: 320, phone: true, pos: '50% top' },
+            { img: 'woofio-screens.jpeg', w: 140, h: 280, phone: true, pos: '2% top' },
+            { img: 'woofio-screens.jpeg', w: 140, h: 280, phone: true, pos: '98% top' },
+            { img: 'woofio-screens.jpeg', w: 120, h: 240, phone: true, pos: '25% top' },
+            { img: 'woofio-screens.jpeg', w: 120, h: 240, phone: true, pos: '75% top' }
+          ]
+        },
+        {
+          type: 'zoom', label: 'Health Tracking — Vet Records & Reminders',
+          screens: [{ img: 'woofio-live-screens.jpeg', w: 300, h: 600, phone: true, pos: '34% top' }]
+        },
+        {
+          type: 'orbit', label: 'Walkers, Scheduling & Pet Store',
+          screens: [
+            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '50% top' },
+            { img: 'woofio-screens.jpeg', w: 170, h: 340, phone: true, pos: '75% top' },
+            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '98% top' }
+          ]
+        },
+        {
+          type: 'cascade', label: 'From Wireframe to Production',
+          screens: [
+            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '2% top', top: '20%', left: '8%' },
+            { img: 'woofio-live-screens.jpeg', w: 150, h: 300, phone: true, pos: '34% top', top: '15%', left: '28%' },
+            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '50% top', top: '20%', left: '48%' },
+            { img: 'woofio-live-screens.jpeg', w: 150, h: 300, phone: true, pos: '66% top', top: '15%', left: '68%' }
+          ]
+        }
       ]
     },
     'myplanner': {
       title: 'MyPlanner',
       subtitle: 'Smart Wedding Planning Platform',
       caseStudyUrl: 'casestudy-myplanner.html',
-      slides: [
-        { img: 'myplanner-dashboard.jpeg', label: 'Event Dashboard', fx: 'zoom-in' },
-        { img: 'myplanner-budget.jpeg', label: 'AI Budget Calculator', fx: 'slide-right' },
-        { img: 'myplanner-suppliers.jpeg', label: 'Supplier Management', fx: 'tilt' },
-        { img: 'myplanner-cashback.jpeg', label: 'Cashback & Payments', fx: 'zoom-out' }
+      scenes: [
+        {
+          type: 'spread', label: 'Complete Wedding Management Suite',
+          screens: [
+            { img: 'myplanner-dashboard.jpeg', w: 340, h: 220 },
+            { img: 'myplanner-budget.jpeg', w: 280, h: 180 },
+            { img: 'myplanner-suppliers.jpeg', w: 280, h: 180 },
+            { img: 'myplanner-cashback.jpeg', w: 240, h: 155 }
+          ]
+        },
+        {
+          type: 'zoom', label: 'Event Dashboard — Budget at a Glance',
+          screens: [{ img: 'myplanner-dashboard.jpeg', w: 750, h: 480 }]
+        },
+        {
+          type: 'orbit', label: 'Budget, Suppliers & Cashback',
+          screens: [
+            { img: 'myplanner-budget.jpeg', w: 320, h: 210 },
+            { img: 'myplanner-suppliers.jpeg', w: 360, h: 230 },
+            { img: 'myplanner-cashback.jpeg', w: 320, h: 210 }
+          ]
+        },
+        {
+          type: 'cascade', label: 'Every Detail — Beautifully Organized',
+          screens: [
+            { img: 'myplanner-dashboard.jpeg', w: 300, h: 195, top: '15%', left: '5%' },
+            { img: 'myplanner-budget.jpeg', w: 300, h: 195, top: '25%', left: '25%' },
+            { img: 'myplanner-suppliers.jpeg', w: 300, h: 195, top: '35%', left: '45%' },
+            { img: 'myplanner-cashback.jpeg', w: 300, h: 195, top: '20%', left: '65%' }
+          ]
+        }
       ]
     }
   };
 
-  var trailerTimer = null;
+  var trailerTimers = [];
   var trailerProgressTimer = null;
-  var trailerCurrentSlide = 0;
-  var trailerTotalDuration = 0;
   var trailerElapsedTime = 0;
-  var TRAILER_TITLE_DURATION = 2500;
-  var TRAILER_SLIDE_DURATION = 3500;
-  var TRAILER_END_DURATION = 4000;
+  var TITLE_DUR = 2800;
+  var SCENE_DUR = 4000;
+  var END_DUR = 4500;
+
+  function clearTrailerTimers() {
+    trailerTimers.forEach(function(t) { clearTimeout(t); });
+    trailerTimers = [];
+    clearInterval(trailerProgressTimer);
+  }
 
   function openTrailer(projectId) {
     var data = TRAILER_DATA[projectId];
@@ -305,12 +388,9 @@
     var modal = document.getElementById('trailer-modal');
     if (!modal) return;
 
-    // Calculate total duration
-    trailerTotalDuration = TRAILER_TITLE_DURATION + (data.slides.length * TRAILER_SLIDE_DURATION) + TRAILER_END_DURATION;
+    var totalDur = TITLE_DUR + (data.scenes.length * SCENE_DUR) + END_DUR;
     trailerElapsedTime = 0;
-    trailerCurrentSlide = 0;
 
-    // Build stage HTML
     var stage = modal.querySelector('.trailer-stage');
     stage.innerHTML = '';
 
@@ -321,18 +401,30 @@
       '<div class="trailer-title-card__sub">' + data.subtitle + '</div>';
     stage.appendChild(titleCard);
 
-    // Screen slides
-    data.slides.forEach(function(slide, i) {
-      var slideEl = document.createElement('div');
-      slideEl.className = 'trailer-slide';
-      slideEl.setAttribute('data-fx', slide.fx);
-      slideEl.setAttribute('data-index', i);
+    // Build scenes
+    data.scenes.forEach(function(scene, si) {
+      var sceneEl = document.createElement('div');
+      sceneEl.className = 'trailer-scene trailer-scene--' + scene.type;
+      sceneEl.setAttribute('data-index', si);
 
-      var screenClass = slide.phone ? 'trailer-screen trailer-screen--phone' : 'trailer-screen';
-      var imgStyle = slide.pos ? ' style="object-position: ' + slide.pos + ';"' : '';
+      scene.screens.forEach(function(scr) {
+        var screenEl = document.createElement('div');
+        var cls = 'trailer-screen' + (scr.phone ? ' trailer-screen--phone' : '');
+        screenEl.className = cls;
+        screenEl.style.width = scr.w + 'px';
+        screenEl.style.height = scr.h + 'px';
+        if (scr.top) screenEl.style.top = scr.top;
+        if (scr.left) screenEl.style.left = scr.left;
 
-      slideEl.innerHTML = '<div class="' + screenClass + '"><img src="' + slide.img + '"' + imgStyle + ' alt="' + slide.label + '"></div>';
-      stage.appendChild(slideEl);
+        var img = document.createElement('img');
+        img.src = scr.img;
+        img.alt = scene.label;
+        if (scr.pos) img.style.objectPosition = scr.pos;
+        screenEl.appendChild(img);
+        sceneEl.appendChild(screenEl);
+      });
+
+      stage.appendChild(sceneEl);
     });
 
     // Feature label
@@ -351,10 +443,12 @@
     stage.appendChild(endCard);
 
     // Overlays
-    stage.innerHTML += '<div class="trailer-vignette"></div><div class="trailer-grain"></div>' +
+    var overlays = document.createElement('div');
+    overlays.innerHTML = '<div class="trailer-vignette"></div><div class="trailer-grain"></div>' +
       '<div class="trailer-letterbox trailer-letterbox--top"></div>' +
       '<div class="trailer-letterbox trailer-letterbox--bottom"></div>' +
       '<div class="trailer-progress"><div class="trailer-progress__fill"></div></div>';
+    while (overlays.firstChild) stage.appendChild(overlays.firstChild);
 
     // Show modal
     modal.style.display = 'flex';
@@ -363,94 +457,74 @@
     });
     document.body.style.overflow = 'hidden';
 
-    // Start sequence
-    startTrailerSequence(data, stage);
-  }
-
-  function startTrailerSequence(data, stage) {
-    var titleCard = stage.querySelector('.trailer-title-card');
-    var slides = stage.querySelectorAll('.trailer-slide');
-    var feature = stage.querySelector('.trailer-feature');
-    var featureText = feature.querySelector('.trailer-feature__text');
-    var endCard = stage.querySelector('.trailer-end-card');
-    var progressFill = stage.querySelector('.trailer-progress__fill');
-
     // Start progress bar
+    var progressFill = stage.querySelector('.trailer-progress__fill');
     trailerProgressTimer = setInterval(function() {
       trailerElapsedTime += 50;
-      var pct = (trailerElapsedTime / trailerTotalDuration) * 100;
+      var pct = (trailerElapsedTime / totalDur) * 100;
       if (progressFill) progressFill.style.width = Math.min(pct, 100) + '%';
     }, 50);
 
-    // Phase 1: Title card
+    // Run sequence
+    var scenes = stage.querySelectorAll('.trailer-scene');
+    var featureEl = stage.querySelector('.trailer-feature');
+    var featureText = featureEl.querySelector('.trailer-feature__text');
+
+    // Phase 1: Title
     titleCard.classList.add('trailer-title-card--active');
 
-    trailerTimer = setTimeout(function() {
-      titleCard.classList.remove('trailer-title-card--active');
-
-      // Phase 2: Cycle through slides
-      showTrailerSlide(0, data, slides, feature, featureText, endCard);
-    }, TRAILER_TITLE_DURATION);
+    trailerTimers.push(setTimeout(function() {
+      titleCard.style.display = 'none';
+      runScene(0, data.scenes, scenes, featureEl, featureText, endCard);
+    }, TITLE_DUR));
   }
 
-  function showTrailerSlide(index, data, slides, feature, featureText, endCard) {
-    if (index >= data.slides.length) {
-      // Phase 3: End card
-      feature.classList.remove('trailer-feature--visible');
+  function runScene(index, scenesData, sceneEls, featureEl, featureText, endCard) {
+    if (index >= scenesData.length) {
+      featureEl.classList.remove('trailer-feature--visible');
+      featureEl.className = 'trailer-feature';
       endCard.classList.add('trailer-end-card--active');
-      trailerTimer = setTimeout(function() {
-        closeTrailer();
-      }, TRAILER_END_DURATION);
+      trailerTimers.push(setTimeout(closeTrailer, END_DUR));
       return;
     }
 
-    var slideData = data.slides[index];
-    var slideEl = slides[index];
-
-    // Hide previous slide with exit
+    // Exit previous scene
     if (index > 0) {
-      var prevSlide = slides[index - 1];
-      var prevScreen = prevSlide.querySelector('.trailer-screen');
-      if (prevScreen) prevScreen.className = prevScreen.className.replace(/trailer-fx-\S+/g, '') + ' trailer-fx-exit';
-      setTimeout(function() {
-        prevSlide.classList.remove('trailer-slide--active');
-      }, 500);
+      sceneEls[index - 1].classList.add('trailer-scene--exit');
+      sceneEls[index - 1].classList.remove('trailer-scene--active');
     }
 
-    // Show current slide
-    slideEl.classList.add('trailer-slide--active');
-    var screen = slideEl.querySelector('.trailer-screen');
-    if (screen) {
-      screen.className = screen.className.replace(/trailer-fx-\S+/g, '');
-      screen.classList.add('trailer-fx-' + slideData.fx);
-    }
-
-    // Show feature label
-    featureText.textContent = slideData.label;
-    feature.classList.remove('trailer-feature--visible');
+    // Activate current scene
+    var sceneEl = sceneEls[index];
     setTimeout(function() {
-      feature.classList.add('trailer-feature--visible');
-    }, 800);
+      sceneEl.classList.add('trailer-scene--active');
+    }, index > 0 ? 400 : 0);
 
-    trailerCurrentSlide = index;
-    trailerTimer = setTimeout(function() {
-      showTrailerSlide(index + 1, data, slides, feature, featureText, endCard);
-    }, TRAILER_SLIDE_DURATION);
+    // Feature label
+    featureText.textContent = scenesData[index].label;
+    featureEl.className = 'trailer-feature';
+    trailerTimers.push(setTimeout(function() {
+      featureEl.classList.add('trailer-feature--visible');
+    }, 600));
+
+    // Next scene
+    trailerTimers.push(setTimeout(function() {
+      runScene(index + 1, scenesData, sceneEls, featureEl, featureText, endCard);
+    }, SCENE_DUR));
   }
 
   function closeTrailer() {
     var modal = document.getElementById('trailer-modal');
     if (!modal) return;
 
-    clearTimeout(trailerTimer);
-    clearInterval(trailerProgressTimer);
+    clearTrailerTimers();
 
     modal.classList.remove('trailer-modal--open');
     setTimeout(function() {
       modal.style.display = 'none';
       var stage = modal.querySelector('.trailer-stage');
       if (stage) stage.innerHTML = '';
-    }, 500);
+    }, 600);
     document.body.style.overflow = '';
   }
 

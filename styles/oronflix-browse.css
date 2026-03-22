@@ -143,6 +143,7 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .onf-billboard__actions .onf-btn--primary {
@@ -170,6 +171,12 @@
 
 .onf-billboard__actions .onf-btn--secondary:hover {
   background: rgba(110, 110, 110, 0.7);
+}
+
+.onf-billboard__actions .onf-btn--trailer {
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  border-radius: 4px;
 }
 
 /* Billboard dots */
