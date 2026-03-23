@@ -373,6 +373,12 @@
   overflow: hidden;
 }
 
+.onf-hero-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .onf-hero-card__cta {
   display: inline-flex;
   align-items: center;
@@ -393,6 +399,32 @@
 
 .onf-hero-card__cta:hover {
   background: rgba(255, 255, 255, 0.85);
+}
+
+.onf-hero-card__trailer {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.onf-hero-card__trailer svg {
+  width: 13px;
+  height: 13px;
+}
+
+.onf-hero-card__trailer:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.5);
 }
 
 /* Hero cards light mode */
