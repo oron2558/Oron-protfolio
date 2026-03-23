@@ -250,136 +250,29 @@
     });
   }
 
-  // ---------- Cinematic Trailer (Scene-based Montage) ----------
+  // ---------- Cinematic Trailer (Auto-scroll Case Study) ----------
 
   var TRAILER_DATA = {
     'ai-crm': {
       title: 'MessAge',
-      subtitle: 'AI-Powered CRM Platform',
-      caseStudyUrl: 'casestudy-ai-crm.html',
-      scenes: [
-        {
-          type: 'spread', label: 'Complete Platform Overview',
-          screens: [
-            { img: 'screen-dashboard.jpeg', w: 340, h: 220 },
-            { img: 'screen-smartbox.jpeg', w: 280, h: 180 },
-            { img: 'screen-leads.jpeg', w: 280, h: 180 },
-            { img: 'screen-agent.jpeg', w: 240, h: 155 },
-            { img: 'screen-tasks.jpeg', w: 240, h: 155 }
-          ]
-        },
-        {
-          type: 'zoom', label: 'Unified Dashboard — Real-Time Analytics',
-          screens: [{ img: 'screen-dashboard.jpeg', w: 750, h: 480 }]
-        },
-        {
-          type: 'orbit', label: 'AI-Powered Inbox, Leads & Automation',
-          screens: [
-            { img: 'screen-smartbox.jpeg', w: 320, h: 210 },
-            { img: 'screen-leads.jpeg', w: 360, h: 230 },
-            { img: 'screen-agent.jpeg', w: 320, h: 210 }
-          ]
-        },
-        {
-          type: 'cascade', label: 'Every Screen — Designed for Efficiency',
-          screens: [
-            { img: 'screen-dashboard.jpeg', w: 300, h: 195, top: '15%', left: '5%' },
-            { img: 'screen-smartbox.jpeg', w: 300, h: 195, top: '25%', left: '25%' },
-            { img: 'screen-agent.jpeg', w: 300, h: 195, top: '35%', left: '45%' },
-            { img: 'screen-tasks.jpeg', w: 300, h: 195, top: '20%', left: '65%' }
-          ]
-        }
-      ]
+      subtitle: 'AI CRM — Full Design Process',
+      url: 'casestudy-ai-crm.html'
     },
     'woofio': {
       title: 'Woofio',
-      subtitle: 'All-in-One Dog Care Platform',
-      caseStudyUrl: 'casestudy-woofio.html',
-      scenes: [
-        {
-          type: 'spread', label: 'Five Screens — One Complete Experience',
-          screens: [
-            { img: 'woofio-screens.jpeg', w: 160, h: 320, phone: true, pos: '50% top' },
-            { img: 'woofio-screens.jpeg', w: 140, h: 280, phone: true, pos: '2% top' },
-            { img: 'woofio-screens.jpeg', w: 140, h: 280, phone: true, pos: '98% top' },
-            { img: 'woofio-screens.jpeg', w: 120, h: 240, phone: true, pos: '25% top' },
-            { img: 'woofio-screens.jpeg', w: 120, h: 240, phone: true, pos: '75% top' }
-          ]
-        },
-        {
-          type: 'zoom', label: 'Health Tracking — Vet Records & Reminders',
-          screens: [{ img: 'woofio-live-screens.jpeg', w: 300, h: 600, phone: true, pos: '34% top' }]
-        },
-        {
-          type: 'orbit', label: 'Walkers, Scheduling & Pet Store',
-          screens: [
-            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '50% top' },
-            { img: 'woofio-screens.jpeg', w: 170, h: 340, phone: true, pos: '75% top' },
-            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '98% top' }
-          ]
-        },
-        {
-          type: 'cascade', label: 'From Wireframe to Production',
-          screens: [
-            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '2% top', top: '20%', left: '8%' },
-            { img: 'woofio-live-screens.jpeg', w: 150, h: 300, phone: true, pos: '34% top', top: '15%', left: '28%' },
-            { img: 'woofio-screens.jpeg', w: 150, h: 300, phone: true, pos: '50% top', top: '20%', left: '48%' },
-            { img: 'woofio-live-screens.jpeg', w: 150, h: 300, phone: true, pos: '66% top', top: '15%', left: '68%' }
-          ]
-        }
-      ]
+      subtitle: 'Dog Care App — Full Design Process',
+      url: 'casestudy-woofio.html'
     },
     'myplanner': {
       title: 'MyPlanner',
-      subtitle: 'Smart Wedding Planning Platform',
-      caseStudyUrl: 'casestudy-myplanner.html',
-      scenes: [
-        {
-          type: 'spread', label: 'Complete Wedding Management Suite',
-          screens: [
-            { img: 'myplanner-dashboard.jpeg', w: 340, h: 220 },
-            { img: 'myplanner-budget.jpeg', w: 280, h: 180 },
-            { img: 'myplanner-suppliers.jpeg', w: 280, h: 180 },
-            { img: 'myplanner-cashback.jpeg', w: 240, h: 155 }
-          ]
-        },
-        {
-          type: 'zoom', label: 'Event Dashboard — Budget at a Glance',
-          screens: [{ img: 'myplanner-dashboard.jpeg', w: 750, h: 480 }]
-        },
-        {
-          type: 'orbit', label: 'Budget, Suppliers & Cashback',
-          screens: [
-            { img: 'myplanner-budget.jpeg', w: 320, h: 210 },
-            { img: 'myplanner-suppliers.jpeg', w: 360, h: 230 },
-            { img: 'myplanner-cashback.jpeg', w: 320, h: 210 }
-          ]
-        },
-        {
-          type: 'cascade', label: 'Every Detail — Beautifully Organized',
-          screens: [
-            { img: 'myplanner-dashboard.jpeg', w: 300, h: 195, top: '15%', left: '5%' },
-            { img: 'myplanner-budget.jpeg', w: 300, h: 195, top: '25%', left: '25%' },
-            { img: 'myplanner-suppliers.jpeg', w: 300, h: 195, top: '35%', left: '45%' },
-            { img: 'myplanner-cashback.jpeg', w: 300, h: 195, top: '20%', left: '65%' }
-          ]
-        }
-      ]
+      subtitle: 'Wedding Planner — Full Design Process',
+      url: 'casestudy-myplanner.html'
     }
   };
 
-  var trailerTimers = [];
+  var trailerScrollRAF = null;
   var trailerProgressTimer = null;
-  var trailerElapsedTime = 0;
-  var TITLE_DUR = 2800;
-  var SCENE_DUR = 4000;
-  var END_DUR = 4500;
-
-  function clearTrailerTimers() {
-    trailerTimers.forEach(function(t) { clearTimeout(t); });
-    trailerTimers = [];
-    clearInterval(trailerProgressTimer);
-  }
+  var trailerActive = false;
 
   function openTrailer(projectId) {
     var data = TRAILER_DATA[projectId];
@@ -388,9 +281,7 @@
     var modal = document.getElementById('trailer-modal');
     if (!modal) return;
 
-    var totalDur = TITLE_DUR + (data.scenes.length * SCENE_DUR) + END_DUR;
-    trailerElapsedTime = 0;
-
+    trailerActive = true;
     var stage = modal.querySelector('.trailer-stage');
     stage.innerHTML = '';
 
@@ -401,54 +292,34 @@
       '<div class="trailer-title-card__sub">' + data.subtitle + '</div>';
     stage.appendChild(titleCard);
 
-    // Build scenes
-    data.scenes.forEach(function(scene, si) {
-      var sceneEl = document.createElement('div');
-      sceneEl.className = 'trailer-scene trailer-scene--' + scene.type;
-      sceneEl.setAttribute('data-index', si);
-
-      scene.screens.forEach(function(scr) {
-        var screenEl = document.createElement('div');
-        var cls = 'trailer-screen' + (scr.phone ? ' trailer-screen--phone' : '');
-        screenEl.className = cls;
-        screenEl.style.width = scr.w + 'px';
-        screenEl.style.height = scr.h + 'px';
-        if (scr.top) screenEl.style.top = scr.top;
-        if (scr.left) screenEl.style.left = scr.left;
-
-        var img = document.createElement('img');
-        img.src = scr.img;
-        img.alt = scene.label;
-        if (scr.pos) img.style.objectPosition = scr.pos;
-        screenEl.appendChild(img);
-        sceneEl.appendChild(screenEl);
-      });
-
-      stage.appendChild(sceneEl);
-    });
-
-    // Feature label
-    var feature = document.createElement('div');
-    feature.className = 'trailer-feature';
-    feature.innerHTML = '<span class="trailer-feature__text"></span>';
-    stage.appendChild(feature);
+    // Iframe container (the case study page)
+    var iframeWrap = document.createElement('div');
+    iframeWrap.className = 'trailer-iframe-wrap';
+    var iframe = document.createElement('iframe');
+    iframe.className = 'trailer-iframe';
+    iframe.src = data.url + '?trailer=1';
+    iframe.setAttribute('scrolling', 'no');
+    iframe.setAttribute('frameborder', '0');
+    iframeWrap.appendChild(iframe);
+    stage.appendChild(iframeWrap);
 
     // End card
     var endCard = document.createElement('div');
     endCard.className = 'trailer-end-card';
     endCard.innerHTML = '<div class="trailer-end-card__title">' + data.title + '</div>' +
-      '<a href="' + data.caseStudyUrl + '" class="trailer-end-card__cta">' +
+      '<a href="' + data.url + '" class="trailer-end-card__cta">' +
       '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
       'View Full Case Study</a>';
     stage.appendChild(endCard);
 
     // Overlays
-    var overlays = document.createElement('div');
-    overlays.innerHTML = '<div class="trailer-vignette"></div><div class="trailer-grain"></div>' +
+    var overlaysHTML = '<div class="trailer-vignette"></div><div class="trailer-grain"></div>' +
       '<div class="trailer-letterbox trailer-letterbox--top"></div>' +
       '<div class="trailer-letterbox trailer-letterbox--bottom"></div>' +
       '<div class="trailer-progress"><div class="trailer-progress__fill"></div></div>';
-    while (overlays.firstChild) stage.appendChild(overlays.firstChild);
+    var temp = document.createElement('div');
+    temp.innerHTML = overlaysHTML;
+    while (temp.firstChild) stage.appendChild(temp.firstChild);
 
     // Show modal
     modal.style.display = 'flex';
@@ -457,67 +328,82 @@
     });
     document.body.style.overflow = 'hidden';
 
-    // Start progress bar
-    var progressFill = stage.querySelector('.trailer-progress__fill');
-    trailerProgressTimer = setInterval(function() {
-      trailerElapsedTime += 50;
-      var pct = (trailerElapsedTime / totalDur) * 100;
-      if (progressFill) progressFill.style.width = Math.min(pct, 100) + '%';
-    }, 50);
-
-    // Run sequence
-    var scenes = stage.querySelectorAll('.trailer-scene');
-    var featureEl = stage.querySelector('.trailer-feature');
-    var featureText = featureEl.querySelector('.trailer-feature__text');
-
-    // Phase 1: Title
+    // Show title, then start scrolling
     titleCard.classList.add('trailer-title-card--active');
 
-    trailerTimers.push(setTimeout(function() {
-      titleCard.style.display = 'none';
-      runScene(0, data.scenes, scenes, featureEl, featureText, endCard);
-    }, TITLE_DUR));
+    setTimeout(function() {
+      titleCard.style.opacity = '0';
+      titleCard.style.pointerEvents = 'none';
+      iframeWrap.style.opacity = '1';
+
+      // Wait for iframe to load, then auto-scroll
+      iframe.onload = function() {
+        if (!trailerActive) return;
+        startAutoScroll(iframe, stage, endCard);
+      };
+    }, 2800);
   }
 
-  function runScene(index, scenesData, sceneEls, featureEl, featureText, endCard) {
-    if (index >= scenesData.length) {
-      featureEl.classList.remove('trailer-feature--visible');
-      featureEl.className = 'trailer-feature';
-      endCard.classList.add('trailer-end-card--active');
-      trailerTimers.push(setTimeout(closeTrailer, END_DUR));
+  function startAutoScroll(iframe, stage, endCard) {
+    var iframeDoc;
+    try {
+      iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    } catch(e) {
       return;
     }
 
-    // Exit previous scene
-    if (index > 0) {
-      sceneEls[index - 1].classList.add('trailer-scene--exit');
-      sceneEls[index - 1].classList.remove('trailer-scene--active');
+    // Hide the case study nav and back button inside iframe
+    var style = iframeDoc.createElement('style');
+    style.textContent = '.onf-nav, .cs-back, .onf-next-episode, .onf-player-bar { display: none !important; } ' +
+      'html { scroll-behavior: auto !important; } ' +
+      'body { overflow: hidden !important; cursor: none !important; } ' +
+      '.animate-on-scroll { opacity: 1 !important; transform: none !important; }';
+    iframeDoc.head.appendChild(style);
+
+    var scrollHeight = iframeDoc.documentElement.scrollHeight;
+    var viewHeight = iframe.clientHeight;
+    var totalScroll = scrollHeight - viewHeight;
+    if (totalScroll <= 0) return;
+
+    // Scroll speed: ~40 seconds for full page
+    var SCROLL_DURATION = 40000;
+    var pixelsPerMs = totalScroll / SCROLL_DURATION;
+    var startTime = performance.now();
+    var progressFill = stage.querySelector('.trailer-progress__fill');
+
+    function scrollStep(now) {
+      if (!trailerActive) return;
+
+      var elapsed = now - startTime;
+      var scrollPos = elapsed * pixelsPerMs;
+      var progress = Math.min(scrollPos / totalScroll, 1);
+
+      iframeDoc.documentElement.scrollTop = scrollPos;
+      if (progressFill) progressFill.style.width = (progress * 100) + '%';
+
+      if (progress >= 1) {
+        // Show end card
+        setTimeout(function() {
+          endCard.classList.add('trailer-end-card--active');
+          var iframeWrap = stage.querySelector('.trailer-iframe-wrap');
+          if (iframeWrap) iframeWrap.style.opacity = '0.3';
+        }, 500);
+        return;
+      }
+
+      trailerScrollRAF = requestAnimationFrame(scrollStep);
     }
 
-    // Activate current scene
-    var sceneEl = sceneEls[index];
-    setTimeout(function() {
-      sceneEl.classList.add('trailer-scene--active');
-    }, index > 0 ? 400 : 0);
-
-    // Feature label
-    featureText.textContent = scenesData[index].label;
-    featureEl.className = 'trailer-feature';
-    trailerTimers.push(setTimeout(function() {
-      featureEl.classList.add('trailer-feature--visible');
-    }, 600));
-
-    // Next scene
-    trailerTimers.push(setTimeout(function() {
-      runScene(index + 1, scenesData, sceneEls, featureEl, featureText, endCard);
-    }, SCENE_DUR));
+    trailerScrollRAF = requestAnimationFrame(scrollStep);
   }
 
   function closeTrailer() {
     var modal = document.getElementById('trailer-modal');
     if (!modal) return;
 
-    clearTrailerTimers();
+    trailerActive = false;
+    cancelAnimationFrame(trailerScrollRAF);
+    clearInterval(trailerProgressTimer);
 
     modal.classList.remove('trailer-modal--open');
     setTimeout(function() {

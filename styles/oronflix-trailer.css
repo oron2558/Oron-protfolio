@@ -10,7 +10,6 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.6s ease;
-  perspective: 1200px;
 }
 
 .trailer-modal--open {
@@ -43,22 +42,51 @@
   transform: scale(1.1);
 }
 
-/* Vignette */
+/* ==================== STAGE ==================== */
+
+.trailer-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ==================== IFRAME AUTO-SCROLL ==================== */
+
+.trailer-iframe-wrap {
+  position: absolute;
+  inset: 7% 5%;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+  box-shadow: 0 0 80px rgba(0,0,0,0.5), 0 0 200px rgba(59,130,246,0.08);
+}
+
+.trailer-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+  transform-origin: top center;
+}
+
+/* ==================== OVERLAYS ==================== */
+
 .trailer-vignette {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 2;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);
 }
 
-/* Film grain */
 .trailer-grain {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 3;
-  opacity: 0.035;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   background-size: 256px;
   animation: grainShift 0.4s steps(4) infinite;
@@ -71,7 +99,6 @@
   75% { transform: translate(-1px,-1px); }
 }
 
-/* Letterbox */
 .trailer-letterbox {
   position: absolute;
   left: 0; right: 0;
@@ -82,7 +109,8 @@
 .trailer-letterbox--top { top: 0; }
 .trailer-letterbox--bottom { bottom: 0; }
 
-/* Progress bar */
+/* ==================== PROGRESS BAR ==================== */
+
 .trailer-progress {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -97,57 +125,6 @@
   transition: width 0.1s linear;
 }
 
-/* ==================== STAGE ==================== */
-
-.trailer-stage {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* ==================== SCENE SYSTEM ==================== */
-/* Each "scene" is a timed composition of multiple screens */
-
-.trailer-scene {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.trailer-scene--active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* ==================== SCREEN ELEMENTS ==================== */
-
-.trailer-screen {
-  position: absolute;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  will-change: transform, opacity;
-}
-
-.trailer-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Phone frame variant */
-.trailer-screen--phone {
-  border-radius: 24px;
-  border: 2px solid rgba(255,255,255,0.12);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(59,130,246,0.1);
-}
-
 /* ==================== TITLE CARD ==================== */
 
 .trailer-title-card {
@@ -159,15 +136,16 @@
   justify-content: center;
   z-index: 5;
   opacity: 0;
+  transition: opacity 0.8s ease;
 }
 
 .trailer-title-card--active {
-  animation: titleCardPulse 2.5s ease-out forwards;
+  animation: titleCardPulse 2.8s ease-out forwards;
 }
 
 @keyframes titleCardPulse {
   0% { opacity: 0; }
-  12% { opacity: 1; }
+  15% { opacity: 1; }
   75% { opacity: 1; }
   100% { opacity: 0; }
 }
@@ -204,167 +182,6 @@
   100% { transform: translateY(0); opacity: 0.6; }
 }
 
-/* ==================== SCENE ANIMATIONS ==================== */
-
-/* Scene 1: Hero spread — all screens fan out from center */
-.trailer-scene--spread .trailer-screen {
-  opacity: 0;
-}
-.trailer-scene--spread.trailer-scene--active .trailer-screen:nth-child(1) {
-  animation: spreadCenter 3.5s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
-}
-.trailer-scene--spread.trailer-scene--active .trailer-screen:nth-child(2) {
-  animation: spreadLeft 3.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
-}
-.trailer-scene--spread.trailer-scene--active .trailer-screen:nth-child(3) {
-  animation: spreadRight 3.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-.trailer-scene--spread.trailer-scene--active .trailer-screen:nth-child(4) {
-  animation: spreadFarLeft 3.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
-}
-.trailer-scene--spread.trailer-scene--active .trailer-screen:nth-child(5) {
-  animation: spreadFarRight 3.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-}
-
-@keyframes spreadCenter {
-  0% { transform: scale(0.3) translateY(100px); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: scale(1) translateY(0) rotateY(0deg); opacity: 1; }
-}
-@keyframes spreadLeft {
-  0% { transform: scale(0.3) translate(0, 100px); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: scale(0.85) translate(-110%, 0) rotateY(8deg); opacity: 1; }
-}
-@keyframes spreadRight {
-  0% { transform: scale(0.3) translate(0, 100px); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: scale(0.85) translate(110%, 0) rotateY(-8deg); opacity: 1; }
-}
-@keyframes spreadFarLeft {
-  0% { transform: scale(0.2) translate(0, 100px); opacity: 0; }
-  40% { opacity: 0.8; }
-  100% { transform: scale(0.7) translate(-200%, 5%) rotateY(12deg); opacity: 0.7; }
-}
-@keyframes spreadFarRight {
-  0% { transform: scale(0.2) translate(0, 100px); opacity: 0; }
-  40% { opacity: 0.8; }
-  100% { transform: scale(0.7) translate(200%, 5%) rotateY(-12deg); opacity: 0.7; }
-}
-
-/* Scene 2: Zoom focus — one screen zooms in dramatically */
-.trailer-scene--zoom .trailer-screen {
-  opacity: 0;
-}
-.trailer-scene--zoom.trailer-scene--active .trailer-screen {
-  animation: zoomHero 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes zoomHero {
-  0% { transform: scale(0.5) rotateX(15deg); opacity: 0; }
-  20% { opacity: 1; }
-  60% { transform: scale(1.05) rotateX(0deg); }
-  100% { transform: scale(1.15) rotateX(0deg); opacity: 1; }
-}
-
-/* Scene 3: 3D carousel — screens orbit around */
-.trailer-scene--orbit .trailer-screen {
-  opacity: 0;
-}
-.trailer-scene--orbit.trailer-scene--active .trailer-screen:nth-child(1) {
-  animation: orbitA 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.trailer-scene--orbit.trailer-scene--active .trailer-screen:nth-child(2) {
-  animation: orbitB 4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-}
-.trailer-scene--orbit.trailer-scene--active .trailer-screen:nth-child(3) {
-  animation: orbitC 4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-}
-
-@keyframes orbitA {
-  0% { transform: perspective(800px) rotateY(-60deg) translateX(-200px) scale(0.6); opacity: 0; }
-  25% { opacity: 1; }
-  100% { transform: perspective(800px) rotateY(-15deg) translateX(-55%) scale(0.9); opacity: 1; }
-}
-@keyframes orbitB {
-  0% { transform: perspective(800px) rotateY(0deg) translateZ(-300px) scale(0.4); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: perspective(800px) rotateY(0deg) translateZ(0) scale(1); opacity: 1; }
-}
-@keyframes orbitC {
-  0% { transform: perspective(800px) rotateY(60deg) translateX(200px) scale(0.6); opacity: 0; }
-  25% { opacity: 1; }
-  100% { transform: perspective(800px) rotateY(15deg) translateX(55%) scale(0.9); opacity: 1; }
-}
-
-/* Scene 4: Cascade stack — screens slide in stacked with offset */
-.trailer-scene--cascade .trailer-screen {
-  opacity: 0;
-}
-.trailer-scene--cascade.trailer-scene--active .trailer-screen:nth-child(1) {
-  animation: cascadeIn 3s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
-}
-.trailer-scene--cascade.trailer-scene--active .trailer-screen:nth-child(2) {
-  animation: cascadeIn 3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-.trailer-scene--cascade.trailer-scene--active .trailer-screen:nth-child(3) {
-  animation: cascadeIn 3s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-}
-.trailer-scene--cascade.trailer-scene--active .trailer-screen:nth-child(4) {
-  animation: cascadeIn 3s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
-}
-
-@keyframes cascadeIn {
-  0% { transform: translateX(120%) rotateZ(8deg) scale(0.8); opacity: 0; }
-  25% { opacity: 1; }
-  100% { transform: translateX(0) rotateZ(0) scale(1); opacity: 1; }
-}
-
-/* Scene exit */
-.trailer-scene--exit {
-  animation: sceneExit 0.5s ease-in forwards;
-}
-
-@keyframes sceneExit {
-  0% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1.08); filter: blur(4px); }
-}
-
-/* ==================== FEATURE LABEL ==================== */
-
-.trailer-feature {
-  position: absolute;
-  bottom: 12%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.trailer-feature--visible {
-  animation: featureSlideUp 0.6s ease-out forwards;
-}
-
-@keyframes featureSlideUp {
-  0% { transform: translateX(-50%) translateY(20px); opacity: 0; }
-  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-}
-
-.trailer-feature__text {
-  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
-  color: rgba(255,255,255,0.9);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-shadow: 0 2px 30px rgba(0,0,0,0.9);
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(12px);
-  padding: 12px 32px;
-  border-radius: 100px;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
 /* ==================== END CARD ==================== */
 
 .trailer-end-card {
@@ -378,6 +195,8 @@
   opacity: 0;
   pointer-events: none;
   gap: 28px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
 }
 
 .trailer-end-card--active {
@@ -387,8 +206,8 @@
 }
 
 @keyframes endFadeIn {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .trailer-end-card__title {
@@ -464,5 +283,9 @@
     height: 40px;
     font-size: 20px;
   }
-  .trailer-letterbox { height: 5%; }
+  .trailer-iframe-wrap {
+    inset: 5% 2%;
+    border-radius: 10px;
+  }
+  .trailer-letterbox { height: 4%; }
 }
