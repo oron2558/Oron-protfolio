@@ -206,6 +206,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top;
       display: block;
     }
 
@@ -1196,6 +1197,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top;
       display: block;
     }
 
@@ -1407,6 +1409,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top;
       display: block;
     }
 
@@ -1736,7 +1739,7 @@
       padding: 20px 18px;
       font-size: 0.82rem;
       line-height: 1.55;
-      color: #fff;
+      color: #1a1a2e;
       font-weight: 500;
       aspect-ratio: 1 / 1;
       display: flex;
@@ -1932,6 +1935,27 @@
       .cs-venn-layout { flex-direction: column; }
       .cs-venn-goal { max-width: 100%; text-align: center; margin: 16px 0; }
     }
+
+    /* ============================================
+       LIGHT MODE — Player Chrome & Global Overrides
+       ============================================ */
+    [data-theme="light"] .onf-player-chrome {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+    [data-theme="light"] .onf-player-chrome__back { color: #555; }
+    [data-theme="light"] .onf-player-chrome__back:hover { color: #111; }
+    [data-theme="light"] .onf-player-chrome__breadcrumb { color: #888; }
+    [data-theme="light"] .onf-player-chrome__breadcrumb strong { color: #1a1a2e; }
+    [data-theme="light"] .onf-player-chrome__progress { background: rgba(0, 0, 0, 0.06); }
+    [data-theme="light"] .onf-next-episode {
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.85), transparent);
+    }
+    [data-theme="light"] .onf-next-episode__label { color: #888; }
+    [data-theme="light"] .onf-next-episode__title { color: #1a1a2e; }
+    [data-theme="light"] .onf-next-episode__btn { background: #1a1a2e; color: #fff; }
+    [data-theme="light"] .onf-next-episode__btn:hover { background: #2a2a4e; }
+    [data-theme="light"] .onf-next-episode__thumb { border-color: rgba(0, 0, 0, 0.1); }
   </style>
   <script>
     (function() {
@@ -2004,16 +2028,16 @@
             <!-- Original set -->
             <div class="cs-hero-phone"><img src="woofio-home.png" alt="Home Dashboard"></div>
             <div class="cs-hero-phone"><img src="woofio-health.png" alt="Health Tracker"></div>
+            <div class="cs-hero-phone"><img src="woofio-walker.png" alt="Dog Walkers"></div>
+            <div class="cs-hero-phone"><img src="woofio-tasks.png" alt="Smart Schedule"></div>
             <div class="cs-hero-phone"><img src="woofio-onboarding.png" alt="Onboarding"></div>
-            <div class="cs-hero-phone"><img src="woofio-register.png" alt="Registration"></div>
-            <div class="cs-hero-phone"><img src="woofio-pet-profile.png" alt="Pet Profile"></div>
             <div class="cs-hero-phone"><img src="woofio-splash.png" alt="Splash Screen"></div>
             <!-- Duplicate for seamless loop -->
             <div class="cs-hero-phone"><img src="woofio-home.png" alt="Home Dashboard"></div>
             <div class="cs-hero-phone"><img src="woofio-health.png" alt="Health Tracker"></div>
+            <div class="cs-hero-phone"><img src="woofio-walker.png" alt="Dog Walkers"></div>
+            <div class="cs-hero-phone"><img src="woofio-tasks.png" alt="Smart Schedule"></div>
             <div class="cs-hero-phone"><img src="woofio-onboarding.png" alt="Onboarding"></div>
-            <div class="cs-hero-phone"><img src="woofio-register.png" alt="Registration"></div>
-            <div class="cs-hero-phone"><img src="woofio-pet-profile.png" alt="Pet Profile"></div>
             <div class="cs-hero-phone"><img src="woofio-splash.png" alt="Splash Screen"></div>
           </div>
         </div>
@@ -2500,7 +2524,7 @@
           </div>
           <div class="cs-dual-phone cs-dual-phone--live">
             <div class="cs-phone-frame--live">
-              <img src="woofio-home.png" alt="Home Dashboard" loading="lazy">
+              <img src="woofio-health.png" alt="Health Dashboard" loading="lazy">
             </div>
             <p class="cs-dual-label cs-dual-label--live">Final Design</p>
           </div>
@@ -2528,13 +2552,13 @@
         <div class="cs-dual-phones animate-on-scroll">
           <div class="cs-dual-phone cs-dual-phone--wireframe">
             <div class="cs-phone-frame">
-              <img src="woofio-onboarding.png" alt="Onboarding" loading="lazy">
+              <img src="woofio-home.png" alt="Home Dashboard" loading="lazy">
             </div>
             <p class="cs-dual-label">Hi-Fi Design</p>
           </div>
           <div class="cs-dual-phone cs-dual-phone--live">
             <div class="cs-phone-frame--live">
-              <img src="woofio-register.png" alt="Registration" loading="lazy">
+              <img src="woofio-home.png" alt="Home Dashboard" loading="lazy">
             </div>
             <p class="cs-dual-label cs-dual-label--live">Final Design</p>
           </div>
@@ -2562,13 +2586,13 @@
         <div class="cs-dual-phones animate-on-scroll">
           <div class="cs-dual-phone cs-dual-phone--wireframe">
             <div class="cs-phone-frame">
-              <img src="woofio-pet-profile.png" alt="Pet Profile Setup" loading="lazy">
+              <img src="woofio-walker.png" alt="Dog Walkers" loading="lazy">
             </div>
             <p class="cs-dual-label">Hi-Fi Design</p>
           </div>
           <div class="cs-dual-phone cs-dual-phone--live">
             <div class="cs-phone-frame--live">
-              <img src="woofio-splash.png" alt="Splash Screen" loading="lazy">
+              <img src="woofio-walker.png" alt="Dog Walkers" loading="lazy">
             </div>
             <p class="cs-dual-label cs-dual-label--live">Final Design</p>
           </div>
@@ -2596,13 +2620,13 @@
         <div class="cs-dual-phones animate-on-scroll">
           <div class="cs-dual-phone cs-dual-phone--wireframe">
             <div class="cs-phone-frame">
-              <img src="woofio-home.png" alt="Home Dashboard" loading="lazy">
+              <img src="woofio-tasks.png" alt="Smart Schedule" loading="lazy">
             </div>
             <p class="cs-dual-label">Hi-Fi Design</p>
           </div>
           <div class="cs-dual-phone cs-dual-phone--live">
             <div class="cs-phone-frame--live">
-              <img src="woofio-health.png" alt="Health Tracker" loading="lazy">
+              <img src="woofio-tasks.png" alt="Smart Schedule" loading="lazy">
             </div>
             <p class="cs-dual-label cs-dual-label--live">Final Design</p>
           </div>

@@ -154,6 +154,57 @@
   height: 48px;
 }
 
+/* ---------- Light Mode ---------- */
+[data-theme="light"] .onf-player-chrome {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .onf-player-chrome__back {
+  color: #666;
+}
+
+[data-theme="light"] .onf-player-chrome__back:hover {
+  color: #111;
+}
+
+[data-theme="light"] .onf-player-chrome__breadcrumb {
+  color: #888;
+}
+
+[data-theme="light"] .onf-player-chrome__breadcrumb strong {
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .onf-player-chrome__progress {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .onf-next-episode {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.85), transparent);
+}
+
+[data-theme="light"] .onf-next-episode__label {
+  color: #888;
+}
+
+[data-theme="light"] .onf-next-episode__title {
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .onf-next-episode__btn {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+[data-theme="light"] .onf-next-episode__btn:hover {
+  background: #2a2a4e;
+}
+
+[data-theme="light"] .onf-next-episode__thumb {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 810px) {
   .onf-player-chrome {
