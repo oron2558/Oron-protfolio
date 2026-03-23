@@ -1181,16 +1181,12 @@
       width: 280px;
       height: 606px;
       border-radius: 40px;
-      overflow-y: auto;
-      overflow-x: hidden;
+      overflow: hidden;
       border: 6px solid #1a1a2e;
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
       background: #fff;
       position: relative;
-      scrollbar-width: none;
     }
-
-    .cs-phone-frame::-webkit-scrollbar { display: none; }
 
     [data-theme="dark"] .cs-phone-frame {
       border-color: #333;
@@ -1199,9 +1195,10 @@
 
     .cs-phone-frame img {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
-      margin: 0 auto;
+      object-fit: cover;
+      object-position: top center;
     }
 
     /* Artifact image wrap */
@@ -1396,16 +1393,12 @@
       width: 280px;
       height: 606px;
       border-radius: 40px;
-      overflow-y: auto;
-      overflow-x: hidden;
+      overflow: hidden;
       border: 6px solid #1a1a2e;
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
       background: #fff;
       position: relative;
-      scrollbar-width: none;
     }
-
-    .cs-phone-frame--live::-webkit-scrollbar { display: none; }
 
     [data-theme="dark"] .cs-phone-frame--live {
       border-color: #333;
@@ -1420,18 +1413,6 @@
       object-position: top center;
     }
 
-    /* Sticky tab bar overlay inside scrollable phone frames */
-    .cs-phone-tabbar {
-      position: sticky;
-      bottom: 0;
-      height: 38px;
-      margin-top: -38px;
-      background-size: 100% auto;
-      background-position: bottom;
-      background-repeat: no-repeat;
-      z-index: 2;
-      border-radius: 0 0 34px 34px;
-    }
 
     @media (max-width: 810px) {
       .cs-screen-row {
@@ -2694,16 +2675,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      /* Sticky tab bar for scrollable phone frames */
-      document.querySelectorAll('.cs-phone-frame--live, .cs-phone-frame').forEach(function(frame) {
-        var img = frame.querySelector('img');
-        if (!img) return;
-        var tabbar = document.createElement('div');
-        tabbar.className = 'cs-phone-tabbar';
-        tabbar.style.backgroundImage = 'url(' + img.src + ')';
-        frame.appendChild(tabbar);
-      });
-
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
