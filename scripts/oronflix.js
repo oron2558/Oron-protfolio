@@ -6,16 +6,14 @@
   'use strict';
 
   // ---------- Theme ----------
-  var savedTheme = localStorage.getItem('oronflix-theme');
-  if (savedTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
+  var savedTheme = localStorage.getItem('oronflix-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
 
   function toggleTheme() {
     var html = document.documentElement;
     var isLight = html.getAttribute('data-theme') === 'light';
     if (isLight) {
-      html.removeAttribute('data-theme');
+      html.setAttribute('data-theme', 'dark');
       localStorage.setItem('oronflix-theme', 'dark');
     } else {
       html.setAttribute('data-theme', 'light');

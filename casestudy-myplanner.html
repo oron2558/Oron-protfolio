@@ -1054,8 +1054,8 @@
   </style>
   <script>
     (function() {
-      var t = localStorage.getItem('theme');
-      if (t) document.documentElement.setAttribute('data-theme', t);
+      var t = localStorage.getItem('oronflix-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
 </head>
@@ -1745,8 +1745,8 @@
     function toggleTheme() {
       var html = document.documentElement;
       var isDark = html.getAttribute('data-theme') === 'dark';
-      if (isDark) { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
-      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+      if (isDark) { html.setAttribute('data-theme', 'light'); localStorage.setItem('oronflix-theme', 'light'); }
+      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('oronflix-theme', 'dark'); }
     }
 
     document.addEventListener('DOMContentLoaded', function () {
