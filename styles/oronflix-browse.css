@@ -192,19 +192,32 @@
 
 .onf-billboard__dot {
   width: 32px;
+  height: 23px;
+  border-radius: 2px;
+  background: transparent;
+  transition: all var(--duration-normal) var(--ease-smooth);
+  cursor: pointer;
+  position: relative;
+}
+
+.onf-billboard__dot::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
   height: 3px;
   border-radius: 2px;
   background: rgba(255, 255, 255, 0.25);
   transition: all var(--duration-normal) var(--ease-smooth);
-  cursor: pointer;
-  position: relative;
-  padding: 10px 0;
-  background-clip: content-box;
 }
 
 .onf-billboard__dot--active {
-  background: var(--text-white);
   width: 48px;
+}
+
+.onf-billboard__dot--active::after {
+  background: var(--text-white);
 }
 
 /* Dot hover preview tooltip */
