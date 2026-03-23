@@ -212,23 +212,12 @@
       display: block;
     }
 
-    /* Phones whose image already includes a device frame (onboarding, splash) */
-    .cs-hero-phone--framed {
-      border: none;
-      background: transparent;
-      box-shadow: none;
-      overflow: hidden;
-    }
-
+    /* Phones whose source image includes a device bezel — crop to content */
     .cs-hero-phone--framed img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-    }
-
-    [data-theme="dark"] .cs-hero-phone--framed {
-      border: none;
-      box-shadow: none;
+      object-fit: cover;
+      object-position: center;
     }
 
     [data-theme="dark"] .cs-hero-phone {
