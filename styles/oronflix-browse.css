@@ -180,12 +180,14 @@
   border-radius: 4px;
 }
 
-/* Billboard dots — attached to hero cards section */
+/* Billboard dots — below buttons inside billboard */
 .onf-billboard__dots {
+  position: absolute;
+  bottom: 30px;
+  left: 4%;
+  z-index: 5;
   display: flex;
   gap: 8px;
-  justify-content: center;
-  padding: 16px 0 8px;
 }
 
 .onf-billboard__dot {
