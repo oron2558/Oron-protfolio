@@ -1421,6 +1421,19 @@
       margin: 0 auto;
     }
 
+    /* Sticky tab bar overlay inside scrollable phone frames */
+    .cs-phone-tabbar {
+      position: sticky;
+      bottom: 0;
+      height: 38px;
+      margin-top: -38px;
+      background-size: 100% auto;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      z-index: 2;
+      border-radius: 0 0 34px 34px;
+    }
+
     @media (max-width: 810px) {
       .cs-screen-row {
         flex-direction: column;
@@ -2683,6 +2696,16 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+      /* Sticky tab bar for scrollable phone frames */
+      document.querySelectorAll('.cs-phone-frame--live, .cs-phone-frame').forEach(function(frame) {
+        var img = frame.querySelector('img');
+        if (!img) return;
+        var tabbar = document.createElement('div');
+        tabbar.className = 'cs-phone-tabbar';
+        tabbar.style.backgroundImage = 'url(' + img.src + ')';
+        frame.appendChild(tabbar);
+      });
+
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
