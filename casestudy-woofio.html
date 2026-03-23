@@ -212,6 +212,25 @@
       display: block;
     }
 
+    /* Phones whose image already includes a device frame (onboarding, splash) */
+    .cs-hero-phone--framed {
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
+    .cs-hero-phone--framed img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    [data-theme="dark"] .cs-hero-phone--framed {
+      border: none;
+      box-shadow: none;
+    }
+
     [data-theme="dark"] .cs-hero-phone {
       border-color: #333;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
@@ -2063,15 +2082,15 @@
             <div class="cs-hero-phone"><img src="woofio-health.png" alt="Health Tracker"></div>
             <div class="cs-hero-phone"><img src="woofio-walker.png" alt="Dog Walkers"></div>
             <div class="cs-hero-phone"><img src="woofio-tasks.png" alt="Smart Schedule"></div>
-            <div class="cs-hero-phone"><img src="woofio-onboarding.png" alt="Onboarding"></div>
-            <div class="cs-hero-phone"><img src="woofio-splash.png" alt="Splash Screen"></div>
+            <div class="cs-hero-phone cs-hero-phone--framed"><img src="woofio-onboarding.png" alt="Onboarding"></div>
+            <div class="cs-hero-phone cs-hero-phone--framed"><img src="woofio-splash.png" alt="Splash Screen"></div>
             <!-- Duplicate for seamless loop -->
             <div class="cs-hero-phone"><img src="woofio-home.png" alt="Home Dashboard"></div>
             <div class="cs-hero-phone"><img src="woofio-health.png" alt="Health Tracker"></div>
             <div class="cs-hero-phone"><img src="woofio-walker.png" alt="Dog Walkers"></div>
             <div class="cs-hero-phone"><img src="woofio-tasks.png" alt="Smart Schedule"></div>
-            <div class="cs-hero-phone"><img src="woofio-onboarding.png" alt="Onboarding"></div>
-            <div class="cs-hero-phone"><img src="woofio-splash.png" alt="Splash Screen"></div>
+            <div class="cs-hero-phone cs-hero-phone--framed"><img src="woofio-onboarding.png" alt="Onboarding"></div>
+            <div class="cs-hero-phone cs-hero-phone--framed"><img src="woofio-splash.png" alt="Splash Screen"></div>
           </div>
         </div>
       </div>
