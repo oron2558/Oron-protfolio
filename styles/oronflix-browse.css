@@ -808,6 +808,73 @@
   color: var(--text-secondary);
 }
 
+/* About actions (Resume + Download) */
+.onf-about__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.onf-about__actions .onf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.onf-about__actions .onf-btn--white {
+  background: #fff;
+  color: #111;
+}
+
+.onf-about__actions .onf-btn--white:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: scale(1.03);
+}
+
+.onf-about__actions .onf-btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.onf-about__actions .onf-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.03);
+}
+
+.onf-about__actions .onf-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+[data-theme="light"] .onf-about__actions .onf-btn--white {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+[data-theme="light"] .onf-about__actions .onf-btn--white:hover {
+  background: #2a2a4e;
+}
+
+[data-theme="light"] .onf-about__actions .onf-btn--outline {
+  color: #1a1a2e;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .onf-about__actions .onf-btn--outline:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
 /* ---------- Footer ---------- */
 .onf-footer {
   padding: 48px 4%;
