@@ -213,11 +213,14 @@
     }
 
     /* Phones whose source image includes a device bezel — crop to content */
+    .cs-hero-phone--framed {
+      overflow: hidden;
+    }
     .cs-hero-phone--framed img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+      width: 130%;
+      height: auto;
+      margin-left: -15%;
+      margin-top: -8%;
     }
 
     [data-theme="dark"] .cs-hero-phone {
