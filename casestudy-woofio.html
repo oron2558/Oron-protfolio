@@ -189,12 +189,16 @@
       width: 150px;
       height: 325px;
       border-radius: 24px;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
       border: 4px solid #1a1a2e;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
       background: #fff;
       transition: transform 0.4s var(--ease-spring), box-shadow 0.4s;
+      scrollbar-width: none;
     }
+
+    .cs-hero-phone::-webkit-scrollbar { display: none; }
 
     .cs-hero-phone:hover {
       transform: translateY(-12px) scale(1.05);
@@ -204,9 +208,7 @@
 
     .cs-hero-phone img {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
+      height: auto;
       display: block;
     }
 
@@ -1181,12 +1183,16 @@
       width: 280px;
       height: 606px;
       border-radius: 40px;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
       border: 6px solid #1a1a2e;
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
       background: #fff;
       position: relative;
+      scrollbar-width: none;
     }
+
+    .cs-phone-frame::-webkit-scrollbar { display: none; }
 
     [data-theme="dark"] .cs-phone-frame {
       border-color: #333;
@@ -1195,9 +1201,7 @@
 
     .cs-phone-frame img {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
+      height: auto;
       display: block;
     }
 
@@ -1394,12 +1398,16 @@
       width: 280px;
       height: 606px;
       border-radius: 40px;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
       border: 6px solid #1a1a2e;
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
       background: #fff;
       position: relative;
+      scrollbar-width: none;
     }
+
+    .cs-phone-frame--live::-webkit-scrollbar { display: none; }
 
     [data-theme="dark"] .cs-phone-frame--live {
       border-color: #333;
@@ -1408,9 +1416,7 @@
 
     .cs-phone-frame--live img {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
+      height: auto;
       display: block;
     }
 
