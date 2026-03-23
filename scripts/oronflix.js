@@ -297,8 +297,6 @@
     iframeWrap.className = 'trailer-iframe-wrap';
     var iframe = document.createElement('iframe');
     iframe.className = 'trailer-iframe';
-    iframe.src = data.url + '?trailer=1';
-    iframe.setAttribute('scrolling', 'no');
     iframe.setAttribute('frameborder', '0');
     iframeWrap.appendChild(iframe);
     stage.appendChild(iframeWrap);
@@ -328,46 +326,66 @@
     });
     document.body.style.overflow = 'hidden';
 
-    // Show title, then start scrolling
+    // Track iframe ready state
+    var iframeReady = false;
+    var titleDone = false;
+
+    function tryStartScroll() {
+      if (iframeReady && titleDone && trailerActive) {
+        iframeWrap.style.opacity = '1';
+        startAutoScroll(iframe, stage, endCard);
+      }
+    }
+
+    // Set onload BEFORE setting src
+    iframe.onload = function() {
+      iframeReady = true;
+      tryStartScroll();
+    };
+    iframe.src = data.url + '?trailer=1';
+
+    // Short title card (1.5s)
     titleCard.classList.add('trailer-title-card--active');
 
     setTimeout(function() {
       titleCard.style.opacity = '0';
       titleCard.style.pointerEvents = 'none';
-      iframeWrap.style.opacity = '1';
-
-      // Wait for iframe to load, then auto-scroll
-      iframe.onload = function() {
-        if (!trailerActive) return;
-        startAutoScroll(iframe, stage, endCard);
-      };
-    }, 2800);
+      titleDone = true;
+      tryStartScroll();
+    }, 1500);
   }
 
   function startAutoScroll(iframe, stage, endCard) {
-    var iframeDoc;
+    var iframeWin, iframeDoc;
     try {
-      iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      iframeWin = iframe.contentWindow;
+      iframeDoc = iframeWin.document;
     } catch(e) {
       return;
     }
 
-    // Hide the case study nav and back button inside iframe
+    // Hide nav, back button, next-episode; make all animations visible
     var style = iframeDoc.createElement('style');
-    style.textContent = '.onf-nav, .cs-back, .onf-next-episode, .onf-player-bar { display: none !important; } ' +
-      'html { scroll-behavior: auto !important; } ' +
-      'body { overflow: hidden !important; cursor: none !important; } ' +
-      '.animate-on-scroll { opacity: 1 !important; transform: none !important; }';
+    style.textContent =
+      '.onf-nav, .cs-back, .onf-next-episode, .onf-player-bar { display: none !important; }' +
+      'html, body { scroll-behavior: auto !important; overflow: auto !important; cursor: none !important; }' +
+      '.animate-on-scroll, .onf-animate { opacity: 1 !important; transform: none !important; transition: none !important; }' +
+      '::-webkit-scrollbar { display: none; }';
     iframeDoc.head.appendChild(style);
 
-    var scrollHeight = iframeDoc.documentElement.scrollHeight;
+    // Force reflow to get accurate scrollHeight
+    iframeDoc.documentElement.offsetHeight;
+
+    var scrollHeight = Math.max(
+      iframeDoc.body.scrollHeight,
+      iframeDoc.documentElement.scrollHeight
+    );
     var viewHeight = iframe.clientHeight;
     var totalScroll = scrollHeight - viewHeight;
-    if (totalScroll <= 0) return;
+    if (totalScroll <= 0) totalScroll = 5000; // fallback
 
-    // Scroll speed: ~40 seconds for full page
-    var SCROLL_DURATION = 40000;
-    var pixelsPerMs = totalScroll / SCROLL_DURATION;
+    // Scroll speed: ~35 seconds for full page
+    var SCROLL_DURATION = 35000;
     var startTime = performance.now();
     var progressFill = stage.querySelector('.trailer-progress__fill');
 
@@ -375,18 +393,21 @@
       if (!trailerActive) return;
 
       var elapsed = now - startTime;
-      var scrollPos = elapsed * pixelsPerMs;
-      var progress = Math.min(scrollPos / totalScroll, 1);
+      var progress = Math.min(elapsed / SCROLL_DURATION, 1);
+      // Ease-in-out for smoother feel
+      var eased = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      var scrollPos = eased * totalScroll;
 
-      iframeDoc.documentElement.scrollTop = scrollPos;
+      iframeWin.scrollTo(0, scrollPos);
       if (progressFill) progressFill.style.width = (progress * 100) + '%';
 
       if (progress >= 1) {
-        // Show end card
         setTimeout(function() {
           endCard.classList.add('trailer-end-card--active');
-          var iframeWrap = stage.querySelector('.trailer-iframe-wrap');
-          if (iframeWrap) iframeWrap.style.opacity = '0.3';
+          var wrap = stage.querySelector('.trailer-iframe-wrap');
+          if (wrap) wrap.style.opacity = '0.3';
         }, 500);
         return;
       }
@@ -394,7 +415,10 @@
       trailerScrollRAF = requestAnimationFrame(scrollStep);
     }
 
-    trailerScrollRAF = requestAnimationFrame(scrollStep);
+    // Small delay for iframe to settle
+    setTimeout(function() {
+      trailerScrollRAF = requestAnimationFrame(scrollStep);
+    }, 300);
   }
 
   function closeTrailer() {
