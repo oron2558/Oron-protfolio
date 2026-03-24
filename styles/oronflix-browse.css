@@ -805,27 +805,26 @@
 /* ---------- About Section ---------- */
 .onf-about {
   display: flex;
-  gap: 40px;
+  gap: 28px;
   align-items: flex-start;
-  padding: 40px;
+  padding: 28px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
 }
 
 .onf-about__avatar {
-  flex: 0 0 130px;
-  padding-top: 4px;
+  flex: 0 0 100px;
+  padding-top: 2px;
 }
 
 .onf-about__img {
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 3px solid var(--accent);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+  border: 3px solid var(--border-subtle);
 }
 
 .onf-about__text {
@@ -834,34 +833,32 @@
 }
 
 .onf-about__name {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-white);
-  margin-bottom: 12px;
-  letter-spacing: -0.01em;
+  margin-bottom: 6px;
 }
 
 .onf-about__bio {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 16px;
-  max-width: 580px;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin-bottom: 12px;
 }
 
 .onf-about__badges {
   display: flex;
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 14px;
   flex-wrap: wrap;
 }
 
 .onf-badge--skill {
   background: rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
-  font-size: 0.8rem;
-  padding: 6px 14px;
-  border-radius: 100px;
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border-radius: 6px;
   font-weight: 500;
 }
 
@@ -874,7 +871,7 @@
 .onf-about__actions {
   display: flex;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 18px;
   flex-wrap: wrap;
 }
 
@@ -949,8 +946,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 32px 24px;
-    gap: 24px;
+    padding: 24px 20px;
+    gap: 20px;
   }
 
   .onf-about__bio {
