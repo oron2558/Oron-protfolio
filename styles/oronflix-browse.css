@@ -844,6 +844,9 @@
   font-size: 0.9rem;
   line-height: 1.65;
   margin-bottom: 12px;
+  max-width: 440px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .onf-about__badges {
