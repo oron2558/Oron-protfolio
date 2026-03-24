@@ -811,6 +811,9 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .onf-about__avatar {
