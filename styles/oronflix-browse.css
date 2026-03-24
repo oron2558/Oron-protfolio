@@ -807,7 +807,8 @@
   display: flex;
   gap: 28px;
   align-items: flex-start;
-  padding: 28px;
+  max-width: 680px;
+  padding: 32px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
@@ -836,15 +837,14 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-white);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .onf-about__bio {
   color: var(--text-secondary);
   font-size: 0.9rem;
-  line-height: 1.65;
-  margin-bottom: 12px;
-  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 14px;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
