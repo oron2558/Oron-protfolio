@@ -229,19 +229,43 @@
     chips.forEach(function(chip) {
       chip.addEventListener('click', function() {
         var category = chip.getAttribute('data-category');
+        var isAll = category === 'all';
 
         // Update active chip
         chips.forEach(function(c) { c.classList.remove('onf-chip--active'); });
         chip.classList.add('onf-chip--active');
 
-        // Filter cards
-        var cards = document.querySelectorAll('.onf-card[data-categories]');
-        cards.forEach(function(card) {
-          if (category === 'all') {
-            card.style.display = '';
-          } else {
-            var cats = card.getAttribute('data-categories') || '';
-            card.style.display = cats.includes(category) ? '' : 'none';
+        // Hide/show billboard
+        var billboard = document.querySelector('.onf-billboard');
+        if (billboard) billboard.style.display = isAll ? '' : 'none';
+
+        // Hide/show Continue Watching row
+        var continueRow = document.querySelector('.onf-row--continue');
+        if (continueRow) continueRow.style.display = isAll ? '' : 'none';
+
+        // Hide/show About row
+        var aboutRow = document.querySelector('.onf-about');
+        if (aboutRow) aboutRow.closest('.onf-row').style.display = isAll ? '' : 'none';
+
+        // Filter cards and hide empty rows
+        var rows = document.querySelectorAll('.onf-row:not(.onf-row--continue)');
+        rows.forEach(function(row) {
+          var cards = row.querySelectorAll('.onf-card[data-categories]');
+          if (cards.length === 0) return;
+          var hasVisible = false;
+          cards.forEach(function(card) {
+            if (isAll) {
+              card.style.display = '';
+              hasVisible = true;
+            } else {
+              var cats = card.getAttribute('data-categories') || '';
+              var show = cats.includes(category);
+              card.style.display = show ? '' : 'none';
+              if (show) hasVisible = true;
+            }
+          });
+          if (!row.querySelector('.onf-about')) {
+            row.style.display = hasVisible ? '' : 'none';
           }
         });
       });
