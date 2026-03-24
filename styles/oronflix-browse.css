@@ -807,7 +807,7 @@
   display: flex;
   gap: 40px;
   align-items: flex-start;
-  padding: 40px 48px;
+  padding: 40px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
