@@ -57,10 +57,10 @@
     }
 
     .cs-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      align-items: flex-start;
       width: 100%;
       max-width: var(--max-width);
       padding: 0 var(--container-padding);
@@ -128,12 +128,32 @@
 
     .cs-hero-mockup { position: relative; z-index: 2; display: flex; justify-content: center; }
 
-    /* Isometric composition — flat desk view */
+    /* Full-width hero screenshot */
+    .cs-hero-fullscreen {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cs-hero-fullscreen img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    [data-theme="dark"] .cs-hero-fullscreen {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Isometric composition — flat desk view (kept for reference) */
     .cs-iso-grid {
       position: relative;
       width: 100%;
-      max-width: 700px;
-      height: 520px;
+      max-width: 900px;
+      height: 620px;
       transform: perspective(1800px) rotateX(35deg) rotateZ(25deg);
       transform-origin: 50% 50%;
       transform-style: preserve-3d;
@@ -141,8 +161,8 @@
 
     .cs-iso-card {
       position: absolute;
-      width: 360px;
-      max-height: 240px;
+      width: 460px;
+      max-height: 310px;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -151,9 +171,9 @@
     }
 
     .cs-iso-card:nth-child(1) { top: 10px; left: 0; z-index: 1; }
-    .cs-iso-card:nth-child(2) { top: -20px; left: 240px; z-index: 2; }
-    .cs-iso-card:nth-child(3) { top: 220px; left: 40px; z-index: 3; }
-    .cs-iso-card:nth-child(4) { top: 190px; left: 280px; z-index: 4; }
+    .cs-iso-card:nth-child(2) { top: -20px; left: 300px; z-index: 2; }
+    .cs-iso-card:nth-child(3) { top: 280px; left: 50px; z-index: 3; }
+    .cs-iso-card:nth-child(4) { top: 240px; left: 350px; z-index: 4; }
 
     .cs-iso-card:hover {
       transform: translateY(-16px) translateZ(20px) scale(1.04);
@@ -470,8 +490,8 @@
     }
 
     .cs-screen-mockup {
-      flex: 0 0 60%;
-      max-width: 720px;
+      flex: 0 0 70%;
+      max-width: 900px;
     }
 
     .cs-screen-mockup img {
@@ -1118,19 +1138,8 @@
         </div>
       </div>
       <div class="cs-hero-mockup animate-on-scroll">
-        <div class="cs-iso-grid">
-          <div class="cs-iso-card">
-            <img src="myplanner-dashboard.png" alt="MyPlanner Dashboard" loading="eager">
-          </div>
-          <div class="cs-iso-card">
-            <img src="myplanner-budget.png" alt="MyPlanner Budget Calculator" loading="eager">
-          </div>
-          <div class="cs-iso-card">
-            <img src="myplanner-suppliers.png" alt="MyPlanner Suppliers" loading="eager">
-          </div>
-          <div class="cs-iso-card">
-            <img src="myplanner-cashback.png" alt="MyPlanner Cashback" loading="eager">
-          </div>
+        <div class="cs-hero-fullscreen">
+          <img src="myplanner-dashboard.png" alt="MyPlanner Dashboard" loading="eager">
         </div>
       </div>
     </div>

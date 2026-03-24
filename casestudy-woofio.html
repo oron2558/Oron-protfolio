@@ -1977,6 +1977,32 @@
     .icon-moon { display: block; }
     [data-theme="dark"] .icon-sun { display: block; }
     [data-theme="dark"] .icon-moon { display: none; }
+
+    /* ============================================
+       LIGHT MODE — Text Contrast Fixes
+       #f59e0b on white = 2.1:1 (FAILS WCAG AA)
+       #b45309 on white = 4.8:1 (PASSES)
+       #92400e on white = 7.3:1 (PASSES)
+       ============================================ */
+
+    /* Amber accent text: #f59e0b → #b45309 for readability */
+    [data-theme="light"] .cs-tag { color: #b45309; }
+    [data-theme="light"] .cs-section-label { color: #b45309; }
+    [data-theme="light"] .cs-stat-number { color: #b45309; }
+    [data-theme="light"] .cs-persona-role { color: #b45309; }
+    [data-theme="light"] .cs-journey-phase { color: #b45309; }
+    [data-theme="light"] .cs-test-value { color: #b45309; }
+    [data-theme="light"] .cs-highlight-title { color: #b45309; }
+    [data-theme="light"] .cs-dual-label--live { color: #b45309; }
+    [data-theme="light"] .cs-ph-label { color: #b45309; }
+    [data-theme="light"] .cs-venn-goal--user { color: #b45309; }
+
+    /* Darker amber for small text: #d97706 → #92400e */
+    [data-theme="light"] .cs-rq-number { color: #92400e; }
+    [data-theme="light"] .cs-hmw-prefix { color: #92400e; }
+
+    /* Flow arrows: too faint on light backgrounds */
+    [data-theme="light"] .cs-flow-arrow { color: #a8a29e; }
   </style>
   <script>
     (function() {
