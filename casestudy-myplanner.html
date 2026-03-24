@@ -57,10 +57,10 @@
     }
 
     .cs-hero-inner {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: flex-start;
+      align-items: center;
       width: 100%;
       max-width: var(--max-width);
       padding: 0 var(--container-padding);
@@ -128,10 +128,10 @@
 
     .cs-hero-mockup { position: relative; z-index: 2; display: flex; justify-content: center; }
 
-    /* Full-width hero screenshot */
+    /* Hero screenshot — 50% grid */
     .cs-hero-fullscreen {
       width: 100%;
-      max-width: 100%;
+      max-height: 520px;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -140,7 +140,9 @@
 
     .cs-hero-fullscreen img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
       display: block;
     }
 
@@ -1137,10 +1139,8 @@
           </div>
         </div>
       </div>
-      <div class="cs-hero-mockup animate-on-scroll">
-        <div class="cs-hero-fullscreen">
-          <img src="myplanner-dashboard.png" alt="MyPlanner Dashboard" loading="eager">
-        </div>
+      <div class="cs-hero-fullscreen animate-on-scroll">
+        <img src="myplanner-dashboard.png" alt="MyPlanner Dashboard" loading="eager">
       </div>
     </div>
   </section>
