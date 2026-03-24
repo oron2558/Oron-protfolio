@@ -807,7 +807,6 @@
   display: flex;
   gap: 28px;
   align-items: flex-start;
-  max-width: 680px;
   padding: 32px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -845,6 +844,7 @@
   font-size: 0.9rem;
   line-height: 1.7;
   margin-bottom: 14px;
+  max-width: 480px;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
