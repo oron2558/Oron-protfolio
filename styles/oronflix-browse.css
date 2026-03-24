@@ -804,16 +804,14 @@
 
 /* ---------- About Section ---------- */
 .onf-about {
-  display: flex;
+  display: inline-flex;
   gap: 28px;
   align-items: flex-start;
-  padding: 32px;
+  padding: 28px 32px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  box-sizing: border-box;
   max-width: 100%;
-  overflow: hidden;
 }
 
 .onf-about__avatar {
