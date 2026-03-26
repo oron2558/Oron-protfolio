@@ -1048,6 +1048,165 @@
     [data-theme="dark"] .cs-back { background: rgba(2, 2, 10, 0.8); }
     [data-theme="dark"] .cs-back:hover { background: rgba(17, 17, 25, 0.95); }
 
+    /* Part dividers */
+    .cs-part-divider {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    .cs-part-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    .cs-part-number {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .cs-part-name {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .cs-part-eng {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    /* Persona card */
+    .cs-persona {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px var(--container-padding);
+    }
+
+    .cs-persona-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    .cs-persona-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .cs-persona-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 4px;
+    }
+
+    .cs-persona-role {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .cs-persona-quote {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin: 16px 0;
+    }
+
+    .cs-persona-details {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .cs-persona-detail {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .cs-persona-detail strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* KPI Results */
+    .cs-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .cs-kpi-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .cs-kpi-label {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 810px) {
+      .cs-persona-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .cs-persona-avatar {
+        margin: 0 auto;
+      }
+      .cs-persona-quote {
+        border-left: none;
+        border-top: 3px solid var(--accent);
+        padding-left: 0;
+        padding-top: 16px;
+      }
+      .cs-persona-details {
+        justify-content: center;
+      }
+    }
+
     /* Venn Goals */
     .cs-venn-wrap {
       text-align: center;
@@ -1146,6 +1305,34 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 1: THE HOOK ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 1</span>
+      <h2 class="cs-part-name">The Hook</h2>
+      <p class="cs-part-eng">The Hook</p>
+    </div>
+  </div>
+
+  <div class="cs-persona animate-on-scroll">
+    <div class="cs-persona-card">
+      <div class="cs-persona-avatar">&#1513;</div>
+      <div class="cs-persona-info">
+        <h3>Shaul &amp; Lilik</h3>
+        <p class="cs-persona-role">Engaged Couple, Planning Their Wedding</p>
+        <blockquote class="cs-persona-quote">
+          "We spent 3 months fighting about the budget before we even booked a venue. Every vendor quotes different prices, nothing is written down, and we have no idea if we're overpaying. I just want someone to tell me: are we on track?"
+        </blockquote>
+        <div class="cs-persona-details">
+          <div class="cs-persona-detail"><strong>Event</strong>Wedding, 300 guests</div>
+          <div class="cs-persona-detail"><strong>Budget</strong>&#8362;150,000</div>
+          <div class="cs-persona-detail"><strong>Timeline</strong>10 months to plan</div>
+          <div class="cs-persona-detail"><strong>Pain</strong>Budget chaos + supplier overload</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== THE PLANNING CHAOS ==================== -->
   <section class="cs-section">
@@ -1271,6 +1458,15 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 2: RESEARCH ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 2</span>
+      <h2 class="cs-part-name">Research</h2>
+      <p class="cs-part-eng">Research</p>
+    </div>
+  </div>
 
   <!-- ==================== DESIGN JOURNEY ROADMAP ==================== -->
   <section class="cs-section">
@@ -1564,6 +1760,15 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
+  <!-- ==================== PART 3: PLANNING ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 3</span>
+      <h2 class="cs-part-name">Planning</h2>
+      <p class="cs-part-eng">Planning</p>
+    </div>
+  </div>
+
   <!-- ==================== HMW — STICKY NOTES ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
@@ -1603,6 +1808,15 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 4: DESIGN ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 4</span>
+      <h2 class="cs-part-name">Design</h2>
+      <p class="cs-part-eng">Design</p>
+    </div>
+  </div>
 
   <!-- ==================== TURNING INSIGHTS INTO ACTION ==================== -->
   <section class="cs-section cs-section--alt">
@@ -1708,6 +1922,40 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 5: RESULTS ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 5</span>
+      <h2 class="cs-part-name">Results</h2>
+      <p class="cs-part-eng">Results</p>
+    </div>
+  </div>
+
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Projected Impact</h2>
+      <p class="cs-body-text animate-on-scroll">Based on user research insights and industry benchmarks for event planning platforms:</p>
+      <div class="cs-kpi-grid animate-on-scroll">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">40%</div>
+          <div class="cs-kpi-label">Reduction in budget overruns compared to manual planning</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">15&rarr;1</div>
+          <div class="cs-kpi-label">Supplier tools consolidated into one platform</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">78%</div>
+          <div class="cs-kpi-label">Of couples said they'd recommend over a human planner</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">&#8362;8K+</div>
+          <div class="cs-kpi-label">Average savings vs. hiring a professional planner</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==================== FINAL THOUGHTS ==================== -->
   <section class="cs-section cs-section--alt">

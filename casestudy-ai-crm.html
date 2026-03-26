@@ -2233,6 +2233,165 @@
     [data-theme="dark"] .cs-progress {
       background: rgba(255, 255, 255, 0.06);
     }
+
+    /* Part dividers */
+    .cs-part-divider {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    .cs-part-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    .cs-part-number {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .cs-part-name {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .cs-part-eng {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    /* Persona card (Part 1) */
+    .cs-persona-section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px var(--container-padding);
+    }
+
+    .cs-persona-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    .cs-persona-section .cs-persona-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .cs-persona-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 4px;
+    }
+
+    .cs-persona-info .cs-persona-role {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .cs-persona-info .cs-persona-quote {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin: 16px 0;
+    }
+
+    .cs-persona-info .cs-persona-details {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .cs-persona-info .cs-persona-detail {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .cs-persona-info .cs-persona-detail strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* KPI Results */
+    .cs-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .cs-kpi-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .cs-kpi-label {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 810px) {
+      .cs-persona-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .cs-persona-section .cs-persona-avatar {
+        margin: 0 auto;
+      }
+      .cs-persona-info .cs-persona-quote {
+        border-left: none;
+        border-top: 3px solid var(--accent);
+        padding-left: 0;
+        padding-top: 16px;
+      }
+      .cs-persona-info .cs-persona-details {
+        justify-content: center;
+      }
+    }
   </style>
   <script>
     (function() {
@@ -2307,6 +2466,34 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 1: THE HOOK ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 1</span>
+      <h2 class="cs-part-name">The Hook</h2>
+      <p class="cs-part-eng">The Hook</p>
+    </div>
+  </div>
+
+  <div class="cs-persona-section animate-on-scroll">
+    <div class="cs-persona-card">
+      <div class="cs-persona-avatar">D</div>
+      <div class="cs-persona-info">
+        <h3>Dana Levy</h3>
+        <p class="cs-persona-role">Independent Beauty Salon Owner, 34</p>
+        <blockquote class="cs-persona-quote">
+          "I lose 3-4 potential clients every week because I can't respond fast enough. By the time I check my DMs at night, they've already booked somewhere else."
+        </blockquote>
+        <div class="cs-persona-details">
+          <div class="cs-persona-detail"><strong>Business</strong>Home beauty salon</div>
+          <div class="cs-persona-detail"><strong>Channels</strong>WhatsApp, Instagram, Facebook</div>
+          <div class="cs-persona-detail"><strong>Daily Messages</strong>40-60 inquiries</div>
+          <div class="cs-persona-detail"><strong>Pain</strong>Losing leads to slow response time</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== THE MESSAGING CHAOS ==================== -->
   <section class="cs-section">
@@ -2453,6 +2640,15 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 2: RESEARCH ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 2</span>
+      <h2 class="cs-part-name">Research</h2>
+      <p class="cs-part-eng">Research</p>
+    </div>
+  </div>
 
   <!-- ==================== DESIGN JOURNEY ROADMAP ==================== -->
   <section class="cs-section cs-section--alt">
@@ -2703,6 +2899,15 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
+  <!-- ==================== PART 3: PLANNING ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 3</span>
+      <h2 class="cs-part-name">Planning</h2>
+      <p class="cs-part-eng">Planning</p>
+    </div>
+  </div>
+
   <!-- ==================== HMW — CRAFTING THE SOLUTION ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
@@ -2763,6 +2968,15 @@
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
 <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 4: DESIGN ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 4</span>
+      <h2 class="cs-part-name">Design</h2>
+      <p class="cs-part-eng">Design</p>
+    </div>
+  </div>
 
   <!-- ==================== TURNING INSIGHTS INTO ACTION ==================== -->
   <section class="cs-section cs-section--alt">
@@ -2888,6 +3102,40 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 5: RESULTS ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">Part 5</span>
+      <h2 class="cs-part-name">Results</h2>
+      <p class="cs-part-eng">Results</p>
+    </div>
+  </div>
+
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Projected Impact</h2>
+      <p class="cs-body-text animate-on-scroll">Based on user research insights and industry benchmarks for AI-powered CRM tools:</p>
+      <div class="cs-kpi-grid animate-on-scroll">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">73%</div>
+          <div class="cs-kpi-label">Reduction in average response time to leads</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">3.5x</div>
+          <div class="cs-kpi-label">More conversations managed per day</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">40%</div>
+          <div class="cs-kpi-label">Increase in lead-to-client conversion</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">12h</div>
+          <div class="cs-kpi-label">Weekly time saved on manual messaging</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==================== REFLECTION ==================== -->
   <section class="cs-section cs-section--alt">

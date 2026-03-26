@@ -15,6 +15,165 @@
        CASE STUDY — SPECIFIC STYLES
        ============================================ */
 
+    /* Part dividers */
+    .cs-part-divider {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    .cs-part-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    .cs-part-number {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .cs-part-name {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .cs-part-eng {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    /* Persona card */
+    .cs-persona-new {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px var(--container-padding);
+    }
+
+    .cs-persona-new .cs-persona-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    .cs-persona-new .cs-persona-avatar-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .cs-persona-new .cs-persona-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 4px;
+    }
+
+    .cs-persona-new .cs-persona-role {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .cs-persona-new .cs-persona-quote {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin: 16px 0;
+    }
+
+    .cs-persona-new .cs-persona-details {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .cs-persona-new .cs-persona-detail {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .cs-persona-new .cs-persona-detail strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* KPI Results */
+    .cs-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .cs-kpi-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .cs-kpi-label {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 810px) {
+      .cs-persona-new .cs-persona-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .cs-persona-new .cs-persona-avatar-circle {
+        margin: 0 auto;
+      }
+      .cs-persona-new .cs-persona-quote {
+        border-left: none;
+        border-top: 3px solid var(--accent);
+        padding-left: 0;
+        padding-top: 16px;
+      }
+      .cs-persona-new .cs-persona-details {
+        justify-content: center;
+      }
+    }
+
     /* Back link */
     .cs-back {
       position: fixed;
@@ -2084,6 +2243,34 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
+  <!-- ==================== PART 1: THE HOOK ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">חלק 1</span>
+      <h2 class="cs-part-name">ההוק</h2>
+      <p class="cs-part-eng">The Hook</p>
+    </div>
+  </div>
+
+  <div class="cs-persona-new animate-on-scroll">
+    <div class="cs-persona-card">
+      <div class="cs-persona-avatar-circle">מ</div>
+      <div class="cs-persona-info">
+        <h3>The Levi Family</h3>
+        <p class="cs-persona-role">Parents of two kids + Bono the Golden Retriever</p>
+        <blockquote class="cs-persona-quote">
+          "Between the vet visits, the dog walker schedule, and remembering Bono's medications — I need a separate calendar just for the dog. And don't get me started on finding a reliable walker."
+        </blockquote>
+        <div class="cs-persona-details">
+          <div class="cs-persona-detail"><strong>Family</strong>2 parents, 2 kids, 1 dog</div>
+          <div class="cs-persona-detail"><strong>Challenges</strong>Coordinating pet care across family</div>
+          <div class="cs-persona-detail"><strong>Apps Used</strong>4 different apps for pet needs</div>
+          <div class="cs-persona-detail"><strong>Pain</strong>No single source of truth for pet care</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== THE PET CARE CHAOS ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
@@ -2210,6 +2397,15 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 2: RESEARCH ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">חלק 2</span>
+      <h2 class="cs-part-name">מחקר</h2>
+      <p class="cs-part-eng">Research</p>
+    </div>
+  </div>
 
   <!-- ==================== DESIGN JOURNEY ROADMAP ==================== -->
   <section class="cs-section cs-section--alt">
@@ -2485,6 +2681,15 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
+  <!-- ==================== PART 3: PLANNING ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">חלק 3</span>
+      <h2 class="cs-part-name">תכנון</h2>
+      <p class="cs-part-eng">Planning</p>
+    </div>
+  </div>
+
   <!-- ==================== HMW — STICKY NOTES ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
@@ -2527,6 +2732,15 @@
 
   <!-- ==================== FROM FLOW TO EXPERIENCE ==================== -->
 <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 4: DESIGN ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">חלק 4</span>
+      <h2 class="cs-part-name">עיצוב</h2>
+      <p class="cs-part-eng">Design</p>
+    </div>
+  </div>
 
   <!-- ==================== TURNING INSIGHTS INTO ACTION ==================== -->
   <section class="cs-section cs-section--alt">
@@ -2649,6 +2863,40 @@
   </section>
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
+
+  <!-- ==================== PART 5: RESULTS ==================== -->
+  <div class="cs-part-divider animate-on-scroll">
+    <div class="cs-part-inner">
+      <span class="cs-part-number">חלק 5</span>
+      <h2 class="cs-part-name">תוצאות</h2>
+      <p class="cs-part-eng">Results</p>
+    </div>
+  </div>
+
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <h2 class="cs-section-title animate-on-scroll">Projected Impact</h2>
+      <p class="cs-body-text animate-on-scroll">Based on user research insights and industry benchmarks for pet care platforms:</p>
+      <div class="cs-kpi-grid animate-on-scroll">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">85%</div>
+          <div class="cs-kpi-label">Reduction in missed vet appointments and medication doses</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">4→1</div>
+          <div class="cs-kpi-label">Apps consolidated into a single pet care platform</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">92%</div>
+          <div class="cs-kpi-label">Of users felt more confident choosing a dog walker</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-value">6h</div>
+          <div class="cs-kpi-label">Weekly time saved on pet care coordination</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==================== REFLECTION ==================== -->
   <section class="cs-section">
