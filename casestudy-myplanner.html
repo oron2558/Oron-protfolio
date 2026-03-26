@@ -1085,79 +1085,6 @@
       font-weight: 400;
     }
 
-    /* Persona card */
-    .cs-persona {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 48px var(--container-padding);
-    }
-
-    .cs-persona-card {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 32px;
-      align-items: center;
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 40px;
-    }
-
-    .cs-persona-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      font-weight: 700;
-      color: white;
-    }
-
-    .cs-persona-info h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin: 0 0 4px;
-    }
-
-    .cs-persona-role {
-      font-size: 1rem;
-      color: var(--accent);
-      margin-bottom: 16px;
-      font-weight: 500;
-    }
-
-    .cs-persona-quote {
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      border-left: 3px solid var(--accent);
-      padding-left: 16px;
-      margin: 16px 0;
-    }
-
-    .cs-persona-details {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-
-    .cs-persona-detail {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .cs-persona-detail strong {
-      color: var(--text-primary);
-      display: block;
-      margin-bottom: 2px;
-    }
-
     /* KPI Results */
     .cs-kpi-grid {
       display: grid;
@@ -1186,25 +1113,6 @@
       font-size: 0.95rem;
       color: var(--text-secondary);
       line-height: 1.4;
-    }
-
-    @media (max-width: 810px) {
-      .cs-persona-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .cs-persona-avatar {
-        margin: 0 auto;
-      }
-      .cs-persona-quote {
-        border-left: none;
-        border-top: 3px solid var(--accent);
-        padding-left: 0;
-        padding-top: 16px;
-      }
-      .cs-persona-details {
-        justify-content: center;
-      }
     }
 
     /* Venn Goals */
@@ -1306,24 +1214,6 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
-  <div class="cs-persona animate-on-scroll">
-    <div class="cs-persona-card">
-      <div class="cs-persona-avatar">&#1513;</div>
-      <div class="cs-persona-info">
-        <h3>Shaul &amp; Lilik</h3>
-        <p class="cs-persona-role">Engaged Couple, Planning Their Wedding</p>
-        <blockquote class="cs-persona-quote">
-          "We spent 3 months fighting about the budget before we even booked a venue. Every vendor quotes different prices, nothing is written down, and we have no idea if we're overpaying. I just want someone to tell me: are we on track?"
-        </blockquote>
-        <div class="cs-persona-details">
-          <div class="cs-persona-detail"><strong>Event</strong>Wedding, 300 guests</div>
-          <div class="cs-persona-detail"><strong>Budget</strong>&#8362;150,000</div>
-          <div class="cs-persona-detail"><strong>Timeline</strong>10 months to plan</div>
-          <div class="cs-persona-detail"><strong>Pain</strong>Budget chaos + supplier overload</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ==================== THE PLANNING CHAOS ==================== -->
   <section class="cs-section">

@@ -396,82 +396,6 @@
       line-height: var(--lh-normal);
     }
 
-    /* Persona card */
-    .cs-persona {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 40px;
-      padding: 40px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      align-items: start;
-    }
-
-    .cs-persona-avatar {
-      width: 200px;
-      height: 200px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #eff6ff, #dbeafe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 64px;
-    }
-
-    .cs-persona-name {
-      font-size: var(--fs-h3);
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .cs-persona-role {
-      font-size: var(--fs-small);
-      color: var(--accent-light);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .cs-persona-quote {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: var(--fs-body);
-      color: var(--text-secondary);
-      line-height: var(--lh-relaxed);
-      padding-left: 20px;
-      border-left: 3px solid var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .cs-persona-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .cs-persona-detail {
-      font-size: var(--fs-small);
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .cs-persona-detail strong {
-      color: var(--text-primary);
-    }
-
-    .cs-persona-detail-icon {
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent-glow);
-      border-radius: 8px;
-      font-size: 14px;
-      flex: 0 0 55%;
-    }
 
     /* Journey map */
     .cs-journey {
@@ -1738,21 +1662,6 @@
         grid-template-columns: 1fr;
       }
 
-      .cs-persona {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .cs-persona-avatar {
-        margin: 0 auto;
-      }
-
-      .cs-persona-quote {
-        border-left: none;
-        padding-left: 0;
-        border-top: 3px solid var(--accent);
-        padding-top: 16px;
-      }
 
       .cs-journey {
         grid-template-columns: 1fr;
@@ -1903,9 +1812,6 @@
         padding: 8px 4px;
       }
 
-      .cs-persona {
-        gap: 16px;
-      }
     }
 
     /* Journey roadmap */
@@ -2227,9 +2133,6 @@
     [data-theme="dark"] .cs-artifact-overlay {
       background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
     }
-    [data-theme="dark"] .cs-persona-avatar {
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-    }
     [data-theme="dark"] .cs-progress {
       background: rgba(255, 255, 255, 0.06);
     }
@@ -2271,79 +2174,6 @@
       font-weight: 400;
     }
 
-    /* Persona card (Part 1) */
-    .cs-persona-section {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 48px var(--container-padding);
-    }
-
-    .cs-persona-card {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 32px;
-      align-items: center;
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 40px;
-    }
-
-    .cs-persona-section .cs-persona-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      font-weight: 700;
-      color: white;
-    }
-
-    .cs-persona-info h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin: 0 0 4px;
-    }
-
-    .cs-persona-info .cs-persona-role {
-      font-size: 1rem;
-      color: var(--accent);
-      margin-bottom: 16px;
-      font-weight: 500;
-    }
-
-    .cs-persona-info .cs-persona-quote {
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      border-left: 3px solid var(--accent);
-      padding-left: 16px;
-      margin: 16px 0;
-    }
-
-    .cs-persona-info .cs-persona-details {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-
-    .cs-persona-info .cs-persona-detail {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .cs-persona-info .cs-persona-detail strong {
-      color: var(--text-primary);
-      display: block;
-      margin-bottom: 2px;
-    }
-
     /* KPI Results */
     .cs-kpi-grid {
       display: grid;
@@ -2374,24 +2204,6 @@
       line-height: 1.4;
     }
 
-    @media (max-width: 810px) {
-      .cs-persona-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .cs-persona-section .cs-persona-avatar {
-        margin: 0 auto;
-      }
-      .cs-persona-info .cs-persona-quote {
-        border-left: none;
-        border-top: 3px solid var(--accent);
-        padding-left: 0;
-        padding-top: 16px;
-      }
-      .cs-persona-info .cs-persona-details {
-        justify-content: center;
-      }
-    }
   </style>
   <script>
     (function() {
@@ -2467,24 +2279,6 @@
 
   <div class="cs-divider"><div class="cs-divider-line"></div></div>
 
-  <div class="cs-persona-section animate-on-scroll">
-    <div class="cs-persona-card">
-      <div class="cs-persona-avatar">D</div>
-      <div class="cs-persona-info">
-        <h3>Dana Levy</h3>
-        <p class="cs-persona-role">Independent Beauty Salon Owner, 34</p>
-        <blockquote class="cs-persona-quote">
-          "I lose 3-4 potential clients every week because I can't respond fast enough. By the time I check my DMs at night, they've already booked somewhere else."
-        </blockquote>
-        <div class="cs-persona-details">
-          <div class="cs-persona-detail"><strong>Business</strong>Home beauty salon</div>
-          <div class="cs-persona-detail"><strong>Channels</strong>WhatsApp, Instagram, Facebook</div>
-          <div class="cs-persona-detail"><strong>Daily Messages</strong>40-60 inquiries</div>
-          <div class="cs-persona-detail"><strong>Pain</strong>Losing leads to slow response time</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ==================== THE MESSAGING CHAOS ==================== -->
   <section class="cs-section">
