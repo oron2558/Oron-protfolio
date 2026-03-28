@@ -1910,65 +1910,7 @@
     </a>
   </nav>
 
-  <!-- ==================== SCRIPTS ==================== -->
-  <script>
-    function toggleTheme() {
-      var html = document.documentElement;
-      var isDark = html.getAttribute('data-theme') === 'dark';
-      if (isDark) { html.setAttribute('data-theme', 'light'); localStorage.setItem('oronflix-theme', 'light'); }
-      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('oronflix-theme', 'dark'); }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      // Scroll reveal
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-      document.querySelectorAll('.animate-on-scroll').forEach(function (el) {
-        observer.observe(el);
-      });
-
-      // Pain bar animation
-      var barObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.cs-pain-bar-fill').forEach(function (bar, i) {
-              setTimeout(function () { bar.classList.add('animated'); }, i * 200);
-            });
-            barObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-
-      document.querySelectorAll('.cs-pain-bars').forEach(function (el) { barObserver.observe(el); });
-
-      // Sticky notes entrance animation
-      var stickyObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var notes = entry.target.querySelectorAll('.cs-sticky-note');
-            notes.forEach(function (note, i) {
-              note.style.opacity = '0';
-              note.style.transform = 'translateY(12px) rotate(' + (note.style.getPropertyValue('--rotate') || '0deg') + ')';
-              setTimeout(function () {
-                note.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
-                note.style.opacity = '1';
-                note.style.transform = 'translateY(0) rotate(' + (note.style.getPropertyValue('--rotate') || '0deg') + ')';
-              }, 80 * i);
-            });
-            stickyObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-
-      document.querySelectorAll('.cs-affinity-board').forEach(function (el) { stickyObserver.observe(el); });
-    });
-  </script>
+  <!-- Scripts moved to external oronflix-player.js -->
 
 <div class="onf-next-episode">
   <div class="onf-next-episode__info">
