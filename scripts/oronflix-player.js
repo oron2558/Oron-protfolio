@@ -241,6 +241,24 @@
     boards.forEach(function(el) { stickyObserver.observe(el); });
   }
 
+  // ---------- RTL Horizontal Scroll ----------
+  function initRtlScroll() {
+    var selectors = [
+      '.cs-journey-flow',
+      '.cs-journey-roadmap',
+      '.cs-journey-scroll',
+      '.cs-flow-wrap',
+      '.cs-matrix'
+    ];
+    var containers = document.querySelectorAll(selectors.join(','));
+    containers.forEach(function(el) {
+      el.style.direction = 'rtl';
+      Array.from(el.children).forEach(function(child) {
+        child.style.direction = 'ltr';
+      });
+    });
+  }
+
   // ---------- Init ----------
   document.addEventListener('DOMContentLoaded', function() {
     initScrollProgress();
@@ -252,6 +270,7 @@
     initProgressFills();
     initParallax();
     initStickyNotes();
+    initRtlScroll();
   });
 
 })();
