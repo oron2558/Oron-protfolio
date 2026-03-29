@@ -245,7 +245,6 @@
   function initRtlScroll() {
     var selectors = [
       '.cs-journey-flow',
-      '.cs-journey-roadmap',
       '.cs-journey-scroll',
       '.cs-flow-wrap',
       '.cs-matrix'
