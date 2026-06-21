@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennis Simulator — Session</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hud.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.168.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.168.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 3D Canvas -->
+  <canvas id="viewport"></canvas>
+
+  <!-- Back to menu -->
+  <a href="index.html" class="back-btn">← Menu</a>
+
+  <!-- HUD: Session stats (top-left) -->
+  <div class="hud-panel hud-top-left" id="hud-stats">
+    <div class="hud-row">
+      <span class="hud-label">Time</span>
+      <span class="hud-val" id="timer-val">0:00</span>
+    </div>
+    <div class="hud-row">
+      <span class="hud-label">Hits</span>
+      <span class="hud-val hud-val--green" id="hits-val">0</span>
+    </div>
+    <div class="hud-row">
+      <span class="hud-label">Misses</span>
+      <span class="hud-val hud-val--red" id="misses-val">0</span>
+    </div>
+    <div class="hud-row">
+      <span class="hud-label">Acc</span>
+      <span class="hud-val" id="accuracy-val">—</span>
+    </div>
+  </div>
+
+  <!-- HUD: Shot quality (top-right) -->
+  <div class="hud-panel hud-top-right" id="hud-quality">
+    <div class="hud-row">
+      <span class="hud-label">Speed</span>
+      <span class="hud-val" id="speed-val">—</span>
+    </div>
+    <div class="hud-row">
+      <span class="hud-label">Score</span>
+      <span class="hud-val hud-val--accent" id="quality-val">—</span>
+    </div>
+  </div>
+
+  <!-- Strike zone indicator (shown when ball is in hit window) -->
+  <div id="strike-zone-ring"></div>
+
+  <!-- Hit result feedback (large overlay) -->
+  <div id="hit-feedback" class="hit-feedback"></div>
+
+  <!-- Current shot label -->
+  <div id="shot-label"></div>
+
+  <!-- Controls hint -->
+  <div id="controls-hint">
+    <span>SPACE — Swing</span>
+    <span>← → — Direction</span>
+    <span>R — New ball</span>
+    <span>F — Fullscreen</span>
+  </div>
+
+  <!-- Mobile tap-to-swing button -->
+  <button id="swing-btn" class="swing-btn">HIT</button>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

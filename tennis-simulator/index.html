@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennis Simulator — Train Like a Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────── -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">TENIS<span>.sim</span></a>
+  <a href="simulator.html?mode=free" class="nav-link">Free Play</a>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge">MVP — Phase 1 (Keyboard Mode)</div>
+  <h1 class="hero-title">Train Tennis.<br><em>Anywhere.</em></h1>
+  <p class="hero-subtitle">
+    A virtual tennis simulator that reacts to your real swing. Hit balls flying toward you on a 3D court — no court, no balls required. Just your racket and a screen.
+  </p>
+  <div class="hero-actions">
+    <a href="simulator.html" class="btn btn--primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      Start Session
+    </a>
+    <a href="#drills" class="btn btn--outline">Browse Drills</a>
+  </div>
+</section>
+
+<!-- ── Stats Row ────────────────────────────────── -->
+<div class="stats-row" id="stats-row">
+  <div class="stat-card">
+    <div class="stat-val" id="stat-sessions">0</div>
+    <div class="stat-label">Sessions</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val" id="stat-hits">0</div>
+    <div class="stat-label">Total Hits</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val" id="stat-accuracy">—</div>
+    <div class="stat-label">Best Accuracy</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val" id="stat-score">—</div>
+    <div class="stat-label">Best Score</div>
+  </div>
+</div>
+
+<!-- ── Drill Library ────────────────────────────── -->
+<section class="section" id="drills">
+  <p class="section-title">Drill Library</p>
+  <div class="drill-grid">
+
+    <a href="simulator.html?drill=cross" class="drill-card">
+      <div class="drill-icon">🎾</div>
+      <div class="drill-name">Cross-Court Forehand</div>
+      <div class="drill-desc">20 balls to your forehand. Focus on timing and power.</div>
+      <span class="drill-diff diff--easy">Beginner</span>
+    </a>
+
+    <a href="simulator.html?drill=backhand" class="drill-card">
+      <div class="drill-icon">↩️</div>
+      <div class="drill-name">Backhand Down the Line</div>
+      <div class="drill-desc">Keep it tight to the sideline. Direction training.</div>
+      <span class="drill-diff diff--easy">Beginner</span>
+    </a>
+
+    <a href="simulator.html?drill=topspin" class="drill-card">
+      <div class="drill-icon">🌀</div>
+      <div class="drill-name">Heavy Topspin Rally</div>
+      <div class="drill-desc">High-bouncing balls. Adjust your contact point.</div>
+      <span class="drill-diff diff--med">Intermediate</span>
+    </a>
+
+    <a href="simulator.html?drill=slice" class="drill-card">
+      <div class="drill-icon">✂️</div>
+      <div class="drill-name">Slice Approach</div>
+      <div class="drill-desc">Low, fast slices. Quick reaction drills.</div>
+      <span class="drill-diff diff--med">Intermediate</span>
+    </a>
+
+    <a href="simulator.html?drill=mixed" class="drill-card">
+      <div class="drill-icon">⚡</div>
+      <div class="drill-name">Mixed Rally</div>
+      <div class="drill-desc">Random shot types. Stay ready for anything.</div>
+      <span class="drill-diff diff--hard">Advanced</span>
+    </a>
+
+    <a href="simulator.html?drill=free" class="drill-card">
+      <div class="drill-icon">🎯</div>
+      <div class="drill-name">Free Play</div>
+      <div class="drill-desc">No set drill. Just you and the court. Unlimited balls.</div>
+      <span class="drill-diff diff--easy">All Levels</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── How It Works ──────────────────────────────── -->
+<section class="section">
+  <p class="section-title">How It Works</p>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">Step 01</div>
+      <div class="step-title">Watch the Ball</div>
+      <div class="step-desc">A virtual ball flies toward you on the 3D court. Track its trajectory.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 02</div>
+      <div class="step-title">Time Your Swing</div>
+      <div class="step-desc">Press SPACE (or HIT button) when the green ring appears. Timing is everything.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 03</div>
+      <div class="step-title">See the Result</div>
+      <div class="step-desc">Perfect timing → clean winner. Too early/late → net or miss.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 04</div>
+      <div class="step-title">Add Real Sensor</div>
+      <div class="step-desc">Attach an ESP32 sensor to your racket. The system reads your actual swing. (<em>Phase 2</em>)</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Footer ──────────────────────────────────── -->
+<footer>
+  <span>Tennis Simulator — MVP Phase 1</span>
+  <span>Built with Three.js + FastAPI</span>
+</footer>
+
+<script>
+  // Load stats from localStorage
+  (function loadStats() {
+    try {
+      const sessions = JSON.parse(localStorage.getItem('tennis_sessions') || '[]');
+      if (!sessions.length) return;
+
+      document.getElementById('stat-sessions').textContent = sessions.length;
+
+      const totalHits = sessions.reduce((a, s) => a + (s.hits || 0), 0);
+      document.getElementById('stat-hits').textContent = totalHits;
+
+      const bestAcc = Math.max(...sessions.map(s => s.accuracy_pct || 0));
+      document.getElementById('stat-accuracy').textContent = bestAcc + '%';
+
+      const bestScore = Math.max(...sessions.map(s => s.avg_quality || 0));
+      document.getElementById('stat-score').textContent = bestScore;
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>
