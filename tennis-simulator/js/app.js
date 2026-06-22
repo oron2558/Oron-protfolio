@@ -28,7 +28,7 @@ camera.lookAt(0, 1.1, 0);
 const clock = new THREE.Clock();
 
 // ─── Modules ───────────────────────────────────────────────
-const court   = new Court(scene);
+const court   = new Court(scene, 'australian');
 const ball    = new Ball(scene);
 const swing   = new SwingDetector();
 const hud     = new HUD();
@@ -154,7 +154,18 @@ input.onSwing(processSwing);
 input.init();
 input.connectSensor('ws://localhost:8000/ws/display');
 
+// ─── Slam Selector ─────────────────────────────────────────
+const slamBtns = document.querySelectorAll('.slam-btn');
+function switchSlam(name) {
+  court.setTheme(name);
+  slamBtns.forEach(b => b.classList.toggle('active', b.dataset.slam === name));
+}
+slamBtns.forEach(btn => btn.addEventListener('click', () => switchSlam(btn.dataset.slam)));
+
 document.addEventListener('keydown', (e) => {
+  const slamMap = { '1': 'australian', '2': 'roland', '3': 'wimbledon', '4': 'usopen' };
+  if (slamMap[e.key]) { switchSlam(slamMap[e.key]); return; }
+
   if (e.key === 'r' || e.key === 'R') {
     clearTimeout(nextTimer);
     ball.reset();

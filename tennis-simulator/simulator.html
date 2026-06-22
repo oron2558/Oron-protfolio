@@ -22,8 +22,16 @@
   <!-- 3D Canvas -->
   <canvas id="viewport"></canvas>
 
-  <!-- Back to menu -->
-  <a href="index.html" class="back-btn">← Menu</a>
+  <!-- Slam selector + back -->
+  <div id="top-bar">
+    <a href="index.html" class="back-btn">← Menu</a>
+    <div id="slam-selector">
+      <button class="slam-btn active" data-slam="australian">🇦🇺 AO</button>
+      <button class="slam-btn" data-slam="roland">🇫🇷 RG</button>
+      <button class="slam-btn" data-slam="wimbledon">🇬🇧 WIM</button>
+      <button class="slam-btn" data-slam="usopen">🇺🇸 USO</button>
+    </div>
+  </div>
 
   <!-- HUD: Session stats (top-left) -->
   <div class="hud-panel hud-top-left" id="hud-stats">
