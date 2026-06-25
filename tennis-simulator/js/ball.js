@@ -11,19 +11,19 @@ export class Ball {
     this._trailData = [];
 
     this._buildMesh();
+    this._buildLight();
     this._buildTrail();
 
-    // Start hidden offscreen
     this.mesh.position.set(0, 20, 0);
   }
 
   _buildMesh() {
-    const geo = new THREE.SphereGeometry(0.14, 16, 16);
+    const geo = new THREE.SphereGeometry(0.14, 20, 20);
     const mat = new THREE.MeshStandardMaterial({
       color: 0xccff00,
-      emissive: 0x88cc00,
-      emissiveIntensity: 0.4,
-      roughness: 0.5,
+      emissive: 0x99dd00,
+      emissiveIntensity: 0.85,
+      roughness: 0.38,
       metalness: 0.0,
     });
     this.mesh = new THREE.Mesh(geo, mat);
@@ -31,14 +31,23 @@ export class Ball {
     this.scene.add(this.mesh);
   }
 
+  _buildLight() {
+    // Soft point light that travels with the ball and casts a pool on the court
+    this.ballLight = new THREE.PointLight(0xbbff22, 0, 8, 1.8);
+    this.ballLight.castShadow = false;
+    this.scene.add(this.ballLight);
+  }
+
   _buildTrail() {
     this.trail = [];
-    for (let i = 0; i < 12; i++) {
-      const geo = new THREE.SphereGeometry(0.06 - i * 0.004, 8, 8);
+    const TRAIL_LEN = 18;
+    for (let i = 0; i < TRAIL_LEN; i++) {
+      const r = 0.065 - i * 0.003;
+      const geo = new THREE.SphereGeometry(Math.max(r, 0.008), 8, 8);
       const mat = new THREE.MeshStandardMaterial({
         color: 0xccff00,
-        emissive: 0x88cc00,
-        emissiveIntensity: 0.2,
+        emissive: 0x99dd00,
+        emissiveIntensity: 0.35,
         transparent: true,
         opacity: 0,
       });
@@ -72,8 +81,9 @@ export class Ball {
     this.swingT = null;
     this._trailData = [];
 
-    // Snap to start position immediately
     this.mesh.position.copy(from);
+    this.ballLight.position.copy(from);
+    this.ballLight.intensity = 1.2;
   }
 
   update(dt) {
@@ -88,9 +98,18 @@ export class Ball {
     const pos = this.trajectory.getPoint(this.t);
     this.mesh.position.copy(pos);
 
+    // Light follows the ball, slightly offset downward so it pools on court
+    this.ballLight.position.set(pos.x, pos.y - 0.2, pos.z);
+
+    // Pulse brighter when entering the strike zone
+    const inZone = this.t > 0.82 && this.t < 0.95;
+    const baseIntensity = 1.2;
+    const pulse = inZone ? 1.0 + 0.5 * Math.sin(Date.now() * 0.012) : 0;
+    this.ballLight.intensity = baseIntensity + pulse;
+
     // Visual spin rotation
-    this.mesh.rotation.x += dt * 15;
-    this.mesh.rotation.z += dt * 8;
+    this.mesh.rotation.x += dt * 16;
+    this.mesh.rotation.z += dt * 9;
 
     this._updateTrail(pos);
   }
@@ -98,11 +117,11 @@ export class Ball {
   _updateTrail(pos) {
     const now = Date.now();
     this._trailData.unshift({ x: pos.x, y: pos.y, z: pos.z, t: now });
-    if (this._trailData.length > 12) {
+    if (this._trailData.length > this.trail.length) {
       this._trailData.pop();
     }
 
-    const maxAge = 300; // ms
+    const maxAge = 380; // ms — slightly longer for more dramatic tail
 
     for (let i = 0; i < this.trail.length; i++) {
       const sphere = this.trail[i];
@@ -112,7 +131,7 @@ export class Ball {
         const age = now - data.t;
         const freshness = Math.max(0, 1 - age / maxAge);
         const indexFade = 1 - (i / this.trail.length);
-        sphere.material.opacity = freshness * indexFade * 0.7;
+        sphere.material.opacity = freshness * indexFade * 0.72;
       } else {
         sphere.position.set(0, 20, 0);
         sphere.material.opacity = 0;
@@ -162,14 +181,12 @@ export class Ball {
         break;
       case 'miss':
       default:
-        // Ball freezes and fades out
         this.state = 'done';
+        this.ballLight.intensity = 0;
         this._fadeOut();
         return;
     }
 
-    // Control points for the return trajectory
-    const midX = (currentPos.x + destination.x) / 2;
     const cp1 = new THREE.Vector3(currentPos.x * 0.5, currentPos.y + 1.5, currentPos.z - 1);
     const cp2 = new THREE.Vector3(destination.x * 0.5, destination.y + 1.0, destination.z + 2);
 
@@ -184,6 +201,7 @@ export class Ball {
     this.duration = 1.4;
     this.state = 'moving';
     this._trailData = [];
+    this.ballLight.intensity = 1.8;
   }
 
   _fadeOut() {
@@ -193,10 +211,13 @@ export class Ball {
     const fade = setInterval(() => {
       opacity -= 0.05;
       mat.opacity = Math.max(0, opacity);
+      this.ballLight.intensity = Math.max(0, opacity * 1.2);
       this.trail.forEach(s => { s.material.opacity = 0; });
       if (opacity <= 0) {
         clearInterval(fade);
         this.mesh.position.set(0, 20, 0);
+        this.ballLight.position.set(0, 20, 0);
+        this.ballLight.intensity = 0;
         mat.opacity = 1;
         mat.transparent = false;
       }
@@ -210,6 +231,8 @@ export class Ball {
     this.mesh.position.set(0, 20, 0);
     this.mesh.material.opacity = 1;
     this.mesh.material.transparent = false;
+    this.ballLight.position.set(0, 20, 0);
+    this.ballLight.intensity = 0;
     this._trailData = [];
     this.trail.forEach(s => {
       s.position.set(0, 20, 0);

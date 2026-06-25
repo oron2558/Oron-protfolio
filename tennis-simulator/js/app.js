@@ -183,8 +183,16 @@ document.addEventListener('keydown', (e) => {
 function animate() {
   requestAnimationFrame(animate);
   const dt = Math.min(clock.getDelta(), 0.05);
+  const elapsed = clock.getElapsedTime();
+
+  // Subtle camera breathing — makes the view feel alive
+  camera.position.y = 1.75 + Math.sin(elapsed * 0.22) * 0.008;
 
   ball.update(dt);
+
+  // Crowd wave + stadium light flicker
+  court.updateCrowd(elapsed);
+  court.flickerLights(elapsed);
 
   if (state === 'incoming') {
     const inZone = ball.isInStrikeZone();
