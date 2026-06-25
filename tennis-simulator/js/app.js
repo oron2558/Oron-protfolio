@@ -5,6 +5,7 @@ import { SwingDetector } from './swing.js';
 import { HUD } from './hud.js';
 import { Session } from './session.js';
 import { InputHandler } from './input.js';
+import { TennisScore } from './scoring.js';
 
 // ─── Renderer ──────────────────────────────────────────────
 const canvas = document.getElementById('viewport');
@@ -34,6 +35,7 @@ const swing   = new SwingDetector();
 const hud     = new HUD();
 const session = new Session();
 const input   = new InputHandler();
+const score   = new TennisScore();
 
 // ─── Shot Library ──────────────────────────────────────────
 // Each shot: 4 Bezier control points + duration + label
@@ -85,6 +87,33 @@ let state      = 'idle';   // 'idle' | 'incoming' | 'result'
 let swingHandled = false;
 let nextTimer  = null;
 
+// ─── Scoreboard DOM ────────────────────────────────────────
+function updateScoreboard() {
+  const d = score.getDisplay();
+  document.getElementById('sb-sets-p').textContent  = d.sets.p;
+  document.getElementById('sb-games-p').textContent = d.games.p;
+  document.getElementById('sb-sets-c').textContent  = d.sets.c;
+  document.getElementById('sb-games-c').textContent = d.games.c;
+
+  const ppEl = document.getElementById('sb-pts-p');
+  const pcEl = document.getElementById('sb-pts-c');
+  ppEl.textContent = d.points.p;
+  pcEl.textContent = d.points.c;
+  ppEl.className = 'sb-cell sb-pts';
+  pcEl.className = 'sb-cell sb-pts sb-pts--cpu';
+
+  if (d.gameOver) {
+    const isWin = d.winner === 0;
+    const goEl  = document.getElementById('game-over');
+    document.getElementById('go-title').textContent = isWin ? 'You Win!' : 'CPU Wins';
+    document.getElementById('go-title').className   = 'go-title' + (isWin ? '' : ' go-title--loss');
+    document.getElementById('go-sub').textContent   =
+      `${d.sets.p}–${d.sets.c} sets`;
+    goEl.style.display = 'block';
+    session.save();
+  }
+}
+
 // ─── Game Logic ────────────────────────────────────────────
 function launchBall() {
   const shot = SHOTS[shotIndex % SHOTS.length];
@@ -123,7 +152,11 @@ function processSwing(directionBias) {
     document.getElementById('quality-val').textContent = result.quality;
     document.getElementById('speed-val').textContent =
       Math.round(50 + result.quality * 0.8) + ' km/h';
+    score.pointTo(0); // player wins the point on a good hit
+  } else {
+    score.pointTo(1); // cpu wins on weak/miss
   }
+  updateScoreboard();
 
   state = 'result';
   scheduleNextBall(1800);
@@ -136,6 +169,8 @@ function autoMiss() {
   const result = { result: 'miss', quality: 0, grade: 'Miss!', reason: 'No swing' };
   session.recordShot(result);
   hud.showFeedback(result);
+  score.pointTo(1); // auto-miss → cpu wins point
+  updateScoreboard();
 
   state = 'result';
   scheduleNextBall(1500);
@@ -169,6 +204,9 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'r' || e.key === 'R') {
     clearTimeout(nextTimer);
     ball.reset();
+    score.reset();
+    updateScoreboard();
+    document.getElementById('game-over').style.display = 'none';
     state = 'idle';
     setTimeout(launchBall, 400);
   }

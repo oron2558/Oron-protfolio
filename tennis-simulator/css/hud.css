@@ -248,3 +248,127 @@ body {
   z-index: 10;
   transition: opacity 0.3s;
 }
+
+/* ── Scoreboard ─────────────────────────────────── */
+#scoreboard {
+  position: fixed;
+  bottom: 28px;
+  right: 20px;
+  background: rgba(0,0,0,0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+  z-index: 20;
+  pointer-events: none;
+  min-width: 160px;
+}
+
+.sb-col-labels {
+  display: grid;
+  grid-template-columns: 1fr 28px 28px 38px;
+  gap: 4px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sb-col-labels span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.sb-row {
+  display: grid;
+  grid-template-columns: 1fr 28px 28px 38px;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.sb-row:last-child { margin-bottom: 0; }
+
+.sb-name {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.sb-you { color: #84cc16; }
+
+.sb-cell {
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: #fff;
+}
+
+.sb-pts {
+  font-size: 16px;
+  font-weight: 900;
+  color: #84cc16;
+  text-align: center;
+}
+
+.sb-pts.sb-pts--cpu {
+  color: #f87171;
+}
+
+/* ── Game Over Banner ───────────────────────────── */
+#game-over {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 40px 56px;
+  text-align: center;
+  z-index: 50;
+}
+
+.go-title {
+  font-size: clamp(38px, 6vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #84cc16;
+  margin-bottom: 8px;
+}
+
+.go-title.go-title--loss {
+  color: #f87171;
+}
+
+.go-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  margin-bottom: 28px;
+}
+
+.go-btn {
+  background: #84cc16;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 36px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  transition: transform 0.12s, opacity 0.12s;
+}
+.go-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}

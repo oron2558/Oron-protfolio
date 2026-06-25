@@ -13,6 +13,7 @@ export class Ball {
     this._buildMesh();
     this._buildLight();
     this._buildTrail();
+    this._buildShadow();
 
     this.mesh.position.set(0, 20, 0);
   }
@@ -29,6 +30,20 @@ export class Ball {
     this.mesh = new THREE.Mesh(geo, mat);
     this.mesh.castShadow = true;
     this.scene.add(this.mesh);
+  }
+
+  _buildShadow() {
+    const geo = new THREE.CircleGeometry(0.22, 16);
+    const mat = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+    });
+    this.shadow = new THREE.Mesh(geo, mat);
+    this.shadow.rotation.x = -Math.PI / 2;
+    this.shadow.position.set(0, 0.02, 0);
+    this.scene.add(this.shadow);
   }
 
   _buildLight() {
@@ -97,6 +112,14 @@ export class Ball {
 
     const pos = this.trajectory.getPoint(this.t);
     this.mesh.position.copy(pos);
+
+    // Ground shadow — scales and fades with height above court
+    const ht = Math.max(0, pos.y - 0.1);
+    this.shadow.position.x = pos.x;
+    this.shadow.position.z = pos.z;
+    this.shadow.material.opacity = Math.max(0, 0.45 - ht * 0.12);
+    const ss = 1 + ht * 0.06;
+    this.shadow.scale.set(ss, ss, ss);
 
     // Light follows the ball, slightly offset downward so it pools on court
     this.ballLight.position.set(pos.x, pos.y - 0.2, pos.z);
@@ -213,6 +236,7 @@ export class Ball {
       mat.opacity = Math.max(0, opacity);
       this.ballLight.intensity = Math.max(0, opacity * 1.2);
       this.trail.forEach(s => { s.material.opacity = 0; });
+      this.shadow.material.opacity = 0;
       if (opacity <= 0) {
         clearInterval(fade);
         this.mesh.position.set(0, 20, 0);
@@ -233,6 +257,7 @@ export class Ball {
     this.mesh.material.transparent = false;
     this.ballLight.position.set(0, 20, 0);
     this.ballLight.intensity = 0;
+    this.shadow.material.opacity = 0;
     this._trailData = [];
     this.trail.forEach(s => {
       s.position.set(0, 20, 0);

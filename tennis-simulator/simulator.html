@@ -74,6 +74,32 @@
   <!-- Current shot label -->
   <div id="shot-label"></div>
 
+  <!-- Tennis Scoreboard -->
+  <div id="scoreboard">
+    <div class="sb-col-labels">
+      <span></span><span>S</span><span>G</span><span>P</span>
+    </div>
+    <div class="sb-row">
+      <div class="sb-name sb-you">YOU</div>
+      <div class="sb-cell" id="sb-sets-p">0</div>
+      <div class="sb-cell" id="sb-games-p">0</div>
+      <div class="sb-cell sb-pts" id="sb-pts-p">0</div>
+    </div>
+    <div class="sb-row">
+      <div class="sb-name sb-cpu">CPU</div>
+      <div class="sb-cell" id="sb-sets-c">0</div>
+      <div class="sb-cell" id="sb-games-c">0</div>
+      <div class="sb-cell sb-pts" id="sb-pts-c">0</div>
+    </div>
+  </div>
+
+  <!-- Game Over Banner -->
+  <div id="game-over" style="display:none">
+    <div class="go-title" id="go-title">You Win!</div>
+    <div class="go-sub" id="go-sub"></div>
+    <button class="go-btn" onclick="location.reload()">Play Again</button>
+  </div>
+
   <!-- Controls hint -->
   <div id="controls-hint">
     <span>SPACE — Swing</span>
