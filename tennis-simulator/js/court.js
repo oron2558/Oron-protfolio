@@ -138,97 +138,145 @@ function makeCourtTexture(theme) {
 }
 
 // ─── Procedural Crowd Texture ───────────────────────────────────────────────
-function makeCrowdTexture(colors) {
-  const W = 1024, H = 256;
+// High-res 4096×1024 canvas — each person is ~40px wide so texture stays sharp.
+// maxAnisotropy is passed from the renderer to avoid blurring at oblique angles.
+function makeCrowdTexture(colors, maxAnisotropy = 1) {
+  const W = 4096, H = 1024;
   const canvas = document.createElement('canvas');
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = '#0d0d18';
+  ctx.fillStyle = '#0a0c1a';
   ctx.fillRect(0, 0, W, H);
 
-  const ROWS = 20;
+  const ROWS = 16;   // fewer rows → bigger people → sharper crowd
   const rowH = H / ROWS;
+  const SKINS = ['#f5d5a0','#e8c478','#d4a56a','#c08050','#a06030','#8b4513','#ffdbac'];
+  const HAIRS = ['#0e0300','#2a1008','#5a2a10','#9a6830','#d0b878','#e8e0d0','#1a0800'];
 
-  // Draw seat row stripes
-  for (let r = 0; r < ROWS; r++) {
-    const shade = 12 + r * 0.4;
-    ctx.fillStyle = `rgb(${shade},${shade},${shade+7})`;
-    ctx.fillRect(0, r * rowH, W, rowH);
-    ctx.fillStyle = 'rgba(50,50,75,0.45)';
-    ctx.fillRect(0, r * rowH, W, rowH * 0.2);
-  }
-
-  // Skin tones + hair colors
-  const SKINS  = ['#f0d0a0','#e0b880','#c89060','#a06030','#8b4513','#ffdbac','#d4956a'];
-  const HAIRS  = ['#1a0800','#3d2208','#7b4b2a','#c8a060','#e8e0d0','#2a1a08','#1c0c00'];
-
-  // People grid: columns = floor(W / colStep)
-  const personH = rowH * 0.94;
-  const personW = personH * 0.7;
-  const colStep = personW * 0.82;
-  const cols    = Math.ceil(W / colStep);
+  // Seat-back color: brighten the theme color so it reads against the dark BG
+  const raw = colors[0] || '#223355';
+  const rr = Math.min(255, parseInt(raw.slice(1,3)||'22',16) + 40);
+  const rg = Math.min(255, parseInt(raw.slice(3,5)||'33',16) + 40);
+  const rb = Math.min(255, parseInt(raw.slice(5,7)||'55',16) + 60);
+  const seatBase = `#${rr.toString(16).padStart(2,'0')}${rg.toString(16).padStart(2,'0')}${rb.toString(16).padStart(2,'0')}`;
 
   for (let row = 0; row < ROWS; row++) {
-    const baseY = row * rowH;
-    // Brightness dims toward top (further from court lights)
-    const alpha = 0.92 - row * 0.014;
+    const baseY    = row * rowH;
+    // Row 0 = top of canvas = highest/furthest tier → dimmer
+    // Row 15 = bottom = courtside → brighter
+    const dimFade  = 0.62 + (row / ROWS) * 0.38;
 
-    for (let col = 0; col < cols; col++) {
-      // 8% empty seats
-      if (Math.random() < 0.08) continue;
+    // ── Concrete step / floor between rows ─────────────────────
+    ctx.fillStyle = '#14162a';
+    ctx.fillRect(0, baseY, W, rowH * 0.14);
 
-      const cx = col * colStep + Math.random() * 3 - 1.5;
-      const cy = baseY + rowH * 0.06;
+    // ── Seat backrests (plastic stadium chairs) ─────────────────
+    const seatW  = rowH * 0.88;   // width of one seat unit
+    const seatH  = rowH * 0.42;   // height of the backrest
+    const seatY  = baseY + rowH * 0.54;
 
-      const shirt   = colors[Math.floor(Math.random() * colors.length)];
-      const skin    = SKINS [Math.floor(Math.random() * SKINS.length)];
-      const hair    = HAIRS [Math.floor(Math.random() * HAIRS.length)];
-      const headW   = personW * 0.40;
-      const headH   = personH * 0.22;
-      const headCY  = cy + personH * 0.22;
-      const bodyTop = cy + personH * 0.36;
+    for (let sx = seatW * 0.15; sx < W; sx += seatW) {
+      // Most seats: slam theme colour; occasional contrast seat
+      const rand = Math.random();
+      let sc = seatBase;
+      if (rand < 0.14) sc = colors[1] || '#ffffff';
+      else if (rand < 0.22) sc = colors[2] || '#bbbbbb';
 
-      ctx.globalAlpha = alpha;
+      // Parse hex → rgb for brightness adjustment
+      const cr = Math.min(255, parseInt(sc.slice(1,3)||'22',16));
+      const cg = Math.min(255, parseInt(sc.slice(3,5)||'33',16));
+      const cb = Math.min(255, parseInt(sc.slice(5,7)||'55',16));
+      ctx.fillStyle = `rgba(${Math.round(cr*dimFade)},${Math.round(cg*dimFade)},${Math.round(cb*dimFade)},1)`;
 
-      // Body (trapezoid: shoulders narrower, hips wider)
+      const sw = seatW * 0.84;
+      const sh = seatH;
+      const sr = Math.min(sw, sh) * 0.22;   // corner radius
+      const sx2 = sx - sw / 2;
+
+      // Rounded rectangle for seat back (manual path for compat)
+      ctx.beginPath();
+      ctx.moveTo(sx2 + sr, seatY);
+      ctx.lineTo(sx2 + sw - sr, seatY);
+      ctx.arcTo(sx2+sw, seatY,    sx2+sw, seatY+sh, sr);
+      ctx.lineTo(sx2+sw, seatY+sh-sr);
+      ctx.arcTo(sx2+sw, seatY+sh, sx2+sw-sr, seatY+sh, sr);
+      ctx.lineTo(sx2+sr, seatY+sh);
+      ctx.arcTo(sx2, seatY+sh,    sx2, seatY+sh-sr, sr);
+      ctx.lineTo(sx2, seatY+sr);
+      ctx.arcTo(sx2, seatY,       sx2+sr, seatY, sr);
+      ctx.closePath();
+      ctx.fill();
+
+      // Highlight edge on top of seat (plastic sheen)
+      ctx.strokeStyle = `rgba(255,255,255,${0.12 * dimFade})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // Shadow below seat
+      ctx.fillStyle = 'rgba(0,0,0,0.35)';
+      ctx.fillRect(sx2, seatY + sh - 2, sw, 3);
+    }
+
+    // ── People — upper 58% of each row ─────────────────────────
+    const colStep = seatW;
+    const personH = rowH * 0.52;
+    const personW = colStep * 0.72;
+
+    for (let px = colStep * 0.15; px < W; px += colStep) {
+      if (Math.random() < 0.07) continue; // empty seat
+
+      const jitter  = (Math.random() - 0.5) * colStep * 0.22;
+      const cx      = px + jitter;
+      const personY = baseY + rowH * 0.04;
+
+      const shirt  = colors[Math.floor(Math.random() * colors.length)];
+      const skin   = SKINS[Math.floor(Math.random() * SKINS.length)];
+      const hair   = HAIRS[Math.floor(Math.random() * HAIRS.length)];
+
+      const headR   = personH * 0.18;
+      const headCY  = personY + headR * 1.1;
+      const bodyTop = personY + headR * 2.4;
+      const bw      = personW * 0.48;
+
+      ctx.globalAlpha = dimFade * 0.96;
+
+      // Torso
       ctx.fillStyle = shirt;
       ctx.beginPath();
-      ctx.moveTo(cx - personW * 0.28, bodyTop);
-      ctx.lineTo(cx + personW * 0.28, bodyTop);
-      ctx.lineTo(cx + personW * 0.44, cy + personH);
-      ctx.lineTo(cx - personW * 0.44, cy + personH);
+      ctx.moveTo(cx - bw * 0.65, bodyTop);
+      ctx.lineTo(cx + bw * 0.65, bodyTop);
+      ctx.lineTo(cx + bw * 0.85, personY + personH * 0.56);
+      ctx.lineTo(cx - bw * 0.85, personY + personH * 0.56);
       ctx.closePath();
       ctx.fill();
 
       // Neck
       ctx.fillStyle = skin;
-      ctx.fillRect(cx - personW * 0.09, bodyTop - personH * 0.07, personW * 0.18, personH * 0.09);
+      ctx.fillRect(cx - bw * 0.14, bodyTop - personH * 0.08, bw * 0.28, personH * 0.1);
 
       // Head (oval)
       ctx.fillStyle = skin;
       ctx.beginPath();
-      ctx.ellipse(cx, headCY, headW * 0.92, headH, 0, 0, Math.PI * 2);
+      ctx.ellipse(cx, headCY, headR * 0.82, headR, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Hair (upper arc)
+      // Hair (arc over top half of head)
       ctx.fillStyle = hair;
       ctx.beginPath();
-      ctx.ellipse(cx, headCY - headH * 0.15, headW, headH * 0.65, 0, Math.PI, Math.PI * 2);
+      ctx.ellipse(cx, headCY - headR * 0.1, headR * 0.88, headR * 0.68, 0, Math.PI, Math.PI * 2);
       ctx.fill();
 
-      // Raised arm / item for ~9% of people
-      if (Math.random() < 0.09) {
-        const armSide = Math.random() < 0.5 ? -1 : 1;
+      // 10%: raised arm (phone / wave)
+      if (Math.random() < 0.10) {
+        const side = Math.random() < 0.5 ? -1 : 1;
         ctx.fillStyle = skin;
         ctx.beginPath();
         ctx.ellipse(
-          cx + armSide * personW * 0.52,
-          bodyTop - personH * 0.25,
-          personW * 0.13,
-          personH * 0.28,
-          Math.PI * 0.15 * armSide,
-          0, Math.PI * 2
+          cx + side * bw * 0.9,
+          bodyTop - personH * 0.22,
+          bw * 0.14, personH * 0.30,
+          Math.PI * 0.12 * side, 0, Math.PI * 2
         );
         ctx.fill();
       }
@@ -237,21 +285,26 @@ function makeCrowdTexture(colors) {
 
   ctx.globalAlpha = 1;
 
-  // Vignette: slightly darken edges
+  // Depth vignette — top rows fade slightly to black
   const vg = ctx.createLinearGradient(0, 0, 0, H);
-  vg.addColorStop(0,   'rgba(0,0,0,0.35)');
-  vg.addColorStop(0.5, 'rgba(0,0,0,0.0)');
-  vg.addColorStop(1,   'rgba(0,0,0,0.15)');
+  vg.addColorStop(0,    'rgba(0,0,0,0.55)');
+  vg.addColorStop(0.25, 'rgba(0,0,0,0.08)');
+  vg.addColorStop(1,    'rgba(0,0,0,0.0)');
   ctx.fillStyle = vg;
   ctx.fillRect(0, 0, W, H);
 
-  return new THREE.CanvasTexture(canvas);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.anisotropy = maxAnisotropy;
+  tex.minFilter  = THREE.LinearMipmapLinearFilter;
+  tex.magFilter  = THREE.LinearFilter;
+  return tex;
 }
 
 // ─── Court Class ───────────────────────────────────────────────────────────
 export class Court {
-  constructor(scene, themeName = 'australian') {
+  constructor(scene, themeName = 'australian', renderer = null) {
     this.scene    = scene;
+    this._renderer = renderer;
     this._theme   = SLAM_THEMES[themeName] || SLAM_THEMES.australian;
     this._objects = [];
     this._lights  = [];
@@ -403,8 +456,9 @@ export class Court {
   }
 
   _buildStadium() {
-    const t        = this._theme;
-    const crowdTex = makeCrowdTexture(t.crowdColors);
+    const t           = this._theme;
+    const maxAniso    = this._renderer?.capabilities?.getMaxAnisotropy() ?? 1;
+    const crowdTex    = makeCrowdTexture(t.crowdColors, maxAniso);
 
     // Animated shader material for crowd
     this._crowdUniforms = {
@@ -431,24 +485,24 @@ export class Court {
         }
 
         void main() {
-          // Tile texture 3× horizontally to fill wide bleacher faces
-          vec2 uv = vec2(fract(vUv.x * 3.0), vUv.y);
+          // Use full UV — no tiling, 4096px texture fills each bleacher face
+          vec2 uv = vUv;
 
-          // Mexican wave — vertical sway ripple across the crowd
-          float wave = sin(vUv.x * 7.0 - time * 2.3) * 0.024;
-          uv.y = clamp(uv.y + wave, 0.0, 1.0);
+          // Subtle Mexican wave: small vertical ripple that travels across crowd
+          float wave = sin(vUv.x * 9.0 - time * 2.1) * 0.012;
+          uv.y = clamp(uv.y + wave, 0.001, 0.999);
 
           vec4 col = texture2D(map, uv);
 
-          // Camera flashes: sparse random bright spots
-          float fx = floor(vUv.x * 55.0 + time * 0.4);
-          float fy = floor(vUv.y * 14.0);
+          // Sparse camera flashes (bright white blobs)
+          float fx = floor(vUv.x * 80.0 + time * 0.3);
+          float fy = floor(vUv.y * 18.0);
           float h  = hash(vec2(fx, fy));
-          float flash = max(0.0, sin(time * 4.8 * h + h * 22.0) - 0.90) * 14.0;
-          col.rgb += vec3(flash * 0.55);
+          float flash = max(0.0, sin(time * 5.2 * h + h * 18.0) - 0.91) * 12.0;
+          col.rgb += vec3(flash * 0.5);
 
-          // Lighting gradient: bottom rows brighter (court-side lights)
-          float lit = 0.62 + 0.38 * (1.0 - vUv.y);
+          // Lighting gradient: court-side rows brighter, upper rows dimmer
+          float lit = 0.72 + 0.28 * (1.0 - vUv.y);
           col.rgb *= lit;
 
           gl_FragColor = vec4(col.rgb, 1.0);

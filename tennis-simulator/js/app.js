@@ -28,7 +28,7 @@ camera.lookAt(0, 1.1, 0);
 const clock = new THREE.Clock();
 
 // ─── Modules ───────────────────────────────────────────────
-const court   = new Court(scene, 'australian');
+const court   = new Court(scene, 'australian', renderer);
 const ball    = new Ball(scene);
 const swing   = new SwingDetector();
 const hud     = new HUD();
