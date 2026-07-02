@@ -6,6 +6,7 @@ import { HUD } from './hud.js';
 import { Session } from './session.js';
 import { InputHandler } from './input.js';
 import { TennisScore } from './scoring.js';
+import { Opponent } from './opponent.js';
 
 // ─── Renderer ──────────────────────────────────────────────
 const canvas = document.getElementById('viewport');
@@ -35,107 +36,37 @@ const swing   = new SwingDetector();
 const hud     = new HUD();
 const session = new Session();
 const input   = new InputHandler();
-const score   = new TennisScore();
+const score    = new TennisScore();
+const opponent = new Opponent(scene);
 
 // ─── Shot Library ──────────────────────────────────────────
-// 12 varied shots — different heights, speeds, origins, depths
+// Each shot: where opponent stands, where ball bounces in player's court,
+// where it ends up (player hit zone), spin type, and phase durations.
+function mkShot(label, oppX, bx, bz, tx, tz, spin, p1, p2) {
+  return {
+    label,
+    opponentX:     oppX,
+    bouncePoint:   new THREE.Vector3(bx, 0.06, bz),
+    to:            new THREE.Vector3(tx, 1.25, tz),
+    spin,
+    phase1Duration: p1,
+    phase2Duration: p2,
+  };
+}
+
 const SHOTS = [
-  {
-    label: 'Forehand Cross-Court',
-    from: new THREE.Vector3(-3.2, 1.5, -7.5),
-    cp1:  new THREE.Vector3(-2.0, 4.2, -2.5),
-    cp2:  new THREE.Vector3(1.8,  2.6,  2.5),
-    to:   new THREE.Vector3(2.6,  1.35, 6.8),
-    duration: 2.2,
-  },
-  {
-    label: 'Backhand Down the Line',
-    from: new THREE.Vector3(3.2, 1.5, -7.5),
-    cp1:  new THREE.Vector3(2.2, 3.8, -2.0),
-    cp2:  new THREE.Vector3(-1.2, 2.2, 2.0),
-    to:   new THREE.Vector3(-2.6, 1.3, 6.5),
-    duration: 2.0,
-  },
-  {
-    label: 'Heavy Topspin Center',
-    from: new THREE.Vector3(-1.0, 1.8, -7),
-    cp1:  new THREE.Vector3(-0.4, 5.8, -1.5),
-    cp2:  new THREE.Vector3(0.6,  3.5,  2.5),
-    to:   new THREE.Vector3(0.8,  1.5,  6.2),
-    duration: 2.5,
-  },
-  {
-    label: 'Slice Approach',
-    from: new THREE.Vector3(2.0, 2.0, -5.5),
-    cp1:  new THREE.Vector3(1.4, 2.8, -1.5),
-    cp2:  new THREE.Vector3(0.2, 1.9,  2.0),
-    to:   new THREE.Vector3(-1.6, 1.4, 6.5),
-    duration: 1.8,
-  },
-  {
-    label: 'Wide Forehand',
-    from: new THREE.Vector3(-4.0, 1.6, -7.0),
-    cp1:  new THREE.Vector3(-3.2, 3.5, -2.0),
-    cp2:  new THREE.Vector3(-1.0, 2.2,  2.5),
-    to:   new THREE.Vector3(3.5,  1.4,  6.8),
-    duration: 2.3,
-  },
-  {
-    label: 'Wide Backhand',
-    from: new THREE.Vector3(4.0, 1.6, -7.0),
-    cp1:  new THREE.Vector3(3.2, 3.5, -2.0),
-    cp2:  new THREE.Vector3(1.0, 2.2,  2.5),
-    to:   new THREE.Vector3(-3.5, 1.4, 6.8),
-    duration: 2.3,
-  },
-  {
-    label: 'Fast Center Drive',
-    from: new THREE.Vector3(0, 1.5, -7.5),
-    cp1:  new THREE.Vector3(0, 3.2, -1.5),
-    cp2:  new THREE.Vector3(0, 2.0,  2.5),
-    to:   new THREE.Vector3(0, 1.3,  6.8),
-    duration: 1.6,
-  },
-  {
-    label: 'High Topspin',
-    from: new THREE.Vector3(-1.5, 2.0, -7),
-    cp1:  new THREE.Vector3(-0.8, 7.0, -1.0),
-    cp2:  new THREE.Vector3(0.4,  4.5,  2.0),
-    to:   new THREE.Vector3(1.4,  1.6,  6.4),
-    duration: 2.8,
-  },
-  {
-    label: 'Low Skidder',
-    from: new THREE.Vector3(1.5, 1.3, -6.5),
-    cp1:  new THREE.Vector3(1.0, 2.2, -1.5),
-    cp2:  new THREE.Vector3(-0.5, 1.6, 2.5),
-    to:   new THREE.Vector3(-2.0, 1.3, 6.8),
-    duration: 1.7,
-  },
-  {
-    label: 'Diagonal Backhand',
-    from: new THREE.Vector3(3.5, 1.7, -6.5),
-    cp1:  new THREE.Vector3(2.8, 4.0, -1.5),
-    cp2:  new THREE.Vector3(-0.5, 2.8, 2.0),
-    to:   new THREE.Vector3(-1.8, 1.35, 6.6),
-    duration: 2.1,
-  },
-  {
-    label: 'Slow Lob',
-    from: new THREE.Vector3(-2.0, 2.5, -6.0),
-    cp1:  new THREE.Vector3(-1.2, 6.5, -0.5),
-    cp2:  new THREE.Vector3(0.5,  4.0,  3.0),
-    to:   new THREE.Vector3(1.5,  1.5,  6.5),
-    duration: 3.0,
-  },
-  {
-    label: 'Quick Forehand',
-    from: new THREE.Vector3(-2.5, 1.4, -8.0),
-    cp1:  new THREE.Vector3(-1.5, 3.0, -2.5),
-    cp2:  new THREE.Vector3(1.0,  2.0,  2.0),
-    to:   new THREE.Vector3(2.0,  1.3,  6.6),
-    duration: 1.75,
-  },
+  mkShot('Cross-Court FH',      -3.5,  2.8,  4.0,  3.5,  9.5, 'flat',    1.20, 1.55),
+  mkShot('Cross-Court BH',       3.5, -2.8,  4.0, -3.5,  9.5, 'flat',    1.20, 1.55),
+  mkShot('Down the Line FH',    -3.2, -2.5,  5.2, -3.0,  9.5, 'flat',    1.10, 1.45),
+  mkShot('Down the Line BH',     3.2,  2.5,  5.2,  3.0,  9.5, 'flat',    1.10, 1.45),
+  mkShot('Wide to Forehand',     3.0,  3.8,  3.2,  4.3,  9.5, 'slice',   1.10, 1.35),
+  mkShot('Wide to Backhand',    -3.0, -3.8,  3.2, -4.3,  9.5, 'slice',   1.10, 1.35),
+  mkShot('Center Body Shot',     0.0,  0.2,  4.0,  0.0,  9.5, 'flat',    1.20, 1.50),
+  mkShot('Heavy Topspin Deep',  -1.5,  0.5,  5.8,  0.8,  9.5, 'topspin', 1.55, 1.65),
+  mkShot('Low Slice Approach',   2.0,  1.5,  3.5,  2.0,  9.0, 'slice',   1.05, 1.30),
+  mkShot('Short Ball',          -0.5, -0.5,  2.0, -0.5,  8.0, 'flat',    1.00, 1.20),
+  mkShot('Deep Kick',            1.0,  0.0,  6.0,  0.2,  9.5, 'topspin', 1.40, 1.70),
+  mkShot('Angle Wide FH',       -2.0,  3.5,  2.5,  4.5,  9.5, 'slice',   1.10, 1.40),
 ];
 
 // Shuffle order so it never feels predictable
@@ -194,12 +125,15 @@ function launchBall() {
   const shot = nextShot();
 
   ball.launch({
-    from:     shot.from,
-    cp1:      shot.cp1,
-    cp2:      shot.cp2,
-    to:       shot.to,
-    duration: shot.duration,
+    from:          new THREE.Vector3(shot.opponentX, 1.35, -9.2),
+    bouncePoint:   shot.bouncePoint,
+    to:            shot.to,
+    spin:          shot.spin,
+    phase1Duration: shot.phase1Duration,
+    phase2Duration: shot.phase2Duration,
   });
+
+  opponent.swing(shot.opponentX);
 
   state        = 'incoming';
   swingHandled = false;
@@ -207,7 +141,7 @@ function launchBall() {
 }
 
 function processSwing(directionBias) {
-  if (state !== 'incoming' || swingHandled) return;
+  if (state !== 'incoming' || swingHandled || !ball.isPhase2()) return;
   swingHandled = true;
 
   // *** THE FIX: record the swing so evaluate() doesn't return 'miss' ***
@@ -299,6 +233,7 @@ function animate() {
 
   camera.position.y = 1.75 + Math.sin(elapsed * 0.22) * 0.008;
 
+  opponent.update(dt);
   ball.update(dt);
 
   court.updateCrowd(elapsed);
