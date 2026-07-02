@@ -12,7 +12,9 @@ export class InputHandler {
   }
 
   /** Attach keyboard, touch, and button listeners. */
-  init() {
+  init(directionCb) {
+    this._directionCb = directionCb || null;
+
     document.addEventListener('keydown', (e) => {
       switch (e.code) {
         case 'Space':
@@ -22,14 +24,17 @@ export class InputHandler {
         case 'ArrowLeft':
           e.preventDefault();
           this.directionBias = 'cross';
+          if (this._directionCb) this._directionCb('cross');
           break;
         case 'ArrowRight':
           e.preventDefault();
           this.directionBias = 'down_the_line';
+          if (this._directionCb) this._directionCb('down_the_line');
           break;
         case 'ArrowUp':
           e.preventDefault();
           this.directionBias = 'lob';
+          if (this._directionCb) this._directionCb('lob');
           break;
         default:
           break;

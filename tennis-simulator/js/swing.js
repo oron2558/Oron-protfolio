@@ -18,13 +18,13 @@ export class SwingDetector {
     const timingDelta = ballProgress - idealT;
     const absTimingDelta = Math.abs(timingDelta);
 
-    if (absTimingDelta > 0.12) {
+    if (absTimingDelta > 0.18) {
       const reason = timingDelta > 0 ? 'Too late!' : 'Too early!';
       return { result: 'miss', quality: 0, reason };
     }
 
     // Quality scoring 0–100 based on timing accuracy
-    const timingScore = Math.round((1 - absTimingDelta / 0.12) * 100);
+    const timingScore = Math.round((1 - absTimingDelta / 0.18) * 100);
 
     if (timingScore > 85) {
       return {

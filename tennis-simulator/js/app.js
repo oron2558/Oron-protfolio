@@ -21,7 +21,7 @@ renderer.toneMappingExposure = 1.1;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x080812);
 
-// ─── Camera (player perspective behind baseline) ───────────
+// ─── Camera ────────────────────────────────────────────────
 const camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.1, 200);
 camera.position.set(0, 1.75, 11.5);
 camera.lookAt(0, 1.1, 0);
@@ -38,54 +38,118 @@ const input   = new InputHandler();
 const score   = new TennisScore();
 
 // ─── Shot Library ──────────────────────────────────────────
-// Each shot: 4 Bezier control points + duration + label
+// 12 varied shots — different heights, speeds, origins, depths
 const SHOTS = [
   {
     label: 'Forehand Cross-Court',
-    from: new THREE.Vector3(-2.8, 1.6, -7.5),
+    from: new THREE.Vector3(-3.2, 1.5, -7.5),
     cp1:  new THREE.Vector3(-2.0, 4.2, -2.5),
-    cp2:  new THREE.Vector3(1.8, 2.6,  2.5),
-    to:   new THREE.Vector3(2.3, 1.35, 6.8),
-    duration: 2.3,
+    cp2:  new THREE.Vector3(1.8,  2.6,  2.5),
+    to:   new THREE.Vector3(2.6,  1.35, 6.8),
+    duration: 2.2,
   },
   {
     label: 'Backhand Down the Line',
-    from: new THREE.Vector3(2.8, 1.6, -7.5),
+    from: new THREE.Vector3(3.2, 1.5, -7.5),
     cp1:  new THREE.Vector3(2.2, 3.8, -2.0),
     cp2:  new THREE.Vector3(-1.2, 2.2, 2.0),
-    to:   new THREE.Vector3(-2.2, 1.3, 6.5),
-    duration: 2.1,
+    to:   new THREE.Vector3(-2.6, 1.3, 6.5),
+    duration: 2.0,
   },
   {
-    label: 'Heavy Topspin',
-    from: new THREE.Vector3(-1.2, 1.8, -7),
-    cp1:  new THREE.Vector3(-0.6, 5.8, -1.5),
-    cp2:  new THREE.Vector3(0.8,  3.5,  2.5),
-    to:   new THREE.Vector3(1.2,  1.5,  6.2),
-    duration: 2.6,
+    label: 'Heavy Topspin Center',
+    from: new THREE.Vector3(-1.0, 1.8, -7),
+    cp1:  new THREE.Vector3(-0.4, 5.8, -1.5),
+    cp2:  new THREE.Vector3(0.6,  3.5,  2.5),
+    to:   new THREE.Vector3(0.8,  1.5,  6.2),
+    duration: 2.5,
   },
   {
     label: 'Slice Approach',
-    from: new THREE.Vector3(1.8, 2.2, -6),
-    cp1:  new THREE.Vector3(1.2, 3.0, -1.5),
-    cp2:  new THREE.Vector3(0.2, 2.2,  2.0),
-    to:   new THREE.Vector3(-1.4, 1.45, 6.5),
-    duration: 1.9,
+    from: new THREE.Vector3(2.0, 2.0, -5.5),
+    cp1:  new THREE.Vector3(1.4, 2.8, -1.5),
+    cp2:  new THREE.Vector3(0.2, 1.9,  2.0),
+    to:   new THREE.Vector3(-1.6, 1.4, 6.5),
+    duration: 1.8,
   },
   {
-    label: 'Center Drive',
-    from: new THREE.Vector3(0, 1.7, -7.5),
-    cp1:  new THREE.Vector3(0, 4.0, -2),
-    cp2:  new THREE.Vector3(0, 2.4,  3),
-    to:   new THREE.Vector3(0, 1.4,  6.8),
-    duration: 2.0,
+    label: 'Wide Forehand',
+    from: new THREE.Vector3(-4.0, 1.6, -7.0),
+    cp1:  new THREE.Vector3(-3.2, 3.5, -2.0),
+    cp2:  new THREE.Vector3(-1.0, 2.2,  2.5),
+    to:   new THREE.Vector3(3.5,  1.4,  6.8),
+    duration: 2.3,
+  },
+  {
+    label: 'Wide Backhand',
+    from: new THREE.Vector3(4.0, 1.6, -7.0),
+    cp1:  new THREE.Vector3(3.2, 3.5, -2.0),
+    cp2:  new THREE.Vector3(1.0, 2.2,  2.5),
+    to:   new THREE.Vector3(-3.5, 1.4, 6.8),
+    duration: 2.3,
+  },
+  {
+    label: 'Fast Center Drive',
+    from: new THREE.Vector3(0, 1.5, -7.5),
+    cp1:  new THREE.Vector3(0, 3.2, -1.5),
+    cp2:  new THREE.Vector3(0, 2.0,  2.5),
+    to:   new THREE.Vector3(0, 1.3,  6.8),
+    duration: 1.6,
+  },
+  {
+    label: 'High Topspin',
+    from: new THREE.Vector3(-1.5, 2.0, -7),
+    cp1:  new THREE.Vector3(-0.8, 7.0, -1.0),
+    cp2:  new THREE.Vector3(0.4,  4.5,  2.0),
+    to:   new THREE.Vector3(1.4,  1.6,  6.4),
+    duration: 2.8,
+  },
+  {
+    label: 'Low Skidder',
+    from: new THREE.Vector3(1.5, 1.3, -6.5),
+    cp1:  new THREE.Vector3(1.0, 2.2, -1.5),
+    cp2:  new THREE.Vector3(-0.5, 1.6, 2.5),
+    to:   new THREE.Vector3(-2.0, 1.3, 6.8),
+    duration: 1.7,
+  },
+  {
+    label: 'Diagonal Backhand',
+    from: new THREE.Vector3(3.5, 1.7, -6.5),
+    cp1:  new THREE.Vector3(2.8, 4.0, -1.5),
+    cp2:  new THREE.Vector3(-0.5, 2.8, 2.0),
+    to:   new THREE.Vector3(-1.8, 1.35, 6.6),
+    duration: 2.1,
+  },
+  {
+    label: 'Slow Lob',
+    from: new THREE.Vector3(-2.0, 2.5, -6.0),
+    cp1:  new THREE.Vector3(-1.2, 6.5, -0.5),
+    cp2:  new THREE.Vector3(0.5,  4.0,  3.0),
+    to:   new THREE.Vector3(1.5,  1.5,  6.5),
+    duration: 3.0,
+  },
+  {
+    label: 'Quick Forehand',
+    from: new THREE.Vector3(-2.5, 1.4, -8.0),
+    cp1:  new THREE.Vector3(-1.5, 3.0, -2.5),
+    cp2:  new THREE.Vector3(1.0,  2.0,  2.0),
+    to:   new THREE.Vector3(2.0,  1.3,  6.6),
+    duration: 1.75,
   },
 ];
 
-let shotIndex  = 0;
-let state      = 'idle';   // 'idle' | 'incoming' | 'result'
+// Shuffle order so it never feels predictable
+let shotPool = [];
+function nextShot() {
+  if (shotPool.length === 0) {
+    shotPool = [...SHOTS].sort(() => Math.random() - 0.5);
+  }
+  return shotPool.pop();
+}
+
+let state        = 'idle';
 let swingHandled = false;
-let nextTimer  = null;
+let nextTimer    = null;
 
 // ─── Scoreboard DOM ────────────────────────────────────────
 function updateScoreboard() {
@@ -107,19 +171,27 @@ function updateScoreboard() {
     const goEl  = document.getElementById('game-over');
     document.getElementById('go-title').textContent = isWin ? 'You Win!' : 'CPU Wins';
     document.getElementById('go-title').className   = 'go-title' + (isWin ? '' : ' go-title--loss');
-    document.getElementById('go-sub').textContent   =
-      `${d.sets.p}–${d.sets.c} sets`;
+    document.getElementById('go-sub').textContent   = `${d.sets.p}–${d.sets.c} sets`;
     goEl.style.display = 'block';
     session.save();
   }
 }
 
+// ─── Direction indicator ───────────────────────────────────
+const dirLabel = document.getElementById('shot-label');
+function showDirection(dir) {
+  const map = {
+    cross:         '← Cross-Court',
+    down_the_line: '→ Down the Line',
+    lob:           '↑ Lob',
+  };
+  if (dirLabel) dirLabel.textContent = map[dir] || '';
+}
+
 // ─── Game Logic ────────────────────────────────────────────
 function launchBall() {
-  const shot = SHOTS[shotIndex % SHOTS.length];
-  shotIndex++;
-
-  document.getElementById('shot-label').textContent = shot.label;
+  if (score.gameOver) return;
+  const shot = nextShot();
 
   ball.launch({
     from:     shot.from,
@@ -138,10 +210,12 @@ function processSwing(directionBias) {
   if (state !== 'incoming' || swingHandled) return;
   swingHandled = true;
 
+  // *** THE FIX: record the swing so evaluate() doesn't return 'miss' ***
+  swing.recordSwing(directionBias);
+
   const t      = ball.getProgress();
   const result = swing.evaluate(t, 0.88);
 
-  // Direction comes from player input unless it's a miss/weak
   if (result.result === 'hit') result.direction = directionBias;
 
   session.recordShot(result);
@@ -152,9 +226,9 @@ function processSwing(directionBias) {
     document.getElementById('quality-val').textContent = result.quality;
     document.getElementById('speed-val').textContent =
       Math.round(50 + result.quality * 0.8) + ' km/h';
-    score.pointTo(0); // player wins the point on a good hit
+    score.pointTo(0);
   } else {
-    score.pointTo(1); // cpu wins on weak/miss
+    score.pointTo(1);
   }
   updateScoreboard();
 
@@ -169,7 +243,7 @@ function autoMiss() {
   const result = { result: 'miss', quality: 0, grade: 'Miss!', reason: 'No swing' };
   session.recordShot(result);
   hud.showFeedback(result);
-  score.pointTo(1); // auto-miss → cpu wins point
+  score.pointTo(1);
   updateScoreboard();
 
   state = 'result';
@@ -186,7 +260,7 @@ function scheduleNextBall(delayMs) {
 
 // ─── Input ─────────────────────────────────────────────────
 input.onSwing(processSwing);
-input.init();
+input.init(showDirection);
 input.connectSensor('ws://localhost:8000/ws/display');
 
 // ─── Slam Selector ─────────────────────────────────────────
@@ -220,31 +294,21 @@ document.addEventListener('keydown', (e) => {
 // ─── Animation Loop ────────────────────────────────────────
 function animate() {
   requestAnimationFrame(animate);
-  const dt = Math.min(clock.getDelta(), 0.05);
+  const dt      = Math.min(clock.getDelta(), 0.05);
   const elapsed = clock.getElapsedTime();
 
-  // Subtle camera breathing — makes the view feel alive
   camera.position.y = 1.75 + Math.sin(elapsed * 0.22) * 0.008;
 
   ball.update(dt);
 
-  // Crowd wave + stadium light flicker
   court.updateCrowd(elapsed);
   court.flickerLights(elapsed);
 
-  if (state === 'incoming') {
-    const inZone = ball.isInStrikeZone();
-    hud.showStrikeZone(inZone);
-
-    if (ball.isDone() && !swingHandled) {
-      autoMiss();
-    }
-  } else {
-    hud.showStrikeZone(false);
+  if (state === 'incoming' && ball.isDone() && !swingHandled) {
+    autoMiss();
   }
 
   hud.update(session.getStats());
-
   renderer.render(scene, camera);
 }
 
