@@ -799,3 +799,45 @@ img {
   background: var(--bg-card-hover);
   color: var(--text-primary);
 }
+
+/* ============================================
+   "DIFFERENT HATS" — one person, a whole team
+   A role badge on each chapter of the case study.
+   ============================================ */
+.cs-hat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 7px 16px 7px 13px;
+  border-radius: 100px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.cs-hat svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  transform-origin: 60% 80%;
+  animation: hatTip 0.6s var(--ease-spring, ease) 0.1s both;
+}
+
+.cs-hat strong {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+@keyframes hatTip {
+  0%   { transform: rotate(-18deg) translateY(-2px); opacity: 0; }
+  100% { transform: rotate(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-hat svg { animation: none; }
+}
