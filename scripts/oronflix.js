@@ -219,6 +219,37 @@
     continueRow.style.display = hasProgress ? '' : 'none';
   }
 
+  // ---------- Hero Counter (0 → 100) ----------
+  function initHeroCounter() {
+    var el = document.querySelector('.onf-hero-intro__num[data-count]');
+    if (!el) return;
+
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+
+    // Respect reduced-motion — just show the final number
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = target;
+      return;
+    }
+
+    var start = null;
+    var duration = 1400;
+    el.textContent = '0';
+
+    function step(ts) {
+      if (start === null) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
   // ---------- Scroll-Triggered Animations ----------
   function initScrollAnimations() {
     var elements = document.querySelectorAll('.onf-animate');
@@ -511,6 +542,7 @@
     updateThemeIcon();
     initNavScroll();
     initMobileNav();
+    initHeroCounter();
     initBillboard();
     initCarousels();
     initScrollAnimations();
