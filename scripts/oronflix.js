@@ -363,27 +363,50 @@
     });
     document.body.style.overflow = 'hidden';
 
-    // Track iframe ready state
-    var iframeReady = false;
+    // Track state
     var titleDone = false;
+    var scrollStarted = false;
 
-    function tryStartScroll() {
-      if (iframeReady && titleDone && trailerActive) {
-        iframeWrap.style.opacity = '1';
-        startAutoScroll(iframe, stage, endCard);
+    function revealIframe() {
+      if (trailerActive) iframeWrap.style.opacity = '1';
+    }
+
+    // Returns the framed document once it exists (same-origin), else null
+    function framedDoc() {
+      try {
+        var d = iframe.contentWindow && iframe.contentWindow.document;
+        return (d && d.body) ? d : null;
+      } catch (e) {
+        return null;   // cross-origin / blocked
       }
     }
 
-    // Set onload BEFORE setting src
+    // Start the cinematic scroll once the title card is done AND the framed
+    // page has a <body>. The case-study pages are image-heavy, so we poll
+    // instead of relying on the (late-firing) load event.
+    function tryStartScroll() {
+      if (scrollStarted || !trailerActive || !titleDone) return;
+      if (!framedDoc()) {
+        setTimeout(tryStartScroll, 200);   // poll until the body is parsed
+        return;
+      }
+      scrollStarted = true;
+      revealIframe();
+      startAutoScroll(iframe, stage, endCard);
+    }
+
+    // Reveal the page as soon as it finishes loading…
     iframe.onload = function() {
-      iframeReady = true;
+      revealIframe();
       tryStartScroll();
     };
     iframe.src = data.url + '?trailer=1';
 
-    // Short title card (1.5s)
-    titleCard.classList.add('trailer-title-card--active');
+    // …and as a fallback, reveal it anyway so it can never stay a black screen.
+    setTimeout(revealIframe, 2000);
 
+    // Short title card (1.5s), then kick off the scroll (which waits for body).
+    titleCard.classList.add('trailer-title-card--active');
     setTimeout(function() {
       titleCard.style.opacity = '0';
       titleCard.style.pointerEvents = 'none';
@@ -400,6 +423,9 @@
     } catch(e) {
       return;
     }
+
+    // Bail out gracefully if the framed page hasn't produced a body yet
+    if (!iframeDoc || !iframeDoc.body) return;
 
     // Hide nav, back button, next-episode; make all animations visible
     var style = iframeDoc.createElement('style');
