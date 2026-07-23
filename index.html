@@ -26,13 +26,6 @@
 </head>
 <body>
 
-<!-- SVG sharpen filter for billboard backgrounds -->
-<svg style="position:absolute;width:0;height:0" aria-hidden="true">
-  <filter id="sharpen">
-    <feConvolveMatrix order="3" kernelMatrix="0 -0.5 0 -0.5 3 -0.5 0 -0.5 0" preserveAlpha="true"/>
-  </filter>
-</svg>
-
 <!-- ==================== NAVIGATION ==================== -->
 <nav class="onf-nav">
   <a href="index.html" class="onf-nav__logo">ORON.</a>
@@ -56,170 +49,78 @@
   </div>
 </nav>
 
-<!-- ==================== BILLBOARD ==================== -->
-<section class="onf-billboard">
-  <div class="onf-billboard__slides">
+<!-- ==================== INTRO / HERO ====================
+     TODO (Oron): your personal "lead with me" intro goes here —
+     name, who you are, a line of personality, your photo. It will sit
+     above the Featured Work section below. -->
 
-    <!-- Slide 1: AI CRM -->
-    <div class="onf-billboard__slide onf-billboard__slide--active">
-      <div class="onf-billboard__bg">
-        <img src="crm-dashboard.png" alt="" class="onf-billboard__bg-image" loading="eager">
-      </div>
-      <div class="onf-billboard__gradient"></div>
-      <div class="onf-billboard__content">
-        <h1 class="onf-billboard__title">AI Messaging<br>for Solo Professionals</h1>
-        <p class="onf-billboard__desc">An AI-powered platform that responds to leads, manages conversations across WhatsApp, Instagram and email — so business owners never miss a customer.</p>
-        <div class="onf-billboard__actions">
-          <a href="casestudy-ai-crm.html" class="onf-btn onf-btn--primary">
-            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+<!-- ==================== FEATURED PROJECTS ==================== -->
+<section class="onf-projects" id="projects">
+  <div class="onf-section-head">
+    <h2 class="onf-section-title">Featured Work</h2>
+    <p class="onf-section-sub">Three products, designed end&#8209;to&#8209;end — from research to shipped UI.</p>
+  </div>
+
+  <div class="onf-hero-cards">
+    <div class="onf-hero-card" onclick="window.location.href='casestudy-ai-crm.html'" style="cursor:pointer">
+      <img src="crm-dashboard.png" alt="" class="onf-hero-card__bg" loading="lazy">
+      <div class="onf-hero-card__gradient"></div>
+      <div class="onf-hero-card__content">
+        <h3 class="onf-hero-card__title">AI Messaging for<br>Solo Professionals</h3>
+        <p class="onf-hero-card__desc">AI-powered platform that responds to leads across WhatsApp, Instagram and email.</p>
+        <div class="onf-hero-card__actions">
+          <a href="casestudy-ai-crm.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             View Case Study
           </a>
-          <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-            More Projects
+          <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('ai-crm')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            Trailer
           </button>
         </div>
       </div>
     </div>
-
-    <!-- Slide 2: Woofio -->
-    <div class="onf-billboard__slide">
-      <div class="onf-billboard__bg onf-billboard__bg--phones">
-        <div class="onf-billboard__phones">
-          <div class="onf-billboard__phone"><img src="stitch-home-hd.png" alt="Home"></div>
-          <div class="onf-billboard__phone"><img src="stitch-walker-hd.png" alt="Walker"></div>
-          <div class="onf-billboard__phone"><img src="stitch-health-hd.png" alt="Health"></div>
-        </div>
-      </div>
-      <div class="onf-billboard__gradient"></div>
-      <div class="onf-billboard__content">
-        <h1 class="onf-billboard__title">All-in-One<br>Dog Care Platform</h1>
-        <p class="onf-billboard__desc">From vet tracking to dog walker booking — one app that handles everything for dog owners and their families.</p>
-        <div class="onf-billboard__actions">
-          <a href="casestudy-woofio.html" class="onf-btn onf-btn--primary">
-            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <div class="onf-hero-card" onclick="window.location.href='casestudy-woofio.html'" style="cursor:pointer">
+      <img src="woofio-hero-composite.jpeg" alt="" class="onf-hero-card__bg" loading="lazy">
+      <div class="onf-hero-card__gradient"></div>
+      <div class="onf-hero-card__content">
+        <h3 class="onf-hero-card__title">All-in-One<br>Dog Care Platform</h3>
+        <p class="onf-hero-card__desc">From vet tracking to dog walker booking — one app for dog owners and their families.</p>
+        <div class="onf-hero-card__actions">
+          <a href="casestudy-woofio.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             View Case Study
           </a>
-          <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-            More Projects
+          <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('woofio')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            Trailer
           </button>
         </div>
       </div>
     </div>
-
-    <!-- Slide 3: MyPlanner -->
-    <div class="onf-billboard__slide">
-      <div class="onf-billboard__bg">
-        <img src="myplanner-dashboard.png" alt="" class="onf-billboard__bg-image" loading="lazy" style="object-position: top center;">
-      </div>
-      <div class="onf-billboard__gradient"></div>
-      <div class="onf-billboard__content">
-        <h1 class="onf-billboard__title">Smart Wedding<br>Planning Platform</h1>
-        <p class="onf-billboard__desc">AI-powered event management that replaces expensive wedding planners — budget tracking, supplier management, and cashback rewards.</p>
-        <div class="onf-billboard__actions">
-          <a href="casestudy-myplanner.html" class="onf-btn onf-btn--primary">
-            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <div class="onf-hero-card" onclick="window.location.href='casestudy-myplanner.html'" style="cursor:pointer">
+      <img src="myplanner-dashboard.png" alt="" class="onf-hero-card__bg" loading="lazy" style="object-position: top center">
+      <div class="onf-hero-card__gradient"></div>
+      <div class="onf-hero-card__content">
+        <h3 class="onf-hero-card__title">Smart Wedding<br>Planning Platform</h3>
+        <p class="onf-hero-card__desc">AI-powered event management — budget tracking, supplier management, and cashback.</p>
+        <div class="onf-hero-card__actions">
+          <a href="casestudy-myplanner.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             View Case Study
           </a>
-          <button class="onf-btn onf-btn--secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-            More Projects
+          <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('myplanner')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            Trailer
           </button>
         </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Billboard dots — below buttons -->
-  <div class="onf-billboard__dots">
-    <div class="onf-billboard__dot onf-billboard__dot--active">
-      <div class="onf-billboard__dot-preview">
-        <img src="crm-dashboard.png" alt="MessAge">
-        <span>MessAge — AI CRM</span>
-      </div>
-    </div>
-    <div class="onf-billboard__dot">
-      <div class="onf-billboard__dot-preview">
-        <img src="woofio-screens.jpeg" alt="Woofio">
-        <span>Woofio — Dog Care</span>
-      </div>
-    </div>
-    <div class="onf-billboard__dot">
-      <div class="onf-billboard__dot-preview">
-        <img src="myplanner-dashboard.png" alt="MyPlanner">
-        <span>MyPlanner — Wedding</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Progress timer -->
-  <div class="onf-billboard__timer">
-    <div class="onf-billboard__timer-fill"></div>
-  </div>
-</section>
-
-<!-- ==================== FEATURED HERO CARDS ==================== -->
-<section class="onf-hero-cards">
-  <div class="onf-hero-card" onclick="window.location.href='casestudy-ai-crm.html'" style="cursor:pointer">
-    <img src="crm-dashboard.png" alt="" class="onf-hero-card__bg" loading="lazy">
-    <div class="onf-hero-card__gradient"></div>
-    <div class="onf-hero-card__content">
-      <h3 class="onf-hero-card__title">AI Messaging for<br>Solo Professionals</h3>
-      <p class="onf-hero-card__desc">AI-powered platform that responds to leads across WhatsApp, Instagram and email.</p>
-      <div class="onf-hero-card__actions">
-        <a href="casestudy-ai-crm.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          View Case Study
-        </a>
-        <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('ai-crm')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-          Trailer
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="onf-hero-card" onclick="window.location.href='casestudy-woofio.html'" style="cursor:pointer">
-    <img src="woofio-hero-composite.jpeg" alt="" class="onf-hero-card__bg" loading="lazy">
-    <div class="onf-hero-card__gradient"></div>
-    <div class="onf-hero-card__content">
-      <h3 class="onf-hero-card__title">All-in-One<br>Dog Care Platform</h3>
-      <p class="onf-hero-card__desc">From vet tracking to dog walker booking — one app for dog owners and their families.</p>
-      <div class="onf-hero-card__actions">
-        <a href="casestudy-woofio.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          View Case Study
-        </a>
-        <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('woofio')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-          Trailer
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="onf-hero-card" onclick="window.location.href='casestudy-myplanner.html'" style="cursor:pointer">
-    <img src="myplanner-dashboard.png" alt="" class="onf-hero-card__bg" loading="lazy" style="object-position: top center">
-    <div class="onf-hero-card__gradient"></div>
-    <div class="onf-hero-card__content">
-      <h3 class="onf-hero-card__title">Smart Wedding<br>Planning Platform</h3>
-      <p class="onf-hero-card__desc">AI-powered event management — budget tracking, supplier management, and cashback.</p>
-      <div class="onf-hero-card__actions">
-        <a href="casestudy-myplanner.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          View Case Study
-        </a>
-        <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('myplanner')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-          Trailer
-        </button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== CONTENT ROWS ==================== -->
-<div class="onf-rows" id="projects">
+<!-- ==================== ABOUT ==================== -->
+<div class="onf-rows">
 
   <!-- Row: About the Designer -->
   <div class="onf-row onf-animate">

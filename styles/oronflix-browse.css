@@ -340,6 +340,39 @@
 }
 
 /* ---------- Featured Hero Cards ---------- */
+/* ---------- Featured Projects section ---------- */
+.onf-projects {
+  padding-top: calc(var(--nav-height) + 56px);
+}
+
+.onf-section-head {
+  max-width: var(--max-width);
+  margin: 0 auto 28px;
+  padding: 0 4%;
+}
+
+.onf-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.onf-section-sub {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
+@media (max-width: 810px) {
+  .onf-projects {
+    padding-top: calc(var(--nav-height) + 28px);
+  }
+}
+
 .onf-hero-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
