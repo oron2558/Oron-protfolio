@@ -802,42 +802,76 @@ img {
 
 /* ============================================
    "DIFFERENT HATS" — one person, a whole team
-   A role badge on each chapter of the case study.
+   Each chapter opens with a distinct animated hat.
    ============================================ */
 .cs-hat {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 18px;
-  padding: 7px 16px 7px 13px;
-  border-radius: 100px;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.cs-hat__icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
   background: rgba(59, 130, 246, 0.1);
   border: 1px solid rgba(59, 130, 246, 0.28);
   color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1;
+  overflow: visible;
 }
 
-.cs-hat svg {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 auto;
-  transform-origin: 60% 80%;
-  animation: hatTip 0.6s var(--ease-spring, ease) 0.1s both;
+.cs-hat__icon svg {
+  width: 40px;
+  height: 40px;
+  transform-origin: 50% 80%;
 }
 
-.cs-hat strong {
+.cs-hat__label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cs-hat__label strong {
   font-weight: 800;
   color: var(--text-primary);
 }
 
-@keyframes hatTip {
-  0%   { transform: rotate(-18deg) translateY(-2px); opacity: 0; }
-  100% { transform: rotate(0); opacity: 1; }
+/* Hidden until the chapter scrolls into view */
+.cs-part-divider .cs-hat__icon svg {
+  opacity: 0;
+  transform: translateY(-18px) rotate(-14deg);
+}
+
+/* Drop in on reveal, then keep a gentle idle bob (alive/"gif" feel) */
+.cs-part-divider.visible .cs-hat__icon svg {
+  animation:
+    hatDrop 0.7s var(--ease-spring) forwards,
+    hatBob 2.8s ease-in-out 0.8s infinite;
+}
+
+@keyframes hatDrop {
+  0%   { opacity: 0; transform: translateY(-18px) rotate(-14deg); }
+  55%  { opacity: 1; transform: translateY(4px) rotate(6deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(0); }
+}
+
+@keyframes hatBob {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50%      { transform: translateY(-5px) rotate(4deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-hat svg { animation: none; }
+  .cs-part-divider .cs-hat__icon svg,
+  .cs-part-divider.visible .cs-hat__icon svg {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
