@@ -222,6 +222,19 @@ body {
               opacity var(--duration-fast);
 }
 
+/* Hamburger → X when the menu is open */
+.onf-nav__hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.onf-nav__hamburger--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.onf-nav__hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* ---------- Typography ---------- */
 .onf-billboard-title {
   font-family: var(--font-display);
@@ -385,6 +398,12 @@ body {
 
   .onf-nav__hamburger {
     display: flex;
+  }
+
+  /* Keep the toggle button above the fixed slide-in panel so it can close it */
+  .onf-nav__actions {
+    position: relative;
+    z-index: 2;
   }
 }
 

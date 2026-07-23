@@ -152,6 +152,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 body {
@@ -162,6 +163,7 @@ body {
   letter-spacing: var(--ls-normal);
   color: var(--text-primary);
   background-color: var(--bg-primary);
+  position: relative;
   overflow-x: hidden;
 }
 
