@@ -650,7 +650,13 @@
 }
 
 .onf-hero-card:hover .onf-hero-card__gradient {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.4) 100%);
+  background:
+    linear-gradient(to top,
+      rgba(0, 0, 0, 0.98) 0%,
+      rgba(0, 0, 0, 0.9) 45%,
+      rgba(0, 0, 0, 0.7) 62%,
+      rgba(0, 0, 0, 0.4) 80%,
+      rgba(0, 0, 0, 0.12) 100%);
 }
 
 .onf-hero-card__bg {
@@ -660,7 +666,7 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  filter: contrast(1.05) saturate(1.1);
+  filter: contrast(1.04) saturate(1.08) brightness(0.9);
   image-rendering: -webkit-optimize-contrast;
   transition: transform 0.5s var(--ease-smooth);
 }
@@ -674,11 +680,12 @@
   inset: 0;
   background:
     linear-gradient(to top,
-      rgba(0, 0, 0, 0.96) 0%,
-      rgba(0, 0, 0, 0.9) 25%,
-      rgba(0, 0, 0, 0.7) 45%,
-      rgba(0, 0, 0, 0.32) 65%,
-      transparent 90%);
+      rgba(0, 0, 0, 0.98) 0%,
+      rgba(0, 0, 0, 0.94) 44%,
+      rgba(0, 0, 0, 0.82) 60%,
+      rgba(0, 0, 0, 0.45) 76%,
+      rgba(0, 0, 0, 0.12) 90%,
+      transparent 100%);
 }
 
 .onf-hero-card__content {
@@ -799,11 +806,12 @@
 [data-theme="light"] .onf-hero-card__gradient {
   background:
     linear-gradient(to top,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.88) 25%,
-      rgba(0, 0, 0, 0.68) 45%,
-      rgba(0, 0, 0, 0.3) 65%,
-      transparent 90%);
+      rgba(0, 0, 0, 0.98) 0%,
+      rgba(0, 0, 0, 0.94) 44%,
+      rgba(0, 0, 0, 0.82) 60%,
+      rgba(0, 0, 0, 0.45) 76%,
+      rgba(0, 0, 0, 0.12) 90%,
+      transparent 100%);
 }
 
 /* Hero cards responsive */
