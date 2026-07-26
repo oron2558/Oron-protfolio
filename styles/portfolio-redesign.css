@@ -25,6 +25,9 @@ body {
   background: var(--pf-surface-2);
 }
 
+/* Keep anchored sections clear of the fixed nav */
+#projects, #about, #contact, #shipped { scroll-margin-top: 88px; }
+
 /* Nav polish — solid, quiet, no streaming feel */
 .onf-nav {
   background: rgba(246, 247, 251, 0.82);
