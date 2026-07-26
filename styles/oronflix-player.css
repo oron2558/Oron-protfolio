@@ -263,3 +263,58 @@
     font-size: 0.85rem;
   }
 }
+
+/* ============================================
+   REDESIGN 2026 — de-Netflix the case-study chrome
+   Removes the video "scrubber" and converts the
+   slide-up "next episode" autoplay into a static,
+   editorial "next project" band.
+   ============================================ */
+
+/* Kill the fake video scrubber progress bar */
+.onf-player-chrome__progress { display: none !important; }
+
+/* Quiet, clean top breadcrumb bar (light) */
+.onf-player-chrome {
+  background: rgba(246, 247, 251, 0.82) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid rgba(20, 20, 43, 0.06) !important;
+}
+.onf-player-chrome__back { color: #4a4a6a !important; }
+.onf-player-chrome__back:hover { color: #14142b !important; }
+.onf-player-chrome__breadcrumb { color: #8888a0 !important; }
+.onf-player-chrome__breadcrumb strong { color: #14142b !important; }
+
+/* Static "next project" band — no autoplay, no slide, no gradient */
+.onf-next-episode,
+[data-theme="light"] .onf-next-episode {
+  position: static !important;
+  transform: none !important;
+  background: #ffffff !important;
+  border-top: 1px solid rgba(20, 20, 43, 0.08);
+  padding: 40px 6% 48px !important;
+  overflow: visible;
+}
+.onf-next-episode__label,
+[data-theme="light"] .onf-next-episode__label {
+  color: #2563eb !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.onf-next-episode__thumb {
+  width: 104px !important;
+  height: 72px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(20, 20, 43, 0.1) !important;
+}
+.onf-next-episode__title,
+[data-theme="light"] .onf-next-episode__title { color: #14142b !important; }
+.onf-next-episode__btn,
+[data-theme="light"] .onf-next-episode__btn {
+  background: #14142b !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+}
+.onf-next-episode__btn:hover,
+[data-theme="light"] .onf-next-episode__btn:hover { background: #000 !important; transform: translateY(-2px); }

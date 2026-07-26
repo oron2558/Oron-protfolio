@@ -6,7 +6,7 @@
   'use strict';
 
   // ---------- Theme ----------
-  var savedTheme = localStorage.getItem('oronflix-theme') || 'dark';
+  var savedTheme = localStorage.getItem('oronflix-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
   function toggleTheme() {

@@ -9,12 +9,13 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('oronflix-theme') || 'dark';
+      var t = localStorage.getItem('oronflix-theme') || 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
 
   <link rel="stylesheet" href="styles/oronflix-base.css">
+  <link rel="stylesheet" href="styles/portfolio-redesign.css">
   <style>
     body {
       background: var(--bg-primary);
@@ -407,6 +408,20 @@
       border-color: #ddd;
     }
 
+    /* De-Netflix: section titles use brand accent, not red */
+    [data-theme="light"] .resume-section__title {
+      color: #2563eb;
+    }
+
+    /* Fix primary CTA: --text-white is dark in light theme, so set explicitly */
+    [data-theme="light"] .resume-cta__btn--primary {
+      background: #14142b;
+      color: #ffffff;
+    }
+    [data-theme="light"] .resume-cta__btn--primary:hover {
+      background: #000000;
+    }
+
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 640px) {
       .resume {
@@ -440,9 +455,10 @@
   <a href="index.html" class="onf-nav__logo">ORON.</a>
 
   <div class="onf-nav__links">
-    <a href="index.html" class="onf-nav__link">Browse</a>
-    <a href="index.html#about" class="onf-nav__link">About</a>
-    <a href="resume.html" class="onf-nav__link onf-nav__link--active">Resume</a>
+    <a href="index.html" class="onf-nav__link">Home</a>
+    <a href="projects.html" class="onf-nav__link">Work</a>
+    <a href="about.html" class="onf-nav__link">About</a>
+    <a href="resume.html" class="onf-nav__link onf-nav__link--active">Resume / CV</a>
     <a href="#contact" class="onf-nav__link">Contact</a>
   </div>
 

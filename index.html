@@ -13,16 +13,17 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://oronturgemanux.com">
 
-  <!-- Prevent FOUC — dark by default -->
+  <!-- Prevent FOUC — light editorial by default -->
   <script>
     (function() {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      var t = localStorage.getItem('oronflix-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
 
   <link rel="stylesheet" href="styles/oronflix-base.css">
   <link rel="stylesheet" href="styles/oronflix-browse.css">
-  <link rel="stylesheet" href="styles/oronflix-trailer.css">
+  <link rel="stylesheet" href="styles/portfolio-redesign.css">
 </head>
 <body>
 
@@ -31,9 +32,10 @@
   <a href="index.html" class="onf-nav__logo">ORON.</a>
 
   <div class="onf-nav__links">
-    <a href="#projects" class="onf-nav__link onf-nav__link--active">Browse</a>
-    <a href="#about" class="onf-nav__link">About</a>
-    <a href="resume.html" class="onf-nav__link">Resume</a>
+    <a href="index.html" class="onf-nav__link onf-nav__link--active">Home</a>
+    <a href="projects.html" class="onf-nav__link">Work</a>
+    <a href="about.html" class="onf-nav__link">About</a>
+    <a href="resume.html" class="onf-nav__link">Resume / CV</a>
     <a href="#contact" class="onf-nav__link">Contact</a>
   </div>
 
@@ -161,109 +163,90 @@
 <section class="onf-projects" id="projects">
   <div class="onf-section-head">
     <h2 class="onf-section-title">Featured Work</h2>
-    <p class="onf-section-sub">Three products, designed end&#8209;to&#8209;end — from research to shipped UI.</p>
+    <p class="onf-section-sub">Three products, designed end&#8209;to&#8209;end — from research to high&#8209;fidelity UI.</p>
   </div>
 
-  <div class="onf-hero-cards">
-    <div class="onf-hero-card" onclick="window.location.href='casestudy-ai-crm.html'" style="cursor:pointer">
-      <img src="crm-dashboard.png" alt="" class="onf-hero-card__bg" loading="lazy">
-      <div class="onf-hero-card__gradient"></div>
-      <div class="onf-hero-card__content">
-        <h3 class="onf-hero-card__title">AI Messaging for<br>Solo Professionals</h3>
-        <p class="onf-hero-card__desc">AI-powered platform that responds to leads across WhatsApp, Instagram and email.</p>
-        <div class="onf-hero-card__actions">
-          <a href="casestudy-ai-crm.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            View Case Study
-          </a>
-          <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('ai-crm')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-            Trailer
-          </button>
-        </div>
+  <div class="pf-cards">
+    <a href="casestudy-ai-crm.html" class="pf-card">
+      <div class="pf-card__media">
+        <span class="pf-card__badge">Case study</span>
+        <img src="crm-dashboard.png" alt="AI messaging CRM dashboard" loading="lazy">
       </div>
-    </div>
-    <div class="onf-hero-card" onclick="window.location.href='casestudy-woofio.html'" style="cursor:pointer">
-      <img src="woofio-hero-composite.jpeg" alt="" class="onf-hero-card__bg" loading="lazy">
-      <div class="onf-hero-card__gradient"></div>
-      <div class="onf-hero-card__content">
-        <h3 class="onf-hero-card__title">All-in-One<br>Dog Care Platform</h3>
-        <p class="onf-hero-card__desc">From vet tracking to dog walker booking — one app for dog owners and their families.</p>
-        <div class="onf-hero-card__actions">
-          <a href="casestudy-woofio.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            View Case Study
-          </a>
-          <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('woofio')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-            Trailer
-          </button>
+      <div class="pf-card__body">
+        <div class="pf-card__tags">
+          <span class="pf-card__tag">SaaS</span>
+          <span class="pf-card__tag">AI</span>
+          <span class="pf-card__tag">Lead Management</span>
         </div>
+        <h3 class="pf-card__title">AI Messaging for Solo Professionals</h3>
+        <p class="pf-card__desc">An AI platform that responds to leads across WhatsApp, Instagram and email — turning missed messages into booked work.</p>
+        <span class="pf-card__cta">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
       </div>
-    </div>
-    <div class="onf-hero-card" onclick="window.location.href='casestudy-myplanner.html'" style="cursor:pointer">
-      <img src="myplanner-dashboard.png" alt="" class="onf-hero-card__bg" loading="lazy" style="object-position: top center">
-      <div class="onf-hero-card__gradient"></div>
-      <div class="onf-hero-card__content">
-        <h3 class="onf-hero-card__title">Smart Wedding<br>Planning Platform</h3>
-        <p class="onf-hero-card__desc">AI-powered event management — budget tracking, supplier management, and cashback.</p>
-        <div class="onf-hero-card__actions">
-          <a href="casestudy-myplanner.html" class="onf-hero-card__cta" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            View Case Study
-          </a>
-          <button class="onf-hero-card__trailer" onclick="event.stopPropagation(); oronflix.openTrailer('myplanner')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-            Trailer
-          </button>
+    </a>
+
+    <a href="casestudy-woofio.html" class="pf-card">
+      <div class="pf-card__media">
+        <span class="pf-card__badge">Case study</span>
+        <img src="woofio-hero-composite.jpeg" alt="Woofio dog care app screens" loading="lazy">
+      </div>
+      <div class="pf-card__body">
+        <div class="pf-card__tags">
+          <span class="pf-card__tag">Mobile</span>
+          <span class="pf-card__tag">Pet Care</span>
+          <span class="pf-card__tag">Marketplace</span>
         </div>
+        <h3 class="pf-card__title">All-in-One Dog Care Platform</h3>
+        <p class="pf-card__desc">From vet tracking to dog-walker booking — one app for dog owners and their families.</p>
+        <span class="pf-card__cta">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <a href="casestudy-myplanner.html" class="pf-card">
+      <div class="pf-card__media">
+        <span class="pf-card__badge">Case study</span>
+        <img src="myplanner-dashboard.png" alt="MyPlanner wedding planning dashboard" loading="lazy">
+      </div>
+      <div class="pf-card__body">
+        <div class="pf-card__tags">
+          <span class="pf-card__tag">AI</span>
+          <span class="pf-card__tag">Event Planning</span>
+          <span class="pf-card__tag">Fintech</span>
+        </div>
+        <h3 class="pf-card__title">Smart Wedding Planning Platform</h3>
+        <p class="pf-card__desc">AI-powered event management — budget tracking, supplier management, and cashback in one place.</p>
+        <span class="pf-card__cta">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ==================== ABOUT TEASER ==================== -->
+<section class="pf-about" id="about">
+  <div class="pf-about__inner">
+    <div class="pf-about__avatar">
+      <img src="R-226.jpg" alt="Oron Turgeman">
+    </div>
+    <div class="pf-about__text">
+      <p class="pf-eyebrow">About</p>
+      <h2 class="pf-about__name">Oron Turgeman</h2>
+      <p class="pf-about__role">Product Designer — UX/UI &amp; Product Strategy</p>
+      <p class="pf-about__bio">I take products from first idea to launch — research, product &amp; go-to-market strategy, polished UX/UI, and the build itself with AI. I don't just design screens: I shipped a live iOS SaaS product end-to-end, solo. That's the proof behind the “0 to 100.”</p>
+      <div class="pf-about__actions">
+        <a href="about.html" class="pf-btn pf-btn--primary">
+          More about me
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="resume.html" class="pf-btn pf-btn--ghost">Resume / CV</a>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ==================== ABOUT ==================== -->
-<div class="onf-rows">
-
-  <!-- Row: About the Designer -->
-  <div class="onf-row onf-animate" id="about">
-    <div class="onf-row__header">
-      <h2 class="onf-row__title">About the Designer</h2>
-    </div>
-    <div class="onf-about">
-      <div class="onf-about__avatar">
-        <img src="R-226.jpg" alt="Oron Turgeman" class="onf-about__img">
-      </div>
-      <div class="onf-about__text">
-        <h3 class="onf-about__name">Oron Turgeman</h3>
-        <p class="onf-about__bio">Product Designer passionate about creating products people actually love — with a shipped iOS SaaS product to prove it. I combine user research, design thinking, and AI tools to take ideas from concept to launched, real-world experiences.</p>
-        <div class="onf-available">
-          <span class="onf-available__dot"></span>
-          <span>Available for opportunities</span>
-        </div>
-        <div class="onf-about__badges">
-          <span class="onf-badge onf-badge--skill">Figma</span>
-          <span class="onf-badge onf-badge--skill">Framer</span>
-          <span class="onf-badge onf-badge--skill">Prototyping</span>
-          <span class="onf-badge onf-badge--skill">User Research</span>
-          <span class="onf-badge onf-badge--skill">Design Systems</span>
-          <span class="onf-badge onf-badge--skill">Claude AI</span>
-        </div>
-        <div class="onf-about__actions">
-          <a href="Oron_Turgeman_Resume.pdf" target="_blank" class="onf-btn onf-btn--white">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h5v7h7v9H6z"/></svg>
-            View Resume
-          </a>
-          <a href="Oron_Turgeman_Resume.pdf" download class="onf-btn onf-btn--outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download PDF
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="onf-footer" id="contact">
@@ -276,12 +259,6 @@
   </div>
   <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
 </footer>
-
-<!-- ==================== TRAILER MODAL ==================== -->
-<div class="trailer-modal" id="trailer-modal">
-  <button class="trailer-close" onclick="oronflix.closeTrailer()" aria-label="Close trailer">&times;</button>
-  <div class="trailer-stage"></div>
-</div>
 
 <script src="scripts/oronflix.js"></script>
 </body>
