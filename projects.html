@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORON. | Work</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Selected product design work by Oron Turgeman — AI, SaaS and mobile case studies, plus a shipped iOS product.">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('oronflix-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="styles/oronflix-base.css">
+  <link rel="stylesheet" href="styles/oronflix-browse.css">
+  <link rel="stylesheet" href="styles/portfolio-redesign.css">
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="onf-nav">
+  <a href="index.html" class="onf-nav__logo">ORON.</a>
+  <div class="onf-nav__links">
+    <a href="index.html" class="onf-nav__link">Home</a>
+    <a href="projects.html" class="onf-nav__link onf-nav__link--active">Work</a>
+    <a href="about.html" class="onf-nav__link">About</a>
+    <a href="resume.html" class="onf-nav__link">Resume / CV</a>
+    <a href="index.html#contact" class="onf-nav__link">Contact</a>
+  </div>
+  <div class="onf-nav__actions">
+    <button class="onf-nav__btn" id="theme-toggle" onclick="oronflix.toggleTheme()" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ==================== PAGE HEAD ==================== -->
+<header class="pf-page-hero">
+  <div class="pf-section">
+    <p class="pf-eyebrow">Selected Work</p>
+    <h1 class="pf-page-hero__title">Products, designed end&#8209;to&#8209;end.</h1>
+    <p class="pf-page-hero__sub">Each of these started as a real problem and a blank canvas. I owned the whole arc — research, strategy, UX/UI and the build — and every case study walks through the thinking, not just the screens.</p>
+  </div>
+</header>
+
+<!-- ==================== CARDS ==================== -->
+<main>
+  <div class="pf-cards pf-cards--page">
+    <a href="casestudy-ai-crm.html" class="pf-card">
+      <div class="pf-card__media">
+        <span class="pf-card__badge">Case study</span>
+        <img src="crm-dashboard.png" alt="AI messaging CRM dashboard" loading="lazy">
+      </div>
+      <div class="pf-card__body">
+        <div class="pf-card__tags">
+          <span class="pf-card__tag">SaaS</span>
+          <span class="pf-card__tag">AI</span>
+          <span class="pf-card__tag">Lead Management</span>
+        </div>
+        <h3 class="pf-card__title">AI Messaging for Solo Professionals</h3>
+        <p class="pf-card__desc">An AI platform that responds to leads across WhatsApp, Instagram and email — turning missed messages into booked work.</p>
+        <span class="pf-card__cta">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <a href="casestudy-woofio.html" class="pf-card">
+      <div class="pf-card__media">
+        <span class="pf-card__badge">Case study</span>
+        <img src="woofio-hero-composite.jpeg" alt="Woofio dog care app screens" loading="lazy">
+      </div>
+      <div class="pf-card__body">
+        <div class="pf-card__tags">
+          <span class="pf-card__tag">Mobile</span>
+          <span class="pf-card__tag">Pet Care</span>
+          <span class="pf-card__tag">Marketplace</span>
+        </div>
+        <h3 class="pf-card__title">All-in-One Dog Care Platform</h3>
+        <p class="pf-card__desc">From vet tracking to dog-walker booking — one app for dog owners and their families.</p>
+        <span class="pf-card__cta">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <a href="casestudy-myplanner.html" class="pf-card">
+      <div class="pf-card__media">
+        <span class="pf-card__badge">Case study</span>
+        <img src="myplanner-dashboard.png" alt="MyPlanner wedding planning dashboard" loading="lazy">
+      </div>
+      <div class="pf-card__body">
+        <div class="pf-card__tags">
+          <span class="pf-card__tag">AI</span>
+          <span class="pf-card__tag">Event Planning</span>
+          <span class="pf-card__tag">Fintech</span>
+        </div>
+        <h3 class="pf-card__title">Smart Wedding Planning Platform</h3>
+        <p class="pf-card__desc">AI-powered event management — budget tracking, supplier management, and cashback in one place.</p>
+        <span class="pf-card__cta">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="onf-footer" id="contact">
+  <div class="onf-footer__left">
+    <span class="onf-footer__name">ORON.</span>
+    <div class="onf-footer__links">
+      <a href="mailto:oron2558@gmail.com" class="onf-footer__link">oron2558@gmail.com</a>
+      <a href="https://linkedin.com/in/oron-turgeman" target="_blank" class="onf-footer__link">LinkedIn</a>
+    </div>
+  </div>
+  <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
+</footer>
+
+<script src="scripts/oronflix.js"></script>
+</body>
+</html>
