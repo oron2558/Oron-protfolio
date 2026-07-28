@@ -156,3 +156,19 @@
 .csl-next__inner { max-width: var(--pf-maxw); margin: 0 auto; padding: 36px 24px; display:flex; align-items:center; justify-content:space-between; gap: 20px; flex-wrap: wrap; }
 .csl-next__label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pf-accent); }
 .csl-next__title { font-size: 1.3rem; font-weight: 800; color: var(--pf-ink); letter-spacing: -0.02em; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 560px) {
+  .csl-hero { padding: 40px 0 30px; }
+  .csl-hero__inner { gap: 24px; }
+  .csl-hero__phones { overflow: hidden; }
+  .csl-hero__phones .csl-phone--back { display: none; }
+  .csl-hero__phones .csl-phone--front { width: 200px; transform: none; }
+  .csl-meta { gap: 18px 26px; }
+  .csl-section { padding: 44px 0; }
+  .csl-stats__inner { padding: 26px 24px; }
+  .csl-quote { font-size: 1.15rem; padding-left: 16px; }
+  .csl-crow__price { text-align: left; }
+  .csl-next__inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .csl-next__inner .pf-btn { width: 100%; justify-content: center; }
+}
