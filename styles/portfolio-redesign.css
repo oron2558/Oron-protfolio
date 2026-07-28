@@ -315,6 +315,20 @@ body {
   background: linear-gradient(135deg, #14142b 0%, #26264f 100%);
   color: #fff; border-radius: 22px; padding: 44px;
   box-shadow: 0 24px 60px rgba(20, 20, 43, 0.22);
+  display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 40px; align-items: center;
+}
+.pf-proof__phones { display: flex; justify-content: center; align-items: flex-end; gap: 0; }
+.pf-proof__phone {
+  width: 158px; border-radius: 22px; overflow: hidden;
+  border: 5px solid #05050c; background: #05050c;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
+}
+.pf-proof__phone img { width: 100%; display: block; }
+.pf-proof__phone--front { position: relative; z-index: 2; }
+.pf-proof__phone--back { transform: translateX(-28px) translateY(-14px) rotate(-6deg) scale(0.9); opacity: 0.92; }
+@media (max-width: 860px) {
+  .pf-proof__card { grid-template-columns: 1fr; }
+  .pf-proof__phones { margin-top: 8px; }
 }
 .pf-proof__badge {
   display: inline-flex; align-items: center; gap: 8px;
