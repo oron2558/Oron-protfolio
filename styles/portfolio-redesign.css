@@ -378,6 +378,23 @@ body {
   .pf-proof__card { grid-template-columns: 1fr; }
   .pf-proof__phones { margin-top: 8px; }
 }
+@media (max-width: 560px) {
+  .pf-proof { padding: 44px 0; }
+  .pf-proof .pf-proof__card { padding: 26px 22px; border-radius: 18px; gap: 26px; }
+  .pf-proof .pf-proof__badge { margin-bottom: 14px; }
+  .pf-proof .pf-proof__title { font-size: 1.42rem; line-height: 1.2; }
+  .pf-proof .pf-proof__text { font-size: 0.95rem; line-height: 1.62; margin-bottom: 22px; }
+  /* even 3-up stats instead of an orphaned 'Solo' */
+  .pf-proof .pf-proof__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
+  .pf-proof .pf-proof__stat-num { font-size: 1.5rem; }
+  .pf-proof .pf-proof__stat-label { font-size: 0.7rem; line-height: 1.3; }
+  /* full-width tap target */
+  .pf-proof .pf-proof__cta { display: flex; width: 100%; justify-content: center; margin-top: 22px; padding: 14px 22px; }
+  /* single clean phone instead of a cramped overlap */
+  .pf-proof .pf-proof__phones { margin-top: 4px; }
+  .pf-proof .pf-proof__phone--back { display: none; }
+  .pf-proof .pf-proof__phone--front { width: 200px; }
+}
 .pf-proof__badge {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
