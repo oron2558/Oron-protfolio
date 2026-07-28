@@ -451,3 +451,19 @@ body {
 .onf-team__sub { color: var(--pf-ink-soft); }
 .onf-pipe__role { color: var(--pf-ink); }
 .onf-pipe__desc { color: var(--pf-ink-soft); }
+
+/* ---------- Mobile menu: dark panel, white text ---------- */
+@media (max-width: 810px) {
+  .onf-nav .onf-nav__links {
+    background: #14142b;
+    border-left-color: rgba(255, 255, 255, 0.08);
+    box-shadow: -14px 0 44px rgba(0, 0, 0, 0.4);
+  }
+  .onf-nav .onf-nav__link { color: rgba(255, 255, 255, 0.82); }
+  .onf-nav .onf-nav__link:hover,
+  .onf-nav .onf-nav__link--active { color: #ffffff; }
+  /* When the panel is open, keep the top-right icons visible over the dark panel */
+  .onf-nav__links--open ~ .onf-nav__actions .onf-nav__btn { color: #ffffff; }
+  .onf-nav__links--open ~ .onf-nav__actions .onf-nav__btn:hover { background: rgba(255, 255, 255, 0.12); }
+  .onf-nav__actions .onf-nav__hamburger--open span { background: #ffffff; }
+}
