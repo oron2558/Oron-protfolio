@@ -374,26 +374,39 @@ body {
 /* ---------- Responsive ---------- */
 @media (max-width: 810px) {
   .onf-nav__links {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
-    width: 80vw;
-    max-width: 280px;
+    /* Explicit height: an ancestor backdrop-filter makes .onf-nav the
+       containing block, so top/bottom:0 alone would clip the panel. */
+    height: 100vh;
+    height: 100dvh;
+    width: 82vw;
+    max-width: 300px;
     background: var(--bg-secondary);
     flex-direction: column;
-    padding: 80px 32px 32px;
-    gap: 24px;
+    align-items: flex-start;
+    padding: 88px 28px 32px;
+    gap: 6px;
     border-left: 1px solid var(--border-subtle);
+    box-shadow: -14px 0 44px rgba(0, 0, 0, 0.16);
+    z-index: 1100;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.3s var(--ease-spring), visibility 0.3s;
   }
 
   .onf-nav__link {
-    padding: 12px 0;
+    padding: 14px 0;
+    font-size: 1.05rem;
+    width: 100%;
   }
 
   .onf-nav__links--open {
-    display: flex;
+    transform: translateX(0);
+    visibility: visible;
   }
 
   .onf-nav__hamburger {
@@ -403,7 +416,7 @@ body {
   /* Keep the toggle button above the fixed slide-in panel so it can close it */
   .onf-nav__actions {
     position: relative;
-    z-index: 2;
+    z-index: 1200;
   }
 }
 
