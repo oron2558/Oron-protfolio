@@ -281,6 +281,37 @@ body {
   .pf-abouthero__photo { width: 150px; height: 180px; }
 }
 
+/* ---------- Story prose ---------- */
+.pf-story { padding: 8px 0 20px; }
+.pf-story__inner { max-width: var(--pf-maxw); margin: 0 auto; padding: 0 24px; }
+.pf-story__body { max-width: 760px; }
+.pf-story__body p {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--pf-ink-soft);
+  margin-bottom: 18px;
+}
+.pf-story__body p:first-of-type { color: var(--pf-ink); font-size: 1.14rem; }
+.pf-story__body strong { color: var(--pf-ink); font-weight: 600; }
+
+/* ---------- Photo hobby cards ---------- */
+.pf-hobbies--photo { grid-template-columns: repeat(4, 1fr); }
+.pf-hobby--photo {
+  padding: 0; overflow: hidden; text-align: left;
+  border: 1px solid var(--pf-line); position: relative;
+}
+.pf-hobby__media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--pf-surface-2); }
+.pf-hobby__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.pf-hobby--photo:hover .pf-hobby__media img { transform: scale(1.05); }
+.pf-hobby__cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 16px 16px 14px; z-index: 2;
+  background: linear-gradient(to top, rgba(10,10,20,0.92) 0%, rgba(10,10,20,0.5) 60%, transparent 100%);
+}
+.pf-hobby__cap .pf-hobby__label { color: #fff; font-size: 1rem; }
+.pf-hobby__cap .pf-hobby__sub { color: rgba(255,255,255,0.75); }
+@media (max-width: 900px) { .pf-hobbies--photo { grid-template-columns: repeat(2, 1fr); } }
+
 /* ---------- Generic content block ---------- */
 .pf-block { padding: 60px 0; }
 .pf-block__inner { max-width: var(--pf-maxw); margin: 0 auto; padding: 0 24px; }
