@@ -310,6 +310,11 @@ body {
 }
 .pf-hobby__cap .pf-hobby__label { color: #fff; font-size: 1rem; }
 .pf-hobby__cap .pf-hobby__sub { color: rgba(255,255,255,0.75); }
+.pf-hobby__media--ph {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #14142b 0%, #26264f 100%);
+}
+.pf-hobby__ph-emoji { font-size: 3rem; line-height: 1; }
 @media (max-width: 900px) { .pf-hobbies--photo { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- Generic content block ---------- */
