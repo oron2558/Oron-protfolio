@@ -476,7 +476,7 @@ body {
   --feat-tint: rgba(37, 99, 235, 0.10); --feat-line: rgba(37, 99, 235, 0.28);
   --feat-glow: rgba(37, 99, 235, 0.14); --feat-glow-hi: rgba(37, 99, 235, 0.22);
   --feat-bg: #f8faff;
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  display: grid; grid-template-columns: 0.9fr 1.1fr;
   background: linear-gradient(180deg, #ffffff, var(--feat-bg));
   border: 2px solid var(--feat); border-radius: 20px; overflow: hidden;
   box-shadow: 0 20px 50px var(--feat-glow); text-decoration: none;
@@ -490,11 +490,30 @@ body {
 }
 .pf-feat:hover { transform: translateY(-4px); box-shadow: 0 28px 62px var(--feat-glow-hi); }
 
-.pf-feat__media { position: relative; overflow: hidden; background: var(--pf-surface-2); min-height: 340px; }
+.pf-feat__media { position: relative; overflow: hidden; background: var(--pf-surface-2); min-height: 340px; grid-column: 2; grid-row: 1; }
 .pf-feat__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 
+/* iPhone mockups as card media */
+.pf-feat__phones {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  background: linear-gradient(160deg, #ffffff 0%, #eafaf1 100%);
+  padding: 26px;
+}
+.pf-feat__phone {
+  height: 100%; max-height: 330px; aspect-ratio: 9 / 19.5;
+  border-radius: 24px; border: 5px solid #05050c; background: #05050c;
+  overflow: hidden; box-shadow: 0 16px 34px rgba(20, 20, 43, 0.28);
+}
+.pf-feat__phone img {
+  position: static; inset: auto;
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+}
+.pf-feat__phone--back { transform: translateY(12px) rotate(-5deg) scale(0.93); }
+.pf-feat__phone--front { transform: translateY(-8px) rotate(3deg); z-index: 2; }
+
 .pf-feat__ribbon {
-  position: absolute; top: 16px; left: 16px; z-index: 2;
+  position: absolute; top: 16px; right: 16px; z-index: 3;
   display: inline-flex; align-items: center; gap: 7px;
   font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
   color: #fff; background: var(--feat); padding: 7px 14px; border-radius: 100px;
@@ -504,7 +523,7 @@ body {
 /* the live dot belongs to the shipped product only */
 .pf-feat:not(.pf-feat--live) .pf-feat__ribbon::before { display: none; }
 
-.pf-feat__body { padding: 40px; display: flex; flex-direction: column; gap: 14px; }
+.pf-feat__body { padding: 40px; display: flex; flex-direction: column; gap: 14px; grid-column: 1; grid-row: 1; }
 .pf-feat__badge {
   align-self: flex-start; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--feat-dark); background: var(--feat-tint); border: 1px solid var(--feat-line);
@@ -523,7 +542,10 @@ body {
 @media (max-width: 820px) {
   .pf-feats { gap: 24px; padding-bottom: 64px; }
   .pf-feat { grid-template-columns: 1fr; }
-  .pf-feat__media { min-height: 0; aspect-ratio: 16 / 10; }
+  .pf-feat__media { min-height: 0; aspect-ratio: 16 / 10; grid-column: 1; grid-row: 1; }
+  .pf-feat__body { grid-column: 1; grid-row: 2; }
+  .pf-feat__phones { padding: 16px; gap: 12px; }
+  .pf-feat__phone { max-height: 100%; }
   .pf-feat__media img { position: static; inset: auto; }
   .pf-feat__body { padding: 26px 22px; }
   .pf-feat__title { font-size: 1.45rem; min-height: 0; }
