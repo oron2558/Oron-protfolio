@@ -264,9 +264,13 @@ body {
 /* ---------- About page hero ---------- */
 .pf-abouthero { padding: 120px 0 20px; }
 .pf-abouthero__inner {
-  display: grid; grid-template-columns: 230px 1fr; gap: 46px; align-items: center;
+  display: grid; grid-template-columns: 1fr 230px; gap: 46px; align-items: center;
   max-width: var(--pf-maxw); margin: 0 auto; padding: 0 24px;
 }
+/* text sits in the first column so it lines up with My Story / What I bring;
+   the photo is placed into the second column without reordering the markup */
+.pf-abouthero__text { grid-column: 1; grid-row: 1; }
+.pf-abouthero__photo { grid-column: 2; grid-row: 1; justify-self: end; }
 .pf-abouthero__photo {
   width: 230px; height: 270px; border-radius: 22px; overflow: hidden;
   border: 1px solid var(--pf-line); box-shadow: 0 18px 44px rgba(20, 20, 43, 0.14);
@@ -278,7 +282,9 @@ body {
 .pf-abouthero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 @media (max-width: 640px) {
   .pf-abouthero__inner { grid-template-columns: 1fr; gap: 24px; }
-  .pf-abouthero__photo { width: 150px; height: 180px; }
+  /* single column on mobile: photo first, then the text */
+  .pf-abouthero__photo { width: 150px; height: 180px; grid-column: 1; grid-row: 1; justify-self: start; }
+  .pf-abouthero__text { grid-column: 1; grid-row: 2; }
 }
 
 /* ---------- Story prose ---------- */
