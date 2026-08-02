@@ -59,56 +59,33 @@
   background: rgba(16, 24, 40, 0.12);
 }
 
-/* The project list scrolls sideways on narrow screens rather than wrapping,
-   so the bar keeps its single-row height. */
-.csnav__list {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+/* Quiet "you are here" label rather than a list of every project — the bar
+   should say where you are, not compete with the page for attention. */
+.csnav__here {
   flex: 1 1 auto;
   min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
 }
 
-.csnav__list::-webkit-scrollbar { display: none; }
-
-.csnav__item {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 7px 13px;
-  border-radius: 99px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #5b6478;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 160ms ease, color 160ms ease;
-}
-
-.csnav__item:hover { background: rgba(16, 24, 40, 0.05); color: #101828; }
-
-.csnav__item--current {
-  background: #101828;
-  color: #fff;
+.csnav__title {
+  font-size: 0.9rem;
   font-weight: 600;
-  cursor: default;
+  color: #101828;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.csnav__item--current:hover { background: #101828; color: #fff; }
-
-/* Small index number, so the bar reads as "2 of 4" at a glance. */
-.csnav__num {
-  font-size: 0.68rem;
-  font-weight: 700;
-  opacity: 0.5;
+.csnav__count {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #98a2b3;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
 }
-
-.csnav__item--current .csnav__num { opacity: 0.65; }
 
 .csnav__steps {
   flex: 0 0 auto;
@@ -188,10 +165,8 @@
 [data-theme="dark"] .csnav__root { color: #9aa3b8; }
 [data-theme="dark"] .csnav__root:hover { color: #7f9bff; }
 [data-theme="dark"] .csnav__sep { background: rgba(255, 255, 255, 0.14); }
-[data-theme="dark"] .csnav__item { color: #9aa3b8; }
-[data-theme="dark"] .csnav__item:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
-[data-theme="dark"] .csnav__item--current,
-[data-theme="dark"] .csnav__item--current:hover { background: #fff; color: #101828; }
+[data-theme="dark"] .csnav__title { color: #f2f4f8; }
+[data-theme="dark"] .csnav__count { color: #6d7688; }
 [data-theme="dark"] .csnav__step {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.14);
