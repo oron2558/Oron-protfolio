@@ -1,0 +1,223 @@
+/* =========================================================================
+   Case study chrome: the Work sub-nav that sits under the site nav, and the
+   back-to-top button.
+
+   Self-contained for the same reason site-nav.css is — the case studies do
+   not all load the same base stylesheet.
+   ========================================================================= */
+
+/* Case studies scroll dense body copy under the two fixed bars, so both need
+   a more solid backing than the marketing pages — there the nav floats over a
+   quiet hero and the glass look works. This file only loads on case studies,
+   and after site-nav.css, so the override is scoped to exactly those pages. */
+.snav { background: rgba(255, 255, 255, 0.97); }
+[data-theme="dark"] .snav { background: rgba(10, 10, 18, 0.97); }
+
+/* ---------- Work sub-nav ---------- */
+/* Fixed, not sticky: casestudy-woofio/ai-crm/myplanner set overflow on the
+   html element, which makes body its own scroll container and stops a sticky
+   child from ever engaging. Fixed positioning is unaffected by that. */
+.csnav {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  z-index: 3900;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 54px;
+  padding: 0 4%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid rgba(16, 24, 40, 0.08);
+}
+
+.csnav__root {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5b6478;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.csnav__root:hover { color: #2f5cf0; }
+.csnav__root svg { width: 13px; height: 13px; }
+
+.csnav__sep {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 20px;
+  background: rgba(16, 24, 40, 0.12);
+}
+
+/* The project list scrolls sideways on narrow screens rather than wrapping,
+   so the bar keeps its single-row height. */
+.csnav__list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.csnav__list::-webkit-scrollbar { display: none; }
+
+.csnav__item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 99px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #5b6478;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.csnav__item:hover { background: rgba(16, 24, 40, 0.05); color: #101828; }
+
+.csnav__item--current {
+  background: #101828;
+  color: #fff;
+  font-weight: 600;
+  cursor: default;
+}
+
+.csnav__item--current:hover { background: #101828; color: #fff; }
+
+/* Small index number, so the bar reads as "2 of 4" at a glance. */
+.csnav__num {
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.csnav__item--current .csnav__num { opacity: 0.65; }
+
+.csnav__steps {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.csnav__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(16, 24, 40, 0.12);
+  background: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #344054;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.csnav__step:hover { border-color: #2f5cf0; color: #2f5cf0; }
+.csnav__step svg { width: 13px; height: 13px; }
+.csnav__step-label { display: inline; }
+
+/* Holds the page clear of the fixed bar. */
+.csnav-spacer { height: 54px; }
+
+/* ---------- back to top ---------- */
+.totop {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 4200;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(16, 24, 40, 0.1);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.16);
+  color: #101828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 220ms ease, transform 220ms ease, visibility 220ms;
+}
+
+.totop--on {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.totop:hover {
+  border-color: #2f5cf0;
+  color: #2f5cf0;
+  box-shadow: 0 10px 26px rgba(47, 92, 240, 0.24);
+}
+
+.totop svg { width: 19px; height: 19px; }
+
+/* ---------- dark theme ---------- */
+[data-theme="dark"] .csnav {
+  background: rgba(10, 10, 18, 0.97);
+  border-bottom-color: rgba(255, 255, 255, 0.09);
+}
+[data-theme="dark"] .csnav__root { color: #9aa3b8; }
+[data-theme="dark"] .csnav__root:hover { color: #7f9bff; }
+[data-theme="dark"] .csnav__sep { background: rgba(255, 255, 255, 0.14); }
+[data-theme="dark"] .csnav__item { color: #9aa3b8; }
+[data-theme="dark"] .csnav__item:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+[data-theme="dark"] .csnav__item--current,
+[data-theme="dark"] .csnav__item--current:hover { background: #fff; color: #101828; }
+[data-theme="dark"] .csnav__step {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #e7e9f0;
+}
+[data-theme="dark"] .csnav__step:hover { border-color: #7f9bff; color: #7f9bff; }
+[data-theme="dark"] .totop {
+  background: rgba(20, 20, 32, 0.94);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+[data-theme="dark"] .totop:hover { border-color: #7f9bff; color: #7f9bff; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px) {
+  .csnav__step-label { display: none; }
+  .csnav__step { padding: 0 9px; }
+}
+
+@media (max-width: 860px) {
+  .csnav { top: 62px; height: 50px; padding: 0 16px; gap: 10px; }
+  .csnav-spacer { height: 50px; }
+  .csnav__root span { display: none; }
+  .totop { right: 16px; bottom: 16px; width: 42px; height: 42px; }
+}
+
+@media print {
+  .csnav, .csnav-spacer, .totop { display: none !important; }
+}
