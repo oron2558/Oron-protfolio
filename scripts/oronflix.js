@@ -461,7 +461,7 @@
     // Hide nav, back button, next-episode; make all animations visible
     var style = iframeDoc.createElement('style');
     style.textContent =
-      '.onf-nav, .cs-back, .onf-next-episode, .onf-player-bar { display: none !important; }' +
+      '.snav, .snav-spacer, .onf-nav, .cs-back, .onf-next-episode, .onf-player-bar { display: none !important; }' +
       'html, body { scroll-behavior: auto !important; overflow: auto !important; cursor: none !important; }' +
       '.animate-on-scroll, .onf-animate { opacity: 1 !important; transform: none !important; transition: none !important; }' +
       '::-webkit-scrollbar { display: none; }';

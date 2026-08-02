@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" href="styles/oronflix-base.css">
   <link rel="stylesheet" href="styles/portfolio-redesign.css">
+  <link rel="stylesheet" href="styles/site-nav.css">
   <style>
     body {
       background: var(--bg-primary);
@@ -451,24 +452,19 @@
 <body>
 
 <!-- ==================== NAVIGATION ==================== -->
-<nav class="onf-nav">
-  <a href="index.html" class="onf-nav__logo">ORON.</a>
-
-  <div class="onf-nav__links">
-    <a href="index.html" class="onf-nav__link">Home</a>
-    <a href="projects.html" class="onf-nav__link">Work</a>
-    <a href="about.html" class="onf-nav__link">About</a>
-    <a href="resume.html" class="onf-nav__link onf-nav__link--active">Resume / CV</a>
-    <a href="#contact" class="onf-nav__link">Contact</a>
+<!-- ==================== SITE NAV ==================== -->
+<nav class="snav snav--ghost">
+  <a href="index.html" class="snav__logo">ORON.</a>
+  <div class="snav__links">
+    <a href="index.html" class="snav__link">Home</a>
+    <a href="projects.html" class="snav__link">Work</a>
+    <a href="about.html" class="snav__link">About</a>
+    <a href="resume.html" class="snav__link snav__link--active">Resume / CV</a>
+    <a href="index.html#contact" class="snav__link">Contact</a>
   </div>
-
-  <div class="onf-nav__actions">
-    <button class="onf-nav__btn" id="theme-toggle" onclick="oronflix.toggleTheme()" aria-label="Toggle theme">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-    <button class="onf-nav__hamburger" aria-label="Menu">
+  <div class="snav__actions">
+    <button class="snav__btn snav__theme" type="button" aria-label="Toggle theme"></button>
+    <button class="snav__burger" type="button" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -703,5 +699,6 @@
 </footer>
 
 <script src="scripts/oronflix.js"></script>
+<script src="scripts/site-nav.js" defer></script>
 </body>
 </html>
