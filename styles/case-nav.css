@@ -119,43 +119,50 @@
 .csnav-spacer { height: 54px; }
 
 /* ---------- back to top ---------- */
+/* Solid ink on purpose: an outlined white circle disappeared against these
+   light case-study backgrounds. */
 .totop {
   position: fixed;
-  right: 26px;
-  bottom: 26px;
+  right: 28px;
+  bottom: 28px;
   z-index: 4200;
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(16, 24, 40, 0.1);
+  width: 48px;
+  height: 48px;
+  border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.16);
-  color: #101828;
+  background: #101828;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.28), 0 2px 6px rgba(16, 24, 40, 0.16);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(12px);
-  transition: opacity 220ms ease, transform 220ms ease, visibility 220ms;
+  transform: translateY(14px) scale(0.9);
+  transition: opacity 240ms ease, transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 180ms ease, box-shadow 180ms ease, visibility 240ms;
 }
 
 .totop--on {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .totop:hover {
-  border-color: #2f5cf0;
-  color: #2f5cf0;
-  box-shadow: 0 10px 26px rgba(47, 92, 240, 0.24);
+  background: #2f5cf0;
+  box-shadow: 0 12px 30px rgba(47, 92, 240, 0.36), 0 2px 6px rgba(16, 24, 40, 0.16);
 }
 
-.totop svg { width: 19px; height: 19px; }
+.totop:active { transform: translateY(1px) scale(0.97); }
+
+.totop:focus-visible {
+  outline: 3px solid rgba(47, 92, 240, 0.45);
+  outline-offset: 3px;
+}
+
+.totop svg { width: 20px; height: 20px; }
 
 /* ---------- dark theme ---------- */
 [data-theme="dark"] .csnav {
@@ -174,11 +181,11 @@
 }
 [data-theme="dark"] .csnav__step:hover { border-color: #7f9bff; color: #7f9bff; }
 [data-theme="dark"] .totop {
-  background: rgba(20, 20, 32, 0.94);
-  border-color: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: #fff;
+  color: #101828;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
-[data-theme="dark"] .totop:hover { border-color: #7f9bff; color: #7f9bff; }
+[data-theme="dark"] .totop:hover { background: #7f9bff; color: #0b0b14; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 980px) {
@@ -190,7 +197,7 @@
   .csnav { top: 62px; height: 50px; padding: 0 16px; gap: 10px; }
   .csnav-spacer { height: 50px; }
   .csnav__root span { display: none; }
-  .totop { right: 16px; bottom: 16px; width: 42px; height: 42px; }
+  .totop { right: 18px; bottom: 18px; width: 46px; height: 46px; }
 }
 
 @media print {
