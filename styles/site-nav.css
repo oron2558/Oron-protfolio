@@ -1,0 +1,193 @@
+/* =========================================================================
+   Shared site navigation.
+
+   Self-contained on purpose: the marketing pages load oronflix-base.css and
+   the case studies load portfolio-styles.css, and the two define different
+   variables. Everything the nav needs is declared here, so the same markup
+   renders identically on every page.
+   ========================================================================= */
+
+.snav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4%;
+  z-index: 4000;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(16, 24, 40, 0.07);
+  transition: background 240ms ease, border-color 240ms ease;
+}
+
+/* Sits flush over a hero until the page scrolls. */
+.snav--ghost {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.snav__logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  background: linear-gradient(135deg, #6f8dff, #2f5cf0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.snav__links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.snav__link {
+  position: relative;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #5b6478;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.snav__link:hover,
+.snav__link--active {
+  color: #101828;
+}
+
+.snav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: #2f5cf0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.snav__link:hover::after,
+.snav__link--active::after { transform: scaleX(1); }
+
+.snav__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.snav__btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #5b6478;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.snav__btn:hover {
+  color: #101828;
+  background: rgba(16, 24, 40, 0.06);
+}
+
+.snav__btn svg { width: 18px; height: 18px; }
+
+.snav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.snav__burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: #101828;
+  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 160ms ease;
+}
+
+.snav__burger--open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.snav__burger--open span:nth-child(2) { opacity: 0; }
+.snav__burger--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Pushes page content clear of the fixed bar. Pages with a full-bleed hero
+   that should run under the nav simply omit the spacer. */
+.snav-spacer { height: 72px; }
+
+/* ---------- dark theme ---------- */
+[data-theme="dark"] .snav {
+  background: rgba(10, 10, 18, 0.82);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .snav--ghost {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+[data-theme="dark"] .snav__link { color: #9aa3b8; }
+[data-theme="dark"] .snav__link:hover,
+[data-theme="dark"] .snav__link--active { color: #fff; }
+[data-theme="dark"] .snav__btn { color: #9aa3b8; }
+[data-theme="dark"] .snav__btn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+[data-theme="dark"] .snav__burger span { background: #fff; }
+
+/* ---------- mobile ---------- */
+@media (max-width: 860px) {
+  .snav { height: 62px; padding: 0 20px; }
+  .snav-spacer { height: 62px; }
+  .snav__burger { display: flex; }
+
+  /* The nav's own backdrop-filter makes it the containing block for fixed
+     children, so the panel is given an explicit height instead of inset:0. */
+  .snav__links {
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    height: calc(100dvh - 62px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 26px 24px;
+    background: #0b0b14;
+    transform: translateX(100%);
+    transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 4100;
+  }
+
+  .snav__links--open { transform: translateX(0); }
+
+  .snav__link {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #e7e9f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .snav__link:hover,
+  .snav__link--active { color: #fff; }
+  .snav__link::after { display: none; }
+}
