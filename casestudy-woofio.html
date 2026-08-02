@@ -10,6 +10,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
   <link rel="stylesheet" href="styles/oronflix-player.css">
   <link rel="stylesheet" href="styles/site-nav.css">
+  <link rel="stylesheet" href="styles/case-nav.css">
 
   <style>
     /* ============================================
@@ -2027,6 +2028,29 @@
 </nav>
 <div class="snav-spacer"></div>
 
+<!-- ==================== WORK SUB-NAV ==================== -->
+<nav class="csnav" aria-label="Case studies">
+  <a href="projects.html" class="csnav__root">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg><span>Work</span>
+  </a>
+  <span class="csnav__sep"></span>
+  <div class="csnav__list">
+      <a href="casestudy-mba.html" class="csnav__item"><span class="csnav__num">01</span>Meashrim in Click</a>
+      <span class="csnav__item csnav__item--current" aria-current="page"><span class="csnav__num">02</span>Woofio</span>
+      <a href="casestudy-ai-crm.html" class="csnav__item"><span class="csnav__num">03</span>MessAge</a>
+      <a href="casestudy-myplanner.html" class="csnav__item"><span class="csnav__num">04</span>MyPlanner</a>
+  </div>
+  <div class="csnav__steps">
+    <a href="casestudy-mba.html" class="csnav__step" title="Previous: Meashrim in Click">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg><span class="csnav__step-label">Meashrim in Click</span>
+    </a>
+    <a href="casestudy-ai-crm.html" class="csnav__step" title="Next: MessAge">
+      <span class="csnav__step-label">MessAge</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 6 6 6-6 6"/></svg>
+    </a>
+  </div>
+</nav>
+<div class="csnav-spacer"></div>
+
 <!-- ==================== ATMOSPHERIC BACKGROUND ==================== -->
   <div class="blur-orb blur-orb-1" style="top: 5%; left: -8%; background: #f59e0b;"></div>
   <div class="blur-orb blur-orb-2" style="top: 15%; right: -5%; background: #d97706;"></div>
@@ -2788,5 +2812,7 @@
 </div>
 <script src="scripts/oronflix-player.js"></script>
 <script src="scripts/site-nav.js" defer></script>
+<script src="scripts/case-nav.js" defer></script>
+<button class="totop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 </body>
 </html>
