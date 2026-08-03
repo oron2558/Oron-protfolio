@@ -9,7 +9,7 @@
 .lego-hero {
   position: relative;
   padding: 108px 0 64px;
-  background: #f4f6fb;
+  background: #faf6ef;
 }
 
 .lego-hero__inner {
@@ -20,16 +20,17 @@
 }
 
 /* ---------- the poster ---------- */
-/* Dark on purpose. It frames the composition the way a printed poster does,
-   the four LEGO colours only sing against it, and it lets the portrait's own
-   black backdrop disappear into the panel instead of sitting in a box. */
+/* Warm paper stock, not a dark panel — the printed-poster feel the reference
+   has, and the primary colours read as toy bricks on cream rather than as
+   neon on navy. */
 .lego-poster {
   position: relative;
   overflow: hidden;
   border-radius: 26px;
   padding: clamp(28px, 5vw, 60px) 24px 0;
-  background: radial-gradient(120% 100% at 50% 0%, #1b2040 0%, #0c0f22 52%, #04050d 100%);
-  box-shadow: 0 30px 70px rgba(8, 10, 24, 0.32);
+  background:
+    radial-gradient(130% 110% at 50% -10%, #fdfaf4 0%, #f4ece0 52%, #ead9c4 100%);
+  box-shadow: 0 26px 60px rgba(84, 62, 38, 0.16), inset 0 0 0 1px rgba(120, 92, 58, 0.09);
   margin-bottom: 40px;
 }
 
@@ -38,7 +39,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.075) 2.4px, transparent 2.8px);
+  background-image: radial-gradient(circle at center, rgba(120, 92, 58, 0.11) 2.4px, transparent 2.8px);
   background-size: 38px 38px;
   pointer-events: none;
 }
@@ -50,7 +51,7 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #8fa4ff;
+  color: #9a6b3f;
   margin-bottom: clamp(18px, 3vw, 34px);
 }
 
@@ -77,12 +78,20 @@
   justify-content: space-evenly;
   width: calc(var(--u) * var(--cells) - 3px);
   height: calc(var(--u) - 3px);
-  border-radius: calc(var(--u) * 0.1);
-  background: var(--c);
-  /* Flat face, one darker lip along the bottom — how a brick reads head-on. */
+  border-radius: calc(var(--u) * 0.11);
+  /* Moulded plastic, not a flat swatch: lit from above, shading into the
+     bottom lip, with a cast shadow on the plate behind. */
+  background:
+    linear-gradient(180deg,
+      var(--cl) 0%,
+      var(--c) 22%,
+      var(--c) 62%,
+      var(--cd) 92%,
+      var(--cdd) 100%);
   box-shadow:
-    inset 0 calc(var(--u) * -0.13) 0 rgba(0, 0, 0, 0.24),
-    0 3px 6px rgba(0, 0, 0, 0.34);
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset calc(var(--u) * -0.06) 0 calc(var(--u) * 0.1) rgba(0, 0, 0, 0.16),
+    0 calc(var(--u) * 0.09) calc(var(--u) * 0.16) rgba(90, 66, 40, 0.32);
   opacity: 0;
   transform: translate(var(--dx), var(--dy)) rotate(var(--rz)) scale(0.6);
   transition:
@@ -92,15 +101,17 @@
   will-change: transform, opacity;
 }
 
-/* The studs. One per cell, large — this is what makes it read as LEGO. */
+/* The studs. Round cylinders with a highlight where the light lands and a
+   contact shadow underneath — the detail that sells it as a real brick. */
 .lego-brick i {
-  width: calc(var(--u) * 0.52);
-  height: calc(var(--u) * 0.52);
+  width: calc(var(--u) * 0.5);
+  height: calc(var(--u) * 0.5);
   border-radius: 50%;
-  background: var(--c);
+  background: radial-gradient(circle at 36% 28%, var(--cl) 0%, var(--c) 46%, var(--cd) 88%, var(--cdd) 100%);
   box-shadow:
-    0 calc(var(--u) * 0.05) 0 rgba(0, 0, 0, 0.26),
-    inset 0 calc(var(--u) * 0.04) 0 rgba(255, 255, 255, 0.34);
+    0 calc(var(--u) * 0.045) calc(var(--u) * 0.07) rgba(0, 0, 0, 0.34),
+    inset 0 calc(var(--u) * -0.035) calc(var(--u) * 0.05) rgba(0, 0, 0, 0.28),
+    inset 0 calc(var(--u) * 0.03) 0 rgba(255, 255, 255, 0.5);
 }
 
 .lego-word.is-built .lego-brick {
@@ -108,17 +119,16 @@
   transform: translate(0, 0) rotate(0deg) scale(1);
 }
 
-/* ---------- portrait, inside the same frame ---------- */
-/* The source is a cut-out (oron-hero-cutout.png): alpha comes from the
-   photo's own luminance, so the black studio backdrop is genuinely gone
-   rather than blended away. Doing it in the asset avoids mix-blend-mode,
-   which the transform on this element isolates anyway. */
+/* ---------- portrait, in front of the name ---------- */
+/* Full colour and sitting on top of the letters, the way the reference has
+   it. The greyscale cut-out read as a cold silhouette; a printed photo on
+   the poster keeps the warmth and still puts the name behind. */
 .lego-photo {
   position: absolute;
   left: 50%;
   bottom: 0;
   z-index: 2;
-  width: clamp(186px, 22vw, 310px);
+  width: clamp(178px, 20.5vw, 290px);
   transform: translateX(-50%) translateY(20px);
   opacity: 0;
   transition: opacity 700ms ease 480ms, transform 820ms cubic-bezier(0.2, 0.9, 0.25, 1.08) 480ms;
@@ -130,14 +140,14 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Dissolve the last of the figure into the panel, so the composition ends in
-   the poster rather than on a cropped forearm. */
 .lego-photo img {
   display: block;
   width: 100%;
-  height: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 58%, rgba(0, 0, 0, 0.35) 84%, transparent 99%);
-  mask-image: linear-gradient(to bottom, #000 58%, rgba(0, 0, 0, 0.35) 84%, transparent 99%);
+  height: clamp(258px, 30vw, 420px);
+  object-fit: cover;
+  object-position: center 12%;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 22px 48px rgba(84, 62, 38, 0.34), 0 3px 10px rgba(84, 62, 38, 0.2);
 }
 
 /* ---------- copy ---------- */
@@ -150,7 +160,8 @@
   margin: 0 0 16px;
 }
 
-.lego-hero__title em { font-style: normal; color: #2f5cf0; }
+/* Ties the headline to the bricks rather than the site blue. */
+.lego-hero__title em { font-style: normal; color: #d01012; }
 
 .lego-hero__lead {
   max-width: 660px;
@@ -283,7 +294,7 @@
 .lego-btn--secondary:hover { border-color: #2f5cf0; color: #2f5cf0; transform: translateY(-2px); }
 
 /* ---------- dark theme ---------- */
-/* The poster is already dark; only the copy below it flips. */
+/* The poster keeps its paper stock in both themes; the page around it flips. */
 [data-theme="dark"] .lego-hero { background: #0b0b14; }
 [data-theme="dark"] .lego-hero__title { color: #f4f6fb; }
 [data-theme="dark"] .lego-hero__title em { color: #7f9bff; }

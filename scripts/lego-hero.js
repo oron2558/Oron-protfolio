@@ -17,7 +17,18 @@
   var ROWS = 7;
 
   /* The four classic LEGO colours. Anything subtler stops reading as a toy. */
-  var COLORS = ['#e3000b', '#0057a8', '#ffd400', '#00852b'];
+  var COLORS = ['#d01012', '#0a5bb5', '#f6c200', '#237841'];
+
+  /* Each brick needs a lit and a shaded version of its colour so the body and
+     the studs can be shaded instead of printed flat. */
+  function shade(hex, amt) {
+    var n = parseInt(hex.slice(1), 16);
+    var r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    var mix = function (v) {
+      return Math.round(amt > 0 ? v + (255 - v) * amt : v * (1 + amt));
+    };
+    return 'rgb(' + mix(r) + ',' + mix(g) + ',' + mix(b) + ')';
+  }
 
   function seeded(seed) {
     var s = seed >>> 0;
@@ -76,7 +87,11 @@
       var el = document.createElement('span');
       el.className = 'lego-brick';
       el.style.setProperty('--cells', p.cells);
-      el.style.setProperty('--c', COLORS[Math.floor(rnd() * COLORS.length)]);
+      var base = COLORS[Math.floor(rnd() * COLORS.length)];
+      el.style.setProperty('--c', base);
+      el.style.setProperty('--cl', shade(base, 0.34));
+      el.style.setProperty('--cd', shade(base, -0.32));
+      el.style.setProperty('--cdd', shade(base, -0.5));
       el.style.setProperty('--i', i);
       el.style.left = 'calc(var(--u) * ' + p.x + ')';
       el.style.top = 'calc(var(--u) * ' + p.y + ')';
