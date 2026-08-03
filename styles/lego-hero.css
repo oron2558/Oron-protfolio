@@ -61,62 +61,92 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  min-height: calc(var(--u) * 11);
+  min-height: calc(var(--u) * 8.4);
 }
 
-.lego-word {
+/* ---------- the wordmark ---------- */
+@font-face {
+  font-family: 'Bowlby One';
+  src: url('../fonts/bowlby-one-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+.oron {
   position: relative;
   z-index: 1;
-  /* width/height come from the script, off the brick grid */
-}
-
-/* ---------- a brick ---------- */
-.lego-brick {
-  position: absolute;
+  margin: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: calc(var(--u) * var(--cells) - 3px);
-  height: calc(var(--u) - 3px);
-  border-radius: calc(var(--u) * 0.11);
-  /* Moulded plastic, not a flat swatch: lit from above, shading into the
-     bottom lip, with a cast shadow on the plate behind. */
-  background:
-    linear-gradient(180deg,
-      var(--cl) 0%,
-      var(--c) 22%,
-      var(--c) 62%,
-      var(--cd) 92%,
-      var(--cdd) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    inset calc(var(--u) * -0.06) 0 calc(var(--u) * 0.1) rgba(0, 0, 0, 0.16),
-    0 calc(var(--u) * 0.09) calc(var(--u) * 0.16) rgba(90, 66, 40, 0.32);
+  justify-content: center;
+  font-family: 'Bowlby One', 'Archivo Black', Impact, sans-serif;
+  font-size: calc(var(--u) * 5);
+  line-height: 0.92;
+  /* Spread wide enough that the outer letters clear the portrait and the
+     word still reads as ORON rather than "O ... N". */
+  letter-spacing: 0.17em;
+  text-indent: 0.17em;
+  white-space: nowrap;
+  margin-bottom: calc(var(--u) * 0.5);
+}
+
+/* One LEGO colour per letter, with a solid extrude behind it — the depth is
+   what turns a big word into a piece of show lettering. */
+.oron__l {
+  display: inline-block;
+  color: var(--lc);
+  text-shadow:
+    calc(var(--u) * 0.055) calc(var(--u) * 0.055) 0 var(--ld),
+    calc(var(--u) * 0.11) calc(var(--u) * 0.11) 0 var(--ld),
+    calc(var(--u) * 0.165) calc(var(--u) * 0.165) 0 var(--ld),
+    calc(var(--u) * 0.22) calc(var(--u) * 0.22) 0 rgba(84, 62, 38, 0.22);
   opacity: 0;
-  transform: translate(var(--dx), var(--dy)) rotate(var(--rz)) scale(0.6);
+  transform: translateY(-38px) rotate(-6deg) scale(0.86);
   transition:
-    transform 640ms cubic-bezier(0.18, 0.9, 0.24, 1.12),
-    opacity 360ms ease;
-  transition-delay: calc(var(--i) * 22ms);
-  will-change: transform, opacity;
+    transform 720ms cubic-bezier(0.2, 1.25, 0.3, 1),
+    opacity 420ms ease;
+  transition-delay: calc(var(--i) * 110ms);
 }
 
-/* The studs. Round cylinders with a highlight where the light lands and a
-   contact shadow underneath — the detail that sells it as a real brick. */
-.lego-brick i {
-  width: calc(var(--u) * 0.5);
-  height: calc(var(--u) * 0.5);
-  border-radius: 50%;
-  background: radial-gradient(circle at 36% 28%, var(--cl) 0%, var(--c) 46%, var(--cd) 88%, var(--cdd) 100%);
-  box-shadow:
-    0 calc(var(--u) * 0.045) calc(var(--u) * 0.07) rgba(0, 0, 0, 0.34),
-    inset 0 calc(var(--u) * -0.035) calc(var(--u) * 0.05) rgba(0, 0, 0, 0.28),
-    inset 0 calc(var(--u) * 0.03) 0 rgba(255, 255, 255, 0.5);
-}
+.oron__l:nth-child(1) { --lc: #d01012; --ld: #8f0b0d; }
+.oron__l:nth-child(2) { --lc: #0a5bb5; --ld: #063d7a; }
+.oron__l:nth-child(3) { --lc: #f6c200; --ld: #b88c00; }
+.oron__l:nth-child(4) { --lc: #237841; --ld: #14512b; }
 
-.lego-word.is-built .lego-brick {
+.oron.is-in .oron__l {
   opacity: 1;
-  transform: translate(0, 0) rotate(0deg) scale(1);
+  transform: translateY(0) rotate(0) scale(1);
+}
+
+/* ---------- floating hobby icons ---------- */
+/* The things outside the work — LEGO, RC racing, Muay Thai, tennis — drifting
+   around the poster rather than listed in it. */
+.hfloat {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 1;
+  width: clamp(38px, 4.6vw, 62px);
+  height: clamp(38px, 4.6vw, 62px);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 620ms ease, transform 720ms cubic-bezier(0.2, 1.3, 0.3, 1);
+  transition-delay: calc(700ms + var(--delay));
+  pointer-events: none;
+  filter: drop-shadow(0 6px 12px rgba(84, 62, 38, 0.26));
+}
+
+.lego-poster.is-in .hfloat {
+  opacity: 1;
+  transform: scale(1);
+  animation: hfloatDrift var(--dur) ease-in-out infinite;
+  animation-delay: calc(1.4s + var(--delay));
+}
+
+.hfloat svg { width: 100%; height: 100%; display: block; }
+
+@keyframes hfloatDrift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(calc(var(--drift) * -1)) rotate(var(--rot)); }
 }
 
 /* ---------- portrait, in front of the name ---------- */
@@ -128,7 +158,7 @@
   left: 50%;
   bottom: 0;
   z-index: 2;
-  height: clamp(248px, 30vw, 418px);
+  height: clamp(236px, 28vw, 392px);
   width: auto;
   transform: translateX(-50%) translateY(20px);
   opacity: 0;
@@ -325,6 +355,13 @@
 /* Below this width the word is short enough that a portrait large enough to
    see would bury it, so the two stack instead of overlapping. */
 @media (max-width: 640px) {
+  /* The poster is narrow here and the word runs across the top, so the icons
+     move down the sides where nothing collides with them. */
+  .hfloat--lego   { --x: 3%;  --y: 46%; }
+  .hfloat--rc     { --x: 84%; --y: 42%; }
+  .hfloat--glove  { --x: 4%;  --y: 74%; }
+  .hfloat--racket { --x: 85%; --y: 70%; }
+
   .lego-poster { border-radius: 20px; padding-bottom: 0; }
   .lego-stage {
     flex-direction: column;
@@ -350,7 +387,9 @@
 
 /* ---------- motion preference ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .lego-brick { opacity: 1; transform: none; transition: none; }
+  .oron__l { opacity: 1; transform: none; transition: none; }
+  .hfloat { opacity: 1; transform: none; transition: none; }
+  .lego-poster.is-in .hfloat { animation: none; transform: none; }
   .lego-photo { opacity: 1; transform: translateX(-50%); transition: none; }
   .lego-stage.is-built .lego-photo { transform: translateX(-50%); }
 }
