@@ -209,9 +209,12 @@
 
 .lego-hero__title em { font-style: normal; color: #3b5bdb; }
 
+/* Left-aligned inside a centred column: ragged on one edge only, so the lines
+   start together instead of every line floating to its own indent. */
 .lego-hero__lead {
-  max-width: 660px;
+  max-width: 680px;
   margin: 0 auto 26px;
+  text-align: left;
   font-size: 1.02rem;
   line-height: 1.65;
   color: #4a5468;
@@ -330,6 +333,7 @@
 @media (max-width: 860px) {
   .lego-hero { padding: 92px 0 52px; }
   .lego-hero__lead { font-size: 0.95rem; }
+  .lego-hero__lead { text-align: left; }
 }
 
 /* ---------- motion preference ---------- */
