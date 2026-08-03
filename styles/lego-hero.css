@@ -16,7 +16,7 @@
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
-  text-align: center;
+  text-align: left;
 }
 
 /* ---------- the poster ---------- */
@@ -51,6 +51,7 @@
 .lego-poster__eyebrow {
   position: relative;
   z-index: 3;
+  text-align: center;
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -213,8 +214,7 @@
    start together instead of every line floating to its own indent. */
 .lego-hero__lead {
   max-width: 680px;
-  margin: 0 auto 26px;
-  text-align: left;
+  margin: 0 0 26px;
   font-size: 1.02rem;
   line-height: 1.65;
   color: #4a5468;
@@ -226,7 +226,7 @@
 .lego-hero__foot {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 18px;
 }
 
@@ -251,7 +251,7 @@
   box-shadow: 0 0 0 3px rgba(23, 178, 106, 0.2);
 }
 
-.lego-hero__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.lego-hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .lego-btn {
   display: inline-flex;
@@ -333,7 +333,6 @@
 @media (max-width: 860px) {
   .lego-hero { padding: 92px 0 52px; }
   .lego-hero__lead { font-size: 0.95rem; }
-  .lego-hero__lead { text-align: left; }
 }
 
 /* ---------- motion preference ---------- */
