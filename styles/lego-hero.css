@@ -1,6 +1,6 @@
 /* =========================================================================
-   LEGO hero — the name assembled from bricks, with the portrait standing in
-   front of it.
+   LEGO hero — a poster panel holding the name built from bricks, with the
+   portrait standing inside the same frame.
 
    The idea it carries: speccing a screen is the same move as building LEGO.
    Sort the pieces, follow the manual, and something whole comes out.
@@ -8,90 +8,99 @@
 
 .lego-hero {
   position: relative;
-  overflow: hidden;
-  padding: 128px 0 72px;
-  background:
-    radial-gradient(120% 90% at 50% -10%, #ffffff 0%, #f4f6fb 46%, #e9edf8 100%);
-}
-
-/* Faint studded plate behind everything — a LEGO baseplate, not wallpaper. */
-.lego-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at center, rgba(47, 92, 240, 0.09) 2.2px, transparent 2.6px);
-  background-size: 34px 34px;
-  -webkit-mask-image: radial-gradient(120% 80% at 50% 30%, #000 25%, transparent 78%);
-  mask-image: radial-gradient(120% 80% at 50% 30%, #000 25%, transparent 78%);
-  pointer-events: none;
+  padding: 108px 0 64px;
+  background: #f4f6fb;
 }
 
 .lego-hero__inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
   text-align: center;
 }
 
-.lego-hero__eyebrow {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #2f5cf0;
-  margin-bottom: 26px;
+/* ---------- the poster ---------- */
+/* Dark on purpose. It frames the composition the way a printed poster does,
+   the four LEGO colours only sing against it, and it lets the portrait's own
+   black backdrop disappear into the panel instead of sitting in a box. */
+.lego-poster {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  padding: clamp(28px, 5vw, 60px) 24px 0;
+  background: radial-gradient(120% 100% at 50% 0%, #1b2040 0%, #0c0f22 52%, #04050d 100%);
+  box-shadow: 0 30px 70px rgba(8, 10, 24, 0.32);
+  margin-bottom: 40px;
 }
 
-/* ---------- the stage: bricks behind, portrait in front ---------- */
+/* Faint studded baseplate behind everything. */
+.lego-poster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.075) 2.4px, transparent 2.8px);
+  background-size: 38px 38px;
+  pointer-events: none;
+}
+
+.lego-poster__eyebrow {
+  position: relative;
+  z-index: 3;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8fa4ff;
+  margin-bottom: clamp(18px, 3vw, 34px);
+}
+
+/* ---------- stage: bricks behind, portrait in front ---------- */
 .lego-stage {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  /* Room for the portrait, which hangs below the word. */
-  padding-bottom: calc(var(--u) * 3.2);
-  margin-bottom: 30px;
+  min-height: calc(var(--u) * 11);
 }
 
 .lego-word {
   position: relative;
   z-index: 1;
-  /* width/height are set inline by the script from the brick grid */
+  /* width/height come from the script, off the brick grid */
 }
 
+/* ---------- a brick ---------- */
 .lego-brick {
   position: absolute;
-  width: calc(var(--u) - 2px);
-  height: calc(var(--u) - 2px);
-  border-radius: calc(var(--u) * 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: calc(var(--u) * var(--cells) - 3px);
+  height: calc(var(--u) - 3px);
+  border-radius: calc(var(--u) * 0.1);
   background: var(--c);
+  /* Flat face, one darker lip along the bottom — how a brick reads head-on. */
   box-shadow:
-    inset 0 calc(var(--u) * -0.14) 0 rgba(0, 0, 0, 0.18),
-    inset 0 calc(var(--u) * 0.08) 0 rgba(255, 255, 255, 0.28),
-    0 2px 4px rgba(16, 24, 40, 0.14);
+    inset 0 calc(var(--u) * -0.13) 0 rgba(0, 0, 0, 0.24),
+    0 3px 6px rgba(0, 0, 0, 0.34);
   opacity: 0;
-  transform: translate(var(--dx), var(--dy)) rotate(var(--rz)) scale(0.55);
+  transform: translate(var(--dx), var(--dy)) rotate(var(--rz)) scale(0.6);
   transition:
-    transform 620ms cubic-bezier(0.18, 0.9, 0.24, 1.15),
-    opacity 380ms ease;
-  transition-delay: calc(var(--i) * 16ms);
+    transform 640ms cubic-bezier(0.18, 0.9, 0.24, 1.12),
+    opacity 360ms ease;
+  transition-delay: calc(var(--i) * 22ms);
   will-change: transform, opacity;
 }
 
-/* The stud. One per brick, which is what makes it read as LEGO at any size. */
-.lego-brick::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 14%;
-  width: 44%;
-  height: 44%;
-  transform: translateX(-50%);
+/* The studs. One per cell, large — this is what makes it read as LEGO. */
+.lego-brick i {
+  width: calc(var(--u) * 0.52);
+  height: calc(var(--u) * 0.52);
   border-radius: 50%;
-  background: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.12));
-  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.22);
+  background: var(--c);
+  box-shadow:
+    0 calc(var(--u) * 0.05) 0 rgba(0, 0, 0, 0.26),
+    inset 0 calc(var(--u) * 0.04) 0 rgba(255, 255, 255, 0.34);
 }
 
 .lego-word.is-built .lego-brick {
@@ -99,48 +108,36 @@
   transform: translate(0, 0) rotate(0deg) scale(1);
 }
 
-/* A few bricks keep breathing after assembly so the wordmark is never fully
-   inert — the movement the brief asked for, without a loop that distracts. */
-.lego-word.is-built .lego-brick--live {
-  animation: legoBreathe 3.6s ease-in-out infinite;
-  animation-delay: calc(1200ms + var(--i) * 40ms);
-}
-
-@keyframes legoBreathe {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(0, calc(var(--u) * -0.13)) scale(1.02); }
-}
-
-/* Fixed height, cropped: left at its natural 2:3 the portrait ran taller than
-   the wordmark and covered both the letters and the nav above them. Anchored
-   to the bottom, it now clears the top third of the letters. */
+/* ---------- portrait, inside the same frame ---------- */
+/* The source is a cut-out (oron-hero-cutout.png): alpha comes from the
+   photo's own luminance, so the black studio backdrop is genuinely gone
+   rather than blended away. Doing it in the asset avoids mix-blend-mode,
+   which the transform on this element isolates anyway. */
 .lego-photo {
   position: absolute;
   left: 50%;
   bottom: 0;
   z-index: 2;
-  width: clamp(150px, 15.5vw, 212px);
-  height: clamp(184px, 19vw, 240px);
-  transform: translateX(-50%);
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 26px 60px rgba(16, 24, 40, 0.3), 0 4px 12px rgba(16, 24, 40, 0.14);
+  width: clamp(186px, 22vw, 310px);
+  transform: translateX(-50%) translateY(20px);
   opacity: 0;
-  transform: translateX(-50%) translateY(26px) scale(0.96);
-  transition: opacity 620ms ease 520ms, transform 720ms cubic-bezier(0.2, 0.9, 0.25, 1.1) 520ms;
+  transition: opacity 700ms ease 480ms, transform 820ms cubic-bezier(0.2, 0.9, 0.25, 1.08) 480ms;
+  pointer-events: none;
 }
 
 .lego-stage.is-built .lego-photo {
   opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
+  transform: translateX(-50%) translateY(0);
 }
 
+/* Dissolve the last of the figure into the panel, so the composition ends in
+   the poster rather than on a cropped forearm. */
 .lego-photo img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 14%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 58%, rgba(0, 0, 0, 0.35) 84%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 58%, rgba(0, 0, 0, 0.35) 84%, transparent 99%);
 }
 
 /* ---------- copy ---------- */
@@ -182,7 +179,7 @@
   gap: 11px;
   padding: 12px 15px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.86);
+  background: #fff;
   border: 1px solid rgba(16, 24, 40, 0.07);
   box-shadow: 0 2px 10px rgba(16, 24, 40, 0.05);
   text-align: left;
@@ -191,23 +188,22 @@
 .lego-step__brick {
   flex: 0 0 auto;
   position: relative;
-  width: 26px;
-  height: 26px;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 38px;
+  height: 20px;
+  border-radius: 3px;
   background: var(--sc);
-  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.22);
 }
 
-.lego-step__brick::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 14%;
-  width: 44%;
-  height: 44%;
-  transform: translateX(-50%);
+.lego-step__brick i {
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.12));
+  background: var(--sc);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.34);
 }
 
 .lego-step__label {
@@ -287,17 +283,12 @@
 .lego-btn--secondary:hover { border-color: #2f5cf0; color: #2f5cf0; transform: translateY(-2px); }
 
 /* ---------- dark theme ---------- */
-[data-theme="dark"] .lego-hero {
-  background: radial-gradient(120% 90% at 50% -10%, #171a2e 0%, #0e1020 52%, #08080f 100%);
-}
-[data-theme="dark"] .lego-hero::before {
-  background-image: radial-gradient(circle at center, rgba(127, 155, 255, 0.14) 2.2px, transparent 2.6px);
-}
+/* The poster is already dark; only the copy below it flips. */
+[data-theme="dark"] .lego-hero { background: #0b0b14; }
 [data-theme="dark"] .lego-hero__title { color: #f4f6fb; }
 [data-theme="dark"] .lego-hero__title em { color: #7f9bff; }
 [data-theme="dark"] .lego-hero__lead { color: #9aa3b8; }
 [data-theme="dark"] .lego-hero__lead strong { color: #fff; }
-[data-theme="dark"] .lego-hero__eyebrow { color: #7f9bff; }
 [data-theme="dark"] .lego-step {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
@@ -318,43 +309,34 @@
 }
 
 /* ---------- responsive ---------- */
-/* Below this width the word is only ~100px tall, so a portrait large enough
-   to see would cover it entirely and spill into the eyebrow above. Stack them
-   instead: photo, then the wordmark under it. */
+/* Below this width the word is short enough that a portrait large enough to
+   see would bury it, so the two stack instead of overlapping. */
 @media (max-width: 640px) {
+  .lego-poster { border-radius: 20px; padding-bottom: 0; }
   .lego-stage {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding-bottom: 0;
+    gap: 18px;
+    min-height: 0;
   }
   .lego-photo {
     position: static;
-    width: 158px;
-    height: 192px;
+    width: min(72%, 260px);
     transform: none;
-    transition: opacity 560ms ease 480ms;
+    transition: opacity 560ms ease 460ms;
   }
   .lego-stage.is-built .lego-photo { transform: none; }
 }
 
 @media (max-width: 860px) {
-  .lego-hero { padding: 104px 0 56px; }
+  .lego-hero { padding: 92px 0 52px; }
   .lego-hero__lead { font-size: 0.95rem; }
   .lego-step { flex: 1 1 100%; max-width: 320px; }
 }
 
 /* ---------- motion preference ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .lego-brick {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .lego-word.is-built .lego-brick--live { animation: none; }
-  .lego-photo {
-    opacity: 1;
-    transform: translateX(-50%);
-    transition: none;
-  }
+  .lego-brick { opacity: 1; transform: none; transition: none; }
+  .lego-photo { opacity: 1; transform: translateX(-50%); transition: none; }
+  .lego-stage.is-built .lego-photo { transform: translateX(-50%); }
 }
