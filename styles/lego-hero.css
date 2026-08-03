@@ -219,61 +219,6 @@
 
 .lego-hero__lead strong { color: #101828; font-weight: 700; }
 
-/* ---------- the three build steps ---------- */
-.lego-steps {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-
-.lego-step {
-  flex: 0 1 216px;
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 12px 15px;
-  border-radius: 14px;
-  background: #fff;
-  border: 1px solid rgba(16, 24, 40, 0.07);
-  box-shadow: 0 2px 10px rgba(16, 24, 40, 0.05);
-  text-align: left;
-}
-
-.lego-step__n {
-  flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  background: #10131a;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.lego-step__label {
-  display: block;
-  font-size: 0.86rem;
-  font-weight: 700;
-  color: #101828;
-  line-height: 1.25;
-}
-
-.lego-step__sub {
-  display: block;
-  font-size: 0.74rem;
-  color: #667085;
-  line-height: 1.35;
-  margin-top: 2px;
-}
-
 /* ---------- availability + actions ---------- */
 .lego-hero__foot {
   display: flex;
@@ -339,15 +284,8 @@
 [data-theme="dark"] .lego-hero { background: #0b0d12; }
 [data-theme="dark"] .lego-hero__title { color: #f4f6fb; }
 [data-theme="dark"] .lego-hero__title em { color: #8aa2ff; }
-[data-theme="dark"] .lego-step__n { background: #fff; color: #10131a; }
 [data-theme="dark"] .lego-hero__lead { color: #9aa3b8; }
 [data-theme="dark"] .lego-hero__lead strong { color: #fff; }
-[data-theme="dark"] .lego-step {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-[data-theme="dark"] .lego-step__label { color: #f4f6fb; }
-[data-theme="dark"] .lego-step__sub { color: #8b93a7; }
 [data-theme="dark"] .lego-avail {
   background: rgba(23, 178, 106, 0.14);
   border-color: rgba(23, 178, 106, 0.4);
@@ -392,7 +330,6 @@
 @media (max-width: 860px) {
   .lego-hero { padding: 92px 0 52px; }
   .lego-hero__lead { font-size: 0.95rem; }
-  .lego-step { flex: 1 1 100%; max-width: 320px; }
 }
 
 /* ---------- motion preference ---------- */
