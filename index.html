@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="styles/oronflix-browse.css">
   <link rel="stylesheet" href="styles/portfolio-redesign.css">
   <link rel="stylesheet" href="styles/site-nav.css">
+  <link rel="stylesheet" href="styles/lego-hero.css">
 </head>
 <body>
 
@@ -48,108 +49,61 @@
 </nav>
 
 <!-- ==================== INTRO / HERO ==================== -->
-<header class="onf-hero-intro">
-  <div class="onf-hero-intro__inner">
+<!-- ==================== HERO ==================== -->
+<header class="lego-hero">
+  <div class="lego-hero__inner">
+    <p class="lego-hero__eyebrow">Product Design · Project Management · Strategy-led</p>
 
-    <div class="onf-hero-intro__lead">
-      <p class="onf-hero-intro__eyebrow">Product &amp; Project Manager · Strategy-led · UX-driven</p>
-      <h1 class="onf-hero-intro__title">
-        I take products<br>from <span class="onf-hero-intro__num">0</span> to <span class="onf-hero-intro__num" data-count="100">100</span>.
-      </h1>
-      <p class="onf-hero-intro__desc">
-        I manage products and projects end-to-end — market and product strategy,
-        discovery and characterization (spec), through to shipped products —
-        <strong>two of mine are live and working in the market.</strong> My
-        background is years of advertising &amp; project management, and the
-        discipline carries straight into tech. Not just a pretty screen:
-        the strategy, the problem-solving, and the build.
-      </p>
-      <div class="onf-available">
-        <span class="onf-available__dot"></span>
+    <div class="lego-stage" style="--u: clamp(13px, 3.5vw, 34px);">
+      <div class="lego-word" id="legoWord" role="img" aria-label="ORON"></div>
+      <div class="lego-photo">
+        <img src="oron-portrait.jpg" alt="Oron Turgeman" width="560" height="840" fetchpriority="high">
+      </div>
+    </div>
+
+    <h1 class="lego-hero__title">Specs are built, not drawn — <em>brick by brick</em>.</h1>
+
+    <p class="lego-hero__lead">
+      Characterizing a product works exactly like building LEGO: sort the pieces,
+      follow the manual, snap them together — and something whole comes out the other end.
+      That is how I take products <strong>from 0 to 100</strong>, and
+      <strong>two of mine are live and working in the market</strong>.
+    </p>
+
+    <div class="lego-steps">
+      <div class="lego-step" style="--sc:#f5b301;">
+        <span class="lego-step__brick"></span>
+        <span>
+          <span class="lego-step__label">Sort the pieces</span>
+          <span class="lego-step__sub">Market, user and business research</span>
+        </span>
+      </div>
+      <div class="lego-step" style="--sc:#2f5cf0;">
+        <span class="lego-step__brick"></span>
+        <span>
+          <span class="lego-step__label">Follow the manual</span>
+          <span class="lego-step__sub">Characterization, flows and specs</span>
+        </span>
+      </div>
+      <div class="lego-step" style="--sc:#22b573;">
+        <span class="lego-step__brick"></span>
+        <span>
+          <span class="lego-step__label">Snap it together</span>
+          <span class="lego-step__sub">Design, build and ship it live</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="lego-hero__foot">
+      <div class="lego-avail">
+        <span class="lego-avail__dot"></span>
         <span>Available for product design &amp; project management roles</span>
       </div>
-      <div class="onf-hero-intro__actions">
-        <a href="resume.html" class="onf-btn onf-btn--primary">Resume / CV</a>
-        <a href="mailto:oron2558@gmail.com" class="onf-btn onf-btn--secondary">Get in Touch</a>
+      <div class="lego-hero__actions">
+        <a href="projects.html" class="lego-btn lego-btn--primary">See my work</a>
+        <a href="resume.html" class="lego-btn lego-btn--secondary">Resume / CV</a>
       </div>
     </div>
-
-    <div class="onf-hero-intro__poster">
-      <div class="onf-team">
-        <div class="onf-team__head">
-          <img src="oron-avatar.jpg" alt="Oron Turgeman" class="onf-team__avatar" loading="eager">
-          <div class="onf-team__headtext">
-            <p class="onf-team__title">One hire. A whole team.</p>
-            <p class="onf-team__sub">From first idea to launch — no handoffs.</p>
-          </div>
-        </div>
-
-        <div class="onf-pipe">
-          <span class="onf-pipe__beam" aria-hidden="true"></span>
-
-          <div class="onf-pipe__stage" style="--i:0">
-            <span class="onf-pipe__dot">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>
-            </span>
-            <div class="onf-pipe__text">
-              <span class="onf-pipe__role">Think</span>
-              <span class="onf-pipe__desc">Discovery &amp; product thinking</span>
-            </div>
-          </div>
-
-          <div class="onf-pipe__stage" style="--i:1">
-            <span class="onf-pipe__dot">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>
-            </span>
-            <div class="onf-pipe__text">
-              <span class="onf-pipe__role">Strategy</span>
-              <span class="onf-pipe__desc">Product &amp; go-to-market strategy</span>
-            </div>
-          </div>
-
-          <div class="onf-pipe__stage" style="--i:2">
-            <span class="onf-pipe__dot">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            </span>
-            <div class="onf-pipe__text">
-              <span class="onf-pipe__role">Spec</span>
-              <span class="onf-pipe__desc">Characterization &amp; user flows</span>
-            </div>
-          </div>
-
-          <div class="onf-pipe__stage" style="--i:3">
-            <span class="onf-pipe__dot">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-            </span>
-            <div class="onf-pipe__text">
-              <span class="onf-pipe__role">Design</span>
-              <span class="onf-pipe__desc">UX/UI &amp; the right calls</span>
-            </div>
-          </div>
-
-          <div class="onf-pipe__stage" style="--i:4">
-            <span class="onf-pipe__dot">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </span>
-            <div class="onf-pipe__text">
-              <span class="onf-pipe__role">Build</span>
-              <span class="onf-pipe__desc">Prototyped &amp; built with AI</span>
-            </div>
-          </div>
-
-          <div class="onf-pipe__stage" style="--i:5">
-            <span class="onf-pipe__dot">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8a2 2 0 0 0-3 0z"/><path d="M12 15l-3-3a12 12 0 0 1 7-9c3 0 5 2 5 5a12 12 0 0 1-9 7z"/><circle cx="15" cy="9" r="1.5"/></svg>
-            </span>
-            <div class="onf-pipe__text">
-              <span class="onf-pipe__role">Launch</span>
-              <span class="onf-pipe__desc">Shipped to market</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </header>
 
@@ -285,5 +239,6 @@
 
 <script src="scripts/oronflix.js"></script>
 <script src="scripts/site-nav.js" defer></script>
+<script src="scripts/lego-hero.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,360 @@
+/* =========================================================================
+   LEGO hero — the name assembled from bricks, with the portrait standing in
+   front of it.
+
+   The idea it carries: speccing a screen is the same move as building LEGO.
+   Sort the pieces, follow the manual, and something whole comes out.
+   ========================================================================= */
+
+.lego-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 128px 0 72px;
+  background:
+    radial-gradient(120% 90% at 50% -10%, #ffffff 0%, #f4f6fb 46%, #e9edf8 100%);
+}
+
+/* Faint studded plate behind everything — a LEGO baseplate, not wallpaper. */
+.lego-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(47, 92, 240, 0.09) 2.2px, transparent 2.6px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(120% 80% at 50% 30%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(120% 80% at 50% 30%, #000 25%, transparent 78%);
+  pointer-events: none;
+}
+
+.lego-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.lego-hero__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2f5cf0;
+  margin-bottom: 26px;
+}
+
+/* ---------- the stage: bricks behind, portrait in front ---------- */
+.lego-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* Room for the portrait, which hangs below the word. */
+  padding-bottom: calc(var(--u) * 3.2);
+  margin-bottom: 30px;
+}
+
+.lego-word {
+  position: relative;
+  z-index: 1;
+  /* width/height are set inline by the script from the brick grid */
+}
+
+.lego-brick {
+  position: absolute;
+  width: calc(var(--u) - 2px);
+  height: calc(var(--u) - 2px);
+  border-radius: calc(var(--u) * 0.14);
+  background: var(--c);
+  box-shadow:
+    inset 0 calc(var(--u) * -0.14) 0 rgba(0, 0, 0, 0.18),
+    inset 0 calc(var(--u) * 0.08) 0 rgba(255, 255, 255, 0.28),
+    0 2px 4px rgba(16, 24, 40, 0.14);
+  opacity: 0;
+  transform: translate(var(--dx), var(--dy)) rotate(var(--rz)) scale(0.55);
+  transition:
+    transform 620ms cubic-bezier(0.18, 0.9, 0.24, 1.15),
+    opacity 380ms ease;
+  transition-delay: calc(var(--i) * 16ms);
+  will-change: transform, opacity;
+}
+
+/* The stud. One per brick, which is what makes it read as LEGO at any size. */
+.lego-brick::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  width: 44%;
+  height: 44%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.12));
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.22);
+}
+
+.lego-word.is-built .lego-brick {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg) scale(1);
+}
+
+/* A few bricks keep breathing after assembly so the wordmark is never fully
+   inert — the movement the brief asked for, without a loop that distracts. */
+.lego-word.is-built .lego-brick--live {
+  animation: legoBreathe 3.6s ease-in-out infinite;
+  animation-delay: calc(1200ms + var(--i) * 40ms);
+}
+
+@keyframes legoBreathe {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(0, calc(var(--u) * -0.13)) scale(1.02); }
+}
+
+/* Fixed height, cropped: left at its natural 2:3 the portrait ran taller than
+   the wordmark and covered both the letters and the nav above them. Anchored
+   to the bottom, it now clears the top third of the letters. */
+.lego-photo {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(150px, 15.5vw, 212px);
+  height: clamp(184px, 19vw, 240px);
+  transform: translateX(-50%);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 26px 60px rgba(16, 24, 40, 0.3), 0 4px 12px rgba(16, 24, 40, 0.14);
+  opacity: 0;
+  transform: translateX(-50%) translateY(26px) scale(0.96);
+  transition: opacity 620ms ease 520ms, transform 720ms cubic-bezier(0.2, 0.9, 0.25, 1.1) 520ms;
+}
+
+.lego-stage.is-built .lego-photo {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.lego-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 14%;
+}
+
+/* ---------- copy ---------- */
+.lego-hero__title {
+  font-size: clamp(1.7rem, 3.6vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #101828;
+  margin: 0 0 16px;
+}
+
+.lego-hero__title em { font-style: normal; color: #2f5cf0; }
+
+.lego-hero__lead {
+  max-width: 660px;
+  margin: 0 auto 26px;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #4a5468;
+}
+
+.lego-hero__lead strong { color: #101828; font-weight: 700; }
+
+/* ---------- the three build steps ---------- */
+.lego-steps {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.lego-step {
+  flex: 0 1 216px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 15px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(16, 24, 40, 0.07);
+  box-shadow: 0 2px 10px rgba(16, 24, 40, 0.05);
+  text-align: left;
+}
+
+.lego-step__brick {
+  flex: 0 0 auto;
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  background: var(--sc);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.28);
+}
+
+.lego-step__brick::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  width: 44%;
+  height: 44%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.12));
+}
+
+.lego-step__label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #101828;
+  line-height: 1.25;
+}
+
+.lego-step__sub {
+  display: block;
+  font-size: 0.74rem;
+  color: #667085;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+/* ---------- availability + actions ---------- */
+.lego-hero__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.lego-avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  border-radius: 99px;
+  background: #ecfdf3;
+  border: 1px solid #abefc6;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #067647;
+}
+
+.lego-avail__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #17b26a;
+  box-shadow: 0 0 0 3px rgba(23, 178, 106, 0.2);
+}
+
+.lego-hero__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+.lego-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 24px;
+  border-radius: 11px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.lego-btn--primary {
+  background: #101828;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.22);
+}
+
+.lego-btn--primary:hover { background: #2f5cf0; transform: translateY(-2px); }
+
+.lego-btn--secondary {
+  background: #fff;
+  color: #101828;
+  border: 1px solid rgba(16, 24, 40, 0.12);
+}
+
+.lego-btn--secondary:hover { border-color: #2f5cf0; color: #2f5cf0; transform: translateY(-2px); }
+
+/* ---------- dark theme ---------- */
+[data-theme="dark"] .lego-hero {
+  background: radial-gradient(120% 90% at 50% -10%, #171a2e 0%, #0e1020 52%, #08080f 100%);
+}
+[data-theme="dark"] .lego-hero::before {
+  background-image: radial-gradient(circle at center, rgba(127, 155, 255, 0.14) 2.2px, transparent 2.6px);
+}
+[data-theme="dark"] .lego-hero__title { color: #f4f6fb; }
+[data-theme="dark"] .lego-hero__title em { color: #7f9bff; }
+[data-theme="dark"] .lego-hero__lead { color: #9aa3b8; }
+[data-theme="dark"] .lego-hero__lead strong { color: #fff; }
+[data-theme="dark"] .lego-hero__eyebrow { color: #7f9bff; }
+[data-theme="dark"] .lego-step {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .lego-step__label { color: #f4f6fb; }
+[data-theme="dark"] .lego-step__sub { color: #8b93a7; }
+[data-theme="dark"] .lego-avail {
+  background: rgba(23, 178, 106, 0.14);
+  border-color: rgba(23, 178, 106, 0.4);
+  color: #6ce9a6;
+}
+[data-theme="dark"] .lego-btn--primary { background: #fff; color: #101828; }
+[data-theme="dark"] .lego-btn--primary:hover { background: #7f9bff; }
+[data-theme="dark"] .lego-btn--secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f4f6fb;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ---------- responsive ---------- */
+/* Below this width the word is only ~100px tall, so a portrait large enough
+   to see would cover it entirely and spill into the eyebrow above. Stack them
+   instead: photo, then the wordmark under it. */
+@media (max-width: 640px) {
+  .lego-stage {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 0;
+  }
+  .lego-photo {
+    position: static;
+    width: 158px;
+    height: 192px;
+    transform: none;
+    transition: opacity 560ms ease 480ms;
+  }
+  .lego-stage.is-built .lego-photo { transform: none; }
+}
+
+@media (max-width: 860px) {
+  .lego-hero { padding: 104px 0 56px; }
+  .lego-hero__lead { font-size: 0.95rem; }
+  .lego-step { flex: 1 1 100%; max-width: 320px; }
+}
+
+/* ---------- motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lego-brick {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .lego-word.is-built .lego-brick--live { animation: none; }
+  .lego-photo {
+    opacity: 1;
+    transform: translateX(-50%);
+    transition: none;
+  }
+}
