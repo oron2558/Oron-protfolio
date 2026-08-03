@@ -17,41 +17,32 @@
     { key: 'racket', x: '91%', y: '74%', dur: 10,  delay: 0.3, drift: 20, rot: -10 }
   ];
 
+  /* Monoline, single colour, no fills — the hobbies belong here as a quiet
+     detail, not as toy stickers. */
   var SVG = {
     lego:
-      '<svg viewBox="0 0 64 64" aria-hidden="true">' +
-      '<rect x="7" y="13" width="12" height="9" rx="3" fill="#d01012"/>' +
-      '<rect x="26" y="13" width="12" height="9" rx="3" fill="#d01012"/>' +
-      '<rect x="45" y="13" width="12" height="9" rx="3" fill="#d01012"/>' +
-      '<rect x="4" y="20" width="56" height="28" rx="6" fill="#d01012"/>' +
-      '<rect x="4" y="39" width="56" height="9" rx="4" fill="#9d0b0d"/>' +
+      '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<rect x="6" y="16" width="36" height="20" rx="4"/>' +
+      '<path d="M14 16v-4h7v4M27 16v-4h7v4"/>' +
       '</svg>',
     rc:
-      '<svg viewBox="0 0 64 64" aria-hidden="true">' +
-      '<path d="M8 39 L17 25 H43 L56 39 Z" fill="#0a5bb5"/>' +
-      '<path d="M21 28 H39 L45 37 H15 Z" fill="#5aa0ef"/>' +
-      '<rect x="4" y="37" width="56" height="7" rx="3.5" fill="#08427f"/>' +
-      '<circle cx="17" cy="47" r="8" fill="#1d2433"/><circle cx="17" cy="47" r="3.4" fill="#f6c200"/>' +
-      '<circle cx="47" cy="47" r="8" fill="#1d2433"/><circle cx="47" cy="47" r="3.4" fill="#f6c200"/>' +
-      '<path d="M50 25 L58 11" stroke="#1d2433" stroke-width="3" stroke-linecap="round"/>' +
-      '<circle cx="58.5" cy="9.5" r="3" fill="#d01012"/>' +
+      '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M7 30l6-10h22l7 10"/>' +
+      '<path d="M5 30h38"/>' +
+      '<circle cx="14" cy="35" r="5"/><circle cx="34" cy="35" r="5"/>' +
+      '<path d="M36 20l6-11"/><circle cx="42.5" cy="8" r="1.8"/>' +
       '</svg>',
     glove:
-      '<svg viewBox="0 0 64 64" aria-hidden="true">' +
-      '<path d="M16 21c0-7 6-12 14-12h6c8 0 14 5 14 13v9c0 8-6 13-14 13H30c-8 0-14-5-14-13z" fill="#d01012"/>' +
-      '<path d="M16 27c-5 0-8 3-8 7s3 7 8 7h4V27z" fill="#d01012"/>' +
-      '<rect x="18" y="42" width="32" height="12" rx="5" fill="#9d0b0d"/>' +
-      '<path d="M24 48h20" stroke="#f2dada" stroke-width="2.6" stroke-linecap="round"/>' +
-      '<path d="M29 17c4-2 9-2 13 0" stroke="#9d0b0d" stroke-width="2.6" stroke-linecap="round" fill="none"/>' +
+      '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M14 18a8 8 0 0 1 8-8h5a9 9 0 0 1 9 9v7a8 8 0 0 1-8 8H22a8 8 0 0 1-8-8z"/>' +
+      '<path d="M14 21h-3a4 4 0 0 0 0 8h3"/>' +
+      '<path d="M17 34h16v4a2 2 0 0 1-2 2H19a2 2 0 0 1-2-2z"/>' +
       '</svg>',
     racket:
-      '<svg viewBox="0 0 64 64" aria-hidden="true">' +
-      '<ellipse cx="30" cy="24" rx="19" ry="21" fill="#fff"/>' +
-      '<path d="M19 10v28M25 7v34M31 6v35M37 7v34M43 11v27" stroke="#c3ddcb" stroke-width="1.7"/>' +
-      '<path d="M13 14h34M11 22h38M12 30h36M17 38h26" stroke="#c3ddcb" stroke-width="1.7"/>' +
-      '<ellipse cx="30" cy="24" rx="19" ry="21" fill="none" stroke="#237841" stroke-width="6"/>' +
-      '<rect x="27" y="43" width="6" height="16" rx="3" fill="#1d2433"/>' +
-      '<rect x="24.5" y="52" width="11" height="10" rx="4" fill="#f6c200"/>' +
+      '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<ellipse cx="22" cy="18" rx="13" ry="15"/>' +
+      '<path d="M22 5v26M11 18h22"/>' +
+      '<path d="M27 30l8 11"/>' +
       '</svg>'
   };
 
