@@ -1,0 +1,174 @@
+/* =========================================================================
+   Horizontal flow slider — a set of screens read side by side, the way the
+   product's own tabs sit next to each other.
+
+   Self-contained, like the other shared components on the case studies.
+   ========================================================================= */
+
+.flow {
+  position: relative;
+  margin-top: 8px;
+}
+
+.flow__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+/* Tab-style labels: clicking one jumps the track to that screen. */
+.flow__tabs {
+  display: flex;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.flow__tabs::-webkit-scrollbar { display: none; }
+
+.flow__tab {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border: 1px solid rgba(16, 24, 40, 0.1);
+  border-radius: 99px;
+  background: #fff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #5b6478;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.flow__tab:hover { border-color: #2f5cf0; color: #2f5cf0; }
+
+.flow__tab[aria-selected="true"] {
+  background: #101828;
+  border-color: #101828;
+  color: #fff;
+}
+
+.flow__arrows { display: flex; gap: 8px; flex: 0 0 auto; }
+
+.flow__arrow {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(16, 24, 40, 0.12);
+  border-radius: 9px;
+  background: #fff;
+  color: #344054;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, opacity 160ms ease;
+}
+
+.flow__arrow:hover:not(:disabled) { border-color: #2f5cf0; color: #2f5cf0; }
+.flow__arrow:disabled { opacity: 0.35; cursor: default; }
+.flow__arrow svg { width: 15px; height: 15px; }
+
+/* The track. Scroll-snap does the work; the buttons just nudge it, so it
+   stays a native swipe on touch and a normal scroll with a trackpad. */
+.flow__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+
+.flow__track::-webkit-scrollbar { display: none; }
+
+.flow__item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin: 0;
+  min-width: 0;
+}
+
+.flow__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(16, 24, 40, 0.08);
+  box-shadow: 0 20px 44px rgba(16, 24, 40, 0.12);
+}
+
+.flow__cap {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #667085;
+}
+
+.flow__cap b {
+  display: block;
+  font-size: 0.95rem;
+  color: #101828;
+  margin-bottom: 2px;
+}
+
+.flow__dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.flow__dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(16, 24, 40, 0.18);
+  cursor: pointer;
+  transition: background 160ms ease, width 160ms ease;
+}
+
+.flow__dot[aria-current="true"] {
+  width: 22px;
+  border-radius: 99px;
+  background: #101828;
+}
+
+/* ---------- dark theme ---------- */
+[data-theme="dark"] .flow__tab {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #9aa3b8;
+}
+[data-theme="dark"] .flow__tab[aria-selected="true"] {
+  background: #fff;
+  border-color: #fff;
+  color: #101828;
+}
+[data-theme="dark"] .flow__arrow {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #e7e9f0;
+}
+[data-theme="dark"] .flow__item img { border-color: rgba(255, 255, 255, 0.1); }
+[data-theme="dark"] .flow__cap { color: #8b93a7; }
+[data-theme="dark"] .flow__cap b { color: #f4f6fb; }
+[data-theme="dark"] .flow__dot { background: rgba(255, 255, 255, 0.22); }
+[data-theme="dark"] .flow__dot[aria-current="true"] { background: #fff; }
+
+@media (max-width: 640px) {
+  .flow__head { gap: 10px; }
+  .flow__track { gap: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow__track { scroll-behavior: auto; }
+}

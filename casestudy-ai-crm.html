@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles/oronflix-player.css">
   <link rel="stylesheet" href="styles/site-nav.css">
   <link rel="stylesheet" href="styles/case-nav.css">
+  <link rel="stylesheet" href="styles/flow-slider.css">
 
   <style>
     /* ============================================
@@ -2297,7 +2298,7 @@
         </div>
       </div>
       <div class="cs-hero-mockup animate-on-scroll">
-        <img src="crm-dashboard-v4.webp" alt="MessAge Dashboard — Unified Inbox, AI Responses, Lead Management" />
+        <img src="crm-dash-overview-v5.webp" alt="MessAge Dashboard — Overview" />
       </div>
     </div>
   </section>
@@ -2821,16 +2822,52 @@
       <h3 class="cs-section-subtitle animate-on-scroll">CRM Dashboard</h3>
       <div class="cs-screen-row animate-on-scroll">
         <div class="cs-screen-text">
-          <p class="cs-text" style="margin-bottom: 16px;"><strong>One glance</strong> shows everything a solo pro needs about their business communication.</p>
+          <p class="cs-text" style="margin-bottom: 16px;">The dashboard is <strong>three depths of the same question</strong>, not one crowded page — what needs me now, what is working, and what the numbers say.</p>
           <ul class="cs-list">
-            <li><strong>AI Insights panel</strong> — proactive tips based on conversation data and lead behavior</li>
-            <li><strong>Channel breakdown</strong> — see which platforms bring the most leads (WhatsApp, Instagram, Facebook, Gmail)</li>
-            <li><strong>Task summary</strong> — urgent, in progress, and completed tasks at a glance</li>
-            <li><strong>Weekly traffic distribution</strong> — message load per platform, mapped to peak hours</li>
+            <li><strong>Overview</strong> — a performance snapshot, a quick console for the four actions taken every day, and an "Act Now" queue of what is overdue</li>
+            <li><strong>Insights</strong> — revenue, conversion and CSAT, conversations by channel, the lead funnel, and a team leaderboard</li>
+            <li><strong>Analytics</strong> — conversations over time against the previous cycle, distribution audits by channel, status and response time, and export</li>
+            <li><strong>One level per question</strong> — a solo pro lands on Overview and never needs the rest; a team lead lives in the other two</li>
           </ul>
         </div>
-        <div class="cs-screen-mockup">
-          <img src="crm-dashboard-v4.webp" alt="MessAge CRM Dashboard" loading="lazy">
+      </div>
+
+      <div class="flow animate-on-scroll" data-flow>
+        <div class="flow__head">
+          <div class="flow__tabs" role="tablist">
+            <button class="flow__tab" type="button" role="tab" aria-selected="true">Overview</button>
+            <button class="flow__tab" type="button" role="tab" aria-selected="false">Insights</button>
+            <button class="flow__tab" type="button" role="tab" aria-selected="false">Analytics</button>
+          </div>
+          <div class="flow__arrows">
+            <button class="flow__arrow" type="button" data-flow-prev aria-label="Previous screen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg>
+            </button>
+            <button class="flow__arrow" type="button" data-flow-next aria-label="Next screen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 6 6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="flow__track" tabindex="0" aria-label="Dashboard screens">
+          <figure class="flow__item">
+            <img src="crm-dash-overview-v5.webp" alt="MessAge dashboard, Overview tab" loading="lazy">
+            <figcaption class="flow__cap"><b>Overview</b>Response time, open chats, tasks done and new leads, a quick console, and the overdue queue.</figcaption>
+          </figure>
+          <figure class="flow__item">
+            <img src="crm-dash-insights-v5.webp" alt="MessAge dashboard, Insights tab" loading="lazy">
+            <figcaption class="flow__cap"><b>Insights</b>Revenue, conversion rate and CSAT, conversations by channel, the lead conversion funnel and the team leaderboard.</figcaption>
+          </figure>
+          <figure class="flow__item">
+            <img src="crm-dash-analytics-v5.webp" alt="MessAge dashboard, Analytics tab" loading="lazy">
+            <figcaption class="flow__cap"><b>Analytics</b>Conversations over time against the previous cycle, distribution audits, week-on-week deltas and report export.</figcaption>
+          </figure>
+        </div>
+
+        <div class="flow__dots">
+          <button class="flow__dot" type="button" aria-current="true" aria-label="Overview"></button>
+          <button class="flow__dot" type="button" aria-current="false" aria-label="Insights"></button>
+          <button class="flow__dot" type="button" aria-current="false" aria-label="Analytics"></button>
         </div>
       </div>
     </div>
@@ -3024,6 +3061,7 @@
 <script src="scripts/oronflix-player.js"></script>
 <script src="scripts/site-nav.js" defer></script>
 <script src="scripts/case-nav.js" defer></script>
+<script src="scripts/flow-slider.js" defer></script>
 <button class="totop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 </body>
 </html>
