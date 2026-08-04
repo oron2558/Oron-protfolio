@@ -90,13 +90,22 @@
 }
 
 .hero__lead {
-  max-width: 30ch;
-  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
-  line-height: 1.6;
+  max-width: 34ch;
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  line-height: 1.62;
   color: #3a4050;
 }
 
 .hero__lead strong { color: var(--ink); font-weight: 700; }
+
+/* The opener carries the position, so it gets its own weight and a little
+   air under it before the reasoning. */
+.hero__lead--open {
+  font-size: clamp(1.05rem, 1.35vw, 1.28rem);
+  line-height: 1.42;
+  color: var(--ink);
+  margin-bottom: clamp(12px, 1.6vw, 18px);
+}
 
 .hero__cta {
   display: inline-flex;
