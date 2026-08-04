@@ -21,11 +21,11 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="styles/oronflix-base.css?v=20260803d">
-  <link rel="stylesheet" href="styles/oronflix-browse.css?v=20260803d">
-  <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260803d">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20260803d">
-  <link rel="stylesheet" href="styles/lego-hero.css?v=20260803d">
+  <link rel="stylesheet" href="styles/oronflix-base.css?v=20260804">
+  <link rel="stylesheet" href="styles/oronflix-browse.css?v=20260804">
+  <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260804">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20260804">
+  <link rel="stylesheet" href="styles/hero.css?v=20260804">
 </head>
 <body>
 
@@ -50,38 +50,48 @@
 
 <!-- ==================== INTRO / HERO ==================== -->
 <!-- ==================== HERO ==================== -->
-<header class="lego-hero">
-  <div class="lego-hero__inner">
+<header class="hero">
+  <div class="hero__inner">
 
-    <div class="lego-poster">
-      <p class="lego-poster__eyebrow">Product Design · Project Management · Strategy-led</p>
-      <div class="lego-stage" style="--u: clamp(14px, 3.6vw, 38px);">
-        <h2 class="oron" id="oronWord" aria-label="ORON">ORON</h2>
-        <div class="lego-photo">
-          <img src="oron-cutout-v2.webp" alt="Oron Turgeman" width="760" height="1068" fetchpriority="high">
-        </div>
+    <div class="hero__copy">
+      <p class="hero__hi">Hi, I&rsquo;m</p>
+      <h1 class="hero__name">ORON</h1>
+      <p class="hero__role">Product &amp; Project Manager</p>
+      <div class="hero__rule"></div>
+      <p class="hero__lead">
+        I take products from first idea to live &mdash; market, spec and delivery.
+        <strong>Two of mine are in the market</strong>, one with paying subscribers.
+      </p>
+      <a href="projects.html" class="hero__cta">
+        <span>View work</span>
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></svg></i>
+      </a>
+    </div>
+
+    <div class="hero__stage">
+      <p class="hero__note">
+        A spec is a decision, not a screen.<u></u>
+      </p>
+      <p class="hero__word" aria-label="ORON">ORON</p>
+      <div class="hero__photo">
+        <img src="oron-cutout-v2.webp" alt="Oron Turgeman" width="760" height="1068" fetchpriority="high">
       </div>
     </div>
 
-    <h1 class="lego-hero__title">Specs are built, not drawn — <em>brick by brick</em>.</h1>
+  </div>
 
-    <p class="lego-hero__lead">
-      A product is a <strong>sequence of decisions</strong> long before it is a screen.
-      I read the market, frame the real problem, and turn it into a spec a team can build
-      against — <strong>scope, trade-offs and priorities made explicit</strong>.
-      <strong>Two of mine are live in the market</strong>, one with paying subscribers.
-    </p>
-
-
-    <div class="lego-hero__foot">
-      <div class="lego-avail">
-        <span class="lego-avail__dot"></span>
-        <span>Available for product design &amp; project management roles</span>
-      </div>
-      <div class="lego-hero__actions">
-        <a href="projects.html" class="lego-btn lego-btn--primary">See my work</a>
-        <a href="resume.html" class="lego-btn lego-btn--secondary">Resume / CV</a>
-      </div>
+  <div class="hero__attrs">
+    <div class="hero__attr">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6 21 7v10l-9 4.4L3 17V7z"/><path d="M3 7l9 4.4L21 7M12 11.4V21.4"/></svg>
+      <span>Systems thinking</span>
+    </div>
+    <div class="hero__attr">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+      <span>User centered</span>
+    </div>
+    <div class="hero__attr">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1"/></svg>
+      <span>Business driven</span>
     </div>
   </div>
 </header>
@@ -216,8 +226,8 @@
   <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
 </footer>
 
-<script src="scripts/oronflix.js?v=20260803d"></script>
-<script src="scripts/site-nav.js?v=20260803d" defer></script>
-<script src="scripts/lego-hero.js?v=20260803d" defer></script>
+<script src="scripts/oronflix.js?v=20260804"></script>
+<script src="scripts/site-nav.js?v=20260804" defer></script>
+<script src="scripts/hero.js?v=20260804" defer></script>
 </body>
 </html>
