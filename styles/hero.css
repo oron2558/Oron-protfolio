@@ -1,380 +1,120 @@
 /* =========================================================================
-   Hero — a set-built poster rebuilt as live layout.
+   Hero — the poster, full bleed.
 
-   The reference is a photograph of 3D letters standing on a floor with the
-   figure leaning on them. Everything here is real markup instead: the text
-   stays selectable, the CTA is a link, the letters are type with a CSS
-   extrude, and the whole thing reflows on a phone.
+   The artwork carries its own type, so the section is the image. Two things
+   are layered on top of it: a clickable region over the printed CTA, and a
+   text block that only appears on phones, where the baked-in type renders
+   too small to read.
    ========================================================================= */
 
-@font-face {
-  font-family: 'Archivo Black';
-  src: url('../fonts/archivo-black-latin-400-normal.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Caveat';
-  src: url('../fonts/caveat-latin-600-normal.woff2') format('woff2');
-  font-weight: 600;
-  font-display: swap;
-}
-
 .hero {
-  --ink: #10131c;
-  --violet: #6c4ee3;
-  --violet-d: #4f34bb;
-  --violet-l: #8f76ef;
-  --stone: #f4f1ec;
-  --stone-d: #d9d2c8;
-
   position: relative;
+  width: 100%;
+  /* Clears the fixed site nav. The artwork prints its own labels along the
+     top edge, and under the nav they collided with it. The band is the same
+     stone as the artwork, so it reads as one surface. */
+  padding-top: 72px;
+  /* Matches the artwork's own stone background, so the frame never flashes
+     white while the image is still loading. */
+  background: #cbc3b9;
   overflow: hidden;
-  min-height: min(94vh, 900px);
-  /* Column, not row: the attribute strip is a sibling of the inner grid, and
-     on the narrow layout it leaves absolute positioning — as a row flex item
-     it would sit beside the copy instead of under it. */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  background: radial-gradient(120% 90% at 62% 18%, #efe9e2 0%, #e7dfd6 55%, #ded4c9 100%);
 }
 
-.hero__inner {
-  position: relative;
-  z-index: 2;
+.hero__img {
+  display: block;
   width: 100%;
-  max-width: 1560px;
-  margin: 0 auto;
-  padding: clamp(96px, 12vh, 150px) clamp(24px, 4vw, 64px) clamp(96px, 12vh, 132px);
-  display: grid;
-  grid-template-columns: minmax(260px, 27%) 1fr;
-  gap: clamp(24px, 4vw, 60px);
-  align-items: start;
+  height: auto;
+  aspect-ratio: 1536 / 1024;
 }
 
-/* ---------- left column ---------- */
-.hero__hi {
-  font-family: 'Caveat', ui-rounded, system-ui, sans-serif;
-  font-size: clamp(1.5rem, 2.1vw, 2rem);
-  color: var(--violet);
-  line-height: 1;
-  margin-bottom: 2px;
-}
+/* Offsets follow the image box, which the nav band pushes down. */
+.hero__hot { --nav: 72px; }
 
-.hero__name {
-  font-family: 'Archivo Black', 'Helvetica Neue', Arial, sans-serif;
-  font-size: clamp(2.6rem, 4.6vw, 4.4rem);
-  line-height: 0.94;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin: 0;
-}
-
-.hero__role {
-  font-size: clamp(0.82rem, 1.05vw, 1rem);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--violet);
-  margin-top: 8px;
-}
-
-.hero__rule {
-  width: 58px;
-  height: 3px;
+/* Sits over the printed "VIEW MY WORK" button. Percentages, so it tracks the
+   artwork at every width instead of drifting off it. */
+.hero__hot {
+  position: absolute;
+  left: 3.8%;
+  top: calc(var(--nav) + (100% - var(--nav)) * 0.931);
+  width: 14%;
+  height: 4.3%;
   border-radius: 2px;
-  background: var(--violet);
-  margin: clamp(18px, 2.4vw, 28px) 0;
+  z-index: 2;
 }
 
-.hero__lead {
-  max-width: 34ch;
-  font-size: clamp(0.92rem, 1.05vw, 1rem);
-  line-height: 1.62;
-  color: #3a4050;
+.hero__hot:focus-visible {
+  outline: 3px solid #e0567f;
+  outline-offset: 3px;
 }
 
-.hero__lead strong { color: var(--ink); font-weight: 700; }
-
-/* The opener carries the position, so it gets its own weight and a little
-   air under it before the reasoning. */
-.hero__lead--open {
-  font-size: clamp(1.05rem, 1.35vw, 1.28rem);
-  line-height: 1.42;
-  color: var(--ink);
-  margin-bottom: clamp(12px, 1.6vw, 18px);
-}
-
-.hero__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: clamp(22px, 3vw, 34px);
-  font-size: 0.86rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--violet);
-  text-decoration: none;
-}
-
-.hero__cta span {
-  position: relative;
-  padding-bottom: 3px;
-}
-
-/* Underline grows from the left on hover — the link should feel like a link. */
-.hero__cta span::after {
-  content: '';
+/* Screen-reader and search-engine copy: the artwork's type is pixels, so the
+   page would otherwise have no heading at all. */
+.hero__sr {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 320ms cubic-bezier(0.2, 0.9, 0.25, 1);
-}
-
-.hero__cta:hover span::after { transform: scaleX(1); }
-
-.hero__cta i {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  transition: transform 320ms cubic-bezier(0.2, 0.9, 0.25, 1), background 220ms ease, color 220ms ease;
-}
-
-.hero__cta:hover i {
-  transform: translateX(5px);
-  background: var(--violet);
-  color: #fff;
-}
-
-.hero__cta svg { width: 15px; height: 15px; }
-
-/* ---------- the stage ---------- */
-.hero__stage {
-  position: relative;
-  align-self: stretch;
-  min-height: clamp(300px, 46vw, 560px);
-}
-
-/* Handwritten aside, top right. */
-.hero__note {
-  position: absolute;
-  right: 0;
-  top: clamp(4px, 2vw, 26px);
-  max-width: 22ch;
-  font-family: 'Caveat', ui-rounded, system-ui, sans-serif;
-  font-size: clamp(1.05rem, 1.55vw, 1.5rem);
-  line-height: 1.42;
-  color: var(--ink);
-  text-align: right;
-  z-index: 4;
-}
-
-.hero__note u {
-  display: block;
-  width: 92px;
-  height: 8px;
-  margin: 4px 0 0 auto;
-  border-bottom: 2.5px solid var(--violet);
-  border-radius: 0 0 60% 60%;
-  text-decoration: none;
-  transform: rotate(-2deg);
-}
-
-/* The 3D letters. Set in type, extruded with layered shadows, so the whole
-   thing stays text — searchable, and it scales instead of pixelating. */
-.hero__word {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: flex-end;
-  font-family: 'Archivo Black', 'Helvetica Neue', Arial, sans-serif;
-  font-size: clamp(5.6rem, 15vw, 15rem);
-  line-height: 0.78;
-  letter-spacing: -0.012em;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   white-space: nowrap;
-  z-index: 3;
-  margin: 0;
+  border: 0;
 }
 
-.hero__word b {
-  display: inline-block;
-  font-weight: 400;
-  opacity: 0;
-  transform: translateY(30px) scale(0.94);
-  transition:
-    transform 780ms cubic-bezier(0.2, 1.2, 0.3, 1),
-    opacity 460ms ease;
-  transition-delay: calc(var(--i) * 90ms);
+/* ---------- phones ---------- */
+/* At 390px the artwork is 390x260 and its printed type lands around 4px, so
+   the same words are repeated underneath as real text. Hidden on desktop,
+   where the artwork already says them legibly. */
+.hero__mobile { display: none; }
+
+@media (max-width: 860px) {
+  .hero { padding-top: 62px; }
+  .hero__hot { --nav: 62px; }
 }
 
-.hero.is-in .hero__word b { opacity: 1; transform: none; }
+@media (max-width: 700px) {
+  .hero__hot { display: none; }
 
-/* Stone letters sit in front of the light, violet ones catch it. */
-.hero__word b:nth-child(-n+2) {
-  color: var(--stone);
-  text-shadow:
-    2px 2px 0 var(--stone-d), 4px 4px 0 var(--stone-d), 6px 6px 0 var(--stone-d),
-    8px 8px 0 #c9c0b4, 10px 10px 0 #c9c0b4,
-    14px 16px 26px rgba(70, 58, 44, 0.3);
-}
-
-.hero__word b:nth-child(n+3) {
-  color: var(--violet);
-  text-shadow:
-    2px 2px 0 var(--violet-d), 4px 4px 0 var(--violet-d), 6px 6px 0 var(--violet-d),
-    8px 8px 0 #3f2a9c, 10px 10px 0 #3f2a9c,
-    14px 16px 30px rgba(60, 40, 150, 0.34);
-}
-
-/* Behind the letters: he leans on them, which is what the reference stages,
-   and it also puts the cut-out's flat bottom edge out of sight. */
-.hero__photo {
-  position: absolute;
-  left: 50%;
-  /* Raised so the cut-out's own straight edges — the flat bottom and the arm
-     the source photo clipped at its frame — finish inside the letter band and
-     stay hidden behind it. */
-  bottom: clamp(30px, 4.6vw, 86px);
-  z-index: 1;
-  height: clamp(290px, 44vw, 620px);
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 700ms ease 260ms, transform 900ms cubic-bezier(0.2, 1.1, 0.3, 1) 260ms;
-  pointer-events: none;
-}
-
-.hero.is-in .hero__photo { opacity: 1; transform: translateX(-50%); }
-
-.hero__photo img {
-  display: block;
-  height: 100%;
-  width: auto;
-  filter: drop-shadow(0 26px 34px rgba(70, 58, 44, 0.34));
-}
-
-/* ---------- attribute row ---------- */
-.hero__attrs {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: clamp(22px, 3.6vh, 42px);
-  z-index: 4;
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  padding: 0 24px;
-}
-
-.hero__attr {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 0 clamp(20px, 3.4vw, 52px);
-  color: var(--ink);
-  text-align: center;
-}
-
-.hero__attr + .hero__attr { border-left: 1px solid rgba(16, 19, 28, 0.16); }
-
-.hero__attr svg {
-  width: 26px;
-  height: 26px;
-  color: var(--violet);
-  transition: transform 300ms cubic-bezier(0.2, 1.2, 0.3, 1);
-}
-
-.hero__attr:hover svg { transform: translateY(-4px); }
-
-.hero__attr span {
-  font-size: clamp(0.62rem, 0.82vw, 0.76rem);
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* ---------- dark theme ---------- */
-[data-theme="dark"] .hero {
-  --ink: #f2f4f8;
-  --stone: #e9e6e0;
-  --stone-d: #a49b8d;
-  background: radial-gradient(120% 90% at 62% 18%, #1c1f2b 0%, #14161f 55%, #0c0e15 100%);
-}
-[data-theme="dark"] .hero__lead { color: #a5adbf; }
-[data-theme="dark"] .hero__lead strong { color: #fff; }
-[data-theme="dark"] .hero__attr + .hero__attr { border-left-color: rgba(255, 255, 255, 0.16); }
-
-/* ---------- responsive ---------- */
-/* The reference composition is a wide stage. Below this it stacks: copy
-   first, then the stage, so the left column never gets squeezed to a sliver
-   and the letters never crop. */
-@media (max-width: 900px) {
-  .hero { min-height: 0; }
-
-  .hero__inner {
-    grid-template-columns: 1fr;
-    padding: clamp(88px, 14vh, 120px) 22px 0;
-    gap: clamp(26px, 5vw, 40px);
+  .hero__mobile {
+    display: block;
+    padding: 26px 22px 34px;
+    background: #cbc3b9;
   }
 
-  .hero__note {
-    position: static;
-    max-width: none;
-    text-align: left;
-    margin-bottom: 14px;
+  .hero__mobile h2 {
+    font-family: 'Archivo Black', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.55rem;
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+    color: #17181c;
+    margin: 0 0 10px;
   }
 
-  .hero__note u { margin: 4px auto 0 0; }
+  .hero__mobile h2 em { font-style: normal; color: #e0567f; }
 
-  .hero__stage {
-    min-height: clamp(300px, 74vw, 460px);
-    margin-top: 8px;
+  .hero__mobile p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: #4a4740;
+    margin: 0 0 18px;
+    max-width: 34ch;
   }
 
-  .hero__word { font-size: clamp(4.6rem, 25vw, 9rem); }
-  .hero__photo { height: clamp(250px, 62vw, 420px); left: 50%; }
-
-  .hero__attrs {
-    position: static;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 14px 0;
-    padding: clamp(24px, 5vw, 36px) 0 clamp(30px, 6vw, 44px);
+  .hero__mobile a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 20px;
+    border: 1.5px solid #e0567f;
+    border-radius: 3px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #17181c;
+    text-decoration: none;
   }
 
-  .hero__attr { padding: 0 clamp(14px, 4vw, 26px); }
-  .hero__attr:first-child { padding-left: 0; }
-}
-
-@media (max-width: 560px) {
-  .hero__attr { flex-direction: row; gap: 9px; }
-  .hero__attr svg { width: 20px; height: 20px; }
-}
-
-/* ---------- motion preference ---------- */
-@media (prefers-reduced-motion: reduce) {
-  .hero__word b,
-  .hero__photo {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .hero.is-in .hero__photo { transform: translateX(-50%); }
-  .hero__cta i,
-  .hero__attr svg { transition: none; }
+  .hero__mobile a svg { width: 13px; height: 13px; color: #e0567f; }
 }
