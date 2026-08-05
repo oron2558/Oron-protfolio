@@ -1257,7 +1257,7 @@
 }
 
 [data-theme="light"] .onf-about__actions .onf-btn--white {
-  background: #1a1a2e;
+  background: #17181c;
   color: #fff;
 }
 
@@ -1266,7 +1266,7 @@
 }
 
 [data-theme="light"] .onf-about__actions .onf-btn--outline {
-  color: #1a1a2e;
+  color: #17181c;
   border-color: rgba(0, 0, 0, 0.2);
 }
 
