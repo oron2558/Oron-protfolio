@@ -39,7 +39,7 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   text-decoration: none;
-  background: linear-gradient(135deg, #6f8dff, #2f5cf0);
+  background: linear-gradient(135deg, #f08fa9, #e0567f);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -55,14 +55,14 @@
   position: relative;
   font-size: 0.92rem;
   font-weight: 500;
-  color: #5b6478;
+  color: #6b6660;
   text-decoration: none;
   transition: color 160ms ease;
 }
 
 .snav__link:hover,
 .snav__link--active {
-  color: #101828;
+  color: #17181c;
 }
 
 .snav__link::after {
@@ -72,7 +72,7 @@
   bottom: -5px;
   width: 100%;
   height: 2px;
-  background: #2f5cf0;
+  background: #e0567f;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -93,7 +93,7 @@
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: #5b6478;
+  color: #6b6660;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,7 +102,7 @@
 }
 
 .snav__btn:hover {
-  color: #101828;
+  color: #17181c;
   background: rgba(16, 24, 40, 0.06);
 }
 
@@ -124,7 +124,7 @@
   width: 100%;
   height: 2px;
   border-radius: 2px;
-  background: #101828;
+  background: #17181c;
   transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 160ms ease;
 }
 
@@ -145,10 +145,10 @@
   background: transparent;
   border-bottom-color: transparent;
 }
-[data-theme="dark"] .snav__link { color: #9aa3b8; }
+[data-theme="dark"] .snav__link { color: #9a938a; }
 [data-theme="dark"] .snav__link:hover,
 [data-theme="dark"] .snav__link--active { color: #fff; }
-[data-theme="dark"] .snav__btn { color: #9aa3b8; }
+[data-theme="dark"] .snav__btn { color: #9a938a; }
 [data-theme="dark"] .snav__btn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
 [data-theme="dark"] .snav__burger span { background: #fff; }
 
@@ -170,7 +170,7 @@
     align-items: flex-start;
     gap: 4px;
     padding: 26px 24px;
-    background: #0b0b14;
+    background: #14130f;
     transform: translateX(100%);
     transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 4100;
@@ -183,7 +183,7 @@
     padding: 15px 0;
     font-size: 1.15rem;
     font-weight: 600;
-    color: #e7e9f0;
+    color: #ded8cf;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 

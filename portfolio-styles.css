@@ -9,17 +9,17 @@
 /* --- CSS CUSTOM PROPERTIES --- */
 :root {
   /* Colors — Light Tech */
-  --bg-primary: #f8f9fc;
-  --bg-secondary: #f0f1f5;
+  --bg-primary: #f2eee7;
+  --bg-secondary: #e8e2d9;
   --bg-card: #ffffff;
-  --bg-card-hover: #f5f5fa;
+  --bg-card-hover: #ece6de;
   --text-primary: #111827;
   --text-secondary: #4b5563;
   --text-muted: #9ca3af;
-  --accent: #3b82f6;
-  --accent-light: #1e40af;
-  --accent-glow: rgba(59, 130, 246, 0.1);
-  --accent-gradient: linear-gradient(135deg, #3b82f6, #1e40af);
+  --accent: #e0567f;
+  --accent-light: #b83a5f;
+  --accent-glow: rgba(224, 86, 127, 0.1);
+  --accent-gradient: linear-gradient(135deg, #e0567f, #b83a5f);
   --border-subtle: rgba(0, 0, 0, 0.06);
   --border-hover: rgba(0, 0, 0, 0.12);
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
@@ -87,8 +87,8 @@
   --text-primary: #ffffff;
   --text-secondary: #b0b0b8;
   --text-muted: #6b6b78;
-  --accent-light: #60a5fa;
-  --accent-glow: rgba(59, 130, 246, 0.15);
+  --accent-light: #ef7d9c;
+  --accent-glow: rgba(224, 86, 127, 0.15);
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-hover: rgba(255, 255, 255, 0.12);
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
@@ -392,7 +392,7 @@ img {
 .blur-orb-2 {
   width: 400px;
   height: 400px;
-  background: #3b82f6;
+  background: #e0567f;
   opacity: 0.06;
   bottom: 20%;
   right: -5%;
@@ -817,8 +817,8 @@ img {
   height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 34%, rgba(59, 130, 246, 0.16), rgba(59, 130, 246, 0.05));
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: radial-gradient(circle at 50% 34%, rgba(224, 86, 127, 0.16), rgba(224, 86, 127, 0.05));
+  border: 1px solid rgba(224, 86, 127, 0.3);
 }
 
 .cs-hat__icon svg {

@@ -39,17 +39,17 @@
   font: inherit;
   font-size: 0.82rem;
   font-weight: 600;
-  color: #5b6478;
+  color: #6b6660;
   cursor: pointer;
   white-space: nowrap;
   transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
-.flow__tab:hover { border-color: #2f5cf0; color: #2f5cf0; }
+.flow__tab:hover { border-color: #e0567f; color: #e0567f; }
 
 .flow__tab[aria-selected="true"] {
-  background: #101828;
-  border-color: #101828;
+  background: #17181c;
+  border-color: #17181c;
   color: #fff;
 }
 
@@ -61,7 +61,7 @@
   border: 1px solid rgba(16, 24, 40, 0.12);
   border-radius: 9px;
   background: #fff;
-  color: #344054;
+  color: #3b3833;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +69,7 @@
   transition: border-color 160ms ease, color 160ms ease, opacity 160ms ease;
 }
 
-.flow__arrow:hover:not(:disabled) { border-color: #2f5cf0; color: #2f5cf0; }
+.flow__arrow:hover:not(:disabled) { border-color: #e0567f; color: #e0567f; }
 .flow__arrow:disabled { opacity: 0.35; cursor: default; }
 .flow__arrow svg { width: 15px; height: 15px; }
 
@@ -108,13 +108,13 @@
   margin-top: 12px;
   font-size: 0.88rem;
   line-height: 1.5;
-  color: #667085;
+  color: #6b6660;
 }
 
 .flow__cap b {
   display: block;
   font-size: 0.95rem;
-  color: #101828;
+  color: #17181c;
   margin-bottom: 2px;
 }
 
@@ -139,28 +139,28 @@
 .flow__dot[aria-current="true"] {
   width: 22px;
   border-radius: 99px;
-  background: #101828;
+  background: #17181c;
 }
 
 /* ---------- dark theme ---------- */
 [data-theme="dark"] .flow__tab {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.14);
-  color: #9aa3b8;
+  color: #9a938a;
 }
 [data-theme="dark"] .flow__tab[aria-selected="true"] {
   background: #fff;
   border-color: #fff;
-  color: #101828;
+  color: #17181c;
 }
 [data-theme="dark"] .flow__arrow {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.14);
-  color: #e7e9f0;
+  color: #ded8cf;
 }
 [data-theme="dark"] .flow__item img { border-color: rgba(255, 255, 255, 0.1); }
-[data-theme="dark"] .flow__cap { color: #8b93a7; }
-[data-theme="dark"] .flow__cap b { color: #f4f6fb; }
+[data-theme="dark"] .flow__cap { color: #8d867d; }
+[data-theme="dark"] .flow__cap b { color: #f2eee7; }
 [data-theme="dark"] .flow__dot { background: rgba(255, 255, 255, 0.22); }
 [data-theme="dark"] .flow__dot[aria-current="true"] { background: #fff; }
 
