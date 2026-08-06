@@ -623,3 +623,23 @@ body {
   .pf-feat__stats { gap: 20px; }
   .pf-feat__stats b { font-size: 1.25rem; }
 }
+
+
+/* High-contrast ticker: explicit colors remain readable in every theme. */
+.pf-proof .pf-ticker {
+  background: #d83f70;
+  color: #ffffff;
+}
+
+.pf-proof .pf-ticker__item {
+  color: #ffffff;
+  font-size: clamp(0.84rem, 1vw, 0.96rem);
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-shadow: 0 1px 1px rgba(67, 12, 31, 0.2);
+}
+
+.pf-proof .pf-ticker__item::after {
+  background: #ffffff;
+  opacity: 0.78;
+}
