@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="styles/oronflix-browse.css?v=20260807">
   <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260807">
   <link rel="stylesheet" href="styles/site-nav.css?v=20260807">
-  <link rel="stylesheet" href="styles/hero.css?v=20260807">
+  <link rel="stylesheet" href="styles/hero.css?v=20260808">
 </head>
 <body>
 
@@ -50,23 +50,36 @@
 
 <!-- ==================== INTRO / HERO ==================== -->
 <!-- ==================== HERO ==================== -->
-<header class="hero">
-  <h1 class="hero__sr">Oron Turgeman — Product Designer, Tel Aviv. I design meaningful experiences: product design specializing in UX/UI and digital products.</h1>
-
+<header class="hero" aria-labelledby="hero-heading">
   <div class="hero__frame">
-    <img class="hero__img" src="hero-poster.webp"
-         alt="Oron Turgeman standing inside the letters of his name, cast in concrete — I design meaningful experiences"
+    <img class="hero__img" src="hero-clean-v2.webp"
+         alt="Oron Turgeman emerging through sculptural concrete letters spelling ORON"
          width="1536" height="1024" fetchpriority="high">
 
-    <a class="hero__hot" href="projects.html" aria-label="View my work"></a>
-  </div>
+    <div class="hero__meta">
+      <p class="hero__role">Product Designer</p>
+      <p class="hero__location">Tel Aviv<br>Israel</p>
+    </div>
 
-  <div class="hero__mobile">
-    <h2>I design<br><em>meaningful experiences.</em></h2>
-    <p>Product designer specializing in UX/UI &amp; digital products. Tel Aviv, Israel.</p>
-    <a href="projects.html">View my work
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-    </a>
+    <div class="hero__label" aria-hidden="true">
+      <span>Portfolio</span><span class="hero__label-dot"></span>
+    </div>
+
+    <div class="hero__copy">
+      <h1 id="hero-heading">I design <em>meaningful<br>experiences.</em></h1>
+      <p>Product designer specializing in UX/UI &amp; digital products.</p>
+      <a href="projects.html">View my work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+
+    <div class="hero__seal" aria-hidden="true">
+      <svg viewBox="0 0 150 150">
+        <defs><path id="sealPath" d="M75,75 m-54,0 a54,54 0 1,1 108,0 a54,54 0 1,1 -108,0"/></defs>
+        <text><textPath href="#sealPath">IMAGINE • DESIGN • SOLVE • TEST • IMPROVE • </textPath></text>
+        <circle cx="75" cy="75" r="4" fill="currentColor"/>
+      </svg>
+    </div>
   </div>
 </header>
 
