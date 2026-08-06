@@ -1,4 +1,16 @@
 /* Editorial portrait hero: image and interface copy remain separate and accessible. */
+
+/* The headline below asks for Archivo Black and the file has been sitting in
+   /fonts unused — nothing ever declared it, so the hero silently fell back to
+   system sans and read as generic against the sculpted letters. */
+@font-face {
+  font-family: 'Archivo Black';
+  src: url('../fonts/archivo-black-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .hero {
   position: relative;
   width: 100%;

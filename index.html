@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="styles/oronflix-browse.css?v=20260807">
   <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260809">
   <link rel="stylesheet" href="styles/site-nav.css?v=20260807">
-  <link rel="stylesheet" href="styles/hero.css?v=20260809">
+  <link rel="stylesheet" href="styles/hero.css?v=20260810">
 </head>
 <body>
 
@@ -52,13 +52,17 @@
 <!-- ==================== HERO ==================== -->
 <header class="hero" aria-labelledby="hero-heading">
   <div class="hero__frame">
-    <img class="hero__img" src="hero-clean-v2.webp"
+    <!-- Full-bleed at every width, so the old 1536px plate was being upscaled
+         past 2x on a retina laptop. Same framing, more pixels. -->
+    <img class="hero__img" src="hero-clean-v3.webp"
+         srcset="hero-clean-v3.webp 1920w, hero-clean-v3-2x.webp 3072w"
+         sizes="100vw"
          alt="Oron Turgeman emerging through sculptural concrete letters spelling ORON"
-         width="1536" height="1024" fetchpriority="high">
+         width="1920" height="1280" fetchpriority="high">
 
     <div class="hero__meta">
       <p class="hero__role">Product Designer</p>
-      <p class="hero__location">Tel Aviv<br>Israel</p>
+      <p class="hero__location">Hadera<br>Israel</p>
     </div>
 
     <div class="hero__label" aria-hidden="true">
