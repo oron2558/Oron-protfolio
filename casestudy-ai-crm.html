@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles/oronflix-player.css?v=20260807">
   <link rel="stylesheet" href="styles/site-nav.css?v=20260807">
   <link rel="stylesheet" href="styles/case-nav.css?v=20260807">
-  <link rel="stylesheet" href="styles/flow-slider.css?v=20260807">
+  <link rel="stylesheet" href="styles/flow-slider.css?v=20260810">
 
   <style>
     /* ============================================
@@ -2273,7 +2273,7 @@
           <span class="cs-tag">AI</span>
           <span class="cs-tag">Messaging</span>
           <span class="cs-tag">Solo Business</span>
-          <span class="cs-tag">Lead Management</span>
+          <span class="cs-tag">Customers</span>
         </div>
         <span class="cs-hero-projected" style="display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;background:#fff7ed;border:1px solid #fed7aa;padding:6px 13px;border-radius:100px;margin-bottom:18px;">Concept case study · projected targets</span>
         <h1 class="cs-hero-title">
@@ -2901,19 +2901,22 @@
   <!-- ==================== SCREEN: Leads ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
-      <h3 class="cs-section-subtitle animate-on-scroll">Lead Management</h3>
+      <h3 class="cs-section-subtitle animate-on-scroll">Customers</h3>
       <div class="cs-screen-row animate-on-scroll">
         <div class="cs-screen-text">
-          <p class="cs-text" style="margin-bottom: 16px;"><strong>First contact to conversion</strong>, tracked visually. No lead gets forgotten.</p>
-          <ul class="cs-list">
-            <li><strong>Every lead in one table</strong> — contact, channel, latest message and owner side by side</li>
-            <li><strong>Status tags</strong> — New Lead, Urgent and category labels turn triage into a scan, not a read</li>
-            <li><strong>Source attribution</strong> — see which channel each lead came from</li>
-            <li><strong>Ownership at a glance</strong> — the assigned rep or a clear "Unassigned" flag, plus time since arrival</li>
-          </ul>
+          <p class="cs-text" style="margin-bottom: 16px;"><strong>Every customer and interaction in one place</strong>, with details available without leaving the table.</p>
+          <ul class="cs-list"><li><strong>Default</strong> — the complete customer table</li><li><strong>Choose</strong> — selecting a row opens customer details</li></ul>
         </div>
-        <div class="cs-screen-mockup">
-          <img src="crm-leads-v6.webp" alt="MessAge Leads Management table" loading="lazy">
+        <div class="flow animate-on-scroll" data-flow>
+          <div class="flow__head">
+            <div class="flow__tabs" role="tablist"><button class="flow__tab" type="button" role="tab" aria-selected="true">Default</button><button class="flow__tab" type="button" role="tab" aria-selected="false">Choose</button></div>
+            <div class="flow__arrows"><button class="flow__arrow" type="button" data-flow-prev aria-label="Previous Customers state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button><button class="flow__arrow" type="button" data-flow-next aria-label="Next Customers state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button></div>
+          </div>
+          <div class="flow__track" tabindex="0" aria-label="Customers screen states">
+            <figure class="flow__item"><img src="ds-crm-customers-default.webp" alt="Customers screen in its default state" loading="lazy"><figcaption class="flow__cap"><b>Default</b>The complete table before a row is selected.</figcaption></figure>
+            <figure class="flow__item"><img src="ds-crm-customers.webp" alt="Customers screen with a selected row" loading="lazy"><figcaption class="flow__cap"><b>Choose</b>A selected row opens the details panel.</figcaption></figure>
+          </div>
+          <div class="flow__dots"><button class="flow__dot" type="button" aria-current="true" aria-label="Default Customers state"></button><button class="flow__dot" type="button" aria-current="false" aria-label="Chosen Customers state"></button></div>
         </div>
       </div>
     </div>
@@ -2947,19 +2950,22 @@
   <!-- ==================== SCREEN: Tasks ==================== -->
   <section class="cs-section">
     <div class="cs-section-inner">
-      <h3 class="cs-section-subtitle animate-on-scroll">Task Management</h3>
+      <h3 class="cs-section-subtitle animate-on-scroll">Leads Management</h3>
       <div class="cs-screen-row animate-on-scroll">
         <div class="cs-screen-text">
-          <p class="cs-text" style="margin-bottom: 16px;">Every follow-up and to-do <strong>linked to its lead</strong> — nothing falls through the cracks.</p>
-          <ul class="cs-list">
-            <li><strong>Auto-generated tasks</strong> — the AI creates follow-up tasks based on conversation context</li>
-            <li><strong>Priority sorting</strong> — urgent tasks surface to the top automatically</li>
-            <li><strong>Channel &amp; owner on every task</strong> — source platform, assignee and due time in one row</li>
-            <li><strong>Completion tracking</strong> — All / Due Soon / Urgent / In Progress / Completed counters across the top</li>
-          </ul>
+          <p class="cs-text" style="margin-bottom: 16px;"><strong>First contact to conversion</strong>, tracked in one searchable table.</p>
+          <ul class="cs-list"><li><strong>Default</strong> — source, message, category and owner at a glance</li><li><strong>Choose</strong> — selecting a row opens lead details and score</li></ul>
         </div>
-        <div class="cs-screen-mockup">
-          <img src="crm-tasks-v6.webp" alt="MessAge Tasks" loading="lazy">
+        <div class="flow animate-on-scroll" data-flow>
+          <div class="flow__head">
+            <div class="flow__tabs" role="tablist"><button class="flow__tab" type="button" role="tab" aria-selected="true">Default</button><button class="flow__tab" type="button" role="tab" aria-selected="false">Choose</button></div>
+            <div class="flow__arrows"><button class="flow__arrow" type="button" data-flow-prev aria-label="Previous Leads state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m14 6-6 6 6 6"/></svg></button><button class="flow__arrow" type="button" data-flow-next aria-label="Next Leads state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10 6 6 6-6 6"/></svg></button></div>
+          </div>
+          <div class="flow__track" tabindex="0" aria-label="Leads screen states">
+            <figure class="flow__item"><img src="ds-crm-leads-default.webp" alt="Leads screen in its default state" loading="lazy"><figcaption class="flow__cap"><b>Default</b>The complete table before a row is selected.</figcaption></figure>
+            <figure class="flow__item"><img src="ds-crm-leads.webp" alt="Leads screen with a selected row" loading="lazy"><figcaption class="flow__cap"><b>Choose</b>A selected row opens the details panel.</figcaption></figure>
+          </div>
+          <div class="flow__dots"><button class="flow__dot" type="button" aria-current="true" aria-label="Default Leads state"></button><button class="flow__dot" type="button" aria-current="false" aria-label="Chosen Leads state"></button></div>
         </div>
       </div>
     </div>
@@ -3061,7 +3067,7 @@
 <script src="scripts/oronflix-player.js?v=20260807"></script>
 <script src="scripts/site-nav.js?v=20260807" defer></script>
 <script src="scripts/case-nav.js?v=20260807" defer></script>
-<script src="scripts/flow-slider.js?v=20260807" defer></script>
+<script src="scripts/flow-slider.js?v=20260810" defer></script>
 <button class="totop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 </body>
 </html>
