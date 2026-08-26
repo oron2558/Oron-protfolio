@@ -301,7 +301,7 @@ p.paragraph_format.space_after = Pt(4)
 p.paragraph_format.space_before = Pt(8)
 
 p = right_cell.add_paragraph()
-run = p.add_run('✉  oron2558@gmail.com')
+run = p.add_run('✉  Lironashtar93@gmail.com')
 run.font.name = 'Calibri'
 run.font.size = Pt(9.5)
 run.font.color.rgb = RGBColor(0x3B, 0x82, 0xF6)

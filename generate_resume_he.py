@@ -361,7 +361,7 @@ p.paragraph_format.space_before = Pt(8)
 p = sidebar_cell.add_paragraph()
 make_rtl(p)
 p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-run = p.add_run('oron2558@gmail.com  ✉')
+run = p.add_run('Lironashtar93@gmail.com  ✉')
 run.font.name = 'Arial'
 run.font.size = Pt(9.5)
 run.font.color.rgb = RGBColor(0x3B, 0x82, 0xF6)

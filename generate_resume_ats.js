@@ -90,7 +90,7 @@ const doc = new Document({
         spacing: { after: 40 },
         children: [
           t('Hadera, Israel  ·  052-4541258  ·  ', { size: 19, color: MUTED }),
-          new ExternalHyperlink({ link: 'mailto:oron2558@gmail.com', children: [t('oron2558@gmail.com', { size: 19, color: MUTED })] }),
+          new ExternalHyperlink({ link: 'mailto:Lironashtar93@gmail.com', children: [t('Lironashtar93@gmail.com', { size: 19, color: MUTED })] }),
           t('  ·  ', { size: 19, color: MUTED }),
           new ExternalHyperlink({ link: 'https://www.linkedin.com/in/oron-turgeman-892277225', children: [t('linkedin.com/in/oron-turgeman', { size: 19, color: MUTED })] }),
           t('  ·  ', { size: 19, color: MUTED }),
