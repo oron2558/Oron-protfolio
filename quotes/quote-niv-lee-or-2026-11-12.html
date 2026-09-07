@@ -142,25 +142,6 @@
   tr.total td:last-child{border-radius:8px 0 0 8px}
   .vat{font-size:13px;color:var(--ink-2)}
 
-  /* ---------- worked examples ---------- */
-  .examples{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:12px;
-  }
-  .ex{
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:15px 16px;
-    background:var(--paper);
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-  .ex__q{font-size:13px;color:var(--ink-2);font-weight:600}
-  .ex__sum{font-family:"Frank Ruhl Libre",Georgia,serif;font-size:25px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
-  .ex__break{font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
-
   /* ---------- included panels ---------- */
   .panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
   .panel{
@@ -312,8 +293,10 @@
         </div>
         <ul>
           <li><b>לינק אישור בקליק אחד</b> — האורח מאשר בלי להתקין שום דבר, ומעדכן כמה אנשים מגיעים</li>
-          <li><b>סבבי הודעות בוואטסאפ</b> ותזכורות SMS לאורחים שלא ענו</li>
-          <li><b>שיחות טלפון</b> לכל מי שלא הגיב לאחר סבבי ההודעות</li>
+          <li><b>4 סבבי הודעות</b> בוואטסאפ ו־SMS לאורחים שטרם ענו</li>
+          <li><b>3 סבבי שיחות טלפון</b> לכל מי שלא הגיב לאחר ההודעות</li>
+          <li><b>הודעת תזכורת ביום האירוע</b> לכל האורחים המאשרים</li>
+          <li><b>הודעת תודה יום אחרי האירוע</b> בשמכם</li>
           <li><b>דשבורד חי</b> עם טבעת התקדמות ופילוח תשובות בזמן אמת</li>
           <li>ניהול רשימה מלא — חיפוש, סינון, שיוך למשפחות, מספר מוזמנים לכל רשומה</li>
           <li>ייצוא הרשימה ל־Excel בכל שלב</li>
@@ -383,28 +366,6 @@
   </section>
 
   <section>
-    <h2>דוגמאות חישוב</h2>
-    <p class="lead">כדי שיהיה נוח להעריך מראש — שלוש רשימות בגדלים אופייניים לאירוע באולם. הסכום המדויק ייקבע לפי הרשימה שלכם.</p>
-    <div class="examples">
-      <div class="ex">
-        <div class="ex__q">250 רשומות</div>
-        <div class="ex__sum">1,875 ₪</div>
-        <div class="ex__break">375 ₪ אישורי הגעה + 1,500 ₪ הושבה</div>
-      </div>
-      <div class="ex">
-        <div class="ex__q">350 רשומות</div>
-        <div class="ex__sum">2,025 ₪</div>
-        <div class="ex__break">525 ₪ אישורי הגעה + 1,500 ₪ הושבה</div>
-      </div>
-      <div class="ex">
-        <div class="ex__q">450 רשומות</div>
-        <div class="ex__sum">2,175 ₪</div>
-        <div class="ex__break">675 ₪ אישורי הגעה + 1,500 ₪ הושבה</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
     <h2>איך זה מתנהל עד 12.11</h2>
     <div class="steps">
       <div class="step">
@@ -413,7 +374,7 @@
       </div>
       <div class="step">
         <div class="step__when">21–14 יום לפני</div>
-        <div class="step__what"><b>סבבי אישורי הגעה</b><span>יוצא לינק האישור, ואחריו סבבי הודעות ושיחות למי שלא ענה. אתם רואים כל תשובה בדשבורד בזמן אמת.</span></div>
+        <div class="step__what"><b>סבבי אישורי הגעה</b><span>יוצא לינק האישור, ואחריו 4 סבבי הודעות ו־3 סבבי שיחות למי שלא ענה. אתם רואים כל תשובה בדשבורד בזמן אמת.</span></div>
       </div>
       <div class="step">
         <div class="step__when">7 יום לפני</div>
@@ -425,7 +386,11 @@
       </div>
       <div class="step">
         <div class="step__when">יום האירוע</div>
-        <div class="step__what"><b>צ'ק־אין בכניסה</b><span>סימון מי הגיע מול הרשימה, ושליטה בשינויי הרגע האחרון בשולחנות.</span></div>
+        <div class="step__what"><b>תזכורת וצ'ק־אין</b><span>הודעת תזכורת יוצאת בבוקר לכל המאשרים, ובכניסה מסמנים מי הגיע מול הרשימה ומטפלים בשינויי הרגע האחרון בשולחנות.</span></div>
+      </div>
+      <div class="step">
+        <div class="step__when">יום אחרי</div>
+        <div class="step__what"><b>הודעת תודה</b><span>הודעת תודה יוצאת בשמכם לכל מי שהגיע — וסוגרת את התהליך.</span></div>
       </div>
     </div>
   </section>
@@ -436,9 +401,9 @@
       <div>
         <h3>חיוב ותשלום</h3>
         <ul>
-          <li>500 ₪ בעת אישור ההצעה — לשמירת התאריך</li>
-          <li>היתרה עד 7 ימים לפני האירוע, לפי מספר הרשומות בפועל</li>
-          <li>אמצעי תשלום: אשראי או העברה בנקאית</li>
+          <li>מקדמה 400 ₪ בעת אישור ההצעה — לשמירת התאריך</li>
+          <li>היתרה ביום האירוע או ביום שלמחרת, לפי מספר הרשומות בפועל</li>
+          <li>אמצעי תשלום: פייבוקס או העברה בנקאית</li>
         </ul>
       </div>
       <div>
