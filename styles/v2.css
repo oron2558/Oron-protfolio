@@ -834,73 +834,39 @@ html:not(.js) .dt__word::before { transform: skewX(-8deg) rotate(-1deg) scaleX(1
   font-weight: 500;
 }
 
-/* the diamond sits on the page itself, no panel behind it */
-.dt__viz { position: relative; min-width: 0; }
-.dt__canvas { display: block; width: 100%; height: clamp(150px, 28svh, 290px); }
+/* the dot field sits on the page itself, no panel behind it, kept square */
+.dt__viz { position: relative; min-width: 0; aspect-ratio: 1 / 1; }
+.dt__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-.dt__labs { position: relative; height: 2.6rem; }
-.dt__lab {
+.dt__mode {
   position: absolute;
-  left: var(--x, 0);
-  top: 0;
+  left: 50%;
+  top: 8%;
   translate: -50% 0;
-  appearance: none;
-  border: 0;
-  background: none;
-  padding: 2px 4px;
-  font: inherit;
   display: grid;
   justify-items: center;
-  gap: 1px;
-  color: var(--muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 300ms var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
-}
-.dt__lab small { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
-.dt__lab span { font-size: 0.86rem; font-weight: 600; }
-.dt__lab[aria-current="step"] { color: var(--ink); }
-.dt__lab[aria-current="step"] span { font-weight: 800; }
-.dt__lab:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
-@media (hover: hover) and (pointer: fine) { .dt__lab:hover { color: var(--ink); } }
-
-.dt__shots {
-  margin: 0;
-  display: grid;
-  gap: 8px;
-  rotate: -2deg;
-}
-.dt__shots img {
-  grid-area: 1 / 1;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: 0 0;
-  border-radius: 14px;
-  background: var(--surface);
-  box-shadow: 0 24px 40px -22px rgba(20, 20, 20, 0.45);
-}
-.dt__shots .dt__shot--contain { object-fit: contain; object-position: center; padding: 10px; }
-.dt__shots figcaption {
-  display: grid;
+  height: 1.3em;
+  overflow: hidden;
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted);
-  justify-items: end;
 }
-.dt__shots figcaption span { grid-area: 1 / 1; }
+.dt__mode span { grid-area: 1 / 1; }
 
 /* No JS: a readable list, no pin, no drawing. */
 html:not(.js) .dt__viz,
-html:not(.js) .dt__shots,
-html:not(.js) .dt__count { display: none; }
+html:not(.js) .dt__count,
+.dt--list .dt__viz,
+.dt--list .dt__count { display: none; }
 html:not(.js) .dt__steps { gap: 48px; }
+.js .dt--list .dt__steps { gap: 48px; }
+.js .dt--list .dt__step { grid-area: auto; }
 
 /* JS: stack the stages and show one at a time. */
 .js .dt__step,
-.js .dt__shots img,
-.js .dt__shots figcaption span { grid-area: 1 / 1; }
+.js .dt__mode span { grid-area: 1 / 1; }
 .js .dt__step { visibility: hidden; }
 .js .dt__step.is-on { visibility: visible; }
 .js .dt__step > :not(.dt__word) { opacity: 0; transform: translateY(14px); transition: opacity 400ms var(--ease-out), transform 500ms var(--ease-out); }
@@ -916,10 +882,9 @@ html:not(.js) .dt__steps { gap: 48px; }
   .js .dt__step.is-on .dt__word::before { transition: transform 560ms cubic-bezier(0.65, 0, 0.35, 1) 240ms; }
 }
 
-.js .dt__shots img { opacity: 0; transform: translateY(10px) scale(0.96); transition: opacity 350ms ease, transform 600ms var(--ease-out); }
-.js .dt__shots img.is-on { opacity: 1; transform: none; }
-.js .dt__shots figcaption span { opacity: 0; transition: opacity 300ms ease; }
-.js .dt__shots figcaption span.is-on { opacity: 1; }
+.js .dt__mode span { transform: translateY(110%); transition: transform 500ms var(--ease-out); }
+.js .dt__mode span.is-on { transform: none; }
+.js .dt__mode span.is-off { transform: translateY(-110%); }
 
 /* Pinned mode (set by JS when motion is allowed). */
 .dt--pin .dt__track { height: calc(100svh + 4 * 70svh); }
@@ -935,24 +900,17 @@ html:not(.js) .dt__steps { gap: 48px; }
 
 @media (min-width: 900px) {
   .dt__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     column-gap: clamp(32px, 5vw, 80px);
-    row-gap: clamp(16px, 3svh, 36px);
-    align-items: end;
+    align-items: center;
   }
-  .dt__copy { grid-column: 1; grid-row: 1; }
-  .dt__shots { grid-column: 2; grid-row: 1; }
-  .dt__viz { grid-column: 1 / -1; grid-row: 2; }
+  .dt__viz { width: min(100%, calc(100svh - 150px)); justify-self: end; }
 }
 
 @media (max-width: 899px) {
   .dt__word { font-size: clamp(2.6rem, 13vw, 4.2rem); }
   .dt__text { font-size: 0.98rem; }
-  .dt__shots { display: none; }
-  .dt__canvas { height: clamp(130px, 27svh, 230px); }
-  .dt__lab { padding-inline: 0; }
-  .dt__lab small { font-size: 0.56rem; letter-spacing: 0.06em; }
-  .dt__lab span { font-size: 0.7rem; }
+  .dt__viz { order: -1; aspect-ratio: auto; height: clamp(200px, 36svh, 340px); }
   .dt--pin .dt__pin { padding-block: 72px 12px; }
   .dt--pin .dt__tags { display: none; }
   .dt__count { margin-bottom: 8px; }
