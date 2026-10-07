@@ -134,7 +134,7 @@
     if ('IntersectionObserver' in window && !reduce) {
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-      }, { threshold: 0.35 });
+      }, { threshold: 0.2 });
       chapters.forEach(function (c) { io.observe(c.el); });
     } else {
       chapters.forEach(function (c) { c.el.classList.add('is-in'); });

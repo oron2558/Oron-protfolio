@@ -2132,7 +2132,7 @@ html:not(.js) .dt__steps { gap: 48px; }
 
 /* Tighter hero after the film: no full-screen min-height, the name slides
    in from both sides as the folded film card leaves, the band fades up. */
-.hero--type { min-height: 0; padding-top: clamp(28px, 4vw, 56px); }
+.hero--type { min-height: 0; padding-top: clamp(28px, 4vw, 56px); overflow-x: clip; }
 .hero--type .hero__inner { padding-block: 0 clamp(8px, 2vw, 24px); }
 .verb {
   font-size: 1.42em;

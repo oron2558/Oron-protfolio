@@ -443,3 +443,7 @@ body > .theme-toggle { display: none !important; }
 @media (hover: hover) and (pointer: fine) {
   .csnav__step:hover { background: var(--ink); color: var(--ground); border-color: var(--ink); }
 }
+
+/* readable minimums on small labels */
+.csl-meta__label,
+.cs-hero-projected { font-size: 0.75rem !important; }
