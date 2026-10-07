@@ -1451,7 +1451,7 @@ p { text-wrap: pretty; }
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
-  transform: scale(calc(1.08 - var(--f) * 0.08));
+  transform: scale(calc(1.03 - var(--f) * 0.03));
 }
 
 .film__shade {
