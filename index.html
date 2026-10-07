@@ -30,8 +30,8 @@
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/video/hero-start.webp?v=4" as="image" type="image/webp">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20261007w">
-  <link rel="stylesheet" href="styles/v2.css?v=20261007w">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261007x">
+  <link rel="stylesheet" href="styles/v2.css?v=20261007x">
 
   <script type="application/ld+json">
   {
@@ -263,6 +263,110 @@
     </div>
   </section>
 
+  <!-- ============ AI ============ -->
+  <section class="section ai" id="ai" aria-labelledby="ai-title" data-ai>
+    <div class="wrap">
+      <div class="shead">
+        <p class="shead__num">03 &nbsp;Built with AI</p>
+        <h2 class="shead__title rv" id="ai-title">AI in every step of my work.</h2>
+        <p class="shead__lede rv" style="--d:1">Thinking and taste come first. The right tools make them fast. I use AI from the first research question to the shipped build, and I keep testing what's new.</p>
+      </div>
+
+      <div class="ai__grid rv" style="--d:2">
+        <div class="ai__tabs" role="tablist" aria-label="AI tools I work with" aria-orientation="vertical">
+          <button class="ai__tab is-on" type="button" role="tab" id="ai-t1" aria-selected="true" aria-controls="ai-p1" aria-labelledby="ai-n1" aria-describedby="ai-r1">
+            <span class="ai__num" aria-hidden="true">01</span>
+            <span class="ai__name" id="ai-n1">ChatGPT</span>
+            <span class="ai__more"><span>
+              <span class="ai__role" id="ai-r1">Research synthesis, UX thinking and fast prompts for concept products.</span>
+              <span class="ai__tags"><span style="--mk:#ffe45c">Empathize</span><span style="--mk:#9be7c4">Define</span><span style="--mk:#ffb3c7">Ideate</span></span>
+            </span></span>
+            <span class="ai__prog" aria-hidden="true"><i></i></span>
+          </button>
+          <button class="ai__tab" type="button" role="tab" id="ai-t2" aria-selected="false" aria-controls="ai-p2" aria-labelledby="ai-n2" aria-describedby="ai-r2" tabindex="-1">
+            <span class="ai__num" aria-hidden="true">02</span>
+            <span class="ai__name" id="ai-n2">Claude Code</span>
+            <span class="ai__more"><span>
+              <span class="ai__role" id="ai-r2">Working products, not only mockups. This whole site is built with it.</span>
+              <span class="ai__tags"><span style="--mk:#a9d4ff">Prototype</span><span style="--mk:#cdb8ff">Test</span><span>Ship</span></span>
+            </span></span>
+            <span class="ai__prog" aria-hidden="true"><i></i></span>
+          </button>
+          <button class="ai__tab" type="button" role="tab" id="ai-t3" aria-selected="false" aria-controls="ai-p3" aria-labelledby="ai-n3" aria-describedby="ai-r3" tabindex="-1">
+            <span class="ai__num" aria-hidden="true">03</span>
+            <span class="ai__name" id="ai-n3">Higgsfield</span>
+            <span class="ai__more"><span>
+              <span class="ai__role" id="ai-r3">AI video for product stories, made without any editing software.</span>
+              <span class="ai__tags"><span>Video</span><span>Motion</span><span>Upscale</span></span>
+            </span></span>
+            <span class="ai__prog" aria-hidden="true"><i></i></span>
+          </button>
+        </div>
+
+        <div class="ai__win" data-ai-win>
+          <div class="ai__bar">
+            <span class="ai__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="ai__wtitle" data-ai-title aria-hidden="true">ChatGPT · research</span>
+            <button class="ai__pause" type="button" data-ai-pause aria-label="Pause the tour">
+              <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>
+            </button>
+          </div>
+          <div class="ai__panels">
+            <div class="ai__panel ai__chat is-on" role="tabpanel" id="ai-p1" aria-labelledby="ai-t1" data-title="ChatGPT · research" data-dur="8500">
+              <p class="ai__cap">A typical research prompt</p>
+              <div class="ai__msg ai__msg--me ai__seq" style="--t:150ms"><p>Here are notes from 12 interviews with solo professionals. Group them into themes and rank the pain points.</p></div>
+              <div class="ai__msg ai__msg--bot">
+                <span class="ai__typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                <p class="ai__seq" style="--t:1500ms">Four themes, ranked by how many people raised them:</p>
+                <ol class="ai__bars" role="list">
+                  <li class="ai__seq" style="--t:1700ms;--w:92%"><span>Replies come too late</span><b>92%</b></li>
+                  <li class="ai__seq" style="--t:1900ms;--w:75%"><span>Messages scattered across channels</span><b>75%</b></li>
+                  <li class="ai__seq" style="--t:2100ms;--w:67%"><span>No way to prioritize leads</span><b>67%</b></li>
+                  <li class="ai__seq" style="--t:2300ms;--w:58%"><span>Doubts that AI will sound like them</span><b>58%</b></li>
+                </ol>
+              </div>
+              <p class="ai__next ai__seq" style="--t:3000ms">Next: turn these into How Might We questions <span aria-hidden="true">→</span></p>
+            </div>
+
+            <div class="ai__panel ai__term" role="tabpanel" id="ai-p2" aria-labelledby="ai-t2" data-title="claude · ~/oron-portfolio" data-dur="10500">
+              <p class="ai__cap">This site is built with Claude Code, from layout to motion to deploy.</p>
+              <p class="ai__ln ai__ln--cmd"><span aria-hidden="true">$ </span>claude</p>
+              <p class="ai__ln ai__ln--ask" data-ai-type>Build the How I work section. Pin it while scrolling, show the five Design Thinking stages, and add a dot field that changes shape with each stage.</p>
+              <p class="ai__ln ai__ln--step">Reading index.html, styles/v2.css, scripts/v2.js</p>
+              <p class="ai__ln ai__ln--step">Writing a canvas dot field with five shapes</p>
+              <p class="ai__ln ai__ln--step">Testing at 1440px, 390px, dark mode and reduced motion</p>
+              <p class="ai__ln ai__ln--done">Pushed. The preview is live.</p>
+            </div>
+
+            <div class="ai__panel ai__film" role="tabpanel" id="ai-p3" aria-labelledby="ai-t3" data-title="Higgsfield · hero film" data-dur="9500">
+              <video muted loop playsinline preload="none" poster="assets/video/hero-start.webp?v=4" aria-hidden="true">
+                <source src="assets/video/hero-720.webm?v=4" type="video/webm" media="(max-width: 900px)">
+                <source src="assets/video/hero-720.mp4?v=4" type="video/mp4" media="(max-width: 900px)">
+                <source src="assets/video/hero.webm?v=4" type="video/webm">
+                <source src="assets/video/hero.mp4?v=4" type="video/mp4">
+              </video>
+              <div class="ai__filmcap">
+                <p class="ai__seq" style="--t:200ms">The film at the top of this page.</p>
+                <ol class="ai__flow" role="list">
+                  <li class="ai__seq" style="--t:500ms"><b>1</b>Generated in Higgsfield</li>
+                  <li class="ai__seq" style="--t:700ms"><b>2</b>Upscaled to 1080p</li>
+                  <li class="ai__seq" style="--t:900ms"><b>3</b>No editing software</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai__kit">
+          <p class="ai__kit-k">Also in my toolkit</p>
+          <ul class="ai__kit-list" role="list"><li>Lovable</li><li>Google Stitch</li><li>UX Pilot</li></ul>
+          <p class="ai__kit-note">New tools land every week. I try them on real work and keep the ones that earn a place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ STORY ============ -->
   <section class="section" aria-labelledby="story-title" style="padding-top:0">
     <div class="wrap story">
@@ -270,7 +374,7 @@
         <img src="assets/img/oron-front-800.webp" alt="Oron Turgeman, front-facing portrait" width="800" height="1421" loading="lazy">
       </div>
       <div>
-        <p class="shead__num" style="margin-bottom:24px">03 &nbsp;About</p>
+        <p class="shead__num" style="margin-bottom:24px">04 &nbsp;About</p>
         <h2 class="story__quote rv" id="story-title">I swapped campaigns for <mark>products</mark>.</h2>
         <p class="story__text rv" style="--d:1">Years of leading advertising projects taught me briefs, budgets, cross-functional teams and deadlines. Product work is the same discipline, so I brought it into UX/UI.</p>
         <p class="story__text rv" style="--d:2">Away from the screen: competitive RC racing, Muay Thai, LEGO and PSA-graded Pokémon cards.</p>
@@ -285,7 +389,7 @@
   <!-- ============ CONTACT ============ -->
   <section class="section contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
-      <p class="shead__num" style="margin-bottom:32px">04 &nbsp;Contact</p>
+      <p class="shead__num" style="margin-bottom:32px">05 &nbsp;Contact</p>
       <h2 class="contact__title rv" id="contact-title">Get in<br>touch<span class="dot">.</span></h2>
       <p class="contact__lede rv" style="--d:1">Open to product design roles. If you have a product to take from 0 to 100, I'd like to hear about it.</p>
       <div class="contact__actions rv" style="--d:2">
@@ -312,7 +416,7 @@
   </section>
 </main>
 
-<script src="scripts/site-nav.js?v=20261007w" defer></script>
-<script src="scripts/v2.js?v=20261007w" defer></script>
+<script src="scripts/site-nav.js?v=20261007x" defer></script>
+<script src="scripts/v2.js?v=20261007x" defer></script>
 </body>
 </html>

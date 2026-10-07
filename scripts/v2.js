@@ -386,13 +386,23 @@
       window.addEventListener('scroll', measure, { passive: true });
       measure();
     }
-    /* the pin is a full screen, but its content is shorter: pull the next
-       section up into the empty space under it so there is no dead gap */
-    var pin = $('.dt__pin', root), grid = $('.dt__grid', root);
+    /* the pin is a full screen, but what is drawn in its last stage is
+       shorter: the last stage's text on one side, the loop in the middle of
+       the dot field on the other. Pull the next section up to just under
+       them so there is no dead gap when the pin lets go. */
+    var pin = $('.dt__pin', root);
     function trim() {
       track.style.marginBottom = '';
-      var gap = pin.getBoundingClientRect().bottom - grid.getBoundingClientRect().bottom;
-      track.style.marginBottom = -Math.max(0, gap - 16) + 'px';
+      var bottom = 0;
+      Array.prototype.forEach.call(steps[steps.length - 1].children, function (k) {
+        var r = k.getBoundingClientRect();
+        if (r.height) bottom = Math.max(bottom, r.bottom);
+      });
+      var v = viz.getBoundingClientRect();
+      var loopHalf = Math.min(v.width, v.height) * 0.34 * 0.36 * 1.1;
+      bottom = Math.max(bottom, v.top + v.height / 2 + loopHalf + 12);
+      var gap = pin.getBoundingClientRect().bottom - bottom;
+      track.style.marginBottom = -Math.max(0, gap - 28) + 'px';
     }
     trim();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(trim);
@@ -767,6 +777,186 @@
     }
   }
 
+  /* ---------- AI tools: tabs, and a window that plays a short demo per tool ----------
+     The tour moves on by itself while the section is in view. Hover or focus
+     holds it, any choice by the visitor stops it, and the button in the
+     window pauses or resumes it. */
+  function aiTools() {
+    var root = $('[data-ai]');
+    if (!root) return;
+    var tabs = $$('[role="tab"]', root);
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    var title = $('[data-ai-title]', root);
+    var pause = $('[data-ai-pause]', root);
+    var win = $('[data-ai-win]', root);
+    var cur = 0, live = false, timers = [];
+
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function clear() { timers.forEach(clearTimeout); timers = []; }
+
+    /* typed lines keep their full text in the page; the part not typed yet is see-through */
+    var typed = $$('[data-ai-type]', root).map(function (el) {
+      var text = el.textContent;
+      var done = document.createTextNode(text);
+      var caret = document.createElement('i');
+      caret.className = 'ai__caret';
+      caret.setAttribute('aria-hidden', 'true');
+      var rest = document.createElement('span');
+      rest.className = 'ai__rest';
+      el.textContent = '';
+      el.appendChild(done); el.appendChild(caret); el.appendChild(rest);
+      return { el: el, text: text, done: done, caret: caret, rest: rest };
+    });
+    function typeTo(t, n) {
+      t.done.nodeValue = t.text.slice(0, n);
+      t.rest.textContent = t.text.slice(n);
+      t.caret.hidden = n >= t.text.length;
+    }
+    typed.forEach(function (t) { typeTo(t, t.text.length); });
+
+    function videoOf(p) { return $('video', p); }
+
+    function play(p) {
+      clear();
+      if (reduce) { p.classList.add('is-play'); return; }
+      p.classList.remove('is-play');
+      void p.offsetWidth;
+      p.classList.add('is-play');
+
+      var v = videoOf(p);
+      if (v && !reduce) {
+        try { v.currentTime = 0; } catch (e) {}
+        var pr = v.play();
+        if (pr && pr.catch) pr.catch(function () {});
+      }
+
+      var lines = $$('.ai__ln', p);
+      if (!lines.length) return;
+      lines.forEach(function (l) { l.classList.remove('is-on', 'is-busy'); });
+      var t = 250;
+      lines.forEach(function (ln) {
+        var ty = typed.filter(function (x) { return x.el === ln; })[0];
+        if (ty) {
+          typeTo(ty, 0);
+          later(function () { ln.classList.add('is-on'); }, t);
+          for (var n = 1; n <= ty.text.length; n++) {
+            (function (n) { later(function () { typeTo(ty, n); }, t + n * 20); })(n);
+          }
+          t += ty.text.length * 20 + 450;
+        } else if (ln.classList.contains('ai__ln--step')) {
+          later(function () { ln.classList.add('is-on', 'is-busy'); }, t);
+          later(function () { ln.classList.remove('is-busy'); }, t + 700);
+          t += 850;
+        } else {
+          later(function () { ln.classList.add('is-on'); }, t);
+          t += 450;
+        }
+      });
+    }
+
+    function select(i, focus) {
+      cur = (i + tabs.length) % tabs.length;
+      tabs.forEach(function (t, k) {
+        var on = k === cur;
+        t.classList.toggle('is-on', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        panels[k].classList.toggle('is-on', on);
+        if (!on) {
+          panels[k].classList.remove('is-play');
+          var v = videoOf(panels[k]);
+          if (v) v.pause();
+        }
+      });
+      if (focus) tabs[cur].focus();
+      title.textContent = panels[cur].getAttribute('data-title');
+      root.style.setProperty('--ai-dur', (panels[cur].getAttribute('data-dur') || 9000) + 'ms');
+      if (live || reduce) play(panels[cur]);
+    }
+
+    function stop() {
+      root.classList.add('is-stopped');
+      root.classList.remove('is-auto');
+      pause.setAttribute('aria-label', 'Resume the tour');
+    }
+    function resume() {
+      root.classList.remove('is-stopped');
+      root.classList.add('is-auto');
+      pause.setAttribute('aria-label', 'Pause the tour');
+    }
+
+    tabs.forEach(function (t, k) {
+      t.addEventListener('click', function () {
+        if (k !== cur) select(k);
+        stop();
+      });
+      t.addEventListener('keydown', function (e) {
+        var to = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') to = cur + 1;
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') to = cur - 1;
+        else if (e.key === 'Home') to = 0;
+        else if (e.key === 'End') to = tabs.length - 1;
+        if (to === null) return;
+        e.preventDefault();
+        select(to, true);
+        stop();
+      });
+      $('.ai__prog i', t).addEventListener('animationend', function () {
+        if (k === cur && root.classList.contains('is-auto')) select(cur + 1);
+      });
+    });
+
+    if (reduce) {
+      root.classList.add('ai--static', 'is-stopped');
+      panels.forEach(function (p) {
+        p.classList.add('is-play');
+        var v = videoOf(p);
+        if (v) { v.controls = true; v.removeAttribute('aria-hidden'); v.setAttribute('aria-label', 'Hero film made in Higgsfield'); }
+      });
+      return;
+    }
+
+    root.classList.add('is-auto');
+    pause.addEventListener('click', function () {
+      if (root.classList.contains('is-stopped')) { resume(); play(panels[cur]); } else stop();
+    });
+
+    /* hold the timer while the visitor is reading or using the keyboard here */
+    var grid = $('.ai__grid', root);
+    if (finePointer) {
+      grid.addEventListener('pointerenter', function () { root.classList.add('is-hold'); });
+      grid.addEventListener('pointerleave', function () { root.classList.remove('is-hold'); });
+      win.addEventListener('pointermove', function (e) {
+        var r = win.getBoundingClientRect();
+        win.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        win.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    }
+    root.addEventListener('focusin', function () { root.classList.add('is-hold'); });
+    root.addEventListener('focusout', function (e) {
+      if (!root.contains(e.relatedTarget)) root.classList.remove('is-hold');
+    });
+
+    /* the demo starts when the window is actually on screen */
+    if (!('IntersectionObserver' in window)) { live = true; root.classList.add('is-live'); play(panels[cur]); return; }
+    new IntersectionObserver(function (es) {
+      var on = es[0].isIntersecting;
+      if (on === live) return;
+      live = on;
+      if (on) {
+        root.classList.remove('is-live');
+        void root.offsetWidth;
+        root.classList.add('is-live');
+        play(panels[cur]);
+      } else {
+        root.classList.remove('is-live');
+        clear();
+        var v = videoOf(panels[cur]);
+        if (v) v.pause();
+      }
+    }, { threshold: 0.35 }).observe(win);
+  }
+
   function init() {
     film();
     kinetic();
@@ -779,6 +969,7 @@
     copyEmail();
     workPeek();
     teaser();
+    aiTools();
     showcase();
     timeline();
     desk();
