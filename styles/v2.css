@@ -1413,3 +1413,183 @@ p { text-wrap: pretty; }
   .proj { --e: 0 !important; --mx: 0 !important; --my: 0 !important; }
   .proj__rig { transition: none; }
 }
+
+/* =========================================================================
+   FILM INTRO (home)
+   A full-bleed film from orbit down to the desk. It plays once and holds
+   on the last frame. Scrolling pins it, then folds it into a rounded card
+   that settles back while the page's ground rises to meet the hero.
+   --f is the fold progress (0 to 1), set by v2.js.
+   ========================================================================= */
+.film { --f: 0; position: relative; height: 190svh; background: var(--ground); }
+
+.film__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+}
+
+.film__frame {
+  position: relative;
+  overflow: hidden;
+  background: #0b0b0b;
+  clip-path: inset(
+    calc(var(--f) * 9svh) calc(var(--f) * max(var(--gutter), (100vw - var(--max)) / 2 + var(--gutter)))
+    calc(var(--f) * 9svh) calc(var(--f) * max(var(--gutter), (100vw - var(--max)) / 2 + var(--gutter)))
+    round calc(var(--f) * var(--r-lg))
+  );
+  transform: translateY(calc(var(--f) * -4svh)) scale(calc(1 - var(--f) * 0.04));
+  will-change: clip-path, transform;
+}
+
+.film__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform: scale(calc(1.08 - var(--f) * 0.08));
+}
+
+.film__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 22%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 55%);
+  opacity: calc(1 - var(--f) * 0.4);
+  pointer-events: none;
+}
+
+.film__copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(88px, 14svh, 140px);
+  color: #fff;
+  transform: translateY(calc(var(--f) * -60px));
+  opacity: calc(1 - var(--f) * 1.6);
+}
+.film__kicker {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 14px;
+}
+.film__kicker span { margin-inline: 6px; color: var(--accent); }
+.film__line {
+  font-size: clamp(2.2rem, 5.6vw, 5.2rem);
+  font-weight: 850;
+  font-stretch: 125%;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  max-width: 14ch;
+}
+
+.film__ui {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(24px, 4svh, 40px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  opacity: calc(1 - var(--f) * 2);
+}
+.film__btn {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease;
+}
+.film__btn:active { transform: scale(0.92); }
+.film__btn svg { width: 16px; height: 16px; display: none; }
+.film[data-state="playing"] .i-pause,
+.film[data-state="paused"] .i-play,
+.film[data-state="ended"] .i-replay { display: block; }
+.film:not([data-state]) .i-play { display: block; }
+@media (hover: hover) and (pointer: fine) { .film__btn:hover { background: rgba(255, 255, 255, 0.2); } }
+
+.film__bar {
+  flex: 1;
+  max-width: 220px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+.film__bar i {
+  display: block;
+  height: 100%;
+  background: #fff;
+  transform-origin: left;
+  transform: scaleX(var(--t, 0));
+}
+
+.film__cue {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+.film__cue span {
+  position: relative;
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+.film__cue span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: drip 1.8s var(--ease-in-out) infinite;
+}
+
+/* The copy lands as the film reaches the desk (or at once without JS). */
+@media (prefers-reduced-motion: no-preference) {
+  .js .film__kicker,
+  .js .film__line {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 900ms var(--ease-out), transform 1100ms var(--ease-out);
+  }
+  .js .film__line { transition-delay: 120ms; }
+  .js .film.is-landed .film__kicker,
+  .js .film.is-landed .film__line { opacity: 1; transform: none; }
+}
+
+/* The hero's own entrance waits until it scrolls into view. */
+.js .hero:not(.is-live) *,
+.js .hero:not(.is-live) .ch { animation-play-state: paused !important; }
+
+@media (max-width: 899px) {
+  .film { height: 170svh; }
+  .film__video { object-position: 46% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film { height: auto; }
+  .film__pin { position: relative; height: 100svh; }
+  .film__frame, .film__video, .film__copy, .film__ui { transform: none !important; }
+  .film__cue span::after { animation: none; }
+}

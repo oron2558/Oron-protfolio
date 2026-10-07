@@ -29,9 +29,9 @@
   </script>
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/oron-three-quarter-cut-800.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20261007c">
-  <link rel="stylesheet" href="styles/v2.css?v=20261007c">
+  <link rel="preload" href="assets/video/hero-start.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261007d">
+  <link rel="stylesheet" href="styles/v2.css?v=20261007d">
 
   <script type="application/ld+json">
   {
@@ -51,7 +51,7 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<nav class="snav snav--ghost" aria-label="Main">
+<nav class="snav snav--ghost snav--on-dark" aria-label="Main">
   <a href="index.html" class="snav__logo" aria-label="Oron Turgeman, home">ORON.</a>
   <div class="snav__links">
     <a href="index.html" class="snav__link snav__link--active" aria-current="page">Home</a>
@@ -71,7 +71,33 @@
 <main id="main">
 
   <!-- ============ HERO ============ -->
-  <header class="hero" data-hero>
+  <!-- ============ FILM INTRO ============ -->
+  <section class="film" data-film aria-label="Intro film">
+    <div class="film__pin">
+      <div class="film__frame">
+        <video class="film__video" muted playsinline preload="auto" poster="assets/video/hero-start.webp" data-end-poster="assets/video/hero-end.webp" aria-hidden="true">
+          <source src="assets/video/hero.mp4" type="video/mp4">
+          <source src="assets/video/hero.webm" type="video/webm">
+        </video>
+        <div class="film__shade" aria-hidden="true"></div>
+        <div class="film__copy wrap">
+          <p class="film__kicker">Oron Turgeman <span aria-hidden="true">/</span> Product Designer, UX/UI</p>
+          <h2 class="film__line">From the big picture<br>down to every pixel.</h2>
+        </div>
+        <div class="film__ui wrap">
+          <button class="film__btn" type="button" data-film-toggle aria-label="Pause intro film">
+            <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>
+            <svg class="i-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+          </button>
+          <span class="film__bar" aria-hidden="true"><i></i></span>
+          <a class="film__cue" href="#intro">Scroll <span aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <header class="hero" id="intro" data-hero>
     <div class="wrap hero__grid">
       <div class="hero__text">
         <p class="hero__meta"><span>Product Designer, UX/UI</span><span>Tel Aviv</span><span>Open to roles</span></p>
@@ -317,7 +343,7 @@
   </section>
 </main>
 
-<script src="scripts/site-nav.js?v=20261007c" defer></script>
-<script src="scripts/v2.js?v=20261007c" defer></script>
+<script src="scripts/site-nav.js?v=20261007d" defer></script>
+<script src="scripts/v2.js?v=20261007d" defer></script>
 </body>
 </html>

@@ -259,3 +259,15 @@
   .snav__links,
   .snav__links--open { transition: none; }
 }
+
+/* Over the dark intro film (class toggled by v2.js while the film is behind the bar). */
+.snav.snav--on-dark {
+  --snav-ink: #fff;
+  --snav-muted: rgba(255, 255, 255, 0.78);
+  --snav-bg: rgba(11, 11, 11, 0.32);
+  --snav-line: rgba(255, 255, 255, 0.08);
+}
+.snav.snav--on-dark .snav__links .snav__link:last-child { background: #fff; color: #141414; }
+@media (hover: hover) and (pointer: fine) {
+  .snav.snav--on-dark .snav__btn:hover { background: rgba(255, 255, 255, 0.12); }
+}
