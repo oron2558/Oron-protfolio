@@ -423,7 +423,7 @@
 
   /* ---------- work index: cursor-follow preview ---------- */
   function workPeek() {
-    var rows = $$('.wrow[data-peek]');
+    var rows = $$('[data-peek]');
     if (!rows.length || !finePointer || window.innerWidth < 900) return;
     var peek = document.createElement('div');
     peek.className = 'wpeek';
