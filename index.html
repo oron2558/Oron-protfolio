@@ -29,9 +29,9 @@
   </script>
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/oron-three-quarter-800.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20261007">
-  <link rel="stylesheet" href="styles/v2.css?v=20261007">
+  <link rel="preload" href="assets/img/oron-three-quarter-cut-800.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261007b">
+  <link rel="stylesheet" href="styles/v2.css?v=20261007b">
 
   <script type="application/ld+json">
   {
@@ -71,15 +71,19 @@
 <main id="main">
 
   <!-- ============ HERO ============ -->
-  <header class="hero">
+  <header class="hero" data-hero>
     <div class="wrap hero__grid">
       <div class="hero__text">
         <p class="hero__meta"><span>Product Designer, UX/UI</span><span>Tel Aviv</span><span>Open to roles</span></p>
-        <h1 class="hero__name">
-          <span class="mline"><span>Oron</span></span>
-          <span class="mline"><span>Turgeman</span></span>
+        <h1 class="hero__name" aria-label="Oron Turgeman">
+          <span class="mline"><span data-kinetic>Oron</span></span>
+          <span class="mline"><span data-kinetic>Turgeman</span></span>
         </h1>
-        <p class="hero__pos">I design products end to end, then <em>ship them</em>. Two are live in the market with real, paying users.</p>
+        <p class="hero__pos">
+          <span class="sr-only">I design products end to end, then ship them.</span>
+          <span aria-hidden="true">I design products end to end, then <span class="rot" data-rotate><span class="rot__w">research them.</span><span class="rot__w">prototype them.</span><span class="rot__w">build them.</span><span class="rot__w is-final"><em>ship them.</em></span></span></span>
+        </p>
+        <p class="hero__sub">Two are live in the market with real, paying users.</p>
         <div class="hero__cta">
           <a class="btn" href="#work">View work
             <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -88,22 +92,25 @@
         </div>
       </div>
 
-      <div class="stage" data-depth>
+      <div class="stage stage--cut" data-depth>
         <div class="stage__clip">
-          <span class="stage__word" aria-hidden="true">UX/<br>UI</span>
-          <img class="stage__portrait" src="assets/img/oron-three-quarter-800.webp"
-               srcset="assets/img/oron-three-quarter-800.webp 800w, assets/img/oron-three-quarter.webp 941w"
+          <div class="stage__type" aria-hidden="true">
+            <div class="ticker"><div class="ticker__run"><span>Research</span><span>Flows</span><span>UI</span><span>Prototype</span><span>Research</span><span>Flows</span><span>UI</span><span>Prototype</span></div></div>
+            <div class="ticker ticker--rev"><div class="ticker__run"><span>Build</span><span>Ship</span><span>Iterate</span><span>Build</span><span>Ship</span><span>Iterate</span></div></div>
+            <div class="ticker"><div class="ticker__run"><span>UX/UI</span><span>Product</span><span>UX/UI</span><span>Product</span></div></div>
+          </div>
+          <span class="stage__spot" aria-hidden="true"></span>
+          <img class="stage__portrait" src="assets/img/oron-three-quarter-cut-800.webp"
+               srcset="assets/img/oron-three-quarter-cut-800.webp 800w, assets/img/oron-three-quarter-cut.webp 941w"
                sizes="(min-width: 900px) 34vw, 90vw"
-               alt="Oron Turgeman, smiling, in a white t-shirt against a grey studio backdrop"
+               alt="Oron Turgeman, smiling, in a white t-shirt"
                width="800" height="1421" fetchpriority="high">
         </div>
-        <div class="stage__phone" aria-hidden="true">
-          <img src="assets/img/mba-phone-dashboard.webp" alt="" width="720" height="1565">
-        </div>
         <span class="stage__tag">Live in the App Store</span>
+        <span class="stage__stat" aria-hidden="true"><b>486</b> users <i></i> <b>5.0</b> rating</span>
       </div>
     </div>
-    <span class="hero__scroll" aria-hidden="true">Scroll for the proof</span>
+    <span class="hero__scroll" aria-hidden="true"><i></i>Scroll for the proof</span>
   </header>
 
   <!-- ============ PROOF ============ -->
@@ -313,7 +320,7 @@
   </section>
 </main>
 
-<script src="scripts/site-nav.js?v=20261007" defer></script>
-<script src="scripts/v2.js?v=20261007" defer></script>
+<script src="scripts/site-nav.js?v=20261007b" defer></script>
+<script src="scripts/v2.js?v=20261007b" defer></script>
 </body>
 </html>

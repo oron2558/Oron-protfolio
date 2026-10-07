@@ -59,25 +59,81 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- portrait stage: cursor depth ---------- */
+  /* ---------- kinetic name: split into letters, react to the cursor ---------- */
+  function kinetic() {
+    var lines = $$('[data-kinetic]');
+    if (!lines.length) return;
+    var n = 0;
+    var chars = [];
+    lines.forEach(function (line) {
+      var text = line.textContent;
+      line.textContent = '';
+      line.setAttribute('aria-hidden', 'true');
+      text.split('').forEach(function (c) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.textContent = c;
+        s.style.setProperty('--n', n++);
+        line.appendChild(s);
+        chars.push(s);
+      });
+    });
+    if (reduce || !finePointer) return;
+    var h1 = lines[0].closest('h1');
+    var host = h1.closest('.hero') || h1;
+    var mx = -9999, my = -9999, raf = 0;
+    function update() {
+      raf = 0;
+      chars.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        var d = Math.hypot(mx - (r.left + r.width / 2), my - (r.top + r.height / 2));
+        var k = clamp(1 - d / 260, 0, 1);
+        c.style.setProperty('--k', (k * k).toFixed(3));
+      });
+    }
+    host.addEventListener('pointermove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      h1.classList.add('is-tracking');
+      if (!raf) raf = requestAnimationFrame(update);
+    });
+    host.addEventListener('pointerleave', function () {
+      mx = my = -9999;
+      h1.classList.remove('is-tracking');
+      if (!raf) raf = requestAnimationFrame(update);
+    });
+  }
+
+  function rotator() {
+    if (reduce) $$('[data-rotate]').forEach(function (r) { r.classList.add('no-rot'); });
+  }
+
+  /* ---------- portrait stage: depth layers, tilt and light follow the cursor ---------- */
   function stageDepth() {
     var stages = $$('[data-depth]');
     if (!stages.length || reduce || !finePointer) return;
     stages.forEach(function (stage) {
       var host = stage.closest('.hero, .ahero') || stage;
+      var tilt = stage.classList.contains('stage--cut');
       var tx = 0, ty = 0, x = 0, y = 0, raf = 0;
       function tick() {
         x += (tx - x) * 0.08;
         y += (ty - y) * 0.08;
-        stage.style.setProperty('--px', x.toFixed(2) + 'px');
-        stage.style.setProperty('--py', y.toFixed(2) + 'px');
-        if (Math.abs(tx - x) > 0.05 || Math.abs(ty - y) > 0.05) raf = requestAnimationFrame(tick);
+        stage.style.setProperty('--px', (x * 14).toFixed(2) + 'px');
+        stage.style.setProperty('--py', (y * 10).toFixed(2) + 'px');
+        if (tilt) {
+          stage.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg');
+          stage.style.setProperty('--rx', (y * -6).toFixed(2) + 'deg');
+        }
+        if (Math.abs(tx - x) > 0.002 || Math.abs(ty - y) > 0.002) raf = requestAnimationFrame(tick);
         else raf = 0;
       }
       host.addEventListener('pointermove', function (e) {
         var r = host.getBoundingClientRect();
-        tx = ((e.clientX - r.left) / r.width - 0.5) * 14;
-        ty = ((e.clientY - r.top) / r.height - 0.5) * 10;
+        tx = (e.clientX - r.left) / r.width - 0.5;
+        ty = (e.clientY - r.top) / r.height - 0.5;
+        var sr = stage.getBoundingClientRect();
+        stage.style.setProperty('--sx', (e.clientX - sr.left).toFixed(0) + 'px');
+        stage.style.setProperty('--sy', (e.clientY - sr.top).toFixed(0) + 'px');
         if (!raf) raf = requestAnimationFrame(tick);
       });
       host.addEventListener('pointerleave', function () {
@@ -344,6 +400,8 @@
   }
 
   function init() {
+    kinetic();
+    rotator();
     reveals();
     countUps();
     stageDepth();
