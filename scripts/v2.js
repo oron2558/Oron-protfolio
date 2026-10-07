@@ -404,6 +404,17 @@
     kick();
   }
 
+  /* ---------- home work teaser: one open panel at a time ---------- */
+  function teaser() {
+    var panels = $$('[data-tz] .tzp');
+    if (!panels.length) return;
+    function open(p) { panels.forEach(function (q) { q.classList.toggle('is-open', q === p); }); }
+    panels.forEach(function (p) {
+      p.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') open(p); });
+      p.addEventListener('focusin', function () { open(p); });
+    });
+  }
+
   /* ---------- copy email ---------- */
   function copyEmail() {
     $$('.copy-email').forEach(function (btn) {
@@ -423,7 +434,7 @@
 
   /* ---------- work index: cursor-follow preview ---------- */
   function workPeek() {
-    var rows = $$('[data-peek]');
+    var rows = $$('.wrow[data-peek]');
     if (!rows.length || !finePointer || window.innerWidth < 900) return;
     var peek = document.createElement('div');
     peek.className = 'wpeek';
@@ -767,6 +778,7 @@
     designThinking();
     copyEmail();
     workPeek();
+    teaser();
     showcase();
     timeline();
     desk();

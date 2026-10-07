@@ -772,7 +772,10 @@ p { text-wrap: pretty; }
    reduced motion it is tabs and a still drawing.
    ========================================================================= */
 .dt { padding-bottom: clamp(24px, 3vw, 40px); }
-.dt .shead { margin-bottom: clamp(24px, 4vw, 48px); }
+.dt .shead { margin-bottom: clamp(18px, 3svh, 36px); gap: 14px; }
+.dt .shead__title { font-size: clamp(2.2rem, 4.6vw, 4.6rem); }
+.dt .shead__lede { font-size: clamp(1rem, 1.2vw, 1.12rem); }
+.dt--list .dt__inner, html:not(.js) .dt__inner { padding-top: clamp(56px, 8vw, 112px); }
 
 .dt__grid {
   display: grid;
@@ -797,7 +800,7 @@ p { text-wrap: pretty; }
   isolation: isolate;
   padding-inline: 0.12em;
   margin-inline-start: -0.12em;
-  font-size: clamp(3rem, 5.6vw, 6.2rem);
+  font-size: clamp(2.4rem, 3.8vw, 4rem);
   font-weight: 900;
   font-stretch: 118%;
   letter-spacing: -0.045em;
@@ -894,27 +897,32 @@ html:not(.js) .dt__steps { gap: 48px; }
   top: 0;
   height: 100svh;
   display: flex;
-  align-items: flex-start;
-  padding-block: max(84px, 12svh) 20px;
+  padding-block: 92px 24px;
 }
+.dt--pin .dt__inner { display: flex; flex-direction: column; min-height: 0; }
+.dt--pin .dt__grid { flex: 1; min-height: 0; }
+.dt--pin .dt__track { margin-top: calc(-1 * clamp(40px, 6vw, 80px)); }
+.dt--pin .dt__copy { align-self: start; padding-top: clamp(8px, 3svh, 32px); }
 .dt--pin .dt__grid { width: 100%; }
-.dt--pin .dt__track { margin-top: calc(24px - max(84px, 12svh)); }
 
 @media (min-width: 900px) {
   .dt__grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
     column-gap: clamp(32px, 5vw, 80px);
-    align-items: start;
+    align-items: center;
   }
-  .dt__viz { aspect-ratio: 5 / 4; width: min(100%, calc((100svh - 260px) * 1.25)); justify-self: end; }
+  .dt--pin .dt__viz { aspect-ratio: auto; height: 100%; min-height: 260px; }
 }
 
 @media (max-width: 899px) {
-  .dt__word { font-size: clamp(2.6rem, 13vw, 4.2rem); }
+  .dt__word { font-size: clamp(2.2rem, 11vw, 3.2rem); }
+  .dt .shead__title { font-size: clamp(1.9rem, 8.6vw, 2.6rem); }
+  .dt .shead__lede { font-size: 0.92rem; }
+  .dt--pin .dt__grid { grid-template-rows: auto minmax(0, 1fr); gap: 12px; }
   .dt__text { font-size: 0.98rem; }
-  .dt__viz { order: -1; aspect-ratio: auto; height: clamp(200px, 36svh, 340px); }
+  .dt__viz { aspect-ratio: auto; height: 100%; min-height: 120px; }
   .dt--pin .dt__pin { padding-block: 72px 12px; }
-  .dt--pin .dt__track { margin-top: -48px; }
   .dt--pin .dt__tags { display: none; }
   .dt__count { margin-bottom: 8px; }
 }
@@ -2159,73 +2167,140 @@ html:not(.js) .dt__steps { gap: 48px; }
 @media (max-width: 899px) { .hero--type { margin-top: -4svh; } }
 
 /* =========================================================================
-   WORK TEASER (home): a compact index instead of a scroll showcase.
-   The Work page carries the full projects; here each row is one line.
-   Hover sweeps a marker under the name (the same hand as the hero verbs)
-   and a preview follows the cursor (workPeek in v2.js). Touch screens get
-   a small thumbnail in the row instead.
+   WORK TEASER (home): four panels in one row instead of a scroll showcase.
+   One panel is open at a time; hover or focus opens another, its screen
+   slides up and the name turns from a vertical spine into a title. The
+   screenshots are sized to the row (container units), so they do not
+   rescale while a panel grows. Phones get a swipeable row of open panels.
    ========================================================================= */
-.tz__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.tz__row {
-  display: grid;
-  grid-template-columns: 2.2rem minmax(0, 1fr) auto;
-  grid-template-areas: "idx name thumb" "idx sub thumb";
-  column-gap: 14px;
-  row-gap: 4px;
-  align-items: center;
-  padding-block: 18px;
-  border-bottom: 1px solid var(--line);
-  color: inherit;
+.tz__panels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  height: clamp(380px, 58svh, 560px);
+  container-type: inline-size;
+}
+.tzp {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--tint);
+  overflow: hidden;
+  transition: flex-grow 700ms var(--ease-out);
+}
+.tzp.is-open { flex-grow: 4.2; }
+.tzp__link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: #141414;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
-.tz__idx { grid-area: idx; align-self: start; padding-top: 0.5em; font-size: 0.8rem; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
-.tz__name {
-  grid-area: name;
-  justify-self: start;
-  font-size: clamp(1.7rem, 3.4vw, 3rem);
+.tzp__link:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: inherit; }
+.tzp__idx {
+  position: absolute;
+  left: 22px;
+  top: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+.tzp__spine {
+  position: absolute;
+  left: 18px;
+  bottom: 22px;
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  font-weight: 900;
+  font-stretch: 112%;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transition: opacity 300ms ease;
+}
+.tzp__info {
+  position: absolute;
+  left: 22px;
+  top: 48px;
+  width: min(34ch, 40cqw);
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  opacity: 0;
+  translate: 0 10px;
+  transition: opacity 250ms ease, translate 250ms ease;
+  pointer-events: none;
+}
+.tzp__name {
+  font-size: clamp(1.8rem, 3vw, 3rem);
   font-weight: 900;
   font-stretch: 118%;
   letter-spacing: -0.04em;
-  line-height: 1;
+  line-height: 0.95;
+  white-space: nowrap;
 }
-.tz__name span {
-  position: relative;
-  isolation: isolate;
-  display: inline-block;
-  padding-inline: 0.1em;
-  margin-inline-start: -0.1em;
-  transition: color 200ms ease;
-}
-.tz__name span::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0.12em 0 0.02em;
-  background: var(--mk, #ffe45c);
-  border-radius: 0.14em 0.36em 0.18em 0.42em / 0.42em 0.26em 0.46em 0.3em;
-  transform: skewX(-8deg) rotate(-1deg) scaleX(0);
-  transform-origin: 0 50%;
-  transition: transform 420ms cubic-bezier(0.65, 0, 0.35, 1);
-}
-.tz__sub { grid-area: sub; color: var(--muted); font-size: 0.95rem; }
-.tz__tag { display: none; }
-.tz__go { display: none; }
-.tz__thumb {
-  grid-area: thumb;
-  width: 76px;
+.tzp__sub { font-size: 0.95rem; line-height: 1.45; opacity: 0.78; }
+.tzp__meta { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.tzp .chip { background: rgba(255, 255, 255, 0.6); border-color: rgba(20, 20, 20, 0.12); color: #141414; }
+.tzp__go {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
   aspect-ratio: 1;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--ground-2);
+  border-radius: 50%;
+  background: #141414;
+  color: #fff;
+  transition: rotate 400ms var(--ease-out);
 }
-.tz__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.tzp__go svg { width: 16px; height: 16px; }
+.tzp__img {
+  position: absolute;
+  right: -3cqw;
+  bottom: -4cqw;
+  width: 44cqw;
+  max-width: none;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -28px rgba(20, 20, 20, 0.45);
+  translate: 0 30%;
+  opacity: 0;
+  transition: translate 800ms var(--ease-out), opacity 400ms ease;
+}
 
-.tz__row:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 6px; }
-.tz__row:focus-visible .tz__name span,
-.tz__row:active .tz__name span { color: #141414; }
-.tz__row:focus-visible .tz__name span::before,
-.tz__row:active .tz__name span::before { transform: skewX(-8deg) rotate(-1deg) scaleX(1); }
+.tzp.is-open .tzp__spine { opacity: 0; }
+.tzp.is-open .tzp__info { opacity: 1; translate: 0 0; transition: opacity 400ms ease 260ms, translate 600ms var(--ease-out) 260ms; }
+.tzp.is-open .tzp__img { translate: 0 0; opacity: 1; transition: translate 900ms var(--ease-out) 120ms, opacity 500ms ease 120ms; }
+@media (hover: hover) and (pointer: fine) {
+  .tzp.is-open .tzp__link:hover .tzp__go { rotate: 45deg; }
+}
+
+/* phones and small tablets: a swipeable row, every panel open */
+@media (max-width: 899px) {
+  .tz__panels {
+    height: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+  }
+  .tz__panels::-webkit-scrollbar { display: none; }
+  .tzp { flex: 0 0 84%; aspect-ratio: 4 / 5; scroll-snap-align: start; }
+  .tzp__spine { display: none; }
+  .tzp__info { opacity: 1; translate: none; width: auto; right: 22px; top: 44px; }
+  .tzp__name { font-size: clamp(1.7rem, 8vw, 2.2rem); white-space: normal; }
+  .tzp__img { width: 120cqw; right: -24cqw; bottom: -10cqw; translate: none; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tzp, .tzp__info, .tzp__img, .tzp__spine { transition: none !important; }
+}
 
 .tz__foot {
   display: flex;
@@ -2236,38 +2311,4 @@ html:not(.js) .dt__steps { gap: 48px; }
   margin-top: clamp(20px, 3vw, 32px);
 }
 .tz__note { color: var(--muted); font-size: 0.95rem; }
-
-@media (min-width: 900px) {
-  .tz__row {
-    grid-template-columns: 2.4rem minmax(0, 1.25fr) minmax(0, 1fr) 11rem 2.6rem;
-    grid-template-areas: "idx name sub tag go";
-    column-gap: clamp(20px, 2.6vw, 40px);
-    padding-block: clamp(18px, 2vw, 26px);
-  }
-  .tz__idx { align-self: center; padding-top: 0; }
-  .tz__sub { max-width: 40ch; transition: color 200ms ease; }
-  .tz__tag { display: inline-flex; grid-area: tag; justify-self: end; }
-  .tz__name { white-space: nowrap; font-size: clamp(1.8rem, 3vw, 2.9rem); }
-  .tz__thumb { display: none; }
-  .tz__go {
-    grid-area: go;
-    display: grid;
-    place-items: center;
-    width: 2.6rem;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    transition: background 250ms ease, color 250ms ease, border-color 250ms ease, rotate 400ms var(--ease-out);
-  }
-  .tz__go svg { width: 18px; height: 18px; }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .tz__row:hover .tz__name span { color: #141414; }
-  .tz__row:hover .tz__name span::before { transform: skewX(-8deg) rotate(-1deg) scaleX(1); }
-  .tz__row:hover .tz__sub { color: var(--ink); }
-  .tz__row:hover .tz__go { background: var(--ink); color: var(--ground); border-color: var(--ink); rotate: 45deg; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .tz__name span::before, .tz__go { transition: none; }
-}
+#work { padding-bottom: clamp(24px, 3vw, 40px); }
