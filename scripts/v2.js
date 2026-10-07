@@ -203,6 +203,25 @@
 
     if (pinned) root.classList.add('dt--pin');
 
+    /* the longest stage word (Empathize, Prototype) must always fit its column */
+    var words = $$('[data-dt-word]', root);
+    function fitWords() {
+      words.forEach(function (w) { w.style.fontSize = ''; });
+      var avail = $('.dt__steps', root).clientWidth, max = 0;
+      words.forEach(function (w) {
+        var wide = 0;
+        $$('.ch', w).forEach(function (c) { wide += c.offsetWidth; });
+        max = Math.max(max, wide);
+      });
+      if (max > avail && avail > 0) {
+        var fs = parseFloat(getComputedStyle(words[0]).fontSize) * (avail / max) * 0.97;
+        words.forEach(function (w) { w.style.fontSize = fs.toFixed(1) + 'px'; });
+      }
+    }
+    fitWords();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWords);
+    window.addEventListener('resize', fitWords);
+
     /* --- dot field --- */
     var W = 0, H = 0, dpr = 1, N = 0, dots = [], shapes = [];
     var mx = -999, my = -999;
