@@ -2004,7 +2004,8 @@ html:not(.js) .dt__steps { gap: 48px; }
 .hero--type .hero__cta { margin-top: 0; }
 
 .hero__band {
-  border-top: 1px solid var(--line);
+  margin-inline: calc(50% - 50vw);
+  border-block: 1px solid var(--line);
   padding-block: 14px;
   font-size: clamp(1.6rem, 3.2vw, 2.8rem);
   font-weight: 900;
@@ -2032,7 +2033,6 @@ html:not(.js) .dt__steps { gap: 48px; }
   .hero__chips { gap: 6px; padding-bottom: 0.06em; }
   .hero__chip { padding: 7px 11px; font-size: 0.72rem; gap: 7px; }
   .hero__chip--stat { margin: 0; }
-  .hero__band { margin-top: 8px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
