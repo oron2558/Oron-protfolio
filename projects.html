@@ -29,8 +29,8 @@
   </script>
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles/site-nav.css?v=20261007b">
-  <link rel="stylesheet" href="styles/v2.css?v=20261007b">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261007c">
+  <link rel="stylesheet" href="styles/v2.css?v=20261007c">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -59,61 +59,82 @@
     <p class="phead__lede rv">Each project started as a real problem and a blank canvas, and I owned the whole arc: research, strategy, UX/UI and the build. Two are real products I built and run, one of them live in the App Store with paying customers. Two are end-to-end concepts.</p>
   </header>
 
-  <section class="wrap" aria-label="Case studies" style="padding-bottom:clamp(80px,12vw,160px)">
-    <div class="wlist">
-      <a class="wrow rv" href="casestudy-mba.html" data-peek="assets/img/mba-desk.webp" style="--tint:#ffd43b">
-        <span class="wrow__idx">01</span>
-        <div class="wrow__thumb"><img src="assets/img/mba-desk.webp" alt="" width="1600" height="765" loading="lazy"></div>
-        <div class="wrow__main">
-          <h2 class="wrow__title">Meashrim in Click</h2>
-          <p class="wrow__sub">RSVP, seating and gifting for couples in one iOS app. I characterized, built and launched it on my own, and customers pay a subscription to use it.</p>
-        </div>
-        <div class="wrow__side">
-          <span class="chip chip--live">Live in the App Store</span>
-          <p class="wrow__nums"><span><b>486</b>registered users</span><span><b>5.0</b>rating</span></p>
-        </div>
-      </a>
+  <nav class="pindex" aria-label="Projects on this page"><ol>
+    <li><a href="#p-mba" data-index="mba"><span>01</span><b>Meashrim in Click</b></a></li>
+    <li><a href="#p-mp" data-index="mp"><span>02</span><b>MyPlanner</b></a></li>
+    <li><a href="#p-ma" data-index="ma"><span>03</span><b>MessAge</b></a></li>
+    <li><a href="#p-wf" data-index="wf"><span>04</span><b>Woofio</b></a></li>
+  </ol></nav>
 
-      <a class="wrow rv" href="casestudy-myplanner.html" data-peek="assets/img/myplanner-card.webp" style="--tint:#10201f">
-        <span class="wrow__idx">02</span>
-        <div class="wrow__thumb"><img src="assets/img/myplanner-card.webp" alt="" width="1600" height="1035" loading="lazy"></div>
-        <div class="wrow__main">
-          <h2 class="wrow__title">MyPlanner</h2>
-          <p class="wrow__sub">AI-powered wedding planning: budget tracking, suppliers and cashback in one place, replacing the ₪8,000+ human planner.</p>
-        </div>
-        <div class="wrow__side">
-          <span class="chip chip--real">Real product, built and run by me</span>
-          <p class="wrow__nums"><span><b>12</b>user interviews</span><span><b>73%</b>couples over budget</span></p>
-        </div>
-      </a>
-
-      <a class="wrow rv" href="casestudy-ai-crm.html" data-peek="assets/img/messageai-dashboard.webp" style="--tint:#dcd9f2">
-        <span class="wrow__idx">03</span>
-        <div class="wrow__thumb"><img src="assets/img/messageai-card.webp" alt="" width="1400" height="1186" loading="lazy"></div>
-        <div class="wrow__main">
-          <h2 class="wrow__title">MessAge</h2>
-          <p class="wrow__sub">An AI platform that answers leads across WhatsApp, Instagram and email, turning missed messages into booked work for solo professionals.</p>
-        </div>
-        <div class="wrow__side">
-          <span class="chip">Concept, projected impact</span>
-          <p class="wrow__nums"><span><b>73%</b>faster response (projected)</span><span><b>12</b>interviews</span></p>
-        </div>
-      </a>
-
-      <a class="wrow rv" href="casestudy-woofio.html" data-peek="assets/img/woofio-screens.webp" style="--tint:#f6d5c8">
-        <span class="wrow__idx">04</span>
-        <div class="wrow__thumb"><img src="assets/img/woofio-screens.webp" alt="" width="1200" height="800" loading="lazy"></div>
-        <div class="wrow__main">
-          <h2 class="wrow__title">Woofio</h2>
-          <p class="wrow__sub">From vet tracking to dog-walker booking: one platform families can trust, replacing the handful of apps dog owners juggle today.</p>
-        </div>
-        <div class="wrow__side">
-          <span class="chip">Concept, projected impact</span>
-          <p class="wrow__nums"><span><b>85%</b>fewer missed vet visits (projected)</span><span><b>6 wks</b>end to end</span></p>
-        </div>
+  <section class="proj" id="p-mba" data-proj style="--tint:#ffd43b" aria-labelledby="t-mba">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">01 / 04</span><span class="chip chip--live">Live in the App Store</span></div>
+        <h2 class="proj__title" id="t-mba">Meashrim in Click</h2>
+        <p class="proj__sub">RSVP, seating and gifting for couples, in one iOS app</p>
+        <p class="proj__desc">I characterized, designed, built and launched it on my own. Couples pay a subscription to run their event with it.</p>
+        <div class="proj__metrics"><div><b>486</b><span>Registered users</span></div><div><b>5.0</b><span>App Store rating</span></div><div><b>Paid</b><span>Subscribers</span></div></div>
+        <a class="btn" href="casestudy-mba.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <a class="proj__stage" href="casestudy-mba.html" data-tilt aria-label="Open the Meashrim in Click case study">
+        <span class="proj__num" aria-hidden="true">01</span>
+        <div class="proj__rig"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="frame__screen"><img class="pan" src="assets/img/work-mba-guests.webp" alt="Meashrim in Click guest list dashboard with 327 invited guests" width="1400" height="875" loading="lazy"></div></div><div class="frame frame--phone frame--float" style="--speed:1"><div class="frame__screen"><img class="pan" src="assets/img/mba-phone-dashboard.webp" alt="Meashrim in Click event dashboard on iPhone" width="720" height="1565" loading="lazy"></div></div></div>
       </a>
     </div>
   </section>
+
+  <section class="proj" id="p-mp" data-proj style="--tint:#10201f" aria-labelledby="t-mp">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">02 / 04</span><span class="chip chip--real">Real product, built and run by me</span></div>
+        <h2 class="proj__title" id="t-mp">MyPlanner</h2>
+        <p class="proj__sub">AI wedding planning: budget, suppliers and cashback in one place</p>
+        <p class="proj__desc">A working system in real use that replaces a human planner who costs couples ₪8,000 or more.</p>
+        <div class="proj__metrics"><div><b>₪8K+</b><span>Planner cost replaced</span></div><div><b>73%</b><span>Couples go over budget</span></div><div><b>12</b><span>User interviews</span></div></div>
+        <a class="btn" href="casestudy-myplanner.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <a class="proj__stage" href="casestudy-myplanner.html" data-tilt aria-label="Open the MyPlanner case study">
+        <span class="proj__num" aria-hidden="true">02</span>
+        <div class="proj__rig"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="frame__screen"><img class="pan" src="assets/img/work-mp-budget.webp" alt="MyPlanner budget screen with planned, spent and remaining amounts" width="1400" height="2278" loading="lazy"></div></div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="proj" id="p-ma" data-proj style="--tint:#dcd9f2" aria-labelledby="t-ma">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">03 / 04</span><span class="chip">Concept, projected impact</span></div>
+        <h2 class="proj__title" id="t-ma">MessAge</h2>
+        <p class="proj__sub">AI messaging that answers leads across WhatsApp, Instagram and email</p>
+        <p class="proj__desc">For solo professionals who lose work because they can't reply while they're working.</p>
+        <div class="proj__metrics"><div><b>73%</b><span>Faster lead response (projected)</span></div><div><b>30%</b><span>Leads lost today</span></div><div><b>12</b><span>User interviews</span></div></div>
+        <a class="btn" href="casestudy-ai-crm.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <a class="proj__stage" href="casestudy-ai-crm.html" data-tilt aria-label="Open the MessAge case study">
+        <span class="proj__num" aria-hidden="true">03</span>
+        <div class="proj__rig"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="frame__screen"><img class="pan" src="assets/img/work-ma-inbox.webp" alt="MessAge unified inbox with a WhatsApp conversation" width="1600" height="1000" loading="lazy"></div></div><div class="frame frame--card frame--float"><img src="assets/img/work-ma-agent.webp" alt="MessAge AI sales agent chat preview" width="520" height="570" loading="lazy"></div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="proj" id="p-wf" data-proj style="--tint:#f6d5c8" aria-labelledby="t-wf">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">04 / 04</span><span class="chip">Concept, projected impact</span></div>
+        <h2 class="proj__title" id="t-wf">Woofio</h2>
+        <p class="proj__sub">One dog-care app, from vet tracking to dog-walker booking</p>
+        <p class="proj__desc">Replaces the handful of apps dog owners juggle today with one platform families can trust.</p>
+        <div class="proj__metrics"><div><b>85%</b><span>Fewer missed vet visits (projected)</span></div><div><b>4+</b><span>Apps replaced</span></div><div><b>6 wks</b><span>End to end</span></div></div>
+        <a class="btn" href="casestudy-woofio.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <a class="proj__stage" href="casestudy-woofio.html" data-tilt aria-label="Open the Woofio case study">
+        <span class="proj__num" aria-hidden="true">04</span>
+        <div class="proj__rig"><div class="trio"><div class="frame frame--phone trio__a" style="--speed:0.7"><div class="frame__screen"><img class="pan" src="assets/img/work-wf-health.webp" alt="Woofio vet and health screen" width="520" height="1490" loading="lazy"></div></div><div class="frame frame--phone trio__b" style="--speed:1"><div class="frame__screen"><img class="pan" src="assets/img/work-wf-home.webp" alt="Woofio home screen with pets and services" width="520" height="1868" loading="lazy"></div></div><div class="frame frame--phone trio__c" style="--speed:1.3"><div class="frame__screen"><img class="pan" src="assets/img/work-wf-walker.webp" alt="Woofio dog walkers nearby screen" width="520" height="2645" loading="lazy"></div></div></div></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="cursor-badge" aria-hidden="true"><span>Open<br>case</span></div>
 
   <!-- ============ CONTACT ============ -->
   <section class="section contact" id="contact" aria-labelledby="contact-title">
@@ -145,7 +166,7 @@
   </section>
 </main>
 
-<script src="scripts/site-nav.js?v=20261007b" defer></script>
-<script src="scripts/v2.js?v=20261007b" defer></script>
+<script src="scripts/site-nav.js?v=20261007c" defer></script>
+<script src="scripts/v2.js?v=20261007c" defer></script>
 </body>
 </html>

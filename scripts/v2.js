@@ -399,6 +399,89 @@
     });
   }
 
+  /* ---------- work showcase: pinned projects, screens scroll in their frames ---------- */
+  function showcase() {
+    var projs = $$('[data-proj]');
+    if (!projs.length) return;
+    var pindex = $('.pindex');
+    var links = pindex ? $$('a', pindex) : [];
+    var pans = $$('.pan');
+
+    function measure() {
+      pans.forEach(function (img) {
+        var screen = img.parentElement;
+        var travel = Math.max(0, img.getBoundingClientRect().height - screen.getBoundingClientRect().height);
+        img.style.setProperty('--travel', travel.toFixed(0) + 'px');
+      });
+    }
+    pans.forEach(function (img) { if (!img.complete) img.addEventListener('load', measure); });
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var vh = window.innerHeight;
+      var active = null;
+      projs.forEach(function (sec) {
+        var r = sec.getBoundingClientRect();
+        var pinned = r.height > vh * 1.2;
+        var p = pinned
+          ? clamp(-r.top / (r.height - vh), 0, 1)
+          : clamp((vh - r.top) / (vh + r.height), 0, 1);
+        var e = reduce ? 0 : clamp((r.top - (pinned ? 0 : vh * 0.1)) / (vh * 0.75), 0, 1);
+        sec.style.setProperty('--p', p.toFixed(4));
+        sec.style.setProperty('--e', e.toFixed(4));
+        if (r.top <= vh / 2 && r.bottom > vh / 2) active = sec.id;
+      });
+      if (pindex) {
+        pindex.classList.toggle('is-visible', !!active);
+        links.forEach(function (a) { a.classList.toggle('is-on', a.getAttribute('href') === '#' + active); });
+      }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { measure(); onScroll(); });
+    measure();
+    update();
+
+    /* cursor: tilt the rig and carry an "Open case" badge */
+    if (!finePointer) return;
+    var badge = $('.cursor-badge');
+    var bx = 0, by = 0, tbx = 0, tby = 0, braf = 0;
+    function badgeTick() {
+      bx += (tbx - bx) * 0.2; by += (tby - by) * 0.2;
+      badge.style.transform = 'translate3d(' + bx.toFixed(1) + 'px,' + by.toFixed(1) + 'px,0)';
+      braf = (Math.abs(tbx - bx) + Math.abs(tby - by) > 0.4) ? requestAnimationFrame(badgeTick) : 0;
+    }
+    projs.forEach(function (sec) {
+      var stage = $('.proj__stage', sec);
+      if (!stage) return;
+      var mx = 0, my = 0, tx = 0, ty = 0, raf = 0;
+      function tick() {
+        mx += (tx - mx) * 0.1; my += (ty - my) * 0.1;
+        sec.style.setProperty('--mx', mx.toFixed(3));
+        sec.style.setProperty('--my', my.toFixed(3));
+        raf = (Math.abs(tx - mx) + Math.abs(ty - my) > 0.002) ? requestAnimationFrame(tick) : 0;
+      }
+      stage.addEventListener('pointermove', function (e) {
+        var r = stage.getBoundingClientRect();
+        tx = reduce ? 0 : (e.clientX - r.left) / r.width - 0.5;
+        ty = reduce ? 0 : (e.clientY - r.top) / r.height - 0.5;
+        if (!raf) raf = requestAnimationFrame(tick);
+        if (badge) {
+          tbx = e.clientX; tby = e.clientY;
+          if (!badge.classList.contains('is-on')) { bx = tbx; by = tby; }
+          badge.classList.add('is-on');
+          if (!braf) braf = requestAnimationFrame(badgeTick);
+        }
+      });
+      stage.addEventListener('pointerleave', function () {
+        tx = 0; ty = 0;
+        if (!raf) raf = requestAnimationFrame(tick);
+        if (badge) badge.classList.remove('is-on');
+      });
+    });
+  }
+
   function init() {
     kinetic();
     rotator();
@@ -409,6 +492,7 @@
     rails();
     copyEmail();
     workPeek();
+    showcase();
     timeline();
     desk();
   }
