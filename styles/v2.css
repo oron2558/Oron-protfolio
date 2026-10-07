@@ -1459,7 +1459,8 @@ p { text-wrap: pretty; }
   inset: 0;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 22%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 55%);
+    linear-gradient(0deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0) 58%),
+    rgba(0, 0, 0, 0.16);
   opacity: calc(1 - var(--f) * 0.4);
   pointer-events: none;
 }
