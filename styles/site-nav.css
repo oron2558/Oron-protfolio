@@ -1,29 +1,54 @@
 /* =========================================================================
    Shared site navigation.
 
-   Self-contained on purpose: the marketing pages load oronflix-base.css and
-   the case studies load portfolio-styles.css, and the two define different
-   variables. Everything the nav needs is declared here, so the same markup
-   renders identically on every page.
+   Self-contained on purpose: the redesigned pages load v2.css while the
+   case studies still load their own stylesheets, so everything the nav needs
+   (font, colours, motion) is declared here and the same markup renders
+   identically on every page.
    ========================================================================= */
 
+@font-face {
+  font-family: 'Archivo';
+  src: url('../fonts/archivo-var.woff2') format('woff2-variations'),
+       url('../fonts/archivo-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cross-document fade between pages in browsers that support it. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 260ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
 .snav {
+  --snav-ink: #141414;
+  --snav-muted: #5c5955;
+  --snav-bg: rgba(237, 235, 232, 0.82);
+  --snav-line: rgba(20, 20, 20, 0.08);
+  --snav-accent: #ff4f1a;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4%;
+  padding: 0 max(clamp(16px, 4vw, 48px), calc((100vw - 1360px) / 2 + clamp(16px, 4vw, 48px)));
   z-index: 4000;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(16, 24, 40, 0.07);
-  transition: background 240ms ease, border-color 240ms ease;
+  font-family: 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--snav-bg);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border-bottom: 1px solid var(--snav-line);
+  transition: background-color 240ms ease, border-color 240ms ease;
 }
 
 /* Sits flush over a hero until the page scrolls. */
@@ -35,75 +60,99 @@
 }
 
 .snav__logo {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  font-stretch: 125%;
+  letter-spacing: -0.01em;
+  color: var(--snav-ink);
   text-decoration: none;
-  background: linear-gradient(135deg, #f08fa9, #e0567f);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* reset the old gradient-text treatment */
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 
 .snav__links {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: clamp(18px, 2.4vw, 32px);
 }
 
 .snav__link {
   position: relative;
   font-size: 0.92rem;
   font-weight: 500;
-  color: #6b6660;
+  color: var(--snav-muted);
   text-decoration: none;
   transition: color 160ms ease;
 }
 
-.snav__link:hover,
-.snav__link--active {
-  color: #17181c;
-}
+.snav__link--active { color: var(--snav-ink); }
 
 .snav__link::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: -6px;
   width: 100%;
   height: 2px;
-  background: #e0567f;
+  background: var(--snav-accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 260ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.snav__link:hover::after,
 .snav__link--active::after { transform: scaleX(1); }
+
+/* The last link is the one contact intent: a pill. */
+.snav__links .snav__link:last-child {
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--snav-ink);
+  color: #edebe8;
+  font-weight: 600;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease;
+}
+.snav__links .snav__link:last-child::after { display: none; }
+.snav__links .snav__link:last-child:active { transform: scale(0.97); }
+
+@media (hover: hover) and (pointer: fine) {
+  .snav__link:hover { color: var(--snav-ink); }
+  .snav__link:hover::after { transform: scaleX(1); }
+  .snav__links .snav__link:last-child:hover { color: #edebe8; background: var(--snav-accent); }
+}
+
+.snav__link:focus-visible,
+.snav__logo:focus-visible,
+.snav__btn:focus-visible,
+.snav__burger:focus-visible {
+  outline: 2px solid var(--snav-accent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
 
 .snav__actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .snav__btn {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: #6b6660;
+  color: var(--snav-muted);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 160ms ease, background 160ms ease;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
 }
+.snav__btn:active { transform: scale(0.92); }
 
-.snav__btn:hover {
-  color: #17181c;
-  background: rgba(16, 24, 40, 0.06);
+@media (hover: hover) and (pointer: fine) {
+  .snav__btn:hover { color: var(--snav-ink); background: rgba(20, 20, 20, 0.06); }
 }
 
 .snav__btn svg { width: 18px; height: 18px; }
@@ -111,9 +160,11 @@
 .snav__burger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  width: 24px;
-  padding: 4px 0;
+  width: 40px;
+  height: 40px;
+  padding: 0 8px;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -124,70 +175,87 @@
   width: 100%;
   height: 2px;
   border-radius: 2px;
-  background: #17181c;
-  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 160ms ease;
+  background: var(--snav-ink);
+  transition: transform 260ms cubic-bezier(0.23, 1, 0.32, 1), opacity 160ms ease;
 }
 
 .snav__burger--open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .snav__burger--open span:nth-child(2) { opacity: 0; }
 .snav__burger--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Pushes page content clear of the fixed bar. Pages with a full-bleed hero
-   that should run under the nav simply omit the spacer. */
-.snav-spacer { height: 72px; }
+/* Pushes page content clear of the fixed bar. */
+.snav-spacer { height: 68px; }
 
 /* ---------- dark theme ---------- */
 [data-theme="dark"] .snav {
-  background: rgba(10, 10, 18, 0.82);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  --snav-ink: #edebe8;
+  --snav-muted: #a29d97;
+  --snav-bg: rgba(18, 18, 17, 0.82);
+  --snav-line: rgba(237, 235, 232, 0.08);
 }
-[data-theme="dark"] .snav--ghost {
-  background: transparent;
-  border-bottom-color: transparent;
+[data-theme="dark"] .snav--ghost { background: transparent; border-bottom-color: transparent; }
+[data-theme="dark"] .snav__links .snav__link:last-child { background: #edebe8; color: #141414; }
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="dark"] .snav__btn:hover { background: rgba(237, 235, 232, 0.08); }
+  [data-theme="dark"] .snav__links .snav__link:last-child:hover { background: var(--snav-accent); color: #141414; }
 }
-[data-theme="dark"] .snav__link { color: #9a938a; }
-[data-theme="dark"] .snav__link:hover,
-[data-theme="dark"] .snav__link--active { color: #fff; }
-[data-theme="dark"] .snav__btn { color: #9a938a; }
-[data-theme="dark"] .snav__btn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
-[data-theme="dark"] .snav__burger span { background: #fff; }
 
 /* ---------- mobile ---------- */
 @media (max-width: 860px) {
-  .snav { height: 62px; padding: 0 20px; }
-  .snav-spacer { height: 62px; }
+  .snav { height: 60px; }
+  .snav-spacer { height: 60px; }
   .snav__burger { display: flex; }
 
   /* The nav's own backdrop-filter makes it the containing block for fixed
      children, so the panel is given an explicit height instead of inset:0. */
   .snav__links {
     position: fixed;
-    top: 62px;
+    top: 60px;
     left: 0;
     right: 0;
-    height: calc(100dvh - 62px);
+    height: calc(100dvh - 60px);
     flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 26px 24px;
-    background: #14130f;
-    transform: translateX(100%);
-    transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: stretch;
+    gap: 0;
+    padding: 20px clamp(16px, 4vw, 48px) 32px;
+    background: #141414;
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition: clip-path 420ms cubic-bezier(0.77, 0, 0.175, 1), visibility 0s linear 420ms;
     z-index: 4100;
   }
 
-  .snav__links--open { transform: translateX(0); }
-
-  .snav__link {
-    width: 100%;
-    padding: 15px 0;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #ded8cf;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  .snav__links--open {
+    clip-path: inset(0 0 0 0);
+    visibility: visible;
+    transition: clip-path 420ms cubic-bezier(0.77, 0, 0.175, 1), visibility 0s;
   }
 
-  .snav__link:hover,
-  .snav__link--active { color: #fff; }
+  .snav__link {
+    padding: 16px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    font-stretch: 112%;
+    letter-spacing: -0.02em;
+    color: #edebe8;
+    border-bottom: 1px solid rgba(237, 235, 232, 0.1);
+  }
+  .snav__link--active { color: #ff4f1a; }
   .snav__link::after { display: none; }
+
+  .snav__links .snav__link:last-child {
+    margin-top: 24px;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    background: #ff4f1a;
+    color: #141414;
+    border-bottom: 0;
+  }
+  [data-theme="dark"] .snav__links .snav__link:last-child { background: #ff4f1a; color: #141414; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snav__links,
+  .snav__links--open { transition: none; }
 }
