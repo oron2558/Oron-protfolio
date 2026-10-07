@@ -151,6 +151,8 @@ p { text-wrap: pretty; }
   font-size: clamp(2.4rem, 6.4vw, 5.6rem);
   max-width: 14ch;
 }
+/* the lede sits right under the title; on wide screens the title runs on one line */
+.shead__lede { margin-top: -6px; }
 
 .shead__lede {
   max-width: 52ch;
@@ -159,8 +161,7 @@ p { text-wrap: pretty; }
 }
 
 @media (min-width: 900px) {
-  .shead { grid-template-columns: 1.4fr 1fr; align-items: end; }
-  .shead__num { grid-column: 1 / -1; }
+  .shead__title { max-width: none; font-size: clamp(2.4rem, 5.1vw, 5.2rem); text-wrap: balance; }
 }
 
 /* ---------- buttons ---------- */
