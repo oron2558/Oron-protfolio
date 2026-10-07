@@ -693,6 +693,24 @@
     video.addEventListener('play', function () { setState('playing'); });
     video.addEventListener('pause', function () { if (!video.ended) setState('paused'); });
 
+    /* sound: browsers only autoplay muted, so sound is opt-in */
+    var snd = $('[data-film-sound]', sec);
+    var sndLabel = snd && $('.film__sound-label', snd);
+    function setSound(on) {
+      video.muted = !on;
+      snd.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (sndLabel) sndLabel.textContent = on ? 'Sound off' : 'Sound on';
+    }
+    if (snd) snd.addEventListener('click', function () {
+      var on = video.muted;
+      setSound(on);
+      if (on && (video.ended || video.paused)) {
+        if (video.ended) video.currentTime = 0;
+        userPaused = false;
+        video.play();
+      }
+    });
+
     if (btn) btn.addEventListener('click', function () {
       if (video.ended) { video.currentTime = 0; video.play(); }
       else if (video.paused) video.play();

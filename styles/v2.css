@@ -1638,6 +1638,35 @@ html:not(.js) .dt__steps { gap: 48px; }
 .film:not([data-state]) .i-play { display: block; }
 @media (hover: hover) and (pointer: fine) { .film__btn:hover { background: rgba(255, 255, 255, 0.2); } }
 
+.film__sound {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease, color 160ms ease;
+}
+.film__sound:active { transform: scale(0.95); }
+.film__sound svg { width: 17px; height: 17px; }
+.film__sound .i-sound,
+.film__sound[aria-pressed="true"] .i-muted { display: none; }
+.film__sound[aria-pressed="true"] .i-sound { display: block; }
+.film__sound[aria-pressed="true"] { background: #fff; color: #141414; }
+.film__btn:focus-visible, .film__sound:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .film__sound:not([aria-pressed="true"]):hover { background: rgba(255, 255, 255, 0.2); } }
+@media (max-width: 520px) { .film__bar { display: none; } }
+
 .film__bar {
   flex: 1;
   max-width: 220px;
@@ -1891,3 +1920,130 @@ html:not(.js) .dt__steps { gap: 48px; }
   .cv-chip--key { background: #fff; color: #141414; }
   .cv-item__list li::before, .cv-head__role i { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
+
+/* =========================================================================
+   HERO, type-only (no portrait). The name runs edge to edge in two rows,
+   proof chips sit beside "Oron", a word band drifts along the bottom.
+   Motion: letters cascade in and swell under the cursor, chips pop and
+   float, and on scroll the two rows slide apart.
+   ========================================================================= */
+.hero--type { min-height: 100svh; padding-top: 96px; padding-bottom: 0; flex-direction: column; }
+.hero--type .hero__inner { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 3vw, 36px); width: 100%; padding-block: clamp(16px, 3vw, 40px); }
+
+.hero__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.hero--type .hero__meta { margin: 0; }
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.hero__status i {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #1db954;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+}
+
+.hero--type .hero__name {
+  font-size: min(13.6vw, 12.8rem);
+  letter-spacing: -0.05em;
+  line-height: 0.84;
+}
+.hero__row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.hero__row--2 { justify-content: flex-end; }
+.hero__row .mline { flex: none; }
+
+.hero__chips {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  padding-bottom: 0.12em;
+  font-size: 1rem;
+  letter-spacing: 0;
+  line-height: 1.2;
+  font-stretch: 100%;
+}
+.hero__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 14px 30px -16px rgba(20, 20, 20, 0.35);
+}
+.hero__chip--live::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #1db954;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+}
+.hero__chip--stat { background: var(--ink); color: var(--ground); font-weight: 500; margin-right: clamp(0px, 4vw, 64px); }
+.hero__chip--stat b { font-weight: 800; font-stretch: 112%; }
+.hero__chip--stat i { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+.hero__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 40px;
+}
+.hero--type .hero__pos { margin-top: 0; }
+.hero--type .hero__cta { margin-top: 0; }
+
+.hero__band {
+  border-top: 1px solid var(--line);
+  padding-block: 14px;
+  font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  user-select: none;
+}
+.hero__band .ticker__run { gap: 0; animation-duration: 38s; }
+.hero__band .ticker span { color: var(--ink); display: inline-flex; align-items: center; }
+.hero__band .ticker span::after {
+  content: '';
+  width: 0.28em; height: 0.28em;
+  margin-inline: 0.55em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.hero__band .ticker span:nth-child(3n + 2) { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+
+.hero--type .hero__name .mline { padding-bottom: 0.22em; margin-bottom: -0.22em; }
+
+@media (max-width: 899px) {
+  .hero--type { min-height: 0; }
+  .hero__row { gap: 12px; }
+  .hero__chips { gap: 6px; padding-bottom: 0.06em; }
+  .hero__chip { padding: 7px 11px; font-size: 0.72rem; gap: 7px; }
+  .hero__chip--stat { margin: 0; }
+  .hero__band { margin-top: 8px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__status { animation: fadeUp 700ms var(--ease-out) 120ms both; }
+  .js .hero__chip--live { animation: pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 900ms both, bob 5s ease-in-out 1.6s infinite; }
+  .js .hero__chip--stat { animation: pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 1050ms both, bob 6s ease-in-out 2s infinite reverse; }
+  .js .hero__band { animation: fadeIn 900ms ease 700ms both; }
+  @supports (animation-timeline: view()) {
+    .hero--type .hero__row--1 { animation: rowLeft linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    .hero--type .hero__row--2 { animation: rowRight linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+  }
+}
+@keyframes rowLeft { to { translate: -14vw 0; } }
+@keyframes rowRight { to { translate: 14vw 0; } }
