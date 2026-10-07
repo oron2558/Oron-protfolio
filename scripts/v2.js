@@ -105,6 +105,27 @@
 
   function rotator() {
     if (reduce) $$('[data-rotate]').forEach(function (r) { r.classList.add('no-rot'); });
+    /* hero verb: think, research, define... one slot, on a loop */
+    $$('[data-verb]').forEach(function (slot) {
+      var ws = $$('.verb__w', slot), i = 0;
+      if (reduce || ws.length < 2) return;
+      function fit(w) { slot.style.width = w.offsetWidth + 'px'; }
+      fit(ws[0]);
+      setInterval(function () {
+        if (document.hidden) return;
+        var cur = ws[i], nxt = ws[(i + 1) % ws.length];
+        ws.forEach(function (w) { w.classList.remove('is-out'); });
+        nxt.style.transition = 'none';
+        nxt.style.transform = 'translateY(110%)';
+        nxt.offsetWidth;
+        nxt.style.transition = ''; nxt.style.transform = '';
+        cur.classList.remove('is-on'); cur.classList.add('is-out');
+        nxt.classList.add('is-on');
+        fit(nxt);
+        i = (i + 1) % ws.length;
+      }, 1900);
+      window.addEventListener('resize', function () { fit(ws[i]); });
+    });
   }
 
   /* ---------- portrait stage: depth layers, tilt and light follow the cursor ---------- */

@@ -2135,3 +2135,30 @@ html:not(.js) .dt__steps { gap: 48px; }
   }
 }
 @keyframes livePulse { from { transform: scale(1); opacity: 0.6; } to { transform: scale(3); opacity: 0; } }
+
+/* Hero verb: the working method cycles through one slot, each word rising
+   out of a mask while the slot eases to the new word's width. */
+.verb {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  height: 1.25em;
+  overflow: hidden;
+  color: var(--ink);
+  font-weight: 700;
+  font-stretch: 112%;
+  transition: width 500ms var(--ease-out);
+}
+.verb__w {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  transform: translateY(110%);
+}
+.verb__w.is-on { position: relative; transform: none; }
+.verb__w.is-out { transform: translateY(-110%); }
+@media (prefers-reduced-motion: no-preference) {
+  .verb__w { transition: transform 600ms var(--ease-out); }
+}
+.hero--type .hero__pos { max-width: none; }
