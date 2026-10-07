@@ -121,14 +121,14 @@ p { text-wrap: pretty; }
   padding-inline: var(--gutter);
 }
 
-.section { padding-block: clamp(80px, 12vw, 160px); }
+.section { padding-block: clamp(56px, 8vw, 112px); }
 
 /* Section header: a numbered kicker on a rule, not an eyebrow pill. */
 .shead {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 20px;
-  margin-bottom: clamp(40px, 6vw, 72px);
+  margin-bottom: clamp(28px, 4vw, 52px);
 }
 
 .shead__num {
@@ -1534,7 +1534,7 @@ html:not(.js) .dt__steps { gap: 48px; }
    that settles back while the page's ground rises to meet the hero.
    --f is the fold progress (0 to 1), set by v2.js.
    ========================================================================= */
-.film { --f: 0; position: relative; height: 190svh; background: var(--ground); }
+.film { --f: 0; position: relative; height: 170svh; background: var(--ground); }
 
 .film__pin {
   position: sticky;
@@ -1726,7 +1726,7 @@ html:not(.js) .dt__steps { gap: 48px; }
 .js .hero:not(.is-live) .ch { animation-play-state: paused !important; }
 
 @media (max-width: 899px) {
-  .film { height: 170svh; }
+  .film { height: 155svh; }
   .film__video { object-position: 46% 50%; }
 }
 
@@ -2184,3 +2184,39 @@ html:not(.js) .dt__steps { gap: 48px; }
   .verb__w::before { transition: transform 520ms cubic-bezier(0.65, 0, 0.35, 1) 220ms; }
   .verb__w.is-out::before { transition: none; }
 }
+
+/* Tighter hero after the film: no full-screen min-height, the name slides
+   in from both sides as the folded film card leaves, the band fades up. */
+.hero--type { min-height: 0; padding-top: clamp(28px, 4vw, 56px); }
+.hero--type .hero__inner { padding-block: 0 clamp(8px, 2vw, 24px); }
+.verb {
+  font-size: 1.42em;
+  line-height: 1.1;
+  height: 1.18em;
+  vertical-align: -0.2em;
+  letter-spacing: -0.02em;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .hero--type .hero__row--1 {
+      animation: rowInL linear both, rowLeft linear both;
+      animation-timeline: view(), view();
+      animation-range: entry 0% cover 40%, exit 0% exit 100%;
+    }
+    .hero--type .hero__row--2 {
+      animation: rowInR linear both, rowRight linear both;
+      animation-timeline: view(), view();
+      animation-range: entry 10% cover 45%, exit 0% exit 100%;
+    }
+    .hero--type .hero__band {
+      animation: bandIn linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+  }
+}
+@keyframes rowInL { from { translate: -22vw 0; opacity: 0.2; } to { translate: 0 0; opacity: 1; } }
+@keyframes rowInR { from { translate: 22vw 0; opacity: 0.2; } to { translate: 0 0; opacity: 1; } }
+@keyframes bandIn { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
+.hero--type { margin-top: -7svh; position: relative; z-index: 1; }
+@media (max-width: 899px) { .hero--type { margin-top: -4svh; } }
