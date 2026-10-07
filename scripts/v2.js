@@ -167,63 +167,236 @@
     update();
   }
 
-  /* ---------- draggable rail with momentum ---------- */
-  function rails() {
-    $$('[data-rail]').forEach(function (rail) {
-      var bar = $('.rail__bar i', rail.parentElement);
-      var prev = $('[data-rail-prev]', rail.parentElement);
-      var next = $('[data-rail-next]', rail.parentElement);
+  /* ---------- Design Thinking: pinned onboarding with a morphing dot field ---------- */
+  function designThinking() {
+    var root = $('[data-dt]');
+    if (!root) return;
+    var track = $('.dt__track', root);
+    var segs = $$('[data-dt-go]', root);
+    var steps = $$('[data-dt-step]', root);
+    var modes = $$('.dt__mode span', root);
+    var shots = $$('.dt__shots img', root);
+    var caps = $$('.dt__shots figcaption span', root);
+    var now = $('.dt__now span', root);
+    var runPath = $('.dt__map-run', root);
+    var mapDot = $('.dt__map-dot', root);
+    var canvas = $('.dt__canvas', root);
+    var ctx = canvas.getContext('2d');
+    var STAGES = steps.length;
+    var pinned = !reduce;
+    var s = 0, active = -1, visible = false, raf = 0;
 
-      function progress() {
-        var max = rail.scrollWidth - rail.clientWidth;
-        var p = max > 0 ? rail.scrollLeft / max : 1;
-        if (bar) bar.style.setProperty('--rp', (0.15 + p * 0.85).toFixed(3));
-      }
-      rail.addEventListener('scroll', progress, { passive: true });
-      progress();
-
-      function stepSize() {
-        var first = $('.step', rail);
-        return first ? first.getBoundingClientRect().width + 20 : rail.clientWidth * 0.8;
-      }
-      if (prev) prev.addEventListener('click', function () { rail.scrollBy({ left: -stepSize(), behavior: reduce ? 'auto' : 'smooth' }); });
-      if (next) next.addEventListener('click', function () { rail.scrollBy({ left: stepSize(), behavior: reduce ? 'auto' : 'smooth' }); });
-
-      /* Mouse drag only: touch already scrolls natively with momentum. */
-      var down = false, moved = false, startX = 0, startScroll = 0, lastX = 0, lastT = 0, v = 0, raf = 0;
-      rail.addEventListener('pointerdown', function (e) {
-        if (e.pointerType !== 'mouse' || e.button !== 0) return;
-        cancelAnimationFrame(raf);
-        down = true; moved = false;
-        startX = lastX = e.clientX; lastT = performance.now();
-        startScroll = rail.scrollLeft; v = 0;
-      });
-      window.addEventListener('pointermove', function (e) {
-        if (!down) return;
-        var dx = e.clientX - startX;
-        if (!moved && Math.abs(dx) > 4) { moved = true; rail.classList.add('is-dragging'); }
-        if (!moved) return;
-        rail.scrollLeft = startScroll - dx;
-        var now = performance.now();
-        var dt = Math.max(now - lastT, 1);
-        v = (e.clientX - lastX) / dt;
-        lastX = e.clientX; lastT = now;
-      });
-      window.addEventListener('pointerup', function () {
-        if (!down) return;
-        down = false;
-        if (!moved) return;
-        /* keep the class a tick so the click that ends a drag is swallowed */
-        setTimeout(function () { rail.classList.remove('is-dragging'); }, 0);
-        if (reduce) return;
-        var vel = -v * 16;
-        (function glide() {
-          vel *= 0.94;
-          rail.scrollLeft += vel;
-          if (Math.abs(vel) > 0.4) raf = requestAnimationFrame(glide);
-        })();
+    steps.forEach(function (st) {
+      var w = $('[data-dt-word]', st);
+      var text = w.textContent;
+      w.setAttribute('aria-label', text);
+      w.textContent = '';
+      text.split('').forEach(function (c, i) {
+        var sp = document.createElement('span');
+        sp.className = 'ch';
+        sp.setAttribute('aria-hidden', 'true');
+        sp.textContent = c;
+        sp.style.setProperty('--n', i);
+        w.appendChild(sp);
       });
     });
+
+    if (pinned) root.classList.add('dt--pin');
+
+    /* --- dot field --- */
+    var W = 0, H = 0, dpr = 1, N = 0, dots = [], shapes = [];
+    var mx = -999, my = -999;
+    function rnd(seed) { var x = Math.sin(seed * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
+
+    function build() {
+      var r = canvas.getBoundingClientRect();
+      W = r.width; H = r.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      N = W < 600 ? 120 : 170;
+      var cx = W * 0.44, cy = H * 0.46, R = Math.min(W, H);
+      shapes = [[], [], [], [], []];
+      for (var i = 0; i < N; i++) {
+        var a = rnd(i + 1), b = rnd(i + 101), c = rnd(i + 201);
+        /* 0 Empathize: people scattered across the whole field */
+        shapes[0].push([W * (0.06 + 0.88 * a), H * (0.16 + 0.74 * b)]);
+        /* 1 Define: everything pulled into one focused disc */
+        var ang = i * 2.39996, rad = Math.sqrt((i + 0.5) / N) * R * 0.2;
+        shapes[1].push([cx + Math.cos(ang) * rad, cy + Math.sin(ang) * rad]);
+        /* 2 Ideate: five idea clusters, one bigger (the chosen one) */
+        var k = i % 5, ca = -Math.PI / 2 + k * (Math.PI * 2 / 5) + 0.3;
+        var cr = k === 0 ? R * 0.13 : R * 0.075, ccx = cx + Math.cos(ca) * R * 0.27, ccy = cy + Math.sin(ca) * R * 0.25;
+        if (k === 0) { ccx = cx; ccy = cy; }
+        var ia = c * Math.PI * 2, ir = Math.sqrt(a) * cr;
+        shapes[2].push([ccx + Math.cos(ia) * ir, ccy + Math.sin(ia) * ir]);
+        /* 3 Prototype: a phone screen, outline plus wireframe rows */
+        var pw = R * 0.34, ph = R * 0.62, px = cx - pw / 2, py = cy - ph / 2, p;
+        if (i < N * 0.42) {
+          var t = i / (N * 0.42), per = 2 * (pw + ph), d = t * per;
+          if (d < pw) p = [px + d, py];
+          else if (d < pw + ph) p = [px + pw, py + d - pw];
+          else if (d < 2 * pw + ph) p = [px + pw - (d - pw - ph), py + ph];
+          else p = [px, py + ph - (d - 2 * pw - ph)];
+        } else {
+          var j = i - Math.ceil(N * 0.42), rows = [0.12, 0.2, 0.34, 0.42, 0.5, 0.64, 0.72, 0.86], cols = 9;
+          var row = rows[Math.floor(j / cols) % rows.length], col = j % cols;
+          var len = row === 0.12 || row === 0.34 || row === 0.64 ? 0.55 : row === 0.86 ? 1 : 0.85;
+          p = [px + pw * 0.12 + (col / (cols - 1)) * pw * 0.76 * len, py + ph * row];
+        }
+        shapes[3].push(p);
+        /* 4 Test: a loop that keeps running */
+        shapes[4].push([i / N]);
+      }
+      if (!dots.length || dots.length !== N) {
+        dots = [];
+        for (var n = 0; n < N; n++) dots.push({ x: shapes[0][n][0], y: shapes[0][n][1], vx: 0, vy: 0, d: rnd(n + 401) * 0.35, ph: rnd(n + 501) * 6.28, hot: n % 17 === 0 });
+      }
+    }
+
+    function loopPos(u, time) {
+      var t = (u + time * 0.00006) * Math.PI * 2;
+      var R = Math.min(W, H), sc = R * 0.34;
+      /* lemniscate: test, learn, go again */
+      var den = 1 + Math.sin(t) * Math.sin(t);
+      return [W * 0.47 + sc * Math.cos(t) / den * 1.25, H * 0.44 + sc * Math.sin(t) * Math.cos(t) / den * 1.1];
+    }
+
+    function target(stage, n, time) {
+      if (stage === 4) return loopPos(shapes[4][n][0], time);
+      return shapes[stage][n];
+    }
+
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+    var ink = '#141414', accent = '#ff4f1a';
+    function colors() {
+      var cs = getComputedStyle(root);
+      ink = cs.getPropertyValue('--ink').trim() || ink;
+      accent = cs.getPropertyValue('--accent').trim() || accent;
+    }
+
+    function draw(time) {
+      raf = 0;
+      var i0 = Math.min(Math.floor(s), STAGES - 1), f = s - i0, i1 = Math.min(i0 + 1, STAGES - 1);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      for (var n = 0; n < N; n++) {
+        var d = dots[n];
+        var e = reduce ? (f >= 0.5 ? 1 : 0) : ease(clamp((f - 0.2 - d.d * 0.6) / 0.45, 0, 1));
+        var a = target(i0, n, time), b = target(i1, n, time);
+        var tx = a[0] + (b[0] - a[0]) * e, ty = a[1] + (b[1] - a[1]) * e;
+        if (!reduce) {
+          var wob = (i0 === 0 && e < 0.5) || (i1 === 0) ? 6 : 1.6;
+          tx += Math.sin(time * 0.0011 + d.ph) * wob;
+          ty += Math.cos(time * 0.0013 + d.ph * 1.3) * wob;
+          var dx = d.x - mx, dy = d.y - my, dist = Math.hypot(dx, dy);
+          if (dist < 90 && dist > 0.1) { var push = (1 - dist / 90) * 26; tx += dx / dist * push; ty += dy / dist * push; }
+          d.vx = (d.vx + (tx - d.x) * 0.09) * 0.72;
+          d.vy = (d.vy + (ty - d.y) * 0.09) * 0.72;
+          d.x += d.vx; d.y += d.vy;
+        } else { d.x = tx; d.y = ty; }
+        var r = d.hot ? 4.2 : 2.4;
+        ctx.globalAlpha = d.hot ? 1 : 0.78;
+        ctx.fillStyle = d.hot ? accent : ink;
+        ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, 6.2832); ctx.fill();
+      }
+      /* Empathize: listening ripples around the highlighted people */
+      var ripple = (i0 === 0 ? 1 - f * 2 : 0);
+      if (ripple > 0 && !reduce) {
+        ctx.strokeStyle = accent; ctx.lineWidth = 1;
+        for (var h = 0; h < N; h += 17) {
+          var ph = ((time * 0.0006) + h * 0.13) % 1;
+          ctx.globalAlpha = (1 - ph) * 0.5 * ripple;
+          ctx.beginPath(); ctx.arc(dots[h].x, dots[h].y, 6 + ph * 26, 0, 6.2832); ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = 1;
+      if (visible && !reduce) raf = requestAnimationFrame(draw);
+    }
+
+    function kick() { if (!raf) raf = requestAnimationFrame(draw); }
+
+    /* --- double-diamond mini map --- */
+    var runLen = runPath ? runPath.getTotalLength() : 0;
+    var marks = [0, 0.25, 0.5, 0.75, 1];
+    function map() {
+      if (!runPath) return;
+      var i0 = Math.min(Math.floor(s), STAGES - 1), f = s - i0;
+      var u = i0 >= STAGES - 1 ? 1 : marks[i0] + (marks[i0 + 1] - marks[i0]) * f;
+      /* the loop part is the last quarter; Test runs around it */
+      var L = runLen * (0.78 * Math.min(u / 0.75, 1) + (u > 0.75 ? 0.22 * ((u - 0.75) / 0.25) : 0));
+      runPath.style.strokeDasharray = runLen + ' ' + runLen;
+      runPath.style.strokeDashoffset = (runLen - L).toFixed(1);
+      var pt = runPath.getPointAtLength(Math.max(L, 0.01));
+      mapDot.setAttribute('cx', pt.x.toFixed(1)); mapDot.setAttribute('cy', pt.y.toFixed(1));
+    }
+
+    function setActive(i) {
+      if (i === active) return;
+      var prev = active;
+      active = i;
+      steps.forEach(function (st, k) { st.classList.toggle('is-on', k === i); });
+      segs.forEach(function (sg, k) { if (k === i) sg.setAttribute('aria-current', 'step'); else sg.removeAttribute('aria-current'); });
+      modes.forEach(function (m, k) { m.classList.toggle('is-on', k === i); m.classList.toggle('is-off', k !== i && k < i); });
+      shots.forEach(function (im, k) { im.classList.toggle('is-on', k === i); });
+      caps.forEach(function (c, k) { c.classList.toggle('is-on', k === i); });
+      if (now) {
+        now.textContent = '0' + (i + 1);
+        if (!reduce && prev !== -1) now.animate([{ transform: 'translateY(' + (i > prev ? '100%' : '-100%') + ')' }, { transform: 'none' }], { duration: 420, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
+      }
+    }
+
+    function fills() {
+      segs.forEach(function (sg, k) { sg.style.setProperty('--fill', clamp(s - k + 1, 0, 1).toFixed(3)); });
+    }
+
+    function measure() {
+      if (!pinned) return;
+      var r = track.getBoundingClientRect();
+      var len = track.offsetHeight - window.innerHeight;
+      s = clamp(-r.top / Math.max(len, 1), 0, 1) * (STAGES - 1);
+      setActive(Math.round(s));
+      fills(); map();
+      kick();
+    }
+
+    function go(k) {
+      if (pinned) {
+        var top = track.getBoundingClientRect().top + window.scrollY;
+        var len = track.offsetHeight - window.innerHeight;
+        window.scrollTo({ top: top + len * (k / (STAGES - 1)) + 2, behavior: 'smooth' });
+      } else {
+        s = k; setActive(k); fills(); map(); kick();
+      }
+    }
+    segs.forEach(function (sg) {
+      sg.addEventListener('click', function () { go(+sg.getAttribute('data-dt-go')); });
+    });
+    root.addEventListener('keydown', function (e) {
+      if (!e.target.closest('.dt__nav')) return;
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var k = clamp(active + (e.key === 'ArrowRight' ? 1 : -1), 0, STAGES - 1);
+      segs[k].focus(); go(k);
+    });
+
+    var viz = $('.dt__viz', root);
+    if (finePointer && !reduce) {
+      viz.addEventListener('pointermove', function (e) { var r = canvas.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+      viz.addEventListener('pointerleave', function () { mx = my = -999; });
+    }
+
+    colors(); build(); setActive(0); fills(); map();
+    if (pinned) {
+      window.addEventListener('scroll', measure, { passive: true });
+      measure();
+    }
+    window.addEventListener('resize', function () { build(); measure(); kick(); });
+    new MutationObserver(function () { colors(); kick(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) kick(); }).observe(viz);
+    } else { visible = true; }
+    kick();
   }
 
   /* ---------- copy email ---------- */
@@ -568,7 +741,7 @@
     countUps();
     stageDepth();
     stack();
-    rails();
+    designThinking();
     copyEmail();
     workPeek();
     showcase();

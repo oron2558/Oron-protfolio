@@ -762,112 +762,225 @@ p { text-wrap: pretty; }
 }
 
 /* =========================================================================
-   PROCESS: draggable rail
+   PROCESS: Design Thinking, a pinned onboarding.
+   The section pins while you scroll through five stages. A field of dots
+   reshapes per stage (scatter, focus, clusters, a screen, a loop), the
+   stepper fills like an onboarding, and the stage word rises letter by
+   letter. Without JS it is a plain list; with reduced motion it is tabs.
    ========================================================================= */
-.rail {
-  --gap: clamp(14px, 2vw, 24px);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding-inline: var(--gutter);
-  scroll-padding-inline: var(--gutter);
-  cursor: grab;
-  touch-action: pan-x pan-y;
-}
-.rail::-webkit-scrollbar { display: none; }
-.rail.is-dragging { cursor: grabbing; scroll-snap-type: none; }
-.rail.is-dragging * { pointer-events: none; user-select: none; }
+.dt { padding-bottom: clamp(40px, 6vw, 80px); }
+.dt .shead { margin-bottom: clamp(24px, 4vw, 48px); }
 
-.rail__track {
-  display: flex;
-  gap: var(--gap);
-  width: max-content;
-  padding-bottom: 8px;
+.dt__grid {
+  display: grid;
+  gap: 28px;
 }
 
-.step {
-  scroll-snap-align: start;
-  width: clamp(280px, 34vw, 440px);
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--r-md);
-  background: var(--surface);
-  border: 1px solid var(--line);
+.dt__nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.dt__seg {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0 0 6px;
+  font: inherit;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: start;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  transition: color 300ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.dt__seg i {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line);
   overflow: hidden;
 }
-
-.step__media {
-  aspect-ratio: 16 / 10;
-  background: var(--ground-2);
-  overflow: hidden;
-}
-.step__media img {
-  width: 100%;
+.dt__seg b {
+  display: block;
   height: 100%;
-  object-fit: cover;
-  object-position: left top;
-  -webkit-user-drag: none;
+  background: var(--ink);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--fill, 0));
 }
-.step__media--contain img { object-fit: contain; object-position: center; padding: 12px; }
+.dt__seg[aria-current="step"] { color: var(--ink); }
+.dt__seg[aria-current="step"] b { background: var(--accent); }
+.dt__seg:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 4px; }
+@media (hover: hover) and (pointer: fine) { .dt__seg:hover { color: var(--ink); } }
 
-.step__body { padding: 22px 22px 26px; display: grid; gap: 10px; }
-.step__num {
-  font-size: 0.8rem;
+.dt__count {
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
+  margin-bottom: 14px;
 }
-.step__title {
-  font-size: 1.5rem;
-  font-stretch: 112%;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-}
-.step__text { color: var(--muted); font-size: 0.98rem; }
+.dt__now { display: inline-flex; overflow: hidden; vertical-align: bottom; color: var(--ink); }
+.dt__now span { display: inline-block; }
 
-.rail__hint {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 20px;
-  font-size: 0.85rem;
+.dt__steps { list-style: none; margin: 0; padding: 0; display: grid; }
+.dt__step { display: grid; gap: 14px; align-content: start; }
+
+.dt__word {
+  font-size: clamp(3rem, 5.6vw, 6.2rem);
+  font-weight: 900;
+  font-stretch: 118%;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+.dt__word .ch { display: inline-block; }
+.dt__lead { font-size: clamp(1.2rem, 1.8vw, 1.5rem); font-weight: 700; font-stretch: 110%; letter-spacing: -0.01em; }
+.dt__text { color: var(--muted); max-width: 44ch; }
+.dt__tags { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.dt__tags li {
+  padding: 7px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.dt__viz {
+  position: relative;
+  border-radius: var(--r-lg);
+  background: var(--ground-2);
+  overflow: hidden;
+  min-height: 320px;
+}
+.dt__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.dt__mode {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  display: grid;
+  height: 1.3em;
+  overflow: hidden;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted);
 }
-.rail__bar {
-  flex: 1;
-  max-width: 240px;
-  height: 2px;
-  background: var(--line);
-  border-radius: 2px;
-  overflow: hidden;
+.dt__mode span { grid-area: 1 / 1; }
+
+.dt__map { position: absolute; right: 18px; top: 14px; width: 120px; height: auto; }
+.dt__map-base { stroke: var(--line); stroke-width: 1.5; stroke-linejoin: round; }
+.dt__map-run { stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
+.dt__map-dot { fill: var(--accent); }
+
+.dt__shots {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: min(40%, 260px);
+  margin: 0;
+  display: grid;
+  gap: 8px;
+  rotate: -2.5deg;
 }
-.rail__bar i {
-  display: block;
-  height: 100%;
+.dt__shots img {
+  grid-area: 1 / 1;
   width: 100%;
-  background: var(--ink);
-  transform-origin: left;
-  transform: scaleX(var(--rp, 0.15));
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 0 0;
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 24px 40px -22px rgba(20, 20, 20, 0.45);
+}
+.dt__shots .dt__shot--contain { object-fit: contain; object-position: center; padding: 10px; }
+.dt__shots figcaption {
+  display: grid;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  justify-items: end;
+}
+.dt__shots figcaption span { grid-area: 1 / 1; }
+
+/* No JS: a readable list, no pin, no canvas. */
+html:not(.js) .dt__viz,
+html:not(.js) .dt__nav,
+html:not(.js) .dt__count { display: none; }
+html:not(.js) .dt__steps { gap: 48px; }
+
+/* JS: stack the stages and show one at a time. */
+.js .dt__step,
+.js .dt__mode span,
+.js .dt__shots img,
+.js .dt__shots figcaption span { grid-area: 1 / 1; }
+.js .dt__step { visibility: hidden; }
+.js .dt__step.is-on { visibility: visible; }
+.js .dt__step > :not(.dt__word) { opacity: 0; transform: translateY(14px); transition: opacity 400ms var(--ease-out), transform 500ms var(--ease-out); }
+.js .dt__step.is-on > :not(.dt__word) { opacity: 1; transform: none; }
+.js .dt__step.is-on > .dt__lead { transition-delay: 120ms; }
+.js .dt__step.is-on > .dt__text { transition-delay: 180ms; }
+.js .dt__step.is-on > .dt__tags { transition-delay: 240ms; }
+.js .dt__word { overflow: hidden; padding-bottom: 0.06em; }
+.js .dt__word .ch { transform: translateY(105%); transition: transform 450ms var(--ease-in-out); }
+.js .dt__step.is-on .dt__word .ch { transform: none; transition: transform 700ms var(--ease-out); transition-delay: calc(var(--n, 0) * 28ms); }
+
+.js .dt__mode span { transform: translateY(110%); transition: transform 500ms var(--ease-out); }
+.js .dt__mode span.is-on { transform: none; }
+.js .dt__mode span.is-off { transform: translateY(-110%); }
+
+.js .dt__shots img { opacity: 0; transform: translateY(10px) scale(0.96); transition: opacity 350ms ease, transform 600ms var(--ease-out); }
+.js .dt__shots img.is-on { opacity: 1; transform: none; }
+.js .dt__shots figcaption span { opacity: 0; transition: opacity 300ms ease; }
+.js .dt__shots figcaption span.is-on { opacity: 1; }
+
+/* Pinned mode (set by JS when motion is allowed). */
+.dt--pin .dt__track { height: calc(100svh + 4 * 70svh); }
+.dt--pin .dt__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: 84px 28px;
+}
+.dt--pin .dt__grid { width: 100%; height: 100%; }
+
+@media (min-width: 900px) {
+  .dt__grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    column-gap: clamp(32px, 4vw, 64px);
+    row-gap: 36px;
+  }
+  .dt__nav { grid-column: 1 / -1; }
+  .dt__copy { align-self: center; }
+  .dt__viz { min-height: 420px; }
+  .dt--pin .dt__viz { min-height: 0; }
 }
 
-.rail__btns { display: flex; gap: 8px; }
-.icon-btn {
-  width: 44px;
-  height: 44px;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform 160ms var(--ease-out), border-color 160ms ease;
+@media (max-width: 899px) {
+  .dt__seg span { font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dt__seg:not([aria-current="step"]) span { opacity: 0.55; }
+  .dt__word { font-size: clamp(2.6rem, 13vw, 4.2rem); }
+  .dt__text { font-size: 0.98rem; }
+  .dt__viz { order: -1; min-height: 0; aspect-ratio: 4 / 3; }
+  .dt__nav { order: -2; }
+  .dt__shots { width: 42%; right: 12px; bottom: 12px; }
+  .dt__shots figcaption { display: none; }
+  .dt__map { width: 88px; right: 12px; top: 12px; }
+  .dt__mode { left: 14px; top: 14px; }
+  .dt--pin .dt__pin { padding-block: 72px 16px; align-items: stretch; }
+  .dt--pin .dt__grid { grid-template-rows: auto minmax(0, 1fr) auto; gap: 18px; align-content: start; }
+  .dt--pin .dt__viz { aspect-ratio: auto; height: 100%; min-height: 160px; }
+  .dt--pin .dt__tags { display: none; }
+  .dt__count { margin-bottom: 8px; }
 }
-.icon-btn:active { transform: scale(0.92); }
-.icon-btn svg { width: 18px; height: 18px; }
-@media (hover: hover) and (pointer: fine) { .icon-btn:hover { border-color: var(--ink); } }
 
 /* =========================================================================
    ABOUT TEASER

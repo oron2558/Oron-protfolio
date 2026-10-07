@@ -30,8 +30,8 @@
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/video/hero-start.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20261007f">
-  <link rel="stylesheet" href="styles/v2.css?v=20261007f">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261007g">
+  <link rel="stylesheet" href="styles/v2.css?v=20261007g">
 
   <script type="application/ld+json">
   {
@@ -252,45 +252,79 @@
   </section>
 
   <!-- ============ PROCESS ============ -->
-  <section class="section" id="process" aria-labelledby="process-title" style="padding-top:0">
+  <section class="dt" id="process" aria-labelledby="process-title" data-dt>
     <div class="wrap">
       <div class="shead">
         <p class="shead__num">02 &nbsp;How I work</p>
-        <h2 class="shead__title rv" id="process-title">One person, the whole arc.</h2>
-        <p class="shead__lede rv" style="--d:1">I don't hand off between the parts. Research, product definition, UI and the launch are all mine, so nothing gets lost in between.</p>
+        <h2 class="shead__title rv" id="process-title">Design Thinking, end to end.</h2>
+        <p class="shead__lede rv" style="--d:1">Every product I build runs through the same five moves. I go wide to understand people, narrow down to the real problem, go wide again on ideas, then build and test until it works.</p>
       </div>
     </div>
 
-    <div class="rail" data-rail tabindex="0" aria-label="Process steps, scroll horizontally">
-      <ol class="rail__track" role="list" style="list-style:none;margin:0;padding:0">
-        <li class="step">
-          <div class="step__media"><img src="assets/img/process-research.webp" alt="Research board with interview notes and findings" width="1400" height="390" loading="lazy"></div>
-          <div class="step__body"><span class="step__num">01</span><h3 class="step__title">Discovery</h3><p class="step__text">Frame the real problem before touching a screen: interviews, research and the why behind the build.</p></div>
-        </li>
-        <li class="step">
-          <div class="step__media"><img src="assets/img/process-journey.webp" alt="User journey map with stages and emotions" width="923" height="340" loading="lazy"></div>
-          <div class="step__body"><span class="step__num">02</span><h3 class="step__title">Insights and journeys</h3><p class="step__text">Map where people struggle today, and turn the findings into decisions a team can act on.</p></div>
-        </li>
-        <li class="step">
-          <div class="step__media step__media--contain"><img src="assets/img/process-hmw.webp" alt="How might we sticky notes" width="271" height="337" loading="lazy"></div>
-          <div class="step__body"><span class="step__num">03</span><h3 class="step__title">Characterization</h3><p class="step__text">Translate strategy into requirements, user flows and buildable UI: what to build and why, not only how it looks.</p></div>
-        </li>
-        <li class="step">
-          <div class="step__media"><img src="assets/img/process-flow.webp" alt="User flow diagram" width="826" height="335" loading="lazy"></div>
-          <div class="step__body"><span class="step__num">04</span><h3 class="step__title">Build with AI</h3><p class="step__text">I prototype and ship working software fast with AI tools such as Claude Code and Lovable, not just mockups.</p></div>
-        </li>
-        <li class="step">
-          <div class="step__media"><img src="assets/img/mba-seating.webp" alt="Meashrim in Click seating screen on desktop" width="1600" height="739" loading="lazy"></div>
-          <div class="step__body"><span class="step__num">05</span><h3 class="step__title">Ship and iterate</h3><p class="step__text">Launch with paid campaigns, then improve from real user feedback. Years in advertising taught me adoption is part of design.</p></div>
-        </li>
-      </ol>
-    </div>
-    <div class="wrap">
-      <div class="rail__hint">
-        <span class="rail__bar" aria-hidden="true"><i></i></span>
-        <div class="rail__btns">
-          <button class="icon-btn" type="button" data-rail-prev aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 19l-7-7 7-7"/></svg></button>
-          <button class="icon-btn" type="button" data-rail-next aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+    <div class="dt__track">
+      <div class="dt__pin">
+        <div class="wrap dt__grid">
+          <nav class="dt__nav" aria-label="Design Thinking stages">
+            <button type="button" class="dt__seg" data-dt-go="0" aria-current="step"><i aria-hidden="true"><b></b></i><span>Empathize</span></button>
+            <button type="button" class="dt__seg" data-dt-go="1"><i aria-hidden="true"><b></b></i><span>Define</span></button>
+            <button type="button" class="dt__seg" data-dt-go="2"><i aria-hidden="true"><b></b></i><span>Ideate</span></button>
+            <button type="button" class="dt__seg" data-dt-go="3"><i aria-hidden="true"><b></b></i><span>Prototype</span></button>
+            <button type="button" class="dt__seg" data-dt-go="4"><i aria-hidden="true"><b></b></i><span>Test</span></button>
+          </nav>
+
+          <div class="dt__copy">
+            <p class="dt__count" aria-hidden="true"><span class="dt__now"><span>01</span></span> / 05</p>
+            <ol class="dt__steps" role="list">
+              <li class="dt__step is-on" data-dt-step>
+                <h3 class="dt__word" data-dt-word>Empathize</h3>
+                <p class="dt__lead">Listen before drawing anything.</p>
+                <p class="dt__text">Interviews, field visits and competitor reviews, to understand how people work today and what actually hurts.</p>
+                <ul class="dt__tags" role="list"><li>User interviews</li><li>Field research</li><li>Competitor review</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step>
+                <h3 class="dt__word" data-dt-word>Define</h3>
+                <p class="dt__lead">Name the real problem.</p>
+                <p class="dt__text">Findings become journey maps and one sharp problem statement the whole team can build against.</p>
+                <ul class="dt__tags" role="list"><li>Journey maps</li><li>Pain points</li><li>Problem statement</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step>
+                <h3 class="dt__word" data-dt-word>Ideate</h3>
+                <p class="dt__lead">Go wide, then choose.</p>
+                <p class="dt__text">How Might We sessions, sketches and user flows. Many directions on the table before one is picked on purpose.</p>
+                <ul class="dt__tags" role="list"><li>How Might We</li><li>Sketching</li><li>User flows</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step>
+                <h3 class="dt__word" data-dt-word>Prototype</h3>
+                <p class="dt__lead">Make it real, fast.</p>
+                <p class="dt__text">Wireframes and UI in Figma, then working builds with AI tools like Claude Code and Lovable, not only mockups.</p>
+                <ul class="dt__tags" role="list"><li>Wireframes</li><li>Figma UI</li><li>Built with AI</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step>
+                <h3 class="dt__word" data-dt-word>Test</h3>
+                <p class="dt__lead">Learn from real people.</p>
+                <p class="dt__text">Usability tests, a real launch and real numbers. What I learn feeds straight back into the next round.</p>
+                <ul class="dt__tags" role="list"><li>Usability tests</li><li>Launch and analytics</li><li>Iterate</li></ul>
+              </li>
+            </ol>
+          </div>
+
+          <div class="dt__viz" aria-hidden="true">
+            <canvas class="dt__canvas"></canvas>
+            <p class="dt__mode"><span>Diverge</span><span>Converge</span><span>Diverge</span><span>Converge</span><span>Loop</span></p>
+            <svg class="dt__map" viewBox="0 0 200 60" fill="none">
+              <path class="dt__map-base" d="M6 30 L48 8 L90 30 L48 52 Z M90 30 L132 8 L174 30 L132 52 Z M174 30 C186 18 198 22 198 30 C198 38 186 42 174 30"/>
+              <path class="dt__map-run" d="M6 30 L48 8 L90 30 L132 52 L174 30 C186 18 198 22 198 30 C198 38 186 42 174 30"/>
+              <circle class="dt__map-dot" r="4" cx="6" cy="30"/>
+            </svg>
+            <figure class="dt__shots">
+              <img src="assets/img/process-research.webp" alt="" width="1400" height="390" loading="lazy" class="is-on">
+              <img src="assets/img/process-journey.webp" alt="" width="923" height="340" loading="lazy">
+              <img src="assets/img/process-hmw.webp" alt="" width="271" height="337" loading="lazy" class="dt__shot--contain">
+              <img src="assets/img/process-flow.webp" alt="" width="826" height="335" loading="lazy">
+              <img src="assets/img/messageai-dashboard.webp" alt="" width="1600" height="1216" loading="lazy">
+              <figcaption><span>From my research board</span><span>A real journey map</span><span>How Might We notes</span><span>A shipped user flow</span><span>Live in production</span></figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </div>
@@ -345,7 +379,7 @@
   </section>
 </main>
 
-<script src="scripts/site-nav.js?v=20261007f" defer></script>
-<script src="scripts/v2.js?v=20261007f" defer></script>
+<script src="scripts/site-nav.js?v=20261007g" defer></script>
+<script src="scripts/v2.js?v=20261007g" defer></script>
 </body>
 </html>
