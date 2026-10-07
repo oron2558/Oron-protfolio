@@ -30,8 +30,8 @@
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/video/hero-start.webp?v=4" as="image" type="image/webp">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20261007p">
-  <link rel="stylesheet" href="styles/v2.css?v=20261007p">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261007q">
+  <link rel="stylesheet" href="styles/v2.css?v=20261007q">
 
   <script type="application/ld+json">
   {
@@ -239,42 +239,34 @@
     <div class="dt__track">
       <div class="dt__pin">
         <div class="wrap dt__grid">
-          <nav class="dt__nav" aria-label="Design Thinking stages">
-            <button type="button" class="dt__seg" data-dt-go="0" aria-current="step"><i aria-hidden="true"><b></b></i><span>Empathize</span></button>
-            <button type="button" class="dt__seg" data-dt-go="1"><i aria-hidden="true"><b></b></i><span>Define</span></button>
-            <button type="button" class="dt__seg" data-dt-go="2"><i aria-hidden="true"><b></b></i><span>Ideate</span></button>
-            <button type="button" class="dt__seg" data-dt-go="3"><i aria-hidden="true"><b></b></i><span>Prototype</span></button>
-            <button type="button" class="dt__seg" data-dt-go="4"><i aria-hidden="true"><b></b></i><span>Test</span></button>
-          </nav>
-
           <div class="dt__copy">
             <p class="dt__count" aria-hidden="true"><span class="dt__now"><span>01</span></span> / 05</p>
             <ol class="dt__steps" role="list">
-              <li class="dt__step is-on" data-dt-step>
+              <li class="dt__step is-on" data-dt-step style="--mk:#ffe45c">
                 <h3 class="dt__word" data-dt-word>Empathize</h3>
                 <p class="dt__lead">Listen before drawing anything.</p>
                 <p class="dt__text">Interviews, field visits and competitor reviews, to understand how people work today and what actually hurts.</p>
                 <ul class="dt__tags" role="list"><li>User interviews</li><li>Field research</li><li>Competitor review</li></ul>
               </li>
-              <li class="dt__step" data-dt-step>
+              <li class="dt__step" data-dt-step style="--mk:#9be7c4">
                 <h3 class="dt__word" data-dt-word>Define</h3>
                 <p class="dt__lead">Name the real problem.</p>
                 <p class="dt__text">Findings become journey maps and one sharp problem statement the whole team can build against.</p>
                 <ul class="dt__tags" role="list"><li>Journey maps</li><li>Pain points</li><li>Problem statement</li></ul>
               </li>
-              <li class="dt__step" data-dt-step>
+              <li class="dt__step" data-dt-step style="--mk:#ffb3c7">
                 <h3 class="dt__word" data-dt-word>Ideate</h3>
                 <p class="dt__lead">Go wide, then choose.</p>
                 <p class="dt__text">How Might We sessions, sketches and user flows. Many directions on the table before one is picked on purpose.</p>
                 <ul class="dt__tags" role="list"><li>How Might We</li><li>Sketching</li><li>User flows</li></ul>
               </li>
-              <li class="dt__step" data-dt-step>
+              <li class="dt__step" data-dt-step style="--mk:#a9d4ff">
                 <h3 class="dt__word" data-dt-word>Prototype</h3>
                 <p class="dt__lead">Make it real, fast.</p>
                 <p class="dt__text">Wireframes and UI in Figma, then working builds with AI tools like Claude Code and Lovable, not only mockups.</p>
                 <ul class="dt__tags" role="list"><li>Wireframes</li><li>Figma UI</li><li>Built with AI</li></ul>
               </li>
-              <li class="dt__step" data-dt-step>
+              <li class="dt__step" data-dt-step style="--mk:#cdb8ff">
                 <h3 class="dt__word" data-dt-word>Test</h3>
                 <p class="dt__lead">Learn from real people.</p>
                 <p class="dt__text">Usability tests, a real launch and real numbers. What I learn feeds straight back into the next round.</p>
@@ -283,23 +275,24 @@
             </ol>
           </div>
 
-          <div class="dt__viz" aria-hidden="true">
-            <canvas class="dt__canvas"></canvas>
-            <p class="dt__mode"><span>Diverge</span><span>Converge</span><span>Diverge</span><span>Converge</span><span>Loop</span></p>
-            <svg class="dt__map" viewBox="0 0 200 60" fill="none">
-              <path class="dt__map-base" d="M6 30 L48 8 L90 30 L48 52 Z M90 30 L132 8 L174 30 L132 52 Z M174 30 C186 18 198 22 198 30 C198 38 186 42 174 30"/>
-              <path class="dt__map-run" d="M6 30 L48 8 L90 30 L132 52 L174 30 C186 18 198 22 198 30 C198 38 186 42 174 30"/>
-              <circle class="dt__map-dot" r="4" cx="6" cy="30"/>
-            </svg>
-            <figure class="dt__shots">
-              <img src="assets/img/process-research.webp" alt="" width="1400" height="390" loading="lazy" class="is-on">
-              <img src="assets/img/process-journey.webp" alt="" width="923" height="340" loading="lazy">
-              <img src="assets/img/process-hmw.webp" alt="" width="271" height="337" loading="lazy" class="dt__shot--contain">
-              <img src="assets/img/process-flow.webp" alt="" width="826" height="335" loading="lazy">
-              <img src="assets/img/messageai-dashboard.webp" alt="" width="1600" height="1216" loading="lazy">
-              <figcaption><span>From my research board</span><span>A real journey map</span><span>How Might We notes</span><span>A shipped user flow</span><span>Live in production</span></figcaption>
-            </figure>
+          <div class="dt__viz">
+            <canvas class="dt__canvas" aria-hidden="true"></canvas>
+            <nav class="dt__labs" aria-label="Design Thinking stages">
+              <button type="button" class="dt__lab" data-dt-go="0" aria-current="step"><small>Diverge</small><span>Empathize</span></button>
+              <button type="button" class="dt__lab" data-dt-go="1"><small>Converge</small><span>Define</span></button>
+              <button type="button" class="dt__lab" data-dt-go="2"><small>Diverge</small><span>Ideate</span></button>
+              <button type="button" class="dt__lab" data-dt-go="3"><small>Converge</small><span>Prototype</span></button>
+              <button type="button" class="dt__lab" data-dt-go="4"><small>Loop</small><span>Test</span></button>
+            </nav>
           </div>
+          <figure class="dt__shots" aria-hidden="true">
+            <img src="assets/img/process-research.webp" alt="" width="1400" height="390" loading="lazy" class="is-on">
+            <img src="assets/img/process-journey.webp" alt="" width="923" height="340" loading="lazy">
+            <img src="assets/img/process-hmw.webp" alt="" width="271" height="337" loading="lazy" class="dt__shot--contain">
+            <img src="assets/img/process-flow.webp" alt="" width="826" height="335" loading="lazy">
+            <img src="assets/img/messageai-dashboard.webp" alt="" width="1600" height="1216" loading="lazy">
+            <figcaption><span>From my research board</span><span>A real journey map</span><span>How Might We notes</span><span>A shipped user flow</span><span>Live in production</span></figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -354,7 +347,7 @@
   </section>
 </main>
 
-<script src="scripts/site-nav.js?v=20261007p" defer></script>
-<script src="scripts/v2.js?v=20261007p" defer></script>
+<script src="scripts/site-nav.js?v=20261007q" defer></script>
+<script src="scripts/v2.js?v=20261007q" defer></script>
 </body>
 </html>

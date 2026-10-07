@@ -763,58 +763,20 @@ p { text-wrap: pretty; }
 
 /* =========================================================================
    PROCESS: Design Thinking, a pinned onboarding.
-   The section pins while you scroll through five stages. A field of dots
-   reshapes per stage (scatter, focus, clusters, a screen, a loop), the
-   stepper fills like an onboarding, and the stage word rises letter by
-   letter. Without JS it is a plain list; with reduced motion it is tabs.
+   The section pins while you scroll through five stages. The motif is the
+   double diamond itself, drawn to scale on the page: particles flow left to
+   right, spreading where you diverge and pinching where you converge, then
+   circle the Test loop. The active stage gets a marker swipe, both on its
+   word and on its part of the diamond. Without JS it is a plain list; with
+   reduced motion it is tabs and a still drawing.
    ========================================================================= */
 .dt { padding-bottom: clamp(40px, 6vw, 80px); }
 .dt .shead { margin-bottom: clamp(24px, 4vw, 48px); }
 
 .dt__grid {
   display: grid;
-  gap: 28px;
+  gap: 24px;
 }
-
-.dt__nav {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
-}
-.dt__seg {
-  appearance: none;
-  border: 0;
-  background: none;
-  padding: 0 0 6px;
-  font: inherit;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-align: start;
-  cursor: pointer;
-  display: grid;
-  gap: 10px;
-  transition: color 300ms var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
-}
-.dt__seg i {
-  display: block;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--line);
-  overflow: hidden;
-}
-.dt__seg b {
-  display: block;
-  height: 100%;
-  background: var(--ink);
-  transform-origin: 0 50%;
-  transform: scaleX(var(--fill, 0));
-}
-.dt__seg[aria-current="step"] { color: var(--ink); }
-.dt__seg[aria-current="step"] b { background: var(--accent); }
-.dt__seg:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 4px; }
-@media (hover: hover) and (pointer: fine) { .dt__seg:hover { color: var(--ink); } }
 
 .dt__count {
   font-size: 0.9rem;
@@ -827,9 +789,13 @@ p { text-wrap: pretty; }
 .dt__now span { display: inline-block; }
 
 .dt__steps { list-style: none; margin: 0; padding: 0; display: grid; }
-.dt__step { display: grid; gap: 14px; align-content: start; }
+.dt__step { display: grid; gap: 14px; align-content: start; justify-items: start; }
 
 .dt__word {
+  position: relative;
+  isolation: isolate;
+  padding-inline: 0.12em;
+  margin-inline-start: -0.12em;
   font-size: clamp(3rem, 5.6vw, 6.2rem);
   font-weight: 900;
   font-stretch: 118%;
@@ -838,8 +804,27 @@ p { text-wrap: pretty; }
   white-space: nowrap;
 }
 .dt__word .ch { display: inline-block; }
+/* marker swipe, same hand as the hero verbs, one colour per stage */
+.dt__word::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  top: 0.02em;
+  bottom: 0;
+  background: var(--mk, #ffe45c);
+  border-radius: 0.14em 0.36em 0.18em 0.42em / 0.42em 0.26em 0.46em 0.3em;
+  transform: skewX(-8deg) rotate(-1deg) scaleX(0);
+  transform-origin: 0 50%;
+}
+.dt__step.is-on .dt__word,
+html:not(.js) .dt__word { color: #141414; }
+.dt__step.is-on .dt__word::before,
+html:not(.js) .dt__word::before { transform: skewX(-8deg) rotate(-1deg) scaleX(1); }
+
 .dt__lead { font-size: clamp(1.2rem, 1.8vw, 1.5rem); font-weight: 700; font-stretch: 110%; letter-spacing: -0.01em; }
-.dt__text { color: var(--muted); max-width: 44ch; }
+.dt__text { color: var(--muted); max-width: 46ch; }
 .dt__tags { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .dt__tags li {
   padding: 7px 13px;
@@ -849,44 +834,42 @@ p { text-wrap: pretty; }
   font-weight: 500;
 }
 
-.dt__viz {
-  position: relative;
-  border-radius: var(--r-lg);
-  background: var(--ground-2);
-  overflow: hidden;
-  min-height: 320px;
-}
-.dt__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* the diamond sits on the page itself, no panel behind it */
+.dt__viz { position: relative; min-width: 0; }
+.dt__canvas { display: block; width: 100%; height: clamp(150px, 28svh, 290px); }
 
-.dt__mode {
+.dt__labs { position: relative; height: 2.6rem; }
+.dt__lab {
   position: absolute;
-  left: 20px;
-  top: 18px;
+  left: var(--x, 0);
+  top: 0;
+  translate: -50% 0;
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 2px 4px;
+  font: inherit;
   display: grid;
-  height: 1.3em;
-  overflow: hidden;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  justify-items: center;
+  gap: 1px;
   color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 300ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
 }
-.dt__mode span { grid-area: 1 / 1; }
-
-.dt__map { position: absolute; right: 18px; top: 14px; width: 120px; height: auto; }
-.dt__map-base { stroke: var(--line); stroke-width: 1.5; stroke-linejoin: round; }
-.dt__map-run { stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
-.dt__map-dot { fill: var(--accent); }
+.dt__lab small { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+.dt__lab span { font-size: 0.86rem; font-weight: 600; }
+.dt__lab[aria-current="step"] { color: var(--ink); }
+.dt__lab[aria-current="step"] span { font-weight: 800; }
+.dt__lab:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
+@media (hover: hover) and (pointer: fine) { .dt__lab:hover { color: var(--ink); } }
 
 .dt__shots {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  width: min(40%, 260px);
   margin: 0;
   display: grid;
   gap: 8px;
-  rotate: -2.5deg;
+  rotate: -2deg;
 }
 .dt__shots img {
   grid-area: 1 / 1;
@@ -908,15 +891,14 @@ p { text-wrap: pretty; }
 }
 .dt__shots figcaption span { grid-area: 1 / 1; }
 
-/* No JS: a readable list, no pin, no canvas. */
+/* No JS: a readable list, no pin, no drawing. */
 html:not(.js) .dt__viz,
-html:not(.js) .dt__nav,
+html:not(.js) .dt__shots,
 html:not(.js) .dt__count { display: none; }
 html:not(.js) .dt__steps { gap: 48px; }
 
 /* JS: stack the stages and show one at a time. */
 .js .dt__step,
-.js .dt__mode span,
 .js .dt__shots img,
 .js .dt__shots figcaption span { grid-area: 1 / 1; }
 .js .dt__step { visibility: hidden; }
@@ -926,13 +908,13 @@ html:not(.js) .dt__steps { gap: 48px; }
 .js .dt__step.is-on > .dt__lead { transition-delay: 120ms; }
 .js .dt__step.is-on > .dt__text { transition-delay: 180ms; }
 .js .dt__step.is-on > .dt__tags { transition-delay: 240ms; }
-.js .dt__word { overflow: hidden; padding-bottom: 0.06em; }
+.js .dt__word { overflow: hidden; padding-bottom: 0.16em; }
 .js .dt__word .ch { transform: translateY(105%); transition: transform 450ms var(--ease-in-out); }
 .js .dt__step.is-on .dt__word .ch { transform: none; transition: transform 700ms var(--ease-out); transition-delay: calc(var(--n, 0) * 28ms); }
-
-.js .dt__mode span { transform: translateY(110%); transition: transform 500ms var(--ease-out); }
-.js .dt__mode span.is-on { transform: none; }
-.js .dt__mode span.is-off { transform: translateY(-110%); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .dt__step.is-on .dt__word { transition: color 160ms ease 260ms; }
+  .js .dt__step.is-on .dt__word::before { transition: transform 560ms cubic-bezier(0.65, 0, 0.35, 1) 240ms; }
+}
 
 .js .dt__shots img { opacity: 0; transform: translateY(10px) scale(0.96); transition: opacity 350ms ease, transform 600ms var(--ease-out); }
 .js .dt__shots img.is-on { opacity: 1; transform: none; }
@@ -947,37 +929,31 @@ html:not(.js) .dt__steps { gap: 48px; }
   height: 100svh;
   display: flex;
   align-items: center;
-  padding-block: 84px 28px;
+  padding-block: 84px 20px;
 }
-.dt--pin .dt__grid { width: 100%; height: 100%; }
+.dt--pin .dt__grid { width: 100%; }
 
 @media (min-width: 900px) {
   .dt__grid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    grid-template-rows: auto minmax(0, 1fr);
-    column-gap: clamp(32px, 4vw, 64px);
-    row-gap: 36px;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+    column-gap: clamp(32px, 5vw, 80px);
+    row-gap: clamp(16px, 3svh, 36px);
+    align-items: end;
   }
-  .dt__nav { grid-column: 1 / -1; }
-  .dt__copy { align-self: center; }
-  .dt__viz { min-height: 420px; }
-  .dt--pin .dt__viz { min-height: 0; }
+  .dt__copy { grid-column: 1; grid-row: 1; }
+  .dt__shots { grid-column: 2; grid-row: 1; }
+  .dt__viz { grid-column: 1 / -1; grid-row: 2; }
 }
 
 @media (max-width: 899px) {
-  .dt__seg span { font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .dt__seg:not([aria-current="step"]) span { opacity: 0.55; }
   .dt__word { font-size: clamp(2.6rem, 13vw, 4.2rem); }
   .dt__text { font-size: 0.98rem; }
-  .dt__viz { order: -1; min-height: 0; aspect-ratio: 4 / 3; }
-  .dt__nav { order: -2; }
-  .dt__shots { width: 42%; right: 12px; bottom: 12px; }
-  .dt__shots figcaption { display: none; }
-  .dt__map { width: 88px; right: 12px; top: 12px; }
-  .dt__mode { left: 14px; top: 14px; }
-  .dt--pin .dt__pin { padding-block: 72px 16px; align-items: stretch; }
-  .dt--pin .dt__grid { grid-template-rows: auto minmax(0, 1fr) auto; gap: 18px; align-content: start; }
-  .dt--pin .dt__viz { aspect-ratio: auto; height: 100%; min-height: 160px; }
+  .dt__shots { display: none; }
+  .dt__canvas { height: clamp(130px, 27svh, 230px); }
+  .dt__lab { padding-inline: 0; }
+  .dt__lab small { font-size: 0.56rem; letter-spacing: 0.06em; }
+  .dt__lab span { font-size: 0.7rem; }
+  .dt--pin .dt__pin { padding-block: 72px 12px; }
   .dt--pin .dt__tags { display: none; }
   .dt__count { margin-bottom: 8px; }
 }
