@@ -771,7 +771,7 @@ p { text-wrap: pretty; }
    word and on its part of the diamond. Without JS it is a plain list; with
    reduced motion it is tabs and a still drawing.
    ========================================================================= */
-.dt { padding-bottom: clamp(40px, 6vw, 80px); }
+.dt { padding-bottom: clamp(24px, 3vw, 40px); }
 .dt .shead { margin-bottom: clamp(24px, 4vw, 48px); }
 
 .dt__grid {
@@ -894,8 +894,8 @@ html:not(.js) .dt__steps { gap: 48px; }
   top: 0;
   height: 100svh;
   display: flex;
-  align-items: center;
-  padding-block: 84px 20px;
+  align-items: flex-start;
+  padding-block: max(84px, 12svh) 20px;
 }
 .dt--pin .dt__grid { width: 100%; }
 
@@ -905,7 +905,7 @@ html:not(.js) .dt__steps { gap: 48px; }
     column-gap: clamp(32px, 5vw, 80px);
     align-items: center;
   }
-  .dt__viz { width: min(100%, calc(100svh - 150px)); justify-self: end; }
+  .dt__viz { aspect-ratio: 5 / 4; width: min(100%, calc((100svh - 260px) * 1.25)); justify-self: end; }
 }
 
 @media (max-width: 899px) {

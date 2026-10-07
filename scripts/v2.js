@@ -386,7 +386,17 @@
       window.addEventListener('scroll', measure, { passive: true });
       measure();
     }
-    window.addEventListener('resize', function () { build(); measure(); kick(); });
+    /* the pin is a full screen, but its content is shorter: pull the next
+       section up into the empty space under it so there is no dead gap */
+    var pin = $('.dt__pin', root), grid = $('.dt__grid', root);
+    function trim() {
+      track.style.marginBottom = '';
+      var gap = pin.getBoundingClientRect().bottom - grid.getBoundingClientRect().bottom;
+      track.style.marginBottom = -Math.max(0, gap - 16) + 'px';
+    }
+    trim();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(trim);
+    window.addEventListener('resize', function () { build(); trim(); measure(); kick(); });
     new MutationObserver(function () { colors(); kick(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) kick(); }).observe(viz);
