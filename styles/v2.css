@@ -2187,16 +2187,17 @@ html:not(.js) .dt__steps { gap: 48px; }
   flex: 1 1 0;
   min-width: 0;
   border-radius: var(--r-lg);
-  background: var(--tint);
+  background: var(--ground-2);
   overflow: hidden;
-  transition: flex-grow 700ms var(--ease-out);
+  transition: flex-grow 700ms var(--ease-out), background-color 450ms ease;
 }
-.tzp.is-open { flex-grow: 4.2; }
+.tzp.is-open { flex-grow: 4.2; background: var(--accent); }
+.tzp.is-open .tzp__link { color: #141414; }
 .tzp__link {
   position: absolute;
   inset: 0;
   display: block;
-  color: #141414;
+  color: var(--ink);
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
