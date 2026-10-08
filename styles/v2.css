@@ -901,7 +901,6 @@ html:not(.js) .dt__steps { gap: 48px; }
 }
 .dt--pin .dt__inner { display: flex; flex-direction: column; min-height: 0; }
 .dt--pin .dt__grid { flex: 1; min-height: 0; }
-.dt--pin .dt__track { margin-top: calc(-1 * clamp(40px, 6vw, 80px)); }
 .dt--pin .dt__copy { align-self: start; padding-top: clamp(8px, 3svh, 32px); }
 .dt--pin .dt__grid { width: 100%; }
 
@@ -2312,7 +2311,7 @@ html:not(.js) .dt__steps { gap: 48px; }
   margin-top: clamp(20px, 3vw, 32px);
 }
 .tz__note { color: var(--muted); font-size: 0.95rem; }
-#work { padding-bottom: clamp(24px, 3vw, 40px); }
+#work { padding-bottom: clamp(16px, 4vw, 60px); }
 
 /* =========================================================================
    AI TOOLS (home). Tabs on the left, a small working window on the right
@@ -2325,7 +2324,7 @@ html:not(.js) .dt__steps { gap: 48px; }
   --win-dim: rgba(237, 235, 232, 0.64);
   position: relative;
   z-index: 1;
-  padding-block: clamp(40px, 5vw, 72px);
+  padding-block: clamp(40px, 6vw, 88px) clamp(80px, 10vw, 144px);
   background: var(--ground);
 }
 
