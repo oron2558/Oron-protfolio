@@ -53,7 +53,7 @@ const labelled = (label, value) => new Paragraph({
 
 const doc = new Document({
   creator: 'Oron Turgeman',
-  title: 'Oron Turgeman — Product Manager / Project Manager / Product Designer',
+  title: 'Oron Turgeman — Product Designer (UX/UI)',
   description: 'CV',
   numbering: {
     config: [{
@@ -84,7 +84,7 @@ const doc = new Document({
       }),
       new Paragraph({
         spacing: { after: 60 },
-        children: [t('Product Manager  |  Project Manager  |  Product Designer', { bold: true, size: 22, color: MUTED })],
+        children: [t('Product Designer (UX/UI)', { bold: true, size: 22, color: MUTED })],
       }),
       new Paragraph({
         spacing: { after: 40 },
@@ -103,12 +103,16 @@ const doc = new Document({
       new Paragraph({
         spacing: { after: 60 },
         children: [
-          t('Product Manager and Project Manager', { bold: true, size: 20 }),
-          t(' with 6+ years leading ', { size: 20 }),
+          t('Product Designer (UX/UI)', { bold: true, size: 20 }),
+          t(' who ships real products, designing end-to-end from ', { size: 20 }),
+          t('user research and product characterization (PRD)', { bold: true, size: 20 }),
+          t(' through ', { size: 20 }),
+          t('flows, prototypes, high-fidelity UI and design systems', { bold: true, size: 20 }),
+          t(' to launch and iteration. 6+ years leading ', { size: 20 }),
           t('cross-functional projects', { bold: true, size: 20 }),
-          t(' in advertising and digital, now building and shipping digital products end-to-end. Advertising project leadership is the same discipline as tech product management — ', { size: 20 }),
-          t('briefs, requirements, stakeholders, budgets, deadlines and measurable results', { bold: true, size: 20 }),
-          t(' — applied to products instead of campaigns.', { size: 20 }),
+          t(' in advertising and digital keep the design tied to ', { size: 20 }),
+          t('stakeholders, budgets, deadlines and measurable results', { bold: true, size: 20 }),
+          t('.', { size: 20 }),
         ],
       }),
       new Paragraph({
@@ -117,8 +121,8 @@ const doc = new Document({
           t('Two products live in the market', { bold: true, size: 20 }),
           t(', including an iOS SaaS app with ', { size: 20 }),
           t('paying subscribers', { bold: true, size: 20 }),
-          t(', 486 registered users and a 5.0-star App Store rating — owned solo from ', { size: 20 }),
-          t('market research and product characterization (PRD)', { bold: true, size: 20 }),
+          t(', 486 registered users and a 5.0-star App Store rating — designed and owned solo from ', { size: 20 }),
+          t('market research', { bold: true, size: 20 }),
           t(' through ', { size: 20 }),
           t('UX/UI, delivery, launch and paid go-to-market', { bold: true, size: 20 }),
           t('. Fluent in Hebrew, English and Spanish.', { size: 20 }),
@@ -127,15 +131,15 @@ const doc = new Document({
 
       // -------------------------------------------------------- competencies
       h('CORE COMPETENCIES'),
+      labelled('UX / Product Design', 'User Flows · Information Architecture · Wireframing · Prototyping · High-Fidelity UI · Design Systems · Usability Testing · Accessibility · Mobile (iOS) & Web'),
+      labelled('Research & Strategy', 'Market Research · Competitive Analysis · Pricing Strategy · User Research & Interviews · Personas & User Journeys · Business Requirements Analysis · Go-to-Market Strategy'),
       labelled('Product Management', 'Product Discovery · Product Requirements (PRD) · Product Characterization · Roadmap Planning · Backlog & Prioritization · MVP Definition · Product Lifecycle · KPIs & Success Metrics · Product Strategy'),
       labelled('Project Management', 'End-to-End Delivery · Cross-Functional Leadership · Stakeholder Management · Scope & Timeline Management · Budget Management · Vendor Management · Risk & Dependency Tracking · Agile Ways of Working'),
-      labelled('Research & Strategy', 'Market Research · Competitive Analysis · Pricing Strategy · User Research & Interviews · Personas & User Journeys · Business Requirements Analysis · Go-to-Market Strategy'),
-      labelled('UX / Product Design', 'User Flows · Information Architecture · Wireframing · Prototyping · High-Fidelity UI · Design Systems · Usability Testing · Accessibility · Mobile (iOS) & Web'),
 
       // ---------------------------------------------------------- experience
       h('PROFESSIONAL EXPERIENCE'),
 
-      ...role('Founder & Product Manager — Independent Digital Products', 'Self-employed  ·  2 live products in the market', '2024 – Present'),
+      ...role('Founder & Product Designer — Independent Digital Products', 'Self-employed  ·  2 live products in the market', '2024 – Present'),
       bullet([B('Meashrim in Click'), ' (iOS SaaS, event RSVP & seating): built and launched a live product with ', B('486 registered users'), ', ', B('paying subscribers'), ' and a ', B('5.0-star App Store rating'), '.']),
       bullet(['Owned the ', B('full product lifecycle'), ' solo: market research, competitive and pricing analysis, ', B('product characterization (PRD)'), ', UX/UI, delivery, App Store release and post-launch iteration.']),
       bullet(['Ran ', B('market and competitor research'), ' across incumbent RSVP vendors — average price per record, bundled offerings and gaps — and used it to set a ', B('penetration-pricing'), ' and single-system positioning strategy.']),
