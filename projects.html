@@ -3,164 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ORON. | Work</title>
+  <title>Work | Oron Turgeman, Product Designer (UX/UI)</title>
+  <meta name="description" content="Case studies by Oron Turgeman: Meashrim in Click (live iOS app, 486 users, 5.0 rating), MyPlanner, MessAge and Woofio. Research to shipped UI.">
+  <link rel="canonical" href="https://www.oronturgemanux.com/projects.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <meta name="description" content="Selected product design work by Oron Turgeman — AI, SaaS and mobile case studies, plus a shipped iOS product.">
+  <meta name="theme-color" content="#edebe8">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Oron Turgeman">
+  <meta property="og:title" content="Work | Oron Turgeman, Product Designer (UX/UI)">
+  <meta property="og:description" content="Case studies by Oron Turgeman: Meashrim in Click (live iOS app, 486 users, 5.0 rating), MyPlanner, MessAge and Woofio. Research to shipped UI.">
+  <meta property="og:url" content="https://www.oronturgemanux.com/projects.html">
+  <meta property="og:image" content="https://www.oronturgemanux.com/assets/og/og-work.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
   <script>
-    (function() {
-      var t = localStorage.getItem('oronflix-theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
+    (function () {
+      var d = document.documentElement, t = 'light';
+      try { t = localStorage.getItem('oronflix-theme') || 'light'; } catch (e) {}
+      d.setAttribute('data-theme', t);
+      d.classList.add('js');
     })();
   </script>
 
-  <link rel="stylesheet" href="styles/oronflix-base.css?v=20260807">
-  <link rel="stylesheet" href="styles/oronflix-browse.css?v=20260807">
-  <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260807">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20260807">
+  <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261008c">
+  <link rel="stylesheet" href="styles/v2.css?v=20261008c">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ==================== NAVIGATION ==================== -->
-<!-- ==================== SITE NAV ==================== -->
-<nav class="snav snav--ghost">
-  <a href="index.html" class="snav__logo">ORON.</a>
+<nav class="snav snav--ghost" aria-label="Main">
+  <a href="index.html" class="snav__logo" aria-label="Oron Turgeman, home">ORON.</a>
   <div class="snav__links">
     <a href="index.html" class="snav__link">Home</a>
-    <a href="projects.html" class="snav__link snav__link--active">Work</a>
+    <a href="projects.html" class="snav__link snav__link--active" aria-current="page">Work</a>
     <a href="about.html" class="snav__link">About</a>
     <a href="resume.html" class="snav__link">Resume / CV</a>
-    <a href="index.html#contact" class="snav__link">Contact</a>
+    <a href="#contact" class="snav__link">Get in touch</a>
   </div>
   <div class="snav__actions">
-    <button class="snav__btn snav__theme" type="button" aria-label="Toggle theme"></button>
+    <button class="snav__btn snav__theme" type="button" aria-label="Toggle dark mode"></button>
     <button class="snav__burger" type="button" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ==================== PAGE HEAD ==================== -->
-<header class="pf-page-hero">
-  <div class="pf-section">
-    <p class="pf-eyebrow">Selected Work</p>
-    <h1 class="pf-page-hero__title">Products, designed end&#8209;to&#8209;end.</h1>
-    <p class="pf-page-hero__sub">Each started as a real problem and a blank canvas. I owned the whole arc — research, strategy, UX/UI and the build. <strong>Two are real products I built and run</strong> — one of them live in the App Store with paying customers; the other two are end-to-end concepts. Every case study walks through the thinking, not just the screens.</p>
-  </div>
-</header>
+<main id="main">
+  <header class="wrap phead">
+    <p class="shead__num" style="margin-bottom:28px">Selected work</p>
+    <h1 class="phead__title"><span class="mline"><span>Work,</span></span><span class="mline"><span>end to end.</span></span></h1>
+    <p class="phead__lede rv">Each project started as a real problem and a blank canvas, and I owned the whole arc: research, strategy, UX/UI and the build. Two are real products I built and run, one of them live in the App Store with paying customers. Two are end-to-end concepts.</p>
+  </header>
 
-<!-- ==================== PROJECT SHOWCASE CARDS ==================== -->
-<main>
-  <div class="pf-feats">
-    <a href="casestudy-mba.html" class="pf-feat pf-feat--live">
-      <div class="pf-feat__media">
-        <span class="pf-feat__ribbon">Live · Paid</span>
-        <div class="pf-feat__phones">
-          <div class="pf-feat__phone pf-feat__phone--back">
-            <img src="mba-phone-admin-v2.jpg" alt="Meashrim in Click admin system on iPhone" loading="lazy">
-          </div>
-          <div class="pf-feat__phone pf-feat__phone--front">
-            <img src="mba-phone-dashboard-v2.jpg" alt="Meashrim in Click event dashboard on iPhone" loading="lazy">
-          </div>
-        </div>
-      </div>
-      <div class="pf-feat__body">
-        <span class="pf-feat__badge">Real product · in the market</span>
-        <h2 class="pf-feat__title">Meashrim in Click</h2>
-        <p class="pf-feat__desc">RSVP, seating and gifting in one system for couples — I characterized, built and launched it on my own, and <strong>real customers pay a subscription to use it.</strong></p>
-        <div class="pf-feat__stats">
-          <div><b>486</b><span>Registered users</span></div>
-          <div><b>5.0★</b><span>App Store rating</span></div>
-          <div><b>Paying</b><span>Subscribers</span></div>
-        </div>
-        <span class="pf-feat__cta">View the full case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </div>
-    </a>
+  <nav class="pindex" aria-label="Projects on this page"><ol>
+    <li><a href="#p-ma" data-index="ma"><span>01</span><b>MessAge</b></a></li>
+    <li><a href="#p-wf" data-index="wf"><span>02</span><b>Woofio</b></a></li>
+    <li><a href="#p-mba" data-index="mba"><span>03</span><b>Meashrim in Click</b></a></li>
+    <li><a href="#p-mp" data-index="mp"><span>04</span><b>MyPlanner</b></a></li>
+  </ol></nav>
 
-    <a href="casestudy-woofio.html" class="pf-feat">
-      <div class="pf-feat__media">
-        <span class="pf-feat__ribbon">Case study</span>
-        <div class="pf-feat__phones">
-          <div class="pf-feat__phone pf-feat__phone--back">
-            <img src="woofio-phone-back-v2.jpg" alt="Woofio onboarding screen on iPhone" loading="lazy">
-          </div>
-          <div class="pf-feat__phone pf-feat__phone--front">
-            <img src="woofio-phone-front-v2.jpg" alt="Woofio pet profile screen on iPhone" loading="lazy">
-          </div>
-        </div>
+  <section class="proj" id="p-ma" data-proj style="--tint:#dcd9f2" aria-labelledby="t-ma">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">01 / 04</span><span class="chip">Concept, projected impact</span></div>
+        <h2 class="proj__title" id="t-ma">MessAge</h2>
+        <p class="proj__sub">AI messaging that answers leads across WhatsApp, Instagram and email</p>
+        <p class="proj__desc">For solo professionals who lose work because they can't reply while they're working.</p>
+        <div class="proj__metrics"><div><b>73%</b><span>Faster lead response (projected)</span></div><div><b>30%</b><span>Leads lost today</span></div><div><b>12</b><span>User interviews</span></div></div>
+        <a class="btn" href="casestudy-ai-crm.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="pf-feat__body">
-        <span class="pf-feat__badge">Concept · projected impact</span>
-        <h2 class="pf-feat__title">All-in-One Dog Care Platform</h2>
-        <p class="pf-feat__desc">From vet tracking to dog-walker booking — <strong>one platform families can trust</strong>, replacing the handful of apps dog owners juggle today.</p>
-        <div class="pf-feat__stats">
-          <div><b>85%</b><span>Fewer missed vet visits</span></div>
-          <div><b>4+</b><span>Apps replaced</span></div>
-          <div><b>6 wks</b><span>End-to-end</span></div>
-        </div>
-        <span class="pf-feat__cta">View the full case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </div>
-    </a>
+      <a class="proj__stage" href="casestudy-ai-crm.html" data-tilt aria-label="Open the MessAge case study">
+        <span class="proj__num" aria-hidden="true">01</span>
+        <div class="proj__rig"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="frame__screen"><img class="pan" src="assets/img/work-ma-inbox.webp" alt="MessAge unified inbox with a WhatsApp conversation" width="1600" height="1000" loading="lazy"></div></div><div class="frame frame--card frame--float"><img src="assets/img/work-ma-agent.webp" alt="MessAge AI sales agent chat preview" width="520" height="570" loading="lazy"></div></div>
+      </a>
+    </div>
+  </section>
 
-    <a href="casestudy-ai-crm.html" class="pf-feat">
-      <div class="pf-feat__media">
-        <span class="pf-feat__ribbon">Case study</span>
-        <img src="crm-dash-overview-v6.webp" alt="MessAge omnichannel analytics dashboard" loading="lazy">
+  <section class="proj" id="p-wf" data-proj style="--tint:#f6d5c8" aria-labelledby="t-wf">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">02 / 04</span><span class="chip">Concept, projected impact</span></div>
+        <h2 class="proj__title" id="t-wf">Woofio</h2>
+        <p class="proj__sub">One dog-care app, from vet tracking to dog-walker booking</p>
+        <p class="proj__desc">Replaces the handful of apps dog owners juggle today with one platform families can trust.</p>
+        <div class="proj__metrics"><div><b>85%</b><span>Fewer missed vet visits (projected)</span></div><div><b>4+</b><span>Apps replaced</span></div><div><b>6 wks</b><span>End to end</span></div></div>
+        <a class="btn" href="casestudy-woofio.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="pf-feat__body">
-        <span class="pf-feat__badge">Concept · projected impact</span>
-        <h2 class="pf-feat__title">AI Messaging for Solo Professionals</h2>
-        <p class="pf-feat__desc">An AI platform that answers leads across WhatsApp, Instagram and email — <strong>turning missed messages into booked work</strong>.</p>
-        <div class="pf-feat__stats">
-          <div><b>73%</b><span>Faster lead response</span></div>
-          <div><b>30%</b><span>Leads lost today</span></div>
-          <div><b>12</b><span>User interviews</span></div>
-        </div>
-        <span class="pf-feat__cta">View the full case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </div>
-    </a>
+      <a class="proj__stage" href="casestudy-woofio.html" data-tilt aria-label="Open the Woofio case study">
+        <span class="proj__num" aria-hidden="true">02</span>
+        <div class="proj__rig"><div class="trio"><div class="frame frame--phone trio__a" style="--speed:0.7"><div class="frame__screen"><img class="pan" src="assets/img/work-wf-health.webp" alt="Woofio vet and health screen" width="520" height="1490" loading="lazy"></div></div><div class="frame frame--phone trio__b" style="--speed:1"><div class="frame__screen"><img class="pan" src="assets/img/work-wf-home.webp" alt="Woofio home screen with pets and services" width="520" height="1868" loading="lazy"></div></div><div class="frame frame--phone trio__c" style="--speed:1.3"><div class="frame__screen"><img class="pan" src="assets/img/work-wf-walker.webp" alt="Woofio dog walkers nearby screen" width="520" height="2645" loading="lazy"></div></div></div></div>
+      </a>
+    </div>
+  </section>
 
-    <a href="casestudy-myplanner.html" class="pf-feat">
-      <div class="pf-feat__media">
-        <span class="pf-feat__ribbon">Real product</span>
-        <img src="myplanner-card-v2.jpg" alt="MyPlanner wedding planning dashboard" loading="lazy">
+  <section class="proj" id="p-mba" data-proj style="--tint:#ffd43b" aria-labelledby="t-mba">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">03 / 04</span><span class="chip chip--live">Live in the App Store</span></div>
+        <h2 class="proj__title" id="t-mba">Meashrim in Click</h2>
+        <p class="proj__sub">RSVP, seating and gifting for couples, in one iOS app</p>
+        <p class="proj__desc">I characterized, designed, built and launched it on my own. Couples pay a subscription to run their event with it.</p>
+        <div class="proj__metrics"><div><b>486</b><span>Registered users</span></div><div><b>5.0</b><span>App Store rating</span></div><div><b>Paid</b><span>Subscribers</span></div></div>
+        <a class="btn" href="casestudy-mba.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="pf-feat__body">
-        <span class="pf-feat__badge">Real product · built and run by me</span>
-        <h2 class="pf-feat__title">Smart Wedding Planning Platform</h2>
-        <p class="pf-feat__desc">AI-powered event management — <strong>budget tracking, suppliers and cashback</strong> in one place, replacing the ₪8,000+ human planner.</p>
-        <div class="pf-feat__stats">
-          <div><b>₪8K+</b><span>Planner cost replaced</span></div>
-          <div><b>73%</b><span>Couples over budget</span></div>
-          <div><b>12</b><span>User interviews</span></div>
-        </div>
-        <span class="pf-feat__cta">View the full case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
+      <a class="proj__stage" href="casestudy-mba.html" data-tilt aria-label="Open the Meashrim in Click case study">
+        <span class="proj__num" aria-hidden="true">03</span>
+        <div class="proj__rig"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="frame__screen"><img class="pan" src="assets/img/work-mba-guests.webp" alt="Meashrim in Click guest list dashboard with 327 invited guests" width="1400" height="875" loading="lazy"></div></div><div class="frame frame--phone frame--float" style="--speed:1"><div class="frame__screen"><img class="pan" src="assets/img/mba-phone-dashboard.webp" alt="Meashrim in Click event dashboard on iPhone" width="720" height="1565" loading="lazy"></div></div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="proj" id="p-mp" data-proj style="--tint:#10201f" aria-labelledby="t-mp">
+    <div class="proj__pin wrap">
+      <div class="proj__text">
+        <div class="proj__top"><span class="proj__idx">04 / 04</span><span class="chip chip--real">Real product, built and run by me</span></div>
+        <h2 class="proj__title" id="t-mp">MyPlanner</h2>
+        <p class="proj__sub">AI wedding planning: budget, suppliers and cashback in one place</p>
+        <p class="proj__desc">A working system in real use that replaces a human planner who costs couples ₪8,000 or more.</p>
+        <div class="proj__metrics"><div><b>₪8K+</b><span>Planner cost replaced</span></div><div><b>73%</b><span>Couples go over budget</span></div><div><b>12</b><span>User interviews</span></div></div>
+        <a class="btn" href="casestudy-myplanner.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn__arrow" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
-    </a>
-  </div>
+      <a class="proj__stage" href="casestudy-myplanner.html" data-tilt aria-label="Open the MyPlanner case study">
+        <span class="proj__num" aria-hidden="true">04</span>
+        <div class="proj__rig"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="frame__screen"><img class="pan" src="assets/img/work-mp-budget.webp" alt="MyPlanner budget screen with planned, spent and remaining amounts" width="1400" height="2278" loading="lazy"></div></div></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="cursor-badge" aria-hidden="true"><span>Open<br>case</span></div>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="shead__num" style="margin-bottom:32px">Contact</p>
+      <h2 class="contact__title rv" id="contact-title">Get in<br>touch<span class="dot">.</span></h2>
+      <p class="contact__lede rv" style="--d:1">Open to product design roles. If you have a product to take from 0 to 100, I'd like to hear about it.</p>
+      <div class="contact__actions rv" style="--d:2">
+        <a class="btn btn--accent copy-email" href="mailto:oron2558@gmail.com" data-email="oron2558@gmail.com" data-track="contact-email">
+          oron2558@gmail.com
+          <span class="copy-email__done" aria-hidden="true">Copied</span>
+        </a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener" data-track="contact-linkedin">LinkedIn</a>
+        <a class="btn btn--ghost" href="Oron_Turgeman_Resume.pdf" download data-track="cv-download-en">CV (English)</a>
+        <a class="btn btn--ghost" href="Oron_Turgeman_Resume_HE.pdf" download data-track="cv-download-he" lang="he">קורות חיים</a>
+      </div>
+      <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+
+      <footer class="foot">
+        <span>&copy; 2026 Oron Turgeman</span>
+        <nav aria-label="Footer">
+          <a href="projects.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="resume.html">Resume</a>
+          <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+      </footer>
+    </div>
+  </section>
 </main>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="onf-footer" id="contact">
-  <div class="onf-footer__left">
-    <span class="onf-footer__name">ORON.</span>
-    <div class="onf-footer__links">
-      <a href="mailto:oron2558@gmail.com" class="onf-footer__link">oron2558@gmail.com</a>
-      <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" class="onf-footer__link">LinkedIn</a>
-    </div>
-  </div>
-  <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
-</footer>
-
-<script src="scripts/oronflix.js?v=20260807"></script>
-<script src="scripts/site-nav.js?v=20260807" defer></script>
+<script src="scripts/site-nav.js?v=20261008c" defer></script>
+<script src="scripts/v2.js?v=20261008c" defer></script>
 </body>
 </html>

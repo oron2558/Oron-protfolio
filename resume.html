@@ -3,613 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ORON. | Resume — Product &amp; Project Manager</title>
+  <title>Resume | Oron Turgeman</title>
+  <meta name="description" content="Resume of Oron Turgeman, Product Designer (UX/UI): from user research to high-fidelity UI, with two products live in the market. Download the PDF in English or Hebrew.">
+  <link rel="canonical" href="https://www.oronturgemanux.com/resume.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <meta name="description" content="Oron Turgeman — Product &amp; Project Manager. Advertising/PM and strategy background, founder of a shipped iOS SaaS product, UX-driven.">
+  <meta name="theme-color" content="#edebe8">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Oron Turgeman">
+  <meta property="og:title" content="Resume | Oron Turgeman">
+  <meta property="og:description" content="Product Designer (UX/UI) with two products live in the market.">
+  <meta property="og:url" content="https://www.oronturgemanux.com/resume.html">
+  <meta property="og:image" content="https://www.oronturgemanux.com/assets/og/og-about.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
   <script>
-    (function() {
-      var t = localStorage.getItem('oronflix-theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
+    (function () {
+      var d = document.documentElement, t = 'light';
+      try { t = localStorage.getItem('oronflix-theme') || 'light'; } catch (e) {}
+      d.setAttribute('data-theme', t);
+      d.classList.add('js');
     })();
   </script>
 
-  <link rel="stylesheet" href="styles/oronflix-base.css?v=20260807">
-  <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260807">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20260807">
-  <style>
-    body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: var(--font-primary);
-      min-height: 100vh;
-    }
-
-    /* ==================== RESUME LAYOUT ==================== */
-
-    .resume {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 120px 32px 80px;
-    }
-
-    /* Header */
-    .resume-header {
-      margin-bottom: 56px;
-    }
-
-    .resume-name {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      color: var(--text-white);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .resume-role {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--accent-light);
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .resume-contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    .resume-contact a {
-      color: var(--text-secondary);
-      transition: color 0.2s;
-    }
-
-    .resume-contact a:hover {
-      color: var(--accent-light);
-    }
-
-    .resume-contact__item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .resume-contact__item svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      stroke: var(--text-muted);
-    }
-
-    /* Divider */
-    .resume-divider {
-      height: 1px;
-      background: var(--border-subtle);
-      margin: 40px 0;
-    }
-
-    /* Section */
-    .resume-section {
-      margin-bottom: 48px;
-    }
-
-    .resume-section__title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--netflix-red);
-      margin-bottom: 24px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    /* Summary */
-    .resume-summary {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      max-width: 780px;
-    }
-
-    .resume-summary strong {
-      color: var(--text-white);
-      font-weight: 600;
-    }
-
-    /* Experience item */
-    .resume-exp {
-      margin-bottom: 36px;
-      position: relative;
-      padding-left: 20px;
-      border-left: 2px solid var(--border-subtle);
-    }
-
-    .resume-exp:last-child {
-      margin-bottom: 0;
-    }
-
-    .resume-exp::before {
-      content: '';
-      position: absolute;
-      left: -5px;
-      top: 6px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .resume-exp__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-
-    .resume-exp__title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-white);
-    }
-
-    .resume-exp__date {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    .resume-exp__company {
-      font-size: 0.9rem;
-      color: var(--accent-light);
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-
-    .resume-exp__list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .resume-exp__list li {
-      position: relative;
-      padding-left: 16px;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-
-    .resume-exp__list li::before {
-      content: '›';
-      position: absolute;
-      left: 0;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    /* Education */
-    .resume-edu {
-      margin-bottom: 24px;
-      padding-left: 20px;
-      border-left: 2px solid var(--border-subtle);
-      position: relative;
-    }
-
-    .resume-edu::before {
-      content: '';
-      position: absolute;
-      left: -5px;
-      top: 6px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .resume-edu__name {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-white);
-      margin-bottom: 2px;
-    }
-
-    .resume-edu__detail {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* Skills grid */
-    .resume-skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .resume-skill {
-      padding: 8px 18px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 100px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-primary);
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .resume-skill:hover {
-      border-color: var(--accent);
-      background: var(--bg-card-hover);
-    }
-
-    .resume-skill--primary {
-      background: var(--accent-glow);
-      border-color: rgba(224, 86, 127, 0.3);
-      color: var(--accent-light);
-    }
-
-    /* Languages */
-    .resume-langs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .resume-lang {
-      padding: 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .resume-lang__name {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-white);
-      margin-bottom: 4px;
-    }
-
-    .resume-lang__level {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* SaaS Product callout */
-    .resume-product {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hover);
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-top: 12px;
-    }
-
-    .resume-product__badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(229, 9, 20, 0.15);
-      border: 1px solid rgba(229, 9, 20, 0.3);
-      border-radius: 100px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #ff6b6b;
-      margin-bottom: 12px;
-    }
-
-    .resume-product__title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-white);
-      margin-bottom: 8px;
-    }
-
-    .resume-product__desc {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-
-    /* CTA */
-    .resume-cta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 48px;
-    }
-
-    .resume-cta__btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 700;
-      transition: all 0.2s;
-    }
-
-    .resume-cta__btn--primary {
-      background: var(--text-white);
-      color: #111;
-    }
-
-    .resume-cta__btn--primary:hover {
-      background: rgba(255,255,255,0.85);
-    }
-
-    .resume-cta__btn--secondary {
-      background: var(--bg-card);
-      color: var(--text-white);
-      border: 1px solid var(--border-hover);
-    }
-
-    .resume-cta__btn--secondary:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--accent);
-    }
-
-    .resume-cta__btn svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    /* Print styles */
-    @media print {
-      .onf-nav, .resume-cta { display: none; }
-      .resume { padding-top: 20px; }
-      body { background: #fff; color: #111; }
-      .resume-name, .resume-exp__title, .resume-edu__name,
-      .resume-lang__name, .resume-product__title { color: #111; }
-      .resume-role { color: #e0567f; }
-      .resume-section__title { color: #e50914; }
-      .resume-exp, .resume-edu { border-color: #ddd; }
-      .resume-exp::before, .resume-edu::before { background: #e0567f; }
-      .resume-product { border-color: #ddd; background: #f9f9f9; }
-      .resume-skill { background: #f0f0f0; border-color: #ddd; color: #333; }
-      .resume-lang { background: #f9f9f9; border-color: #ddd; }
-    }
-
-    /* ==================== LIGHT MODE ==================== */
-    [data-theme="light"] .resume-summary,
-    [data-theme="light"] .resume-exp__list li,
-    [data-theme="light"] .resume-product__desc {
-      color: #4a4a5a;
-    }
-
-    [data-theme="light"] .resume-contact {
-      color: #5a5a6a;
-    }
-
-    [data-theme="light"] .resume-contact a {
-      color: #5a5a6a;
-    }
-
-    [data-theme="light"] .resume-skill {
-      background: #f0f0f5;
-      color: #333;
-      border-color: #ddd;
-    }
-
-    [data-theme="light"] .resume-lang {
-      background: #f5f5fa;
-      border-color: #ddd;
-    }
-
-    [data-theme="light"] .resume-product {
-      background: #f5f5fa;
-      border-color: #ddd;
-    }
-
-    /* De-Netflix: section titles use brand accent, not red */
-    [data-theme="light"] .resume-section__title {
-      color: #e0567f;
-    }
-
-    /* Fix primary CTA: --text-white is dark in light theme, so set explicitly */
-    [data-theme="light"] .resume-cta__btn--primary {
-      background: #14142b;
-      color: #ffffff;
-    }
-    [data-theme="light"] .resume-cta__btn--primary:hover {
-      background: #000000;
-    }
-
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 640px) {
-      .resume {
-        padding: 100px 20px 60px;
-      }
-
-      .resume-exp__header {
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .resume-langs {
-        grid-template-columns: 1fr;
-      }
-
-      .resume-contact {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .resume-product {
-        padding: 20px;
-      }
-    }
-  
-
-    /* Resume stays on a warm, readable surface even when the site theme is dark. */
-    [data-theme="dark"] body {
-      --bg-primary: #f2eee7;
-      --bg-secondary: #ebe5dc;
-      --bg-card: #ffffff;
-      --bg-card-hover: #fff7fa;
-      --text-primary: #17181c;
-      --text-secondary: #4d4850;
-      --text-muted: #68616a;
-      --text-white: #17181c;
-      --border-subtle: #d8d0c6;
-      --accent-light: #d83f70;
-      --accent-glow: rgba(216, 63, 112, 0.11);
-      background: #f2eee7;
-      color: #17181c;
-    }
-
-    [data-theme="dark"] .resume-summary,
-    [data-theme="dark"] .resume-exp__list li,
-    [data-theme="dark"] .resume-product__desc,
-    [data-theme="dark"] .resume-contact,
-    [data-theme="dark"] .resume-contact a {
-      color: #514b53;
-    }
-
-    [data-theme="dark"] .resume-section {
-      border-color: #d8d0c6;
-    }
-
-    [data-theme="dark"] .resume-exp,
-    [data-theme="dark"] .resume-edu {
-      border-color: #d8d0c6;
-    }
-
-    [data-theme="dark"] .resume-skill {
-      background: #fff7fa;
-      border-color: #efbfd0;
-      color: #61243a;
-    }
-
-    [data-theme="dark"] .resume-lang,
-    [data-theme="dark"] .resume-product {
-      background: #ffffff;
-      border-color: #d8d0c6;
-      color: #17181c;
-    }
-
-    [data-theme="dark"] .resume-lang__name,
-    [data-theme="dark"] .resume-product__title {
-      color: #17181c;
-    }
-
-    [data-theme="dark"] .resume-cta__btn--primary {
-      background: #17181c;
-      color: #ffffff;
-    }
-
-    [data-theme="dark"] .resume-cta__btn--primary:hover {
-      background: #d83f70;
-      color: #ffffff;
-    }
-
-    [data-theme="dark"] .snav__link { color: #4d4850; }
-    [data-theme="dark"] .snav__link:hover,
-    [data-theme="dark"] .snav__link--active { color: #17181c; }
-    [data-theme="dark"] .snav__theme,
-    [data-theme="dark"] .snav__burger { color: #17181c; border-color: #17181c; }
-</style>
+  <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261008c">
+  <link rel="stylesheet" href="styles/v2.css?v=20261008c">
 </head>
-<body>
+<body class="cv-page">
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ==================== NAVIGATION ==================== -->
-<!-- ==================== SITE NAV ==================== -->
-<nav class="snav snav--ghost">
-  <a href="index.html" class="snav__logo">ORON.</a>
+<nav class="snav snav--ghost" aria-label="Main">
+  <a href="index.html" class="snav__logo" aria-label="Oron Turgeman, home">ORON.</a>
   <div class="snav__links">
     <a href="index.html" class="snav__link">Home</a>
     <a href="projects.html" class="snav__link">Work</a>
     <a href="about.html" class="snav__link">About</a>
-    <a href="resume.html" class="snav__link snav__link--active">Resume / CV</a>
-    <a href="index.html#contact" class="snav__link">Contact</a>
+    <a href="resume.html" class="snav__link snav__link--active" aria-current="page">Resume / CV</a>
+    <a href="index.html#contact" class="snav__link">Get in touch</a>
   </div>
   <div class="snav__actions">
-    <button class="snav__btn snav__theme" type="button" aria-label="Toggle theme"></button>
+    <button class="snav__btn snav__theme" type="button" aria-label="Toggle dark mode"></button>
     <button class="snav__burger" type="button" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ==================== RESUME ==================== -->
-<main class="resume">
-
-  <!-- Header -->
-  <header class="resume-header">
-    <h1 class="resume-name">Oron Turgeman</h1>
-    <p class="resume-role">Product Manager · Project Manager · Product Designer</p>
-    <div class="resume-contact">
-      <span class="resume-contact__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+<main id="main" class="wrap cv">
+  <header class="cv-head">
+    <p class="shead__num">Resume / CV</p>
+    <h1 class="cv-head__name">Oron<br>Turgeman</h1>
+    <div class="cv-head__row">
+      <p class="cv-head__role">Product Designer (UX/UI)</p>
+      <div class="cv-head__cta">
+        <a class="btn" href="Oron_Turgeman_Resume.pdf" download data-track="cv-download-en">
+          <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
+          Download PDF
+        </a>
+        <a class="btn btn--ghost" href="Oron_Turgeman_Resume_HE.pdf" download data-track="cv-download-he" hreflang="he">Hebrew PDF</a>
+      </div>
+    </div>
+    <div class="cv-contact">
+      <span class="cv-contact__item">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span>Hadera, Israel</span>
       </span>
-      <span class="resume-contact__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.94.36 1.86.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.87.34 1.79.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="cv-contact__item">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.94.36 1.86.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.87.34 1.79.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg>
         <a href="tel:+972524541258">052-4541258</a>
       </span>
-      <span class="resume-contact__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span class="cv-contact__item">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <a href="mailto:oron2558@gmail.com">oron2558@gmail.com</a>
       </span>
-      <span class="resume-contact__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span class="cv-contact__item">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         <a href="https://www.oronturgemanux.com" target="_blank" rel="noopener">oronturgemanux.com</a>
       </span>
-      <span class="resume-contact__item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V9.99H6.01V17h2.33zM7.17 8.93a1.35 1.35 0 1 0 0-2.7 1.35 1.35 0 0 0 0 2.7zM18 17v-3.85c0-2.06-1.1-3.02-2.57-3.02-1.19 0-1.72.65-2.02 1.11v-.95h-2.33c.03.66 0 7.71 0 7.71h2.33v-4.3c0-.21.02-.42.08-.57.16-.42.55-.85 1.19-.85.84 0 1.17.64 1.17 1.57V17H18z"/></svg>
+      <span class="cv-contact__item">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V9.99H6.01V17h2.33zM7.17 8.93a1.35 1.35 0 1 0 0-2.7 1.35 1.35 0 0 0 0 2.7zM18 17v-3.85c0-2.06-1.1-3.02-2.57-3.02-1.19 0-1.72.65-2.02 1.11v-.95h-2.33c.03.66 0 7.71 0 7.71h2.33v-4.3c0-.21.02-.42.08-.57.16-.42.55-.85 1.19-.85.84 0 1.17.64 1.17 1.57V17H18z"/></svg>
         <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener">LinkedIn</a>
       </span>
     </div>
   </header>
 
-  <div class="resume-divider"></div>
-
-  <!-- Summary -->
-  <section class="resume-section">
-    <h2 class="resume-section__title">Summary</h2>
-    <p class="resume-summary">
-      <strong>Product Manager and Project Manager</strong> with 6+ years leading
-      <strong>cross-functional projects</strong> in advertising and digital, now building and
-      shipping digital products end-to-end. Advertising project leadership is the same discipline
-      as tech product management — <strong>briefs, requirements, stakeholders, budgets, deadlines
-      and measurable results</strong> — applied to products instead of campaigns.
+    <section class="cv-sec" aria-labelledby="cv-s1">
+      <h2 class="cv-sec__label" id="cv-s1"><span>01</span>Summary</h2>
+      <div class="cv-sec__body">
+    <p class="cv-p">
+      <strong>Product Designer (UX/UI)</strong> who ships real products, designing end-to-end from
+      <strong>user research and product characterization (PRD)</strong> through <strong>flows,
+      prototypes, high-fidelity UI and design systems</strong> to launch and iteration. 6+ years
+      leading <strong>cross-functional projects</strong> in advertising and digital keep the design
+      tied to <strong>stakeholders, budgets, deadlines and measurable results</strong>.
     </p>
-    <p class="resume-summary" style="margin-top: 14px;">
+    <p class="cv-p">
       <strong>Two products live in the market</strong>, including an iOS SaaS app with
       <strong>paying subscribers</strong>, 486 registered users and a 5.0-star App Store rating —
-      owned solo from <strong>market research and product characterization (PRD)</strong> through
+      designed and owned solo from <strong>market research</strong> through
       <strong>UX/UI, delivery, launch and paid go-to-market</strong>.
     </p>
-  </section>
-
-  <!-- Core competencies -->
-  <section class="resume-section">
-    <h2 class="resume-section__title">Core Competencies</h2>
-    <p class="resume-summary" style="font-size: 1rem;"><strong>Product Management</strong> — Product Discovery · Product Requirements (PRD) · Product Characterization · Roadmap Planning · Backlog &amp; Prioritization · MVP Definition · Product Lifecycle · KPIs &amp; Success Metrics · Product Strategy</p>
-    <p class="resume-summary" style="font-size: 1rem; margin-top: 12px;"><strong>Project Management</strong> — End-to-End Delivery · Cross-Functional Leadership · Stakeholder Management · Scope &amp; Timeline Management · Budget Management · Vendor Management · Risk &amp; Dependency Tracking · Agile Ways of Working</p>
-    <p class="resume-summary" style="font-size: 1rem; margin-top: 12px;"><strong>Research &amp; Strategy</strong> — Market Research · Competitive Analysis · Pricing Strategy · User Research &amp; Interviews · Personas &amp; User Journeys · Business Requirements Analysis · Go-to-Market Strategy</p>
-    <p class="resume-summary" style="font-size: 1rem; margin-top: 12px;"><strong>UX / Product Design</strong> — User Flows · Information Architecture · Wireframing · Prototyping · High-Fidelity UI · Design Systems · Usability Testing · Accessibility · Mobile (iOS) &amp; Web</p>
-  </section>
-
-  <!-- Experience -->
-  <section class="resume-section">
-    <h2 class="resume-section__title">Experience</h2>
-
-    <div class="resume-exp">
-      <div class="resume-exp__header">
-        <span class="resume-exp__title">Founder &amp; Product Manager — Independent Digital Products</span>
-        <span class="resume-exp__date">2024 – Present</span>
       </div>
-      <div class="resume-exp__company">Self-Employed · 2 live products in the market</div>
-      <ul class="resume-exp__list">
+    </section>
+    <section class="cv-sec" aria-labelledby="cv-s2">
+      <h2 class="cv-sec__label" id="cv-s2"><span>02</span>Core Competencies</h2>
+      <div class="cv-sec__body">
+    <div class="cv-kv"><h3 class="cv-kv__k">UX / Product Design</h3><p class="cv-kv__v">User Flows · Information Architecture · Wireframing · Prototyping · High-Fidelity UI · Design Systems · Usability Testing · Accessibility · Mobile (iOS) &amp; Web</p></div>
+    <div class="cv-kv"><h3 class="cv-kv__k">Research &amp; Strategy</h3><p class="cv-kv__v">Market Research · Competitive Analysis · Pricing Strategy · User Research &amp; Interviews · Personas &amp; User Journeys · Business Requirements Analysis · Go-to-Market Strategy</p></div>
+    <div class="cv-kv"><h3 class="cv-kv__k">Product Management</h3><p class="cv-kv__v">Product Discovery · Product Requirements (PRD) · Product Characterization · Roadmap Planning · Backlog &amp; Prioritization · MVP Definition · Product Lifecycle · KPIs &amp; Success Metrics · Product Strategy</p></div>
+    <div class="cv-kv"><h3 class="cv-kv__k">Project Management</h3><p class="cv-kv__v">End-to-End Delivery · Cross-Functional Leadership · Stakeholder Management · Scope &amp; Timeline Management · Budget Management · Vendor Management · Risk &amp; Dependency Tracking · Agile Ways of Working</p></div>
+      </div>
+    </section>
+    <section class="cv-sec" aria-labelledby="cv-s3">
+      <h2 class="cv-sec__label" id="cv-s3"><span>03</span>Experience</h2>
+      <div class="cv-sec__body">
+
+    <div class="cv-item">
+      <div class="cv-item__head">
+        <h3 class="cv-item__title">Founder &amp; Product Designer — Independent Digital Products</h3>
+        <span class="cv-item__date">2024 – Present</span>
+      </div>
+      <div class="cv-item__org">Self-Employed · 2 live products in the market</div>
+      <ul class="cv-item__list">
         <li><strong>Meashrim in Click</strong> (iOS SaaS, event RSVP &amp; seating): built and launched a live product with <strong>486 registered users</strong>, <strong>paying subscribers</strong> and a <strong>5.0-star App Store rating</strong>.</li>
         <li>Owned the <strong>full product lifecycle</strong> solo: market research, competitive and pricing analysis, <strong>product characterization (PRD)</strong>, UX/UI, delivery, App Store release and post-launch iteration.</li>
         <li>Ran <strong>market and competitor research</strong> across incumbent RSVP vendors — average price per record, bundled offerings and gaps — and used it to set a <strong>penetration-pricing</strong> and single-system positioning strategy.</li>
@@ -619,13 +137,13 @@
       </ul>
     </div>
 
-    <div class="resume-exp">
-      <div class="resume-exp__header">
-        <span class="resume-exp__title">Advertising &amp; Digital Project Coordinator</span>
-        <span class="resume-exp__date">Jan 2023 – Present</span>
+    <div class="cv-item">
+      <div class="cv-item__head">
+        <h3 class="cv-item__title">Advertising &amp; Digital Project Coordinator</h3>
+        <span class="cv-item__date">Jan 2023 – Present</span>
       </div>
-      <div class="resume-exp__company">Africa Israel Residences</div>
-      <ul class="resume-exp__list">
+      <div class="cv-item__org">Africa Israel Residences</div>
+      <ul class="cv-item__list">
         <li>Lead <strong>digital and marketing projects end-to-end</strong> — research and strategy through execution and performance review.</li>
         <li>Manage <strong>cross-functional teams</strong> across development, design, media and creative, coordinating scope, dependencies and delivery dates.</li>
         <li>Write <strong>project briefs</strong> that translate business needs into precise requirements — the same artifact as a product spec, for campaigns.</li>
@@ -634,13 +152,13 @@
       </ul>
     </div>
 
-    <div class="resume-exp">
-      <div class="resume-exp__header">
-        <span class="resume-exp__title">Advertising &amp; Strategic Project Manager</span>
-        <span class="resume-exp__date">Apr 2020 – Dec 2022</span>
+    <div class="cv-item">
+      <div class="cv-item__head">
+        <h3 class="cv-item__title">Advertising &amp; Strategic Project Manager</h3>
+        <span class="cv-item__date">Apr 2020 – Dec 2022</span>
       </div>
-      <div class="resume-exp__company">Hamashbir Lazarchan</div>
-      <ul class="resume-exp__list">
+      <div class="cv-item__org">Hamashbir Lazarchan</div>
+      <ul class="cv-item__list">
         <li>Led <strong>cross-channel projects</strong> from concept development to launch across retail, digital and in-store.</li>
         <li>Drove <strong>digital transformation initiatives</strong> as part of the marketing strategy.</li>
         <li>Built <strong>annual plans</strong> and steered campaigns from planning to launch, tracking results against goals.</li>
@@ -648,126 +166,117 @@
         <li>Planned and managed <strong>product launches</strong>, corporate events and branding initiatives.</li>
       </ul>
     </div>
-  </section>
-
-  <!-- Selected products -->
-  <section class="resume-section">
-    <h2 class="resume-section__title">Selected Products &amp; Case Studies</h2>
-    <div class="resume-exp">
-      <div class="resume-exp__header">
-        <span class="resume-exp__title">Meashrim in Click — event RSVP &amp; seating (iOS SaaS)</span>
-        <span class="resume-exp__date">Live in the App Store</span>
       </div>
-      <div class="resume-exp__company">Market research · pricing strategy · PRD · UX/UI · launch · paid marketing</div>
-    </div>
-    <div class="resume-exp">
-      <div class="resume-exp__header">
-        <span class="resume-exp__title">MyPlanner — wedding planning system</span>
-        <span class="resume-exp__date">Live and in use</span>
+    </section>
+    <section class="cv-sec" aria-labelledby="cv-s4">
+      <h2 class="cv-sec__label" id="cv-s4"><span>04</span>Selected Products &amp; Case Studies</h2>
+      <div class="cv-sec__body">
+    <div class="cv-item">
+      <div class="cv-item__head">
+        <h3 class="cv-item__title">Meashrim in Click — event RSVP &amp; seating (iOS SaaS)</h3>
+        <span class="cv-item__date">Live in the App Store</span>
       </div>
-      <div class="resume-exp__company">Suppliers, budget and cashback tracking in one product</div>
+      <div class="cv-item__org">Market research · pricing strategy · PRD · UX/UI · launch · paid marketing</div>
     </div>
-    <div class="resume-exp">
-      <div class="resume-exp__header">
-        <span class="resume-exp__title">MessAge — AI messaging CRM</span>
-        <span class="resume-exp__date">Concept case study</span>
+    <div class="cv-item">
+      <div class="cv-item__head">
+        <h3 class="cv-item__title">MyPlanner — wedding planning system</h3>
+        <span class="cv-item__date">Live and in use</span>
       </div>
-      <div class="resume-exp__company">Unified inbox across WhatsApp, Instagram and email · AI reply drafting · lead pipeline · AI agent builder · 12 user interviews</div>
+      <div class="cv-item__org">Suppliers, budget and cashback tracking in one product</div>
     </div>
-    <div class="resume-exp">
-      <div class="resume-exp__header">
-        <span class="resume-exp__title">Woofio — all-in-one dog care platform</span>
-        <span class="resume-exp__date">Concept case study</span>
+    <div class="cv-item">
+      <div class="cv-item__head">
+        <h3 class="cv-item__title">MessAge — AI messaging CRM</h3>
+        <span class="cv-item__date">Concept case study</span>
       </div>
-      <div class="resume-exp__company">Replaces 4+ separate apps · research, service definition, flows and high-fidelity UI</div>
+      <div class="cv-item__org">Unified inbox across WhatsApp, Instagram and email · AI reply drafting · lead pipeline · AI agent builder · 12 user interviews</div>
     </div>
-  </section>
-
-  <!-- Education -->
-  <section class="resume-section">
-    <h2 class="resume-section__title">Education</h2>
-
-    <div class="resume-edu">
-      <div class="resume-edu__name">Figma Master Class &amp; Portfolio</div>
-      <div class="resume-edu__detail">Certification Program — by Dan Shiran · 2025–2026</div>
-    </div>
-
-    <div class="resume-edu">
-      <div class="resume-edu__name">User Experience Design</div>
-      <div class="resume-edu__detail">UXV Certification Program — by award winner Tal Florentin · 2024–2025</div>
-    </div>
-  </section>
-
-  <!-- Tools -->
-  <section class="resume-section">
-    <h2 class="resume-section__title">Tools &amp; Technologies</h2>
-    <p class="resume-summary" style="font-size: 1rem;"><strong>Design</strong> — Figma · Sketch · UX Pilot · Design Systems · Prototyping</p>
-    <p class="resume-summary" style="font-size: 1rem; margin-top: 12px;"><strong>Product &amp; Delivery</strong> — Miro · Product Specs &amp; PRDs · User Flows · Roadmaps · Analytics &amp; Performance Tracking</p>
-    <p class="resume-summary" style="font-size: 1rem; margin-top: 12px;"><strong>Build &amp; AI</strong> — Claude Code · Lovable · Google Stitch AI · No-code / Low-code · Automation</p>
-    <div class="resume-skills" style="margin-top: 22px;">
-      <span class="resume-skill resume-skill--primary">Figma</span>
-      <span class="resume-skill resume-skill--primary">Claude Code</span>
-      <span class="resume-skill">Miro</span>
-      <span class="resume-skill">Product Discovery</span>
-      <span class="resume-skill">PRD / Characterization</span>
-      <span class="resume-skill">Roadmap &amp; Prioritization</span>
-      <span class="resume-skill">Stakeholder Management</span>
-      <span class="resume-skill">Market Research</span>
-      <span class="resume-skill">Go-to-Market</span>
-      <span class="resume-skill">Design Systems</span>
-    </div>
-  </section>
-
-  <!-- Languages -->
-  <section class="resume-section">
-    <h2 class="resume-section__title">Languages</h2>
-    <div class="resume-langs">
-      <div class="resume-lang">
-        <div class="resume-lang__name">Hebrew</div>
-        <div class="resume-lang__level">Native speaker</div>
+    <div class="cv-item">
+      <div class="cv-item__head">
+        <h3 class="cv-item__title">Woofio — all-in-one dog care platform</h3>
+        <span class="cv-item__date">Concept case study</span>
       </div>
-      <div class="resume-lang">
-        <div class="resume-lang__name">English</div>
-        <div class="resume-lang__level">Fully proficient</div>
+      <div class="cv-item__org">Replaces 4+ separate apps · research, service definition, flows and high-fidelity UI</div>
+    </div>
       </div>
-      <div class="resume-lang">
-        <div class="resume-lang__name">Spanish</div>
-        <div class="resume-lang__level">Fully proficient</div>
+    </section>
+    <section class="cv-sec" aria-labelledby="cv-s5">
+      <h2 class="cv-sec__label" id="cv-s5"><span>05</span>Education</h2>
+      <div class="cv-sec__body">
+
+    <div class="cv-item">
+      <h3 class="cv-item__title">Figma Master Class &amp; Portfolio</h3>
+      <div class="cv-item__org">Certification Program — by Dan Shiran · 2025–2026</div>
+    </div>
+
+    <div class="cv-item">
+      <h3 class="cv-item__title">User Experience Design</h3>
+      <div class="cv-item__org">UXV Certification Program — by award winner Tal Florentin · 2024–2025</div>
+    </div>
+      </div>
+    </section>
+    <section class="cv-sec" aria-labelledby="cv-s6">
+      <h2 class="cv-sec__label" id="cv-s6"><span>06</span>Tools &amp; Technologies</h2>
+      <div class="cv-sec__body">
+    <div class="cv-kv"><h3 class="cv-kv__k">Design</h3><p class="cv-kv__v">Figma · Sketch · UX Pilot · Design Systems · Prototyping</p></div>
+    <div class="cv-kv"><h3 class="cv-kv__k">Product &amp; Delivery</h3><p class="cv-kv__v">Miro · Product Specs &amp; PRDs · User Flows · Roadmaps · Analytics &amp; Performance Tracking</p></div>
+    <div class="cv-kv"><h3 class="cv-kv__k">Build &amp; AI</h3><p class="cv-kv__v">Claude Code · Lovable · Google Stitch AI · No-code / Low-code · Automation</p></div>
+    <div class="cv-chips">
+      <span class="cv-chip cv-chip--key">Figma</span>
+      <span class="cv-chip cv-chip--key">Claude Code</span>
+      <span class="cv-chip">Miro</span>
+      <span class="cv-chip">Product Discovery</span>
+      <span class="cv-chip">PRD / Characterization</span>
+      <span class="cv-chip">Roadmap &amp; Prioritization</span>
+      <span class="cv-chip">Stakeholder Management</span>
+      <span class="cv-chip">Market Research</span>
+      <span class="cv-chip">Go-to-Market</span>
+      <span class="cv-chip">Design Systems</span>
+    </div>
+      </div>
+    </section>
+    <section class="cv-sec" aria-labelledby="cv-s7">
+      <h2 class="cv-sec__label" id="cv-s7"><span>07</span>Languages</h2>
+      <div class="cv-sec__body">
+    <div class="cv-langs">
+      <div class="cv-lang">
+        <div class="cv-lang__name">Hebrew</div>
+        <div class="cv-lang__level">Native speaker</div>
+      </div>
+      <div class="cv-lang">
+        <div class="cv-lang__name">English</div>
+        <div class="cv-lang__level">Fully proficient</div>
+      </div>
+      <div class="cv-lang">
+        <div class="cv-lang__name">Spanish</div>
+        <div class="cv-lang__level">Fully proficient</div>
       </div>
     </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- CTA -->
-  <div class="resume-cta">
-    <a href="Oron_Turgeman_Resume.pdf" download class="resume-cta__btn resume-cta__btn--primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download Resume
-    </a>
-    <a href="index.html" class="resume-cta__btn resume-cta__btn--secondary">
-      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      View Portfolio
-    </a>
-    <a href="mailto:oron2558@gmail.com" class="resume-cta__btn resume-cta__btn--secondary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Get in Touch
-    </a>
-  </div>
+  <aside class="cv-end">
+    <p class="cv-end__title">Want the whole story behind these lines<span class="dot">?</span></p>
+    <div class="cv-head__cta">
+      <a class="btn btn--accent" href="projects.html">See the work
+        <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn--ghost" href="mailto:oron2558@gmail.com">oron2558@gmail.com</a>
+    </div>
+  </aside>
 
+  <footer class="foot">
+    <span>&copy; 2026 Oron Turgeman</span>
+    <nav aria-label="Footer">
+      <a href="projects.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </footer>
 </main>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="onf-footer" id="contact">
-  <div class="onf-footer__left">
-    <span class="onf-footer__name">ORON.</span>
-    <div class="onf-footer__links">
-      <a href="mailto:oron2558@gmail.com" class="onf-footer__link">oron2558@gmail.com</a>
-      <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" class="onf-footer__link">LinkedIn</a>
-    </div>
-  </div>
-  <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
-</footer>
-
-<script src="scripts/oronflix.js?v=20260807"></script>
-<script src="scripts/site-nav.js?v=20260807" defer></script>
+<script src="scripts/site-nav.js?v=20261008c" defer></script>
 </body>
 </html>

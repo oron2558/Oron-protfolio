@@ -3,238 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ORON. | About</title>
+  <title>About | Oron Turgeman, Product Designer (UX/UI)</title>
+  <meta name="description" content="Oron Turgeman moved from advertising and project management into UX/UI, and now designs, builds and ships his own products. Two are live in the market.">
+  <link rel="canonical" href="https://www.oronturgemanux.com/about.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <meta name="description" content="About Oron Turgeman — Product &amp; Project Manager. An advertising/PM background as a natural bridge into tech, a strategist's cross-view, and a shipped iOS product as proof.">
+  <meta name="theme-color" content="#edebe8">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Oron Turgeman">
+  <meta property="og:title" content="About | Oron Turgeman, Product Designer (UX/UI)">
+  <meta property="og:description" content="Oron Turgeman moved from advertising and project management into UX/UI, and now designs, builds and ships his own products. Two are live in the market.">
+  <meta property="og:url" content="https://www.oronturgemanux.com/about.html">
+  <meta property="og:image" content="https://www.oronturgemanux.com/assets/og/og-about.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
   <script>
-    (function() {
-      var t = localStorage.getItem('oronflix-theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
+    (function () {
+      var d = document.documentElement, t = 'light';
+      try { t = localStorage.getItem('oronflix-theme') || 'light'; } catch (e) {}
+      d.setAttribute('data-theme', t);
+      d.classList.add('js');
     })();
   </script>
 
-  <link rel="stylesheet" href="styles/oronflix-base.css?v=20260807">
-  <link rel="stylesheet" href="styles/oronflix-browse.css?v=20260807">
-  <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260807">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20260807">
+  <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261008c">
+  <link rel="stylesheet" href="styles/v2.css?v=20261008c">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ==================== NAVIGATION ==================== -->
-<!-- ==================== SITE NAV ==================== -->
-<nav class="snav snav--ghost">
-  <a href="index.html" class="snav__logo">ORON.</a>
+<nav class="snav snav--ghost" aria-label="Main">
+  <a href="index.html" class="snav__logo" aria-label="Oron Turgeman, home">ORON.</a>
   <div class="snav__links">
     <a href="index.html" class="snav__link">Home</a>
     <a href="projects.html" class="snav__link">Work</a>
-    <a href="about.html" class="snav__link snav__link--active">About</a>
+    <a href="about.html" class="snav__link snav__link--active" aria-current="page">About</a>
     <a href="resume.html" class="snav__link">Resume / CV</a>
-    <a href="index.html#contact" class="snav__link">Contact</a>
+    <a href="#contact" class="snav__link">Get in touch</a>
   </div>
   <div class="snav__actions">
-    <button class="snav__btn snav__theme" type="button" aria-label="Toggle theme"></button>
+    <button class="snav__btn snav__theme" type="button" aria-label="Toggle dark mode"></button>
     <button class="snav__burger" type="button" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
-<header class="pf-abouthero">
-  <div class="pf-abouthero__inner">
-    <div class="pf-abouthero__photo">
-      <img src="oron-portrait.jpg" alt="Oron Turgeman">
+<main id="main">
+  <header class="wrap ahero">
+    <div>
+      <p class="shead__num" style="margin-bottom:28px">About</p>
+      <h1 class="ahero__title"><span class="mline"><span>Designer</span></span><span class="mline"><span>who builds.</span></span></h1>
+      <p class="ahero__lede rv">I take products the way a small founding team would, only it's one person: from characterization to a shipped, working product. Two of my products are live in the market.</p>
+      <div class="hero__cta rv" style="--d:1">
+        <a class="btn" href="projects.html">See my work</a>
+        <a class="btn btn--ghost" href="resume.html">Resume / CV</a>
+      </div>
     </div>
-    <div class="pf-abouthero__text">
-      <p class="pf-eyebrow">About me</p>
-      <h1 class="pf-abouthero__name">Oron Turgeman</h1>
-      <p class="pf-abouthero__role">Product Designer</p>
-      <p class="pf-abouthero__bio">I manage products and projects the way a small founding team would — only it's one person. An advertising &amp; project-management background, a strategist's cross-view of market, product and user, and the range to take an idea from characterization all the way to a shipped, real product — <strong>two of my products are live and working in the market.</strong></p>
-      <div class="pf-abouthero__actions">
-        <a href="projects.html" class="pf-btn pf-btn--accent">
-          See my work
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <div class="stage" data-depth>
+      <div class="stage__clip">
+        <span class="stage__word" aria-hidden="true">HI.</span>
+        <img class="stage__portrait" src="assets/img/oron-front-800.webp"
+             srcset="assets/img/oron-front-800.webp 800w, assets/img/oron-front.webp 941w"
+             sizes="(min-width: 900px) 32vw, 90vw"
+             alt="Oron Turgeman, front-facing, in a white t-shirt against a grey studio backdrop"
+             width="800" height="1421" fetchpriority="high">
+      </div>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="shead">
+        <p class="shead__num">01 &nbsp;My story</p>
+        <h2 class="shead__title rv" id="story-title">From campaigns to products.</h2>
+        <p class="shead__lede rv" style="--d:1">Leading advertising projects is the same discipline as product work in tech. I simply swapped campaigns for products.</p>
+      </div>
+
+      <div class="tl">
+        <span class="tl__fill" aria-hidden="true"></span>
+        <div class="tl__item rv">
+          <span class="tl__when">Before</span>
+          <h3 class="tl__title">Marketing, advertising and business strategy</h3>
+          <p class="tl__text">Several years leading projects, managing client relationships, coordinating cross-functional teams and turning business goals into measurable results, including multimillion-shekel campaigns.</p>
+        </div>
+        <div class="tl__item rv">
+          <span class="tl__when">The switch</span>
+          <h3 class="tl__title">Into UX/UI</h3>
+          <p class="tl__text">A natural next step, driven by understanding people and solving complex problems. User research, product requirements, user flows and close work with designers and developers.</p>
+        </div>
+        <div class="tl__item rv">
+          <span class="tl__when">Building</span>
+          <h3 class="tl__title">Founder mode</h3>
+          <p class="tl__text">Building and improving my own digital products with AI, automation and no-code tools. It taught me to balance user needs, business strategy, technical feasibility and execution.</p>
+        </div>
+        <div class="tl__item rv">
+          <span class="tl__when">Now</span>
+          <h3 class="tl__title">Two products live in the market</h3>
+          <p class="tl__text">Meashrim in Click is in the App Store with 486 registered users, a 5.0 rating and paying subscribers. MyPlanner is a wedding-planning system in real use. I'm looking for a product role in a UX-driven team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="bring-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="shead">
+        <p class="shead__num">02 &nbsp;What I bring</p>
+        <h2 class="shead__title rv" id="bring-title">One hire, the whole arc.</h2>
+        <p class="shead__lede rv" style="--d:1">I can take something from 0 to 100 because I don't hand off between the parts. They're all mine.</p>
+      </div>
+      <ol class="bring" role="list" style="list-style:none;margin:0;padding:0">
+        <li class="bring__item rv"><span class="bring__num">01</span><h3 class="bring__title">Discovery and product thinking</h3><p class="bring__text">Framing the real problem before touching a screen: user research, interviews and the why behind the build.</p></li>
+        <li class="bring__item rv"><span class="bring__num">02</span><h3 class="bring__title">Product and go-to-market strategy</h3><p class="bring__text">Years of marketing and project management on multimillion-shekel campaigns. I design with launch and adoption in mind.</p></li>
+        <li class="bring__item rv"><span class="bring__num">03</span><h3 class="bring__title">Characterization and specs</h3><p class="bring__text">Translating strategy into product requirements, user flows and buildable UI.</p></li>
+        <li class="bring__item rv"><span class="bring__num">04</span><h3 class="bring__title">Build with AI</h3><p class="bring__text">I prototype and ship real, working software fast with AI tools such as Claude Code and Lovable.</p></li>
+        <li class="bring__item rv"><span class="bring__num">05</span><h3 class="bring__title">Shipping, for real</h3><p class="bring__text">Two live products, one in the App Store with paying subscribers, taken to market with paid campaigns and improved from real user feedback.</p></li>
+        <li class="bring__item rv"><span class="bring__num">06</span><h3 class="bring__title">Story and narrative</h3><p class="bring__text">The thread that ties research, decisions and screens into something a stakeholder, or a user, actually gets.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="hobbies-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="shead">
+        <p class="shead__num">03 &nbsp;Beyond the screen</p>
+        <h2 class="shead__title rv" id="hobbies-title">What keeps me sharp.</h2>
+        <p class="shead__lede rv" style="--d:1">Competitive, curious and hands-on. Pick them up and toss them around.</p>
+      </div>
+      <div class="desk" data-desk>
+        <div class="hcard" tabindex="0" aria-label="RC car racing, competitive and pro-level. Use arrow keys to move.">
+          <img src="assets/img/hobby-rc.webp" alt="" width="900" height="506" loading="lazy"><b>RC car racing</b><span>Competitive, pro-level</span>
+        </div>
+        <div class="hcard" tabindex="0" aria-label="Muay Thai, in training. Use arrow keys to move.">
+          <img src="assets/img/hobby-muaythai.webp" alt="" width="700" height="653" loading="lazy"><b>Muay Thai</b><span>In training</span>
+        </div>
+        <div class="hcard" tabindex="0" aria-label="LEGO building, builder at heart. Use arrow keys to move.">
+          <img src="assets/img/hobby-lego.webp" alt="" width="700" height="1244" loading="lazy"><b>LEGO building</b><span>Builder at heart</span>
+        </div>
+        <div class="hcard" tabindex="0" aria-label="Pokémon cards, PSA collector. Use arrow keys to move.">
+          <img src="assets/img/hobby-pokemon.webp" alt="" width="700" height="1244" loading="lazy"><b>Pokémon cards</b><span>PSA collector</span>
+        </div>
+        <span class="desk__hint" aria-hidden="true">Drag, toss, or use arrow keys</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="shead__num" style="margin-bottom:32px">04 &nbsp;Contact</p>
+      <h2 class="contact__title rv" id="contact-title">Get in<br>touch<span class="dot">.</span></h2>
+      <p class="contact__lede rv" style="--d:1">Open to product design roles. If you have a product to take from 0 to 100, I'd like to hear about it.</p>
+      <div class="contact__actions rv" style="--d:2">
+        <a class="btn btn--accent copy-email" href="mailto:oron2558@gmail.com" data-email="oron2558@gmail.com" data-track="contact-email">
+          oron2558@gmail.com
+          <span class="copy-email__done" aria-hidden="true">Copied</span>
         </a>
-        <a href="resume.html" class="pf-btn pf-btn--ghost">Resume / CV</a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener" data-track="contact-linkedin">LinkedIn</a>
+        <a class="btn btn--ghost" href="Oron_Turgeman_Resume.pdf" download data-track="cv-download-en">CV (English)</a>
+        <a class="btn btn--ghost" href="Oron_Turgeman_Resume_HE.pdf" download data-track="cv-download-he" lang="he">קורות חיים</a>
       </div>
+      <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+
+      <footer class="foot">
+        <span>&copy; 2026 Oron Turgeman</span>
+        <nav aria-label="Footer">
+          <a href="projects.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="resume.html">Resume</a>
+          <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+      </footer>
     </div>
-  </div>
-</header>
+  </section>
+</main>
 
-<!-- ==================== BEYOND THE SCREEN ==================== -->
-<section class="pf-block pf-block--surface">
-  <div class="pf-block__inner">
-    <p class="pf-eyebrow">Beyond the screen</p>
-    <h2 class="pf-block__title">A bit about me</h2>
-    <p class="pf-block__intro">Before the work talk — the things that keep me sharp, competitive and curious.</p>
-    <div class="pf-hobbies pf-hobbies--photo">
-      <div class="pf-hobby pf-hobby--photo">
-        <div class="pf-hobby__media"><img src="hobby-rc.jpeg" alt="Radio-controlled buggies racing on a dirt track"></div>
-        <div class="pf-hobby__cap">
-          <div class="pf-hobby__label">RC car racing</div>
-          <div class="pf-hobby__sub">Competitive, pro-level</div>
-        </div>
-      </div>
-      <div class="pf-hobby pf-hobby--photo">
-        <div class="pf-hobby__media"><img src="hobby-muaythai.jpeg" alt="Oron throwing a high kick during Muay Thai training"></div>
-        <div class="pf-hobby__cap">
-          <div class="pf-hobby__label">Muay Thai</div>
-          <div class="pf-hobby__sub">In training</div>
-        </div>
-      </div>
-      <div class="pf-hobby pf-hobby--photo">
-        <div class="pf-hobby__media"><img src="hobby-lego.jpeg" alt="LEGO Ferrari Formula 1 helmet build"></div>
-        <div class="pf-hobby__cap">
-          <div class="pf-hobby__label">LEGO building</div>
-          <div class="pf-hobby__sub">Builder at heart</div>
-        </div>
-      </div>
-      <div class="pf-hobby pf-hobby--photo">
-        <div class="pf-hobby__media"><img src="hobby-pokemon.jpeg" alt="PSA gem-mint graded Pokémon cards"></div>
-        <div class="pf-hobby__cap">
-          <div class="pf-hobby__label">Pokémon cards</div>
-          <div class="pf-hobby__sub">PSA collector</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== MY STORY ==================== -->
-<section class="pf-story">
-  <div class="pf-story__inner">
-    <p class="pf-eyebrow">My story</p>
-    <p class="pf-story__lead">Leading advertising projects — briefs, cross-functional teams, budgets, deadlines, and turning business goals into measurable results — is the <span class="hl">same discipline</span> as product &amp; project management in tech. I simply swapped campaigns for products.</p>
-    <div class="pf-story__body">
-      <p>I come from a background in <strong>marketing, advertising, and business strategy</strong>, where I spent several years leading projects, managing client relationships, coordinating cross-functional teams, and transforming business goals into measurable results.</p>
-      <p>My transition into UX/UI was a natural evolution driven by a passion for understanding people, solving complex problems, and creating digital experiences that are both intuitive and impactful. I believe that great products are built by deeply understanding users, identifying their pain points, and aligning business objectives with thoughtful design and technology.</p>
-      <p>I enjoy working at the intersection of <strong>product, design, and technology</strong>. Whether it's conducting user research, defining product requirements, mapping user flows, or collaborating with designers and developers, I thrive on turning ideas into products that deliver real value.</p>
-      <p>As an entrepreneur, I have gained hands-on experience building and improving digital products, optimizing business processes, and leveraging <strong>AI, automation, and no-code technologies</strong> to solve real-world challenges. This experience has given me a strong product mindset — one that balances user needs, business strategy, technical feasibility, and execution.</p>
-      <p>I'm looking to contribute as a <strong>Product Manager or Project Manager</strong> in a UX-driven environment, where I can combine strategic thinking, product discovery, user-centered problem solving, and cross-functional collaboration to help build meaningful digital products that make a lasting impact.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== WHAT I BRING ==================== -->
-<section class="pf-block">
-  <div class="pf-block__inner">
-    <p class="pf-eyebrow">What I bring</p>
-    <h2 class="pf-block__title">One hire, the whole arc</h2>
-    <p class="pf-block__intro">The reason I can take something from 0 to 100 is that I don't hand off between the parts. They're all mine.</p>
-    <div class="pf-caps">
-      <div class="pf-cap">
-        <div class="pf-cap__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></div>
-        <h3 class="pf-cap__title">Discovery &amp; product thinking</h3>
-        <p class="pf-cap__desc">Framing the real problem before touching a screen — user research, interviews, and the “why” behind the build.</p>
-      </div>
-      <div class="pf-cap">
-        <div class="pf-cap__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div>
-        <h3 class="pf-cap__title">Product &amp; go-to-market strategy</h3>
-        <p class="pf-cap__desc">Years of marketing and project management on multimillion-shekel campaigns — I design with launch and adoption in mind.</p>
-      </div>
-      <div class="pf-cap">
-        <div class="pf-cap__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
-        <h3 class="pf-cap__title">Characterization &amp; specs</h3>
-        <p class="pf-cap__desc">Translating strategy into product requirements, user flows and buildable UI — the “what to build and why,” not just how it looks.</p>
-      </div>
-      <div class="pf-cap">
-        <div class="pf-cap__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <h3 class="pf-cap__title">Build with AI</h3>
-        <p class="pf-cap__desc">I prototype and ship real, working software fast using AI tools — Claude Code, Lovable, and more — not just mockups.</p>
-      </div>
-      <div class="pf-cap">
-        <div class="pf-cap__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-        <h3 class="pf-cap__title">Shipping, for real</h3>
-        <p class="pf-cap__desc">Two live products in the market — one in the App Store with paying subscribers — taken to market with paid campaigns and iterated on real user feedback.</p>
-      </div>
-      <div class="pf-cap">
-        <div class="pf-cap__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <h3 class="pf-cap__title">Story &amp; narrative</h3>
-        <p class="pf-cap__desc">The thread that ties research, decisions and screens into something a stakeholder — or a user — actually gets.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== SHIPPED-PRODUCT PROOF (מאשרים בקליק) ==================== -->
-<section class="pf-proof" id="shipped">
-  <div class="pf-section">
-    <div class="pf-proof__card">
-      <div class="pf-proof__content">
-        <span class="pf-proof__badge">2 live products · in the market</span>
-        <h2 class="pf-proof__title">Proof behind the “0&nbsp;to&nbsp;100”: two products I actually shipped</h2>
-        <p class="pf-proof__text">
-          <strong>Meashrim in Click</strong> (מאשרים בקליק) is a live iOS app for event RSVP &amp; seating —
-          <strong>in the App Store with paying subscribers</strong>. <strong>MyPlanner</strong> is my second
-          working product, a wedding-planning system in real use. I owned both end-to-end —
-          <strong>reading the market, characterizing the product (spec), defining what to build for the user,
-          and solving the real problem</strong> — then built, launched and marketed them myself. It's proof I
-          manage product characterization and delivery from the inside, with a strategist's cross-view —
-          <strong>not just a pretty screen</strong>.
-        </p>
-        <div class="pf-proof__stats">
-          <div>
-            <div class="pf-proof__stat-num">2</div>
-            <div class="pf-proof__stat-label">Live products</div>
-          </div>
-          <div>
-            <div class="pf-proof__stat-num">486</div>
-            <div class="pf-proof__stat-label">Registered users</div>
-          </div>
-          <div>
-            <div class="pf-proof__stat-num">5.0&nbsp;★</div>
-            <div class="pf-proof__stat-label">App Store rating</div>
-          </div>
-          <div>
-            <div class="pf-proof__stat-num">Solo</div>
-            <div class="pf-proof__stat-label">Designed · built · shipped</div>
-          </div>
-        </div>
-        <a href="casestudy-mba.html" class="pf-proof__cta">
-          View the full case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
-      <div class="pf-proof__phones">
-        <div class="pf-proof__phone pf-proof__phone--back">
-          <img src="mba-phone-admin-v2.jpg" alt="Meashrim in Click admin dashboard" loading="lazy">
-        </div>
-        <div class="pf-proof__phone pf-proof__phone--front">
-          <img src="mba-phone-dashboard-v2.jpg" alt="Meashrim in Click event dashboard with RSVP stats" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ==================== CONTACT CTA ==================== -->
-<section class="pf-block" id="contact">
-  <div class="pf-block__inner" style="text-align:center;">
-    <p class="pf-eyebrow" style="display:block;">Let's talk</p>
-    <h2 class="pf-block__title" style="max-width:640px;margin:8px auto 12px;">Have a product to take from 0 to 100?</h2>
-    <p class="pf-block__intro" style="margin:0 auto 26px;">I'm open to product design &amp; project management roles. Whether it's a concept or a launch — I'd love to hear about it.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="mailto:oron2558@gmail.com" class="pf-btn pf-btn--accent">Get in touch</a>
-      <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener" class="pf-btn pf-btn--ghost">LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== FOOTER ==================== -->
-<footer class="onf-footer">
-  <div class="onf-footer__left">
-    <span class="onf-footer__name">ORON.</span>
-    <div class="onf-footer__links">
-      <a href="mailto:oron2558@gmail.com" class="onf-footer__link">oron2558@gmail.com</a>
-      <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" class="onf-footer__link">LinkedIn</a>
-    </div>
-  </div>
-  <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
-</footer>
-
-<script src="scripts/oronflix.js?v=20260807"></script>
-<script src="scripts/site-nav.js?v=20260807" defer></script>
+<script src="scripts/site-nav.js?v=20261008c" defer></script>
+<script src="scripts/v2.js?v=20261008c" defer></script>
 </body>
 </html>

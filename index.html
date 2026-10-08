@@ -3,233 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ORON. | Product &amp; Project Manager</title>
+  <title>Oron Turgeman | Product Designer (UX/UI) who ships real products</title>
+  <meta name="description" content="Oron Turgeman, Product Designer (UX/UI) in Tel Aviv. Two products live in the market, one in the App Store with 486 registered users, a 5.0 rating and paying subscribers.">
+  <link rel="canonical" href="https://www.oronturgemanux.com/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <meta name="description" content="Oron Turgeman — Product &amp; Project Manager. Strategy-led and UX-driven, with an advertising/PM background and a shipped iOS SaaS product to prove it.">
+  <meta name="theme-color" content="#edebe8">
 
-  <!-- OG Meta -->
-  <meta property="og:title" content="ORON. | Product &amp; Project Manager">
-  <meta property="og:description" content="Streaming-style portfolio showcasing AI CRM, pet care, and wedding planning projects.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://oronturgemanux.com">
+  <meta property="og:site_name" content="Oron Turgeman">
+  <meta property="og:title" content="Oron Turgeman | Product Designer (UX/UI) who ships real products">
+  <meta property="og:description" content="Two products live in the market. 486 registered users, 5.0 App Store rating, paying subscribers. Designed, built and shipped end to end.">
+  <meta property="og:url" content="https://www.oronturgemanux.com/">
+  <meta property="og:image" content="https://www.oronturgemanux.com/assets/og/og-home.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Prevent FOUC — light editorial by default -->
   <script>
-    (function() {
-      var t = localStorage.getItem('oronflix-theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
+    (function () {
+      var d = document.documentElement, t = 'light';
+      try { t = localStorage.getItem('oronflix-theme') || 'light'; } catch (e) {}
+      d.setAttribute('data-theme', t);
+      d.classList.add('js');
     })();
   </script>
 
-  <link rel="stylesheet" href="styles/oronflix-base.css?v=20260807">
-  <link rel="stylesheet" href="styles/oronflix-browse.css?v=20260807">
-  <link rel="stylesheet" href="styles/portfolio-redesign.css?v=20260809">
-  <link rel="stylesheet" href="styles/site-nav.css?v=20260807">
-  <link rel="stylesheet" href="styles/hero.css?v=20260809">
+  <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/video/hero-start.webp?v=4" as="image" type="image/webp">
+  <link rel="stylesheet" href="styles/site-nav.css?v=20261008c">
+  <link rel="stylesheet" href="styles/v2.css?v=20261008c">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Oron Turgeman",
+    "jobTitle": "Product Designer (UX/UI)",
+    "url": "https://www.oronturgemanux.com/",
+    "image": "https://www.oronturgemanux.com/assets/img/oron-front.jpg",
+    "email": "mailto:oron2558@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Tel Aviv", "addressCountry": "IL" },
+    "sameAs": ["https://www.linkedin.com/in/oron-turgeman-892277225"],
+    "knowsAbout": ["Product design", "UX design", "UI design", "User research", "Product management"]
+  }
+  </script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ==================== NAVIGATION ==================== -->
-<!-- ==================== SITE NAV ==================== -->
-<nav class="snav snav--ghost">
-  <a href="index.html" class="snav__logo">ORON.</a>
+<nav class="snav snav--ghost snav--on-dark" aria-label="Main">
+  <a href="index.html" class="snav__logo" aria-label="Oron Turgeman, home">ORON.</a>
   <div class="snav__links">
-    <a href="index.html" class="snav__link snav__link--active">Home</a>
+    <a href="index.html" class="snav__link snav__link--active" aria-current="page">Home</a>
     <a href="projects.html" class="snav__link">Work</a>
     <a href="about.html" class="snav__link">About</a>
     <a href="resume.html" class="snav__link">Resume / CV</a>
-    <a href="#contact" class="snav__link">Contact</a>
+    <a href="#contact" class="snav__link">Get in touch</a>
   </div>
   <div class="snav__actions">
-    <button class="snav__btn snav__theme" type="button" aria-label="Toggle theme"></button>
+    <button class="snav__btn snav__theme" type="button" aria-label="Toggle dark mode"></button>
     <button class="snav__burger" type="button" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ==================== INTRO / HERO ==================== -->
-<!-- ==================== HERO ==================== -->
-<header class="hero" aria-labelledby="hero-heading">
-  <div class="hero__frame">
-    <img class="hero__img" src="hero-clean-v2.webp"
-         alt="Oron Turgeman emerging through sculptural concrete letters spelling ORON"
-         width="1536" height="1024" fetchpriority="high">
+<main id="main">
 
-    <div class="hero__meta">
-      <p class="hero__role">Product Designer</p>
-      <p class="hero__location">Tel Aviv<br>Israel</p>
+  <!-- ============ HERO ============ -->
+  <!-- ============ FILM INTRO ============ -->
+  <section class="film" data-film aria-label="Intro film">
+    <div class="film__pin">
+      <div class="film__frame">
+        <video class="film__video" muted playsinline preload="auto" poster="assets/video/hero-start.webp?v=4" data-end-poster="assets/video/hero-end.webp?v=4" aria-hidden="true">
+          <source src="assets/video/hero-720.webm?v=4" type="video/webm" media="(max-width: 900px)">
+          <source src="assets/video/hero-720.mp4?v=4" type="video/mp4" media="(max-width: 900px)">
+          <source src="assets/video/hero.webm?v=4" type="video/webm">
+          <source src="assets/video/hero.mp4?v=4" type="video/mp4">
+        </video>
+        <div class="film__shade" aria-hidden="true"></div>
+        <div class="film__copy wrap">
+          <p class="film__kicker">Oron Turgeman <span aria-hidden="true">/</span> Product Designer, UX/UI</p>
+          <h2 class="film__line">From the big picture<br>down to every pixel.</h2>
+        </div>
+        <div class="film__ui wrap">
+          <button class="film__btn" type="button" data-film-toggle aria-label="Pause intro film">
+            <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>
+            <svg class="i-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+          </button>
+          <button class="film__sound" type="button" data-film-sound aria-pressed="false">
+            <svg class="i-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
+            <svg class="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>
+            <span class="film__sound-label">Sound on</span>
+          </button>
+          <span class="film__bar" aria-hidden="true"><i></i></span>
+          <div class="anote anote--inline" data-anote data-delay="1600"><button class="anote__pin" type="button" aria-expanded="false" aria-controls="an-1" aria-label="AI note: Higgsfield"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><span class="anote__spark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg></span></button><div class="anote__card" id="an-1" role="note"><div class="anote__head"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><b>Oron</b><span>AI note</span><em><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg>Higgsfield</em></div><p>This film was generated in Higgsfield and upscaled to 1080p there. No editing software involved.</p><span class="anote__file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.4 11.1-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>hero-film.mp4 · 14s · 1080p</span></div></div>
+          <a class="film__cue" href="#intro">Scroll <span aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <header class="hero hero--type" id="intro" data-hero>
+    <div class="wrap hero__inner">
+      <div class="hero__band" aria-hidden="true">
+        <div class="ticker"><div class="ticker__run"><span>Research</span><span>Flows</span><span>UI</span><span>Prototype</span><span>Build with AI</span><span>Ship</span><span>Research</span><span>Flows</span><span>UI</span><span>Prototype</span><span>Build with AI</span><span>Ship</span></div></div>
+      </div>
+
+      <h1 class="hero__name" aria-label="Oron Turgeman">
+        <span class="hero__row hero__row--1">
+          <span class="mline"><span data-kinetic>Oron</span></span>
+        </span>
+        <span class="hero__row hero__row--2"><span class="mline"><span data-kinetic>Turgeman</span></span></span>
+      </h1>
+      <div class="anote" data-anote style="--x:62%;--y:36%;--mx:76%;--my:30%" data-anote-peek><button class="anote__pin" type="button" aria-expanded="false" aria-controls="an-2" aria-label="AI note: Claude Code"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><span class="anote__spark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg></span></button><div class="anote__card" id="an-2" role="note"><div class="anote__head"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><b>Oron</b><span>AI note</span><em><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg>Claude Code</em></div><p>I designed this site and built it with Claude Code, from layout and motion to deploy.</p><span class="anote__file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.4 11.1-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>index.html · v2.css · v2.js</span></div></div>
+
+      <div class="hero__foot">
+        <div>
+          <p class="hero__pos">
+            <span class="sr-only">I think, research, define, design, prototype, build and test products end to end, then ship them.</span>
+            <span aria-hidden="true">I <span class="verb" data-verb><span class="verb__w is-on" style="--mk:#ffe45c">think</span><span class="verb__w" style="--mk:#9be7c4">research</span><span class="verb__w" style="--mk:#ffb3c7">define</span><span class="verb__w" style="--mk:#a9d4ff">design</span><span class="verb__w" style="--mk:#ffb27a">prototype</span><span class="verb__w" style="--mk:#cdb8ff">build</span><span class="verb__w" style="--mk:#d7f27a">test</span></span> products end to end,<br>then ship them.</span>
+          </p>
+          <p class="hero__sub">Two are live in the market with real, paying users.</p>
+        </div>
+        <div class="hero__cta">
+          <a class="btn" href="#work">View work
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="Oron_Turgeman_Resume.pdf" download data-track="cv-download-en">Download CV</a>
+        </div>
+      </div>
     </div>
 
-    <div class="hero__label" aria-hidden="true">
-      <span>Portfolio</span><span class="hero__label-dot"></span>
+  </header>
+
+  <!-- ============ PROOF ============ -->
+
+  <!-- ============ WORK ============ -->
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="shead">
+        <p class="shead__num">01 &nbsp;Selected work</p>
+        <h2 class="shead__title rv" id="work-title">Four products, end to end.</h2>
+        <p class="shead__lede rv" style="--d:1">Two end-to-end concepts and two products I designed, built and launched myself. A quick look here, the full stories are one click away.</p>
+      </div>
+
+      <div class="tz" data-tz>
+        <ul class="tz__panels" role="list">
+          <li class="tzp is-open" style="--tint:#fff1a8">
+            <a class="tzp__link" href="casestudy-ai-crm.html">
+              <span class="tzp__idx">01</span>
+              <span class="tzp__spine" aria-hidden="true">MessAge</span>
+              <span class="tzp__info">
+                <span class="tzp__name">MessAge</span>
+                <span class="tzp__sub">AI messaging that answers leads across WhatsApp, Instagram and email.</span>
+                <span class="tzp__meta"><span class="chip">Concept</span><span class="tzp__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
+              </span>
+              <img class="tzp__img" src="assets/img/messageai-dashboard.webp" alt="" width="1600" height="1216" loading="lazy">
+            </a>
+          </li>
+          <li class="tzp" style="--tint:#cdf3e1">
+            <a class="tzp__link" href="casestudy-woofio.html">
+              <span class="tzp__idx">02</span>
+              <span class="tzp__spine" aria-hidden="true">Woofio</span>
+              <span class="tzp__info">
+                <span class="tzp__name">Woofio</span>
+                <span class="tzp__sub">One dog-care app, from vet tracking to dog-walker booking.</span>
+                <span class="tzp__meta"><span class="chip">Concept</span><span class="tzp__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
+              </span>
+              <img class="tzp__img" src="assets/img/woofio-screens.webp" alt="" width="1200" height="800" loading="lazy">
+            </a>
+          </li>
+          <li class="tzp" style="--tint:#ffd9e3">
+            <a class="tzp__link" href="casestudy-mba.html">
+              <span class="tzp__idx">03</span>
+              <span class="tzp__spine" aria-hidden="true">Meashrim in Click</span>
+              <span class="tzp__info">
+                <span class="tzp__name">Meashrim in Click</span>
+                <span class="tzp__sub">RSVP, seating and gifting for couples, in one iOS app.</span>
+                <span class="tzp__meta"><span class="chip chip--live">Live in the App Store</span><span class="tzp__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
+              </span>
+              <img class="tzp__img" src="assets/img/mba-desk.webp" alt="" width="1600" height="765" loading="lazy">
+            </a>
+          </li>
+          <li class="tzp" style="--tint:#d6e8ff">
+            <a class="tzp__link" href="casestudy-myplanner.html">
+              <span class="tzp__idx">04</span>
+              <span class="tzp__spine" aria-hidden="true">MyPlanner</span>
+              <span class="tzp__info">
+                <span class="tzp__name">MyPlanner</span>
+                <span class="tzp__sub">AI wedding planning: budget, suppliers and cashback in one place.</span>
+                <span class="tzp__meta"><span class="chip chip--real">Real product</span><span class="tzp__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
+              </span>
+              <img class="tzp__img" src="assets/img/myplanner-card.webp" alt="" width="1600" height="1035" loading="lazy">
+            </a>
+          </li>
+        </ul>
+        <div class="anote" data-anote style="--x:-13px;--y:13px;--mx:-9px;--my:13px"><button class="anote__pin" type="button" aria-expanded="false" aria-controls="an-3" aria-label="AI note: ChatGPT"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><span class="anote__spark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg></span></button><div class="anote__card" id="an-3" role="note"><div class="anote__head"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><b>Oron</b><span>AI note</span><em><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg>ChatGPT</em></div><p>MessAge and Woofio are concept products. Prompting speeds up the creative part: wide idea rounds and How Might We questions, then I choose and design in Figma.</p></div></div>
+        <div class="tz__foot">
+          <p class="tz__note">Full case studies, process and results live on the Work page.</p>
+          <a class="btn" href="projects.html">See all work <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="hero__copy">
-      <h1 id="hero-heading">I design <em>meaningful<br>experiences.</em></h1>
-      <p>Product designer specializing in UX/UI &amp; digital products.</p>
-      <a href="projects.html">View my work
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-      </a>
-    </div>
-
-    <div class="hero__seal" aria-hidden="true">
-      <svg viewBox="0 0 150 150">
-        <defs><path id="sealPath" d="M75,75 m-54,0 a54,54 0 1,1 108,0 a54,54 0 1,1 -108,0"/></defs>
-        <text><textPath href="#sealPath">IMAGINE • DESIGN • SOLVE • TEST • IMPROVE • </textPath></text>
-        <circle cx="75" cy="75" r="4" fill="currentColor"/>
-      </svg>
-    </div>
-  </div>
-</header>
-
-<!-- ==================== STATEMENT ==================== -->
-<section class="pf-statement">
-  <div class="pf-section">
-    <p class="pf-statement__text">
-      I build products from <strong>strategy to launch</strong>, combining
-      <strong>business thinking</strong>, <strong>user insights</strong>, and
-      <strong>product design</strong> to create scalable solutions where business goals
-      and user needs work together&mdash;not against each other.
-    </p>
-  </div>
-</section>
-
-<!-- ==================== SHIPPED-PRODUCT PROOF (מאשרים בקליק) ==================== -->
-<section class="pf-proof" id="shipped">
-  <div class="pf-ticker" aria-hidden="true">
-    <div class="pf-ticker__row"><div class="pf-ticker__track"><span class="pf-ticker__item">Live in the App Store</span><span class="pf-ticker__item">486 registered users</span><span class="pf-ticker__item">5.0 &#9733; rating</span><span class="pf-ticker__item">Paying subscribers</span><span class="pf-ticker__item">Shipped solo</span><span class="pf-ticker__item">2 live products</span></div><div class="pf-ticker__track"><span class="pf-ticker__item">Live in the App Store</span><span class="pf-ticker__item">486 registered users</span><span class="pf-ticker__item">5.0 &#9733; rating</span><span class="pf-ticker__item">Paying subscribers</span><span class="pf-ticker__item">Shipped solo</span><span class="pf-ticker__item">2 live products</span></div></div>
-  </div>
-  <div class="pf-section">
-    <div class="pf-proof__card">
-      <div class="pf-proof__content">
-        <span class="pf-proof__badge">2 live products · in the market</span>
-        <h2 class="pf-proof__title">Proof behind the “0&nbsp;to&nbsp;100”: two products I actually shipped</h2>
-        <p class="pf-proof__text">
-          <strong>Meashrim in Click</strong> (מאשרים בקליק) is a live iOS app for event RSVP &amp; seating —
-          <strong>in the App Store with paying subscribers</strong>. <strong>MyPlanner</strong> is my second
-          working product, a wedding-planning system in real use. I owned both end-to-end —
-          <strong>reading the market, characterizing the product (spec), defining what to build for the user,
-          and solving the real problem</strong> — then built, launched and marketed them myself. It's proof I
-          manage product characterization and delivery from the inside, with a strategist's cross-view —
-          <strong>not just a pretty screen</strong>.
-        </p>
-        <div class="pf-proof__stats">
-          <div>
-            <div class="pf-proof__stat-num">2</div>
-            <div class="pf-proof__stat-label">Live products</div>
+  <!-- ============ PROCESS ============ -->
+  <section class="dt" id="process" aria-labelledby="process-title" data-dt>
+    <div class="dt__track">
+      <div class="dt__pin">
+        <div class="wrap dt__inner">
+          <div class="shead">
+            <p class="shead__num">02 &nbsp;How I work</p>
+            <h2 class="shead__title rv" id="process-title">Design Thinking, end to end.</h2>
+            <p class="shead__lede rv" style="--d:1">Every product I build runs through the same five moves. I go wide to understand people, narrow down to the real problem, go wide again on ideas, then build and test until it works.</p>
           </div>
-          <div>
-            <div class="pf-proof__stat-num">486</div>
-            <div class="pf-proof__stat-label">Registered users</div>
+        <div class="dt__grid">
+          <div class="anote anote--wide" data-anote style="--x:90%;--y:24%;--mx:86%;--my:62%"><button class="anote__pin" type="button" aria-expanded="false" aria-controls="an-5" aria-label="AI notes: ChatGPT and Claude Code"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><span class="anote__spark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg></span></button><div class="anote__card" id="an-5" role="note"><div class="anote__head"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><b>Oron</b><span>AI note</span></div><ul class="anote__items" role="list"><li><em><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg>ChatGPT</em><p>Part of my research flow: sorting interview notes into themes and ranking pain points, before I define the problem.</p></li><li><em><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg>Claude Code</em><p>This dot field is plain canvas code, written with Claude Code. No animation library.</p></li></ul></div></div>
+          <div class="dt__copy">
+            <p class="dt__count" aria-hidden="true"><span class="dt__now"><span>01</span></span> / 05</p>
+            <ol class="dt__steps" role="list">
+              <li class="dt__step is-on" data-dt-step style="--mk:#ffe45c">
+                <h3 class="dt__word" data-dt-word>Empathize</h3>
+                <p class="dt__lead">Listen before drawing anything.</p>
+                <p class="dt__text">Interviews, field visits and competitor reviews, to understand how people work today and what actually hurts.</p>
+                <ul class="dt__tags" role="list"><li>User interviews</li><li>Field research</li><li>Competitor review</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step style="--mk:#9be7c4">
+                <h3 class="dt__word" data-dt-word>Define</h3>
+                <p class="dt__lead">Name the real problem.</p>
+                <p class="dt__text">Findings become journey maps and one sharp problem statement the whole team can build against.</p>
+                <ul class="dt__tags" role="list"><li>Journey maps</li><li>Pain points</li><li>Problem statement</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step style="--mk:#ffb3c7">
+                <h3 class="dt__word" data-dt-word>Ideate</h3>
+                <p class="dt__lead">Go wide, then choose.</p>
+                <p class="dt__text">How Might We sessions, sketches and user flows. Many directions on the table before one is picked on purpose.</p>
+                <ul class="dt__tags" role="list"><li>How Might We</li><li>Sketching</li><li>User flows</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step style="--mk:#a9d4ff">
+                <h3 class="dt__word" data-dt-word>Prototype</h3>
+                <p class="dt__lead">Make it real, fast.</p>
+                <p class="dt__text">Wireframes and UI in Figma, then working builds with AI tools like Claude Code and Lovable, not only mockups.</p>
+                <ul class="dt__tags" role="list"><li>Wireframes</li><li>Figma UI</li><li>Built with AI</li></ul>
+              </li>
+              <li class="dt__step" data-dt-step style="--mk:#cdb8ff">
+                <h3 class="dt__word" data-dt-word>Test</h3>
+                <p class="dt__lead">Learn from real people.</p>
+                <p class="dt__text">Usability tests, a real launch and real numbers. What I learn feeds straight back into the next round.</p>
+                <ul class="dt__tags" role="list"><li>Usability tests</li><li>Launch and analytics</li><li>Iterate</li></ul>
+              </li>
+            </ol>
           </div>
-          <div>
-            <div class="pf-proof__stat-num">5.0&nbsp;★</div>
-            <div class="pf-proof__stat-label">App Store rating</div>
-          </div>
-          <div>
-            <div class="pf-proof__stat-num">Solo</div>
-            <div class="pf-proof__stat-label">Designed · built · shipped</div>
+
+          <div class="dt__viz" aria-hidden="true">
+            <canvas class="dt__canvas"></canvas>
+            <p class="dt__mode"><span>Diverge</span><span>Converge</span><span>Diverge</span><span>Converge</span><span>Loop</span></p>
           </div>
         </div>
-        <a href="casestudy-mba.html" class="pf-proof__cta">
-          View the full case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORY ============ -->
+  <section class="section story-sec" aria-labelledby="story-title">
+    <div class="wrap story">
+      <div class="story__photo rv-clip">
+        <img src="assets/img/oron-front-800.webp" alt="Oron Turgeman, front-facing portrait" width="800" height="1421" loading="lazy">
+      </div>
+      <div class="story__body">
+        <div class="anote" data-anote style="--x:84%;--y:22%;--mx:80%;--my:12%"><button class="anote__pin" type="button" aria-expanded="false" aria-controls="an-6" aria-label="AI note: Always learning"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><span class="anote__spark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg></span></button><div class="anote__card" id="an-6" role="note"><div class="anote__head"><img src="assets/img/oron-avatar-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async"><b>Oron</b><span>AI note</span><em><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 2.9 1.6 4.9 6.5 6.5-4.9 1.6-6.1 3.6-6.5 6.5C7.6 11.6 6.4 9.6 1.5 8 6.4 6.4 7.6 4.4 8 1.5z"/></svg>Always learning</em></div><p>I keep up with AI tools and try them on real work. Also in my toolkit:</p><span class="anote__tools"><span>Lovable</span><span>Google Stitch</span><span>UX Pilot</span></span></div></div>
+        <p class="shead__num" style="margin-bottom:24px">03 &nbsp;About</p>
+        <h2 class="story__quote rv" id="story-title">I swapped campaigns for <mark>products</mark>.</h2>
+        <p class="story__text rv" style="--d:1">Years of leading advertising projects taught me briefs, budgets, cross-functional teams and deadlines. Product work is the same discipline, so I brought it into UX/UI.</p>
+        <p class="story__text rv" style="--d:2">Away from the screen: competitive RC racing, Muay Thai, LEGO and PSA-graded Pokémon cards.</p>
+        <div class="story__links rv" style="--d:3">
+          <a class="tlink" href="about.html">More about me</a>
+          <a class="tlink" href="resume.html">Resume / CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="shead__num" style="margin-bottom:32px">04 &nbsp;Contact</p>
+      <h2 class="contact__title rv" id="contact-title">Get in<br>touch<span class="dot">.</span></h2>
+      <p class="contact__lede rv" style="--d:1">Open to product design roles. If you have a product to take from 0 to 100, I'd like to hear about it.</p>
+      <div class="contact__actions rv" style="--d:2">
+        <a class="btn btn--accent copy-email" href="mailto:oron2558@gmail.com" data-email="oron2558@gmail.com" data-track="contact-email">
+          oron2558@gmail.com
+          <span class="copy-email__done" aria-hidden="true">Copied</span>
         </a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener" data-track="contact-linkedin">LinkedIn</a>
+        <a class="btn btn--ghost" href="Oron_Turgeman_Resume.pdf" download data-track="cv-download-en">CV (English)</a>
+        <a class="btn btn--ghost" href="Oron_Turgeman_Resume_HE.pdf" download data-track="cv-download-he" lang="he">קורות חיים</a>
       </div>
-      <div class="pf-proof__phones">
-        <div class="pf-proof__phone pf-proof__phone--back">
-          <img src="mba-phone-admin-v2.jpg" alt="Meashrim in Click admin dashboard" loading="lazy">
-        </div>
-        <div class="pf-proof__phone pf-proof__phone--front">
-          <img src="mba-phone-dashboard-v2.jpg" alt="Meashrim in Click event dashboard with RSVP stats" loading="lazy">
-        </div>
-      </div>
+      <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+
+      <footer class="foot">
+        <span>&copy; 2026 Oron Turgeman</span>
+        <nav aria-label="Footer">
+          <a href="projects.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="resume.html">Resume</a>
+          <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+      </footer>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- ==================== FEATURED PROJECTS ==================== -->
-<section class="onf-projects" id="projects">
-  <div class="onf-section-head">
-    <h2 class="onf-section-title">Featured Work</h2>
-    <p class="onf-section-sub">Three products, designed end&#8209;to&#8209;end — from research to high&#8209;fidelity UI.</p>
-  </div>
-
-  <div class="pf-cards">
-    <a href="casestudy-woofio.html" class="pf-card">
-      <div class="pf-card__media">
-        <span class="pf-card__badge">Case study</span>
-        <img src="woofio-hero-composite.jpeg" alt="Woofio dog care app screens" loading="lazy">
-      </div>
-      <div class="pf-card__body">
-        <div class="pf-card__tags">
-          <span class="pf-card__tag">Mobile</span>
-          <span class="pf-card__tag">Pet Care</span>
-          <span class="pf-card__tag">Marketplace</span>
-        </div>
-        <h3 class="pf-card__title">All-in-One Dog Care Platform</h3>
-        <p class="pf-card__desc">From vet tracking to dog-walker booking — one app for dog owners and their families.</p>
-        <span class="pf-card__cta">View case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </div>
-    </a>
-
-    <a href="casestudy-ai-crm.html" class="pf-card">
-      <div class="pf-card__media">
-        <span class="pf-card__badge">Case study</span>
-        <img src="crm-dash-overview-v6.webp" alt="MessAge omnichannel analytics dashboard" loading="lazy">
-      </div>
-      <div class="pf-card__body">
-        <div class="pf-card__tags">
-          <span class="pf-card__tag">SaaS</span>
-          <span class="pf-card__tag">AI</span>
-          <span class="pf-card__tag">Lead Management</span>
-        </div>
-        <h3 class="pf-card__title">AI Messaging for Solo Professionals</h3>
-        <p class="pf-card__desc">An AI platform that responds to leads across WhatsApp, Instagram and email — turning missed messages into booked work.</p>
-        <span class="pf-card__cta">View case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </div>
-    </a>
-
-    <a href="casestudy-myplanner.html" class="pf-card">
-      <div class="pf-card__media">
-        <span class="pf-card__badge">Case study</span>
-        <img src="myplanner-card-v2.jpg" alt="MyPlanner wedding planning dashboard" loading="lazy">
-      </div>
-      <div class="pf-card__body">
-        <div class="pf-card__tags">
-          <span class="pf-card__tag">AI</span>
-          <span class="pf-card__tag">Event Planning</span>
-          <span class="pf-card__tag">Fintech</span>
-        </div>
-        <h3 class="pf-card__title">Smart Wedding Planning Platform</h3>
-        <p class="pf-card__desc">AI-powered event management — budget tracking, supplier management, and cashback in one place.</p>
-        <span class="pf-card__cta">View case study
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- ==================== FOOTER ==================== -->
-<footer class="onf-footer" id="contact">
-  <div class="onf-footer__left">
-    <span class="onf-footer__name">ORON.</span>
-    <div class="onf-footer__links">
-      <a href="mailto:oron2558@gmail.com" class="onf-footer__link">oron2558@gmail.com</a>
-      <a href="https://www.linkedin.com/in/oron-turgeman-892277225" target="_blank" class="onf-footer__link">LinkedIn</a>
-    </div>
-  </div>
-  <span class="onf-footer__copy">&copy; 2026 Oron Turgeman. All rights reserved.</span>
-</footer>
-
-<script src="scripts/oronflix.js?v=20260807"></script>
-<script src="scripts/site-nav.js?v=20260807" defer></script>
-<script src="scripts/hero-drop.js?v=20260807" defer></script>
+<script src="scripts/site-nav.js?v=20261008c" defer></script>
+<script src="scripts/v2.js?v=20261008c" defer></script>
 </body>
 </html>
