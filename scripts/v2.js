@@ -875,7 +875,12 @@
         }
       });
     }, { rootMargin: '0px 0px -15% 0px' });
-    notes.forEach(function (n) { io.observe(n); });
+    notes.forEach(function (n) {
+      /* the film note sits at the bottom edge of the first screen: it lands
+         with the film instead of waiting to scroll into view */
+      if (n.classList.contains('anote--inline')) setTimeout(function () { n.classList.add('is-in'); }, parseInt(n.getAttribute('data-delay') || '0', 10));
+      else io.observe(n);
+    });
   }
 
   function init() {
