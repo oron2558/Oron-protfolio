@@ -2191,7 +2191,11 @@ html:not(.js) .dt__steps { gap: 48px; }
   transition: flex-grow 700ms var(--ease-out), background-color 450ms ease;
 }
 .tzp.is-open { flex-grow: 4.2; background: var(--accent); }
-.tzp.is-open .tzp__link { color: #141414; }
+/* white on the orange panel: the title reads as large text (3.3:1), and the
+   line under it is set bold at 18.7px so it counts as large text too */
+.tzp.is-open .tzp__link { color: #fff; }
+.tzp.is-open .tzp__idx { opacity: 0.9; }
+.tzp.is-open .tzp__sub { opacity: 1; font-size: 1.17rem; font-weight: 600; line-height: 1.35; }
 .tzp__link {
   position: absolute;
   inset: 0;
@@ -2201,6 +2205,7 @@ html:not(.js) .dt__steps { gap: 48px; }
   -webkit-tap-highlight-color: transparent;
 }
 .tzp__link:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: inherit; }
+.tzp.is-open .tzp__link:focus-visible { outline-color: #fff; outline-offset: -6px; }
 .tzp__idx {
   position: absolute;
   left: 22px;
@@ -2313,448 +2318,190 @@ html:not(.js) .dt__steps { gap: 48px; }
 .tz__note { color: var(--muted); font-size: 0.95rem; }
 #work { padding-bottom: clamp(16px, 4vw, 60px); }
 
-/* =========================================================================
-   AI TOOLS (home). Tabs on the left, a small working window on the right
-   that plays a short demo for each tool. The open tab is accent orange,
-   the others light grey, like the work panels above.
-   ========================================================================= */
-.ai {
-  --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
-  --win-ink: #edebe8;
-  --win-dim: rgba(237, 235, 232, 0.64);
+/* About follows the pinned process section: it slides over the empty
+   bottom of the last frame, then keeps the same breathing room as the
+   other sections. */
+.story-sec {
   position: relative;
   z-index: 1;
-  padding-block: clamp(40px, 6vw, 88px) clamp(80px, 10vw, 144px);
+  padding-top: clamp(40px, 6vw, 88px);
   background: var(--ground);
 }
 
-.ai__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  grid-template-rows: auto minmax(0, 1fr);
-  grid-template-areas: "tabs win" "kit win";
-  gap: clamp(14px, 1.8vw, 24px);
+/* =========================================================================
+   AI NOTES. Figma-style comment pins dropped on the page where AI was part
+   of the work. A pin points at its spot with its bottom-left corner; on
+   hover, focus or tap it grows into the comment.
+   ========================================================================= */
+.hero--type .hero__inner,
+.tz,
+.dt__copy,
+.dt__grid,
+.story__body { position: relative; }
+
+.anote {
+  --pin: 36px;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 6;
+  width: var(--pin);
+  height: var(--pin);
+  translate: 0 -100%;
 }
-.ai__tabs { grid-area: tabs; }
-.ai__win { grid-area: win; }
-.ai__kit { grid-area: kit; }
+.anote.is-open { z-index: 40; }
+@media (max-width: 899px) {
+  .anote { --pin: 34px; left: var(--mx, var(--x)); top: var(--my, var(--y)); }
+}
 
-/* ---------- tabs ---------- */
-.ai__tabs { display: flex; flex-direction: column; gap: 10px; }
-
-.ai__tab {
+.anote__pin {
   position: relative;
-  display: grid;
-  grid-template-columns: 2.2em minmax(0, 1fr);
-  align-items: baseline;
-  width: 100%;
-  padding: 22px 24px 24px;
-  border: 0;
-  border-radius: var(--r-md);
-  background: var(--ground-2);
-  color: var(--ink);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color 320ms var(--ease-out), color 320ms var(--ease-out), transform 160ms var(--ease-out);
-}
-.ai__tab:active { transform: scale(0.985); }
-.ai__tab:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-
-.ai__num {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  transition: color 320ms var(--ease-out);
-}
-.ai__name {
-  font-size: clamp(1.7rem, 2.5vw, 2.4rem);
-  font-weight: 850;
-  font-stretch: 100%;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  transition: font-stretch 500ms var(--ease-out);
-}
-.ai__more {
-  grid-column: 2;
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 480ms var(--ease-out);
-}
-.ai__more > span { min-height: 0; overflow: hidden; }
-.ai__role {
   display: block;
-  max-width: 34ch;
-  padding-top: 12px;
-  font-size: 1rem;
-  line-height: 1.45;
-  opacity: 0;
-  transition: opacity 300ms var(--ease-out);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  background: #fff;
+  box-shadow: 0 6px 18px -6px rgba(20, 20, 20, 0.45), 0 0 0 1px rgba(20, 20, 20, 0.06);
+  cursor: pointer;
+  transform-origin: 0 100%;
+  transition: transform 220ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
 }
-.ai__tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 14px; opacity: 0; transition: opacity 300ms var(--ease-out); }
-.ai__tags > span {
+.anote__pin img { display: block; width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
+.anote__pin:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* the AI mark on the pin */
+.anote__spark {
+  position: absolute;
+  top: -6px;
+  right: -7px;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.anote__spark svg { width: 9px; height: 9px; fill: #fff; }
+/* a soft ring once, when the pin lands */
+.anote__pin::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .anote:not(.is-open) .anote__pin:hover { transform: scale(1.1); }
+}
+.anote__spark { transition: opacity 160ms ease; }
+.anote.is-open .anote__spark { opacity: 0; }
+
+/* the comment: it opens out of the pin. JS sets where it sits (--cl), where
+   the pin is inside it (--ox) and which corner points (--rad), so it never
+   leaves the screen. */
+.anote__card {
+  --c: var(--pin);
+  --ox: 0px;
+  --rad: 18px 18px 18px 4px;
+  position: absolute;
+  left: var(--cl, 0px);
+  bottom: 0;
+  width: min(300px, calc(100vw - 24px));
+  padding: 12px 14px 14px;
+  border-radius: var(--rad);
+  background: #fff;
+  color: #141414;
+  box-shadow: 0 24px 48px -18px rgba(20, 20, 20, 0.45), 0 0 0 1px rgba(20, 20, 20, 0.07);
+  text-align: left;
+  visibility: hidden;
+  clip-path: inset(calc(100% - var(--c)) calc(100% - var(--ox) - var(--c)) 0 var(--ox) round 18px 18px 18px 0);
+  transition: clip-path 260ms var(--ease-out), visibility 0s linear 260ms;
+}
+/* closed cards leave the layout, so they never widen the page */
+.anote:not(.is-live) .anote__card { display: none; }
+.anote.is-open .anote__card {
+  visibility: visible;
+  clip-path: inset(0 0 0 0 round var(--rad));
+  transition: clip-path 420ms var(--ease-out), visibility 0s;
+}
+.anote.is-down .anote__card {
+  bottom: auto;
+  top: 0;
+  clip-path: inset(0 calc(100% - var(--ox) - var(--c)) calc(100% - var(--c)) var(--ox) round 0 18px 18px 18px);
+}
+.anote.is-down.is-open .anote__card { clip-path: inset(0 0 0 0 round var(--rad)); }
+.anote__card > * { opacity: 0; transition: opacity 160ms ease; }
+.anote.is-open .anote__card > * { opacity: 1; transition: opacity 260ms ease 140ms; }
+
+.anote__head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+.anote__head img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
+.anote__head b { font-weight: 700; font-size: 0.85rem; }
+.anote__head span { color: #5c5955; }
+.anote__head em {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(255, 79, 26, 0.12);
+  color: #b0340b;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.anote__head em svg { width: 10px; height: 10px; fill: currentColor; }
+.anote__card p { margin: 0; font-size: 0.9rem; line-height: 1.45; }
+.anote__file {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 5px 11px;
-  border: 1px solid rgba(20, 20, 20, 0.24);
+  margin-top: 10px;
+  padding: 6px 10px;
+  border: 1px solid rgba(20, 20, 20, 0.14);
+  border-radius: 9px;
+  background: #f7f6f4;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2a2927;
+}
+.anote__file svg { width: 14px; height: 14px; flex: none; }
+.anote__tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.anote__tools span {
+  padding: 5px 10px;
+  border: 1px solid rgba(20, 20, 20, 0.14);
   border-radius: 999px;
   font-size: 0.8rem;
-  font-weight: 600;
-}
-.ai__tags > span::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--mk, #141414);
-  box-shadow: 0 0 0 1px rgba(20, 20, 20, 0.35);
-}
-
-.ai__tab.is-on { background: var(--accent); color: #141414; }
-.ai__tab.is-on .ai__num { color: rgba(20, 20, 20, 0.7); }
-.ai__tab.is-on .ai__name { font-stretch: 112%; }
-.ai__tab.is-on .ai__more { grid-template-rows: 1fr; }
-.ai__tab.is-on .ai__role,
-.ai__tab.is-on .ai__tags { opacity: 1; transition-delay: 160ms; }
-
-@media (hover: hover) and (pointer: fine) {
-  .ai__tab:not(.is-on):hover { background: color-mix(in srgb, var(--ground-2) 86%, var(--ink)); }
-  .ai__tab:not(.is-on):hover .ai__name { font-stretch: 106%; }
-}
-
-/* the timer for the guided tour: a thin line that fills on the open tab */
-.ai__prog {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 11px;
-  height: 2px;
-  border-radius: 2px;
-  background: rgba(20, 20, 20, 0.18);
-  opacity: 0;
-  overflow: hidden;
-  transition: opacity 240ms ease;
-}
-.ai__prog i {
-  display: block;
-  height: 100%;
-  background: #141414;
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-.ai.is-auto .ai__tab.is-on .ai__prog { opacity: 1; }
-.ai.is-auto.is-live .ai__tab.is-on .ai__prog i { animation: aiProg var(--ai-dur, 9s) linear forwards; }
-.ai.is-auto.is-live.is-hold .ai__tab.is-on .ai__prog i { animation-play-state: paused; }
-@keyframes aiProg { to { transform: scaleX(1); } }
-
-/* ---------- the window ---------- */
-.ai__win {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 510px;
-  aspect-ratio: 16 / 11;
-  border-radius: var(--r-lg);
-  background: #141414;
-  color: var(--win-ink);
-  overflow: hidden;
-  isolation: isolate;
-  box-shadow: 0 40px 80px -40px rgba(20, 20, 20, 0.55);
-}
-[data-theme="dark"] .ai__win { background: #1c1b1a; box-shadow: inset 0 0 0 1px var(--line); }
-/* a soft light that follows the pointer */
-.ai__win::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(520px circle at var(--mx, 85%) var(--my, -10%), rgba(255, 79, 26, 0.17), transparent 62%);
-  pointer-events: none;
-}
-
-.ai__bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px 12px 18px;
-  border-bottom: 1px solid rgba(237, 235, 232, 0.09);
-}
-.ai__dots { display: flex; gap: 7px; width: 48px; }
-.ai__dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(237, 235, 232, 0.2); }
-.ai__wtitle {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: center;
-  font: 500 0.8rem/1 var(--mono);
-  color: var(--win-dim);
-}
-.ai__pause {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  margin-left: 14px;
-  padding: 0;
-  border: 1px solid rgba(237, 235, 232, 0.18);
-  border-radius: 50%;
-  background: transparent;
-  color: var(--win-ink);
-  cursor: pointer;
-  transition: background-color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
-}
-.ai__pause:active { transform: scale(0.94); }
-.ai__pause:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.ai__pause svg { width: 13px; height: 13px; }
-.ai__pause .i-play,
-.ai.is-stopped .ai__pause .i-pause { display: none; }
-.ai.is-stopped .ai__pause .i-play { display: block; }
-@media (hover: hover) and (pointer: fine) {
-  .ai__pause:hover { background: rgba(237, 235, 232, 0.1); border-color: rgba(237, 235, 232, 0.4); }
-}
-
-.ai__panels { position: relative; flex: 1; min-height: 0; }
-.ai__panel {
-  position: absolute;
-  inset: 0;
-  padding: clamp(20px, 2.4vw, 34px);
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 260ms var(--ease-out), transform 360ms var(--ease-out), visibility 0s linear 260ms;
-}
-.ai__panel.is-on {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  transition: opacity 420ms var(--ease-out) 100ms, transform 520ms var(--ease-out) 100ms, visibility 0s;
-}
-
-.ai__cap {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin: 0 0 20px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--win-dim);
-}
-.ai__cap::before { content: ''; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-
-/* items that play in, one after another, when a panel opens */
-.js .ai__seq {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 380ms var(--ease-out), transform 480ms var(--ease-out);
-}
-.js .ai__panel.is-play .ai__seq { opacity: 1; transform: none; transition-delay: var(--t, 0ms); }
-
-/* ChatGPT: a chat */
-.ai__chat { display: flex; flex-direction: column; }
-.ai__msg p { margin: 0; }
-.ai__msg--me {
-  align-self: flex-end;
-  max-width: 84%;
-  padding: 13px 17px;
-  border-radius: 20px 20px 6px 20px;
-  background: rgba(237, 235, 232, 0.1);
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-.ai__msg--bot { position: relative; margin-top: 18px; font-size: 0.95rem; line-height: 1.45; }
-.ai__typing {
-  position: absolute;
-  top: 6px;
-  left: 0;
-  display: flex;
-  gap: 5px;
-  opacity: 0;
-}
-.ai__typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--win-dim); }
-.js .ai__panel.is-play .ai__typing { animation: aiTyping 1100ms 450ms both; }
-.js .ai__panel.is-play .ai__typing i { animation: aiDot 600ms ease-in-out infinite alternate; }
-.ai__typing i:nth-child(2) { animation-delay: 150ms !important; }
-.ai__typing i:nth-child(3) { animation-delay: 300ms !important; }
-@keyframes aiTyping { 0%, 100% { opacity: 0; } 12%, 88% { opacity: 1; } }
-@keyframes aiDot { from { transform: translateY(2px); opacity: 0.45; } to { transform: translateY(-2px); opacity: 1; } }
-
-.ai__bars { display: grid; gap: 11px; margin: 14px 0 0; padding: 0; list-style: none; }
-.ai__bars li {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 6px 14px;
-  font-size: 0.9rem;
-}
-.ai__bars b { font-weight: 700; font-variant-numeric: tabular-nums; }
-.ai__bars li::after {
-  content: '';
-  grid-column: 1 / -1;
-  height: 6px;
-  border-radius: 6px;
-  background:
-    linear-gradient(var(--accent), var(--accent)) left center / 0% 100% no-repeat,
-    rgba(237, 235, 232, 0.1);
-  transition: background-size 900ms var(--ease-out);
-}
-.ai__panel.is-play .ai__bars li::after { background-size: var(--w) 100%, auto; transition-delay: calc(var(--t, 0ms) + 120ms); }
-.ai__next {
-  align-self: flex-start;
-  margin: 20px 0 0;
-  padding: 9px 15px;
-  border: 1px solid rgba(237, 235, 232, 0.2);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-/* Claude Code: a terminal */
-.ai__term { font-family: var(--mono); font-size: 0.88rem; line-height: 1.6; }
-.ai__term .ai__cap { font-family: var(--font); }
-.ai__ln { margin: 0 0 10px; }
-.js .ai__ln { opacity: 0; }
-.js .ai__ln.is-on { opacity: 1; }
-.ai__ln--cmd span { color: var(--accent); }
-.ai__ln--ask {
-  margin-bottom: 16px;
-  padding: 10px 0 10px 14px;
-  border-left: 2px solid var(--accent);
-  color: var(--win-ink);
-}
-.ai__ln--ask .ai__rest { color: transparent; }
-.ai__caret {
-  display: inline-block;
-  width: 0.55em;
-  height: 1.1em;
-  margin: 0 1px -0.18em;
-  background: var(--accent);
-  animation: aiCaret 900ms steps(1) infinite;
-}
-.ai__caret[hidden] { display: none; }
-@keyframes aiCaret { 50% { opacity: 0; } }
-.ai__ln--step { position: relative; padding-left: 1.6em; color: var(--win-dim); }
-.ai__ln--step::before { content: '●'; position: absolute; left: 0; color: var(--accent); }
-.ai__ln--step.is-busy::before { content: '○'; color: var(--win-dim); animation: aiBusy 500ms linear infinite; }
-@keyframes aiBusy { 50% { opacity: 0.3; } }
-.ai__ln--done { position: relative; margin-top: 16px; padding-left: 1.6em; color: #9be7c4; }
-.ai__ln--done::before { content: '✓'; position: absolute; left: 0; }
-
-/* Higgsfield: the film */
-.ai__film { padding: 0; }
-.ai__film video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.04);
-  transition: transform 6s linear;
-}
-.ai__film.is-play video { transform: scale(1); }
-.ai__filmcap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 72px clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 28px);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0));
-  color: #fff;
-}
-.ai__filmcap p { margin: 0 0 14px; font-size: clamp(1.15rem, 1.7vw, 1.5rem); font-weight: 750; line-height: 1.2; }
-.ai__flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.ai__flow li {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 13px 6px 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-.ai__flow b {
-  display: grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #141414;
-  font-size: 0.72rem;
-}
-
-/* ---------- the rest of the toolkit ---------- */
-.ai__kit {
-  align-self: end;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  padding: 4px 4px 2px;
-}
-.ai__kit-k { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
-.ai__kit-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.ai__kit-list li {
-  padding: 8px 15px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.95rem;
   font-weight: 650;
-  transition: border-color 200ms ease, background-color 200ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .ai__kit-list li:hover { border-color: var(--ink); }
-}
-.ai__kit-k { flex-basis: 100%; }
-.ai__kit-note { flex-basis: 100%; max-width: 40ch; margin: 2px 0 0; font-size: 0.95rem; color: var(--muted); }
-
-/* ---------- phones and small tablets: tabs become a row of pills ---------- */
-@media (max-width: 899px) {
-  .ai__grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "tabs" "win" "kit"; }
-  .ai__kit { margin-top: 10px; padding: 0; }
-  .ai__tabs { flex-direction: row; gap: 8px; }
-  .ai__tab {
-    flex: 1 1 0;
-    min-width: 0;
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    padding: 15px 8px 19px;
-    border-radius: 14px;
-    text-align: center;
-  }
-  .ai__num, .ai__more { display: none; }
-  .ai__name { font-size: clamp(0.95rem, 4.2vw, 1.25rem); font-stretch: 88%; letter-spacing: -0.01em; white-space: nowrap; }
-  .ai__tab.is-on .ai__name { font-stretch: 92%; }
-  .ai__prog { left: 14px; right: 14px; bottom: 8px; }
-  .ai__win { aspect-ratio: auto; height: 520px; min-height: 0; border-radius: 22px; }
-  .ai__cap { margin-bottom: 14px; }
-  .ai__msg--me { padding: 11px 14px; }
-  .ai__msg--me, .ai__msg--bot { font-size: 0.9rem; }
-  .ai__msg--bot { margin-top: 14px; }
-  .ai__bars { gap: 9px; }
-  .ai__bars li { font-size: 0.85rem; }
-  .ai__next { margin-top: 14px; }
-  .ai__term { font-size: 0.8rem; }
-}
-@media (min-width: 600px) and (max-width: 899px) {
-  .ai__win { height: auto; aspect-ratio: 4 / 3; }
 }
 
-/* no motion: everything shown at once, no tour */
-.ai--static .ai__pause { display: none; }
-.ai--static .ai__seq,
-.ai--static .ai__ln { opacity: 1 !important; transform: none !important; transition: none !important; }
-.ai--static .ai__typing { display: none; }
-.ai--static .ai__bars li::after { background-size: var(--w) 100%, auto; transition: none; }
-.ai--static .ai__film video { transform: none; }
+[data-theme="dark"] .anote__card { background: #262523; color: #edebe8; box-shadow: 0 24px 48px -18px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(237, 235, 232, 0.1); }
+[data-theme="dark"] .anote__head span { color: #a29d97; }
+[data-theme="dark"] .anote__head em { background: rgba(255, 79, 26, 0.18); color: #ff9b73; }
+[data-theme="dark"] .anote__file { background: #1c1b1a; border-color: rgba(237, 235, 232, 0.14); color: #d6d2cd; }
+[data-theme="dark"] .anote__tools span { border-color: rgba(237, 235, 232, 0.18); }
+
+/* landing: pins drop in when their spot scrolls into view */
+@media (prefers-reduced-motion: no-preference) {
+  .js .anote:not(.is-in) .anote__pin { transform: scale(0); }
+  .js .anote.is-in .anote__pin { animation: anoteDrop 620ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards; }
+  .js .anote.is-in .anote__pin::after { animation: anoteRing 1300ms var(--ease-out) 520ms 2; }
+}
+@keyframes anoteDrop { from { transform: scale(0) rotate(-14deg); } to { transform: scale(1) rotate(0); } }
+@keyframes anoteRing { from { opacity: 0.7; transform: scale(1); } to { opacity: 0; transform: scale(1.7); } }
 @media (prefers-reduced-motion: reduce) {
-  .ai__tab, .ai__name, .ai__more, .ai__role, .ai__tags, .ai__panel, .ai__panel.is-on { transition: none !important; }
+  .anote__card, .anote.is-open .anote__card, .anote__card > *, .anote.is-open .anote__card > * { transition: none; }
 }
