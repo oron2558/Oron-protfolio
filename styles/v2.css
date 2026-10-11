@@ -2548,3 +2548,8 @@ html:not(.js) .dt__steps { gap: 48px; }
 @media (prefers-reduced-motion: reduce) {
   .anote__card, .anote.is-open .anote__card, .anote__card > *, .anote.is-open .anote__card > * { transition: none; }
 }
+
+/* Static name (2026-10-11): no entrance, no scroll slide, no cursor reaction. */
+.hero--type .hero__row--1,
+.hero--type .hero__row--2,
+.hero--type .hero__name .mline > span { animation: none !important; translate: none !important; opacity: 1 !important; }
