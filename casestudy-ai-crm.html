@@ -851,7 +851,7 @@
     }
 
     /* Venn Diagram */
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
+    @font-face { font-family: 'Caveat'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('fonts/caveat-latin-var.woff2') format('woff2'); }
     .cs-venn-wrap {
       background: transparent;
       padding: 48px 0;
@@ -2214,6 +2214,8 @@
     })();
   </script>
   <link rel="stylesheet" href="styles/case-v2.css?v=20261007a">
+<link rel="stylesheet" href="consent.css">
+<script src="consent.js" defer></script>
 </head>
 <body data-project="ai-crm">
 
@@ -2323,7 +2325,7 @@
         <div class="animate-on-scroll" style="display:flex; align-items:flex-start; justify-content:center;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 95 560 460" style="width:100%; max-width:520px;">
             <defs>
-              <style>@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&amp;display=swap'); .handwritten { font-family: 'Caveat', cursive; }</style>
+              <style>.handwritten { font-family: 'Caveat', cursive; }</style>
             </defs>
             <rect width="600" height="500" fill="none"/>
             <g fill="none" stroke="#2a2a2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
@@ -3049,6 +3051,7 @@
     <p style="font-size: var(--fs-tiny); color: var(--text-muted);">
       &copy; 2025 Oron Turgeman. Designed with intention.
     </p>
+    <p style="font-size: var(--fs-tiny); color: var(--text-muted); display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;"><a href="privacy.html" style="color: inherit;">Privacy</a><a href="accessibility.html" style="color: inherit;">Accessibility</a><button type="button" class="bd-legal-btn" data-consent-open style="text-decoration: underline;">Cookie settings</button></p>
     <a class="bd-credit" href="https://braind-studio.higgsfield.app/" target="_blank" rel="noopener" aria-label="Built by Braind, web design studio (opens in a new tab)"><span>Built by</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 280 2996 815" class="bd-logo" aria-hidden="true" focusable="false"><path d="M-10 700 Q1448 672 2906 690 L2918 1068 Q1448 1082 -2 1074 Z" fill="#FF4F1A"/><path d="M69 285H217V588H222Q233 544 272.5 516.0Q312 488 363 488Q463 488 514.0 558.0Q565 628 565 762Q565 896 514.0 966.5Q463 1037 363 1037Q337 1037 314.0 1029.5Q291 1022 272.5 1008.5Q254 995 241.0 976.5Q228 958 222 937H217V1025H69ZM314 917Q356 917 383.5 887.5Q411 858 411 808V717Q411 667 383.5 637.5Q356 608 314 608Q272 608 244.5 628.5Q217 649 217 685V840Q217 876 244.5 896.5Q272 917 314 917Z M642.0 1025V500H790.0V614H795.0Q799.0 592 809.0 571.5Q819.0 551 835.5 535.0Q852.0 519 875.0 509.5Q898.0 500 929.0 500H955.0V638H918.0Q853.0 638 821.5 655.0Q790.0 672 790.0 718V1025Z M1399.0 1025Q1359.0 1025 1332.5 1000.0Q1306.0 975 1299.0 933H1293.0Q1281.0 984 1240.0 1010.5Q1199.0 1037 1139.0 1037Q1060.0 1037 1018.0 995.0Q976.0 953 976.0 884Q976.0 801 1036.5 760.5Q1097.0 720 1201.0 720H1284.0V687Q1284.0 649 1264.0 626.5Q1244.0 604 1197.0 604Q1153.0 604 1127.0 623.0Q1101.0 642 1084.0 666L996.0 588Q1028.0 541 1076.5 514.5Q1125.0 488 1208.0 488Q1320.0 488 1376.0 537.0Q1432.0 586 1432.0 680V910H1481.0V1025ZM1194.0 934Q1231.0 934 1257.5 918.0Q1284.0 902 1284.0 866V804H1212.0Q1125.0 804 1125.0 863V878Q1125.0 907 1143.0 920.5Q1161.0 934 1194.0 934Z M1619.0 444Q1574.0 444 1553.5 423.5Q1533.0 403 1533.0 371V349Q1533.0 317 1553.5 296.5Q1574.0 276 1619.0 276Q1664.0 276 1684.5 296.5Q1705.0 317 1705.0 349V371Q1705.0 403 1684.5 423.5Q1664.0 444 1619.0 444ZM1545.0 500H1693.0V1025H1545.0Z M1796.0 1025V500H1944.0V589H1950.0Q1964.0 548 1999.0 518.0Q2034.0 488 2096.0 488Q2177.0 488 2218.5 542.0Q2260.0 596 2260.0 696V1025H2112.0V708Q2112.0 657 2096.0 632.5Q2080.0 608 2039.0 608Q2021.0 608 2004.0 612.5Q1987.0 617 1973.5 627.0Q1960.0 637 1952.0 651.5Q1944.0 666 1944.0 685V1025Z M2679.0 937H2674.0Q2668.0 958 2655.0 976.5Q2642.0 995 2623.5 1008.5Q2605.0 1022 2581.5 1029.5Q2558.0 1037 2533.0 1037Q2433.0 1037 2382.0 966.5Q2331.0 896 2331.0 762Q2331.0 628 2382.0 558.0Q2433.0 488 2533.0 488Q2584.0 488 2623.5 516.0Q2663.0 544 2674.0 588H2679.0V285H2827.0V1025H2679.0ZM2582.0 917Q2624.0 917 2651.5 896.5Q2679.0 876 2679.0 840V685Q2679.0 649 2651.5 628.5Q2624.0 608 2582.0 608Q2540.0 608 2512.5 637.5Q2485.0 667 2485.0 717V808Q2485.0 858 2512.5 887.5Q2540.0 917 2582.0 917Z" fill="currentColor"/></svg></a>
   </footer>
 
