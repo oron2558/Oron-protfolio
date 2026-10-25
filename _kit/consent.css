@@ -1,0 +1,66 @@
+/* Braind consent notice v1. Theme per site by setting these on :root. */
+.bd-consent {
+  --_bg: var(--bd-c-bg, #fff);
+  --_ink: var(--bd-c-ink, #141414);
+  --_acc: var(--bd-c-accent, #141414);
+  --_acc-ink: var(--bd-c-accent-ink, #fff);
+  position: fixed;
+  inset-inline: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 2147483000;
+  max-width: 560px;
+  margin-inline-start: auto;
+  padding: 16px 18px;
+  display: grid;
+  gap: 12px;
+  background: var(--_bg);
+  color: var(--_ink);
+  font-family: var(--bd-c-font, inherit);
+  font-size: 15px;
+  line-height: 1.55;
+  border: 1px solid color-mix(in srgb, var(--_ink) 18%, transparent);
+  border-radius: var(--bd-c-radius, 14px);
+  box-shadow: 0 12px 32px -12px rgb(0 0 0 / 0.28), 0 2px 6px rgb(0 0 0 / 0.08);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bd-consent { animation: bd-consent-in 260ms cubic-bezier(0.23, 1, 0.32, 1); }
+  @keyframes bd-consent-in { from { opacity: 0; transform: translateY(12px); } }
+}
+.bd-consent p { margin: 0; }
+.bd-consent a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.bd-consent__btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.bd-consent__btn {
+  min-height: 44px;
+  padding: 0 18px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--_ink);
+  background: transparent;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.bd-consent__btn.is-primary { background: var(--_acc); border-color: var(--_acc); color: var(--_acc-ink); }
+.bd-consent__btn:active { transform: scale(0.97); }
+.bd-consent a:focus-visible,
+.bd-consent__btn:focus-visible,
+.bd-embed-ph:focus-visible { outline: 2px solid var(--_ink, currentColor); outline-offset: 3px; }
+
+/* An external embed waiting for consent: the iframe stays empty and hidden, a button takes its place. */
+iframe[data-consent-src]:not([src]) { display: none; }
+.bd-embed-ph {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  padding: 16px;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-align: center;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  border: 1.5px dashed color-mix(in srgb, currentColor 40%, transparent);
+  border-radius: inherit;
+  cursor: pointer;
+}
